@@ -1,2 +1,2 @@
-include ':app'
+include ':sample', ':libraries:ratingbar'
 rootProject.name='UI Components'
