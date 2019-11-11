@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RatingBarView">
+        <!--    star count to highlight from from 5 stars   -->
+        <attr name="starCount" format="integer" />
+        <!--    highlighted star color  -->
+        <attr name="starHighlightColor" format="color" />
+        <!--    default star color  -->
+        <attr name="starDefaultColor" format="color" />
+    </declare-styleable>
+</resources>
