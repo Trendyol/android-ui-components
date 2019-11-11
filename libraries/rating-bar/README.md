@@ -13,7 +13,7 @@ allprojects {
     }
 }
 ```
- - After adding Jitpack repository, you can add **RatingBar** dependency to your app level build.gradle.
+ - After adding JitPack repository, you can add **RatingBar** dependency to your app level build.gradle.
 ```
 dependencies {
     implementation "com.trendyol.ui-components:rating-bar:$ratingbar_version"
