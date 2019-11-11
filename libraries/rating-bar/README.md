@@ -4,7 +4,7 @@
 RatingBarView is alternative implementation of RatingBar on Android.
 
 # Installation
- - To implement **RatingBar** to your Android project via Gradle, you need to add Jitpack repository to your root build.gradle.
+ - To implement **RatingBar** to your Android project via Gradle, you need to add JitPack repository to your root build.gradle.
 ```
 allprojects {
     repositories {
