@@ -19,7 +19,7 @@ dependencies {
     implementation "com.trendyol.ui-components:rating-bar:$ratingbar_version"
 }
 ```
-To use **RatingBar**, you have to enable dataBinding from your main project.
+:warning: To use **RatingBar**, you have to enable dataBinding from your main project.
 # Usage
 You can inflate view from your xml set attributes. Also, you can set values via 
 
