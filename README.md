@@ -1,11 +1,13 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/logo.png"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/logo.png" width="400"/>
 
 UI Components for Android by Trendyol Android team.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 UI Components includes several custom views for Android platform to make developers life easier!
+
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/1.png" width="300"/>
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
