@@ -20,7 +20,7 @@
             android:id="@+id/star_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/margin_stars"
             app:srcCompat="@drawable/ic_star"
             app:tintCompat="@{viewState.tint1}" />
 
@@ -28,7 +28,7 @@
             android:id="@+id/star_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/margin_stars"
             app:srcCompat="@drawable/ic_star"
             app:tintCompat="@{viewState.tint2}" />
 
@@ -36,7 +36,7 @@
             android:id="@+id/star_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/margin_stars"
             app:srcCompat="@drawable/ic_star"
             app:tintCompat="@{viewState.tint3}" />
 
@@ -44,7 +44,7 @@
             android:id="@+id/star_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/margin_stars"
             app:srcCompat="@drawable/ic_star"
             app:tintCompat="@{viewState.tint4}" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/star_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/margin_stars"
             app:srcCompat="@drawable/ic_star"
             app:tintCompat="@{viewState.tint5}" />
     </merge>
