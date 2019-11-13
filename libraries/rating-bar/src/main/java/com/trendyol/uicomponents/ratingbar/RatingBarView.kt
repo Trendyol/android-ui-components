@@ -7,7 +7,9 @@ import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import com.trendyol.uicomponents.ratingbar.databinding.ViewRatingBarBinding
 
-class RatingBarView : LinearLayout {
+class RatingBarView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var starCount: Int = 0
     @ColorInt
@@ -17,22 +19,8 @@ class RatingBarView : LinearLayout {
 
     private val binding: ViewRatingBarBinding = inflate(R.layout.view_rating_bar)
 
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init(attrs, defStyleAttr)
-    }
-
-    private fun init(attrs: AttributeSet?, defStyleAttr: Int = 0) {
-        context?.theme?.obtainStyledAttributes(
+    init {
+        context.theme?.obtainStyledAttributes(
             attrs,
             R.styleable.RatingBarView,
             defStyleAttr,
