@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/rating-bar/assets/libraries/images/1.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/rating-bar-1.png" width="240"/>
 
 ## Rating Bar ##
 RatingBarView is alternative implementation of RatingBar on Android.
