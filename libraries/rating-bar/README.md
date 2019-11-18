@@ -1,5 +1,7 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/rating-bar-1.png" width="240"/>
 
+[![](https://jitpack.io/v/Trendyol/android-ui-components.svg)](https://jitpack.io/#Trendyol/android-ui-components)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ## Rating Bar ##
 RatingBarView is alternative implementation of RatingBar on Android.
 
@@ -16,7 +18,7 @@ allprojects {
  - After adding JitPack repository, you can add **RatingBar** dependency to your app level build.gradle.
 ```
 dependencies {
-    implementation "com.trendyol.ui-components:rating-bar:$ratingbar_version"
+    implementation "com.trendyol.ui-components:rating-bar:$ratingBarVersion"
 }
 ```
 :warning: To use **RatingBar**, you have to enable dataBinding from your main project.
@@ -27,7 +29,7 @@ You can inflate view from your xml set attributes. Also, you can set values via
 | ------------- |-------------| ------------- |------------- |
 | `app:starCount` | `setStarCount(Int)` | Rating over 5 | 0 |
 | `app:starDefaultColor` | `setDefaultStarColor(Color)` | color of star | #e6e6e6 |
-| `app:starHiglihghtColor` | `setHightlightColor(Color)` | color of highlighted color | #ffc000 |
+| `app:starHighlightColor` | `setHighlightColor(Color)` | color of highlighted color | #ffc000 |
 
 License
 --------
