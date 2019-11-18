@@ -16,7 +16,7 @@ internal fun <T : ViewDataBinding> ViewGroup?.inflate(
     attachToParent: Boolean = true
 ): T {
     if (this?.isInEditMode == true) {
-        View.inflate(context, R.layout.view_rating_bar, this)
+        View.inflate(context, R.layout.view_rating_bar, parent as? ViewGroup?)
     }
     return DataBindingUtil.inflate(
         LayoutInflater.from(this!!.context),
