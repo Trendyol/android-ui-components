@@ -61,7 +61,7 @@ class RatingBarView @JvmOverloads constructor(
      *
      * @param color: Color for highlighted star.
      */
-    fun setHightlightColor(@ColorInt color: Int) {
+    fun setHighlightColor(@ColorInt color: Int) {
         this.starHighlightColor = color
         setViewState(createViewState())
     }
