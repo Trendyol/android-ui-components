@@ -11,12 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-internal fun <T : ViewDataBinding> ViewGroup?.inflate(
+internal fun <T : ViewDataBinding> ViewGroup.inflate(
     @LayoutRes layoutId: Int,
     attachToParent: Boolean = true
 ): T {
+    if (isInEditMode) View.inflate(context, layoutId, this)
     return DataBindingUtil.inflate(
-        LayoutInflater.from(this!!.context),
+        LayoutInflater.from(context),
         layoutId,
         this,
         attachToParent
