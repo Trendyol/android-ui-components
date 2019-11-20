@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/rating-bar-1.png" width="240"/>
 
-[![](https://jitpack.io/v/Trendyol/android-ui-components.svg)](https://jitpack.io/#Trendyol/android-ui-components)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[](https://jitpack.io/v/Trendyol/android-ui-components.svg)](https://jitpack.io/#Trendyol/android-ui-components)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Rating Bar ##
 RatingBarView is alternative implementation of RatingBar on Android.
@@ -23,7 +23,7 @@ dependencies {
 ```
 :warning: To use **RatingBar**, you have to enable dataBinding from your main project.
 # Usage
-You can inflate view from your xml set attributes. Also, you can set values via 
+To set width you can use `android:layout_width` attribute. To customize more you can use following attributes directly from your layout xml file, or call the functions programmatically.
 
 | Attribute |  Method | Description | Default Value |
 | ------------- |-------------| ------------- |------------- |
@@ -31,8 +31,14 @@ You can inflate view from your xml set attributes. Also, you can set values via
 | `app:starDefaultColor` | `setDefaultStarColor(Color)` | color of star | #e6e6e6 |
 | `app:starHighlightColor` | `setHighlightColor(Color)` | color of highlighted color | #ffc000 |
 
-License
---------
+# Contributors
+This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
+
+We would like to specially thanks to following contributors;
+
+* [burhanaras](https://github.com/burhanaras)
+
+# License
     Copyright 2019 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
