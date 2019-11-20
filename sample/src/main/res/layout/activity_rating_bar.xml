@@ -12,7 +12,7 @@
 
     <com.trendyol.uicomponents.ratingbar.RatingBarView
         android:id="@+id/ratingBarView0"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:starCount="0"
         app:starDefaultColor="@android:color/holo_blue_light"
@@ -24,7 +24,7 @@
         android:text="1 Star" />
 
     <com.trendyol.uicomponents.ratingbar.RatingBarView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:starCount="1"
         app:starDefaultColor="@android:color/holo_blue_light"
@@ -36,7 +36,7 @@
         android:text="2 Stars" />
 
     <com.trendyol.uicomponents.ratingbar.RatingBarView
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         app:starCount="2"
         app:starDefaultColor="@android:color/holo_blue_light"
