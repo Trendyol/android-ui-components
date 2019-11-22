@@ -21,5 +21,7 @@
         </activity>
 
         <activity android:name=".RatingBarActivity" />
+
+        <activity android:name=".DialogsActivity" />
     </application>
 </manifest>
