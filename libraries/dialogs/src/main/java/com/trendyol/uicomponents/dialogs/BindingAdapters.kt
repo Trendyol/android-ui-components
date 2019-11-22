@@ -5,9 +5,9 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("drawable")
-internal fun AppCompatImageView.setDrawable(@DrawableRes drawableResId: Int) {
-    if (drawableResId != 0) {
+@BindingAdapter("drawableResource")
+internal fun AppCompatImageView.setDrawableResource(@DrawableRes drawableResId: Int?) {
+    if (drawableResId != null) {
         visibility = View.VISIBLE
         setImageResource(drawableResId)
     } else {

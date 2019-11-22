@@ -1,14 +1,13 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
-import android.text.Spanned
 import androidx.annotation.DrawableRes
 
-abstract class Builder internal constructor() {
+open class Builder internal constructor() {
 
     var title: String = ""
     var showCloseButton: Boolean = false
-    var closeButtonListener: ((Dialog) -> Unit)? = null
+    var closeButtonListener: ((DialogFragment) -> Unit)? = null
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -18,9 +17,9 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var contentImage: Int = 0
     var showContentAsHtml: Boolean = false
 
-    internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): Dialog {
+    internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
-            Dialog(
+            DialogFragment(
                 title = it.title,
                 showCloseButton = it.showCloseButton,
                 closeButtonListener = it.closeButtonListener ?: { },
@@ -36,12 +35,12 @@ class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
 
     var rightButtonText: String = ""
     var leftButtonText: String = ""
-    var rightButtonClickListener: ((Dialog) -> Unit)? = null
-    var leftButtonClickListener: ((Dialog) -> Unit)? = null
+    var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
+    var leftButtonClickListener: ((DialogFragment) -> Unit)? = null
 
-    internal fun buildAgreementDialog(block: AgreementDialogBuilder.() -> Unit): Dialog =
+    internal fun buildAgreementDialog(block: AgreementDialogBuilder.() -> Unit): DialogFragment =
         AgreementDialogBuilder().apply(block).let {
-            Dialog(
+            DialogFragment(
                 title = it.title,
                 showCloseButton = it.showCloseButton,
                 closeButtonListener = it.closeButtonListener,
