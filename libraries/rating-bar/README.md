@@ -2,12 +2,12 @@
 
 [![](https://jitpack.io/v/Trendyol/android-ui-components.svg)](https://jitpack.io/#Trendyol/android-ui-components) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Rating Bar ##
+## Rating Bar
 RatingBarView is alternative implementation of RatingBar on Android.
 
 # Installation
  - To implement **RatingBar** to your Android project via Gradle, you need to add JitPack repository to your root build.gradle.
-```
+```gradle
 allprojects {
     repositories {
         ...
@@ -16,7 +16,7 @@ allprojects {
 }
 ```
  - After adding JitPack repository, you can add **RatingBar** dependency to your app level build.gradle.
-```
+```gradle
 dependencies {
     implementation "com.trendyol.ui-components:rating-bar:$ratingBarVersion"
 }
