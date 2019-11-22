@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+
+    <dimen name="margin_dialog_outer">16dp</dimen>
+    <dimen name="margin_dialog_inner">8dp</dimen>
+</resources>
