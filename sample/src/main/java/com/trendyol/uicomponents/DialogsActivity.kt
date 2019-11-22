@@ -21,12 +21,23 @@ class DialogsActivity : AppCompatActivity() {
         button_agreement_dialog.setOnClickListener { showAgreementDialog() }
     }
 
+    private fun showInfoDialog() {
+        infoDialog {
+            title = "Info Dialog Sample"
+            showCloseButton = true
+            closeButtonListener = { showToast("Info dailog closed.") }
+            content = SpannableString.valueOf(getSpannableString())
+            contentImage = android.R.drawable.btn_plus
+        }.showDialog(supportFragmentManager)
+    }
+
     private fun showAgreementDialog() {
         agreementDialog {
-            title = "Agreement"
+            title = "Agreement Dialog Sample"
             leftButtonText = "Cancel"
             rightButtonText = "Agree"
-            content = SpannableString.valueOf(getSpannableString())
+            content = getHtmlString()
+            showContentAsHtml = true
             rightButtonClickListener = {
                 it.dismiss()
                 showToast("Right button clicked.")
@@ -35,16 +46,6 @@ class DialogsActivity : AppCompatActivity() {
                 it.dismiss()
                 showToast("Left buttonClicked")
             }
-        }.showDialog(supportFragmentManager)
-    }
-
-    private fun showInfoDialog() {
-        infoDialog {
-            title = "hebele Hubele"
-            showCloseButton = true
-            closeButtonListener = { showToast("Info dailog closed.") }
-            content = SpannableString.valueOf(getSpannableString())
-            contentImage = android.R.drawable.btn_plus
         }.showDialog(supportFragmentManager)
     }
 
@@ -66,6 +67,14 @@ class DialogsActivity : AppCompatActivity() {
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+
+    private fun getHtmlString(): String =
+        "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
+                "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
+                "<ul>\n" +
+                "<li>The first item in your list</li>\n" +
+                "<li>The second item; <i>italicize</i> key words</li>\n" +
+                "</ul>"
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

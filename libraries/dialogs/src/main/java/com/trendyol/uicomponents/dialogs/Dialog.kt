@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.text.Spanned
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.FragmentManager
 import com.trendyol.dialog.R

@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.text.Spanned
 import androidx.annotation.DrawableRes
 
 abstract class Builder internal constructor() {
@@ -12,7 +13,7 @@ abstract class Builder internal constructor() {
 
 open class InfoDialogBuilder internal constructor() : Builder() {
 
-    var content: SpannableString = SpannableString("")
+    var content: CharSequence = SpannableString("")
     @DrawableRes
     var contentImage: Int = 0
     var showContentAsHtml: Boolean = false
@@ -23,7 +24,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                 title = it.title,
                 showCloseButton = it.showCloseButton,
                 closeButtonListener = it.closeButtonListener ?: { },
-                content = it.content,
+                content = SpannableString(it.content),
                 contentImage = it.contentImage,
                 showContentAsHtml = it.showContentAsHtml
             )
@@ -44,7 +45,8 @@ class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                 title = it.title,
                 showCloseButton = it.showCloseButton,
                 closeButtonListener = it.closeButtonListener,
-                content = it.content,
+                content = SpannableString(it.content),
+                showContentAsHtml = it.showContentAsHtml,
                 contentImage = it.contentImage,
                 rightButtonText = it.rightButtonText,
                 leftButtonText = it.leftButtonText,

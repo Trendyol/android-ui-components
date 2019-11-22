@@ -1,6 +1,5 @@
 package com.trendyol.uicomponents.dialogs
 
-import android.text.SpannableString
 import android.text.Spanned
 import androidx.annotation.DrawableRes
 import androidx.core.text.HtmlCompat
@@ -8,7 +7,7 @@ import androidx.core.text.HtmlCompat
 data class DialogViewState(
     val title: String?,
     val showCloseButton: Boolean?,
-    private val content: SpannableString,
+    private val content: Spanned,
     val showContentAsHtml: Boolean,
     @DrawableRes val contentImage: Int?,
     val leftButtonText: String? = null,
