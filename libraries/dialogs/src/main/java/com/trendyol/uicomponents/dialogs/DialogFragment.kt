@@ -4,7 +4,7 @@ import android.text.SpannableString
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.FragmentManager
 import com.trendyol.dialog.R
-import com.trendyol.dialog.databinding.DialogInfoBinding
+import com.trendyol.dialog.databinding.FragmentDialogBinding
 
 class DialogFragment internal constructor(
     private val title: String? = null,
@@ -17,7 +17,7 @@ class DialogFragment internal constructor(
     private val rightButtonText: String? = null,
     private val leftButtonClickListener: ((DialogFragment) -> Unit)? = null,
     private val rightButtonClickListener: ((DialogFragment) -> Unit)? = null
-) : BaseBottomSheetDialog<DialogInfoBinding>() {
+) : BaseBottomSheetDialog<FragmentDialogBinding>() {
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
