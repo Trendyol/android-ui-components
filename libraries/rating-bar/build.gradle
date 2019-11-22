@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group="com.trendyol.ui-components"
-version="1.0.1"
+version="1.0.2"
 
 android {
     compileSdkVersion 29
@@ -18,7 +18,6 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
 
