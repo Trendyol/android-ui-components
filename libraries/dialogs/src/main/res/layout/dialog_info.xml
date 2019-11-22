@@ -66,6 +66,7 @@
                 app:layout_constraintEnd_toEndOf="@id/guideEnd"
                 app:layout_constraintStart_toEndOf="@id/textTitle"
                 app:layout_constraintTop_toTopOf="@id/viewTitleBackground"
+                app:isVisible="@{viewState.showCloseButton}"
                 app:srcCompat="@drawable/ic_close" />
 
             <androidx.appcompat.widget.AppCompatImageView
