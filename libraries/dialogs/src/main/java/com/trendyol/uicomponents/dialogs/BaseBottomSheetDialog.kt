@@ -23,7 +23,7 @@ abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFr
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_FRAME, R.style.BottomSheetDialogStyle)
+        setStyle(STYLE_NO_FRAME, R.style.Trendyol_UIComponents_Dialogs_BottomSheetDialogStyle)
     }
 
     override fun onCreateView(

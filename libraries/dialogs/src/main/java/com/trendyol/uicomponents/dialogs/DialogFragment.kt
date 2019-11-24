@@ -23,11 +23,11 @@ class DialogFragment internal constructor(
 
     override fun setUpView() {
         with(binding) {
-            binding.imageClose.setOnClickListener {
+            imageClose.setOnClickListener {
                 dismiss()
                 closeButtonListener?.invoke(this@DialogFragment)
             }
-            binding.buttonLeft.setOnClickListener {
+            buttonLeft.setOnClickListener {
                 leftButtonClickListener?.invoke(this@DialogFragment)
             }
             buttonRight.setOnClickListener {
