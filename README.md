@@ -13,7 +13,8 @@ UI Components includes several custom views for Android platform to make develop
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
 
 ## Components ## 
-* [Rating Bar](https://github.com/Trendyol/android-ui-components/tree/master/libraries/rating-bar) RatingBarView, easy to use and customizable rating view.
+* [Rating Bar](https://github.com/Trendyol/android-ui-components/tree/master/libraries/rating-bar): **RatingBarView**, easy to use and customizable rating view.
+* [Dialogs](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs): **Dialogs** is collection of BottomSheetDialogs to present user an info, agreement or list.
 
 License
 --------

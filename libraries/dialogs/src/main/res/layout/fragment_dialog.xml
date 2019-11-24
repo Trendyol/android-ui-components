@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.trendyol.uicomponents.dialogs.DialogViewState" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/PrimaryCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/margin_dialog_outer" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/margin_dialog_outer" />
+
+            <View
+                android:id="@+id/viewTitleBackground"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#f5f5f5"
+                app:layout_constraintBottom_toTopOf="@id/imageContent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textTitle"
+                style="@style/PrimaryText.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewState.title}"
+                android:textAlignment="viewStart"
+                app:layout_constraintBottom_toBottomOf="@id/viewTitleBackground"
+                app:layout_constraintEnd_toStartOf="@id/imageClose"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toTopOf="@id/viewTitleBackground"
+                tools:text="Lorem Ipsum" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_dialog_inner"
+                app:layout_constraintBottom_toBottomOf="@id/viewTitleBackground"
+                app:layout_constraintEnd_toEndOf="@id/guideEnd"
+                app:layout_constraintStart_toEndOf="@id/textTitle"
+                app:layout_constraintTop_toTopOf="@id/viewTitleBackground"
+                app:isVisible="@{viewState.showCloseButton}"
+                app:srcCompat="@drawable/ic_close" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_dialog_outer"
+                android:layout_marginBottom="@dimen/margin_dialog_outer"
+                app:drawableResource="@{viewState.contentImage}"
+                app:layout_constraintBottom_toTopOf="@id/textContent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewTitleBackground"
+                tools:srcCompat="@android:drawable/btn_star" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textContent"
+                style="@style/PrimaryText.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_dialog_outer"
+                android:text="@{viewState.content}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageContent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLeft"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.4"
+                android:layout_marginBottom="@dimen/margin_dialog_outer"
+                android:text="@{viewState.leftButtonText}"
+                app:isVisible="@{viewState.leftButtonVisible}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/buttonRight"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toBottomOf="@id/textContent"
+                tools:text="Cancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="?attr/colorAccent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.4"
+                android:layout_marginBottom="@dimen/margin_dialog_outer"
+                android:text="@{viewState.rightButtonText}"
+                app:isVisible="@{viewState.rightButtonVisible}"
+                app:layout_constraintEnd_toEndOf="@id/guideEnd"
+                app:layout_constraintStart_toEndOf="@id/buttonLeft"
+                app:layout_constraintTop_toBottomOf="@id/textContent"
+                tools:text="OK"
+                android:visibility="visible"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
