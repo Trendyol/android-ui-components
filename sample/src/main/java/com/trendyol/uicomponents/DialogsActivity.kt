@@ -27,12 +27,12 @@ class DialogsActivity : AppCompatActivity() {
             showCloseButton = true
             closeButtonListener = { showToast("Info dailog closed.") }
             content = SpannableString.valueOf(getSpannableString())
-            contentImage = android.R.drawable.btn_plus
+            contentImage = R.mipmap.ic_launcher_round
         }.showDialog(supportFragmentManager)
     }
 
     private fun showAgreementDialog() {
-        agreementDialog {
+        val dialog = agreementDialog {
             title = "Agreement Dialog Sample"
             leftButtonText = "Cancel"
             rightButtonText = "Agree"
@@ -46,7 +46,9 @@ class DialogsActivity : AppCompatActivity() {
                 it.dismiss()
                 showToast("Left buttonClicked")
             }
-        }.showDialog(supportFragmentManager)
+        }
+
+        dialog.showDialog(supportFragmentManager)
     }
 
     private fun getSpannableString(): SpannableStringBuilder =

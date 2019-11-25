@@ -1,7 +1,7 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/><img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/>  
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/>
   
-[![](https://jitpack.io/v/Trendyol/android-ui-components.svg)](https://jitpack.io/#Trendyol/android-ui-components) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+$dialogsVersion = dialogs-1.0.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -33,7 +33,7 @@ Simple dialog to show information, error or text.
 | ------------- |-------------|-------------| ------------- |  
 | `title` | String |Title of the dialog | "" |  
 |  `showCloseButton` | Boolean | Close button visibility | false |  
-| `closeButtonListener` | (Dialog) -> Unit |Listener for close button. When clicked, dialog will dismiss and listener vill be invoked with dialog. | { } |
+| `closeButtonListener` | (Dialog) -> Unit |Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
 | `contentImage` | Int | Drawable resource id of an visual, will be shown on top of `content` | 0 |

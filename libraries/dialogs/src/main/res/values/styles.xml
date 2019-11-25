@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BottomSheetStyle" parent="@style/Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
-    <style name="BottomSheetDialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+    <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackground">@android:color/transparent</item>
@@ -17,23 +13,23 @@
         <item name="state_collapsed">true</item>
     </style>
 
-    <style name="PrimaryCard" parent="Widget.MaterialComponents.CardView">
+    <style name="Trendyol.UIComponents.Dialogs.PrimaryCard" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">2dp</item>
         <item name="layout_behavior">android.support.design.widget.BottomSheetBehavior</item>
     </style>
 
-    <style name="PrimaryText" parent="TextAppearance.AppCompat.Body1">
+    <style name="Trendyol.UIComponents.Dialogs.PrimaryText" parent="TextAppearance.AppCompat.Body1">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">#333333</item>
     </style>
 
-    <style name="PrimaryText.Title">
+    <style name="Trendyol.UIComponents.Dialogs.PrimaryText.Title">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="PrimaryText.Body">
+    <style name="Trendyol.UIComponents.Dialogs.PrimaryText.Body">
         <item name="android:textColor">#666666</item>
         <item name="android:textSize">14sp</item>
     </style>

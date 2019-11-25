@@ -11,10 +11,9 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        style="@style/PrimaryCard"
+        style="@style/Trendyol.UIComponents.Dialogs.PrimaryCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,7 +45,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textTitle"
-                style="@style/PrimaryText.Title"
+                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewState.title}"
@@ -84,7 +83,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textContent"
-                style="@style/PrimaryText.Body"
+                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_dialog_outer"
@@ -109,6 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@id/textContent"
                 tools:text="Cancel"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:textAllCaps="false"
                 app:strokeColor="?attr/colorAccent"/>
 
             <com.google.android.material.button.MaterialButton
@@ -124,7 +124,8 @@
                 app:layout_constraintEnd_toEndOf="@id/guideEnd"
                 app:layout_constraintStart_toEndOf="@id/buttonLeft"
                 app:layout_constraintTop_toBottomOf="@id/textContent"
-                tools:text="OK"
+                android:textAllCaps="false"
+                tools:text="Ok"
                 android:visibility="visible"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
