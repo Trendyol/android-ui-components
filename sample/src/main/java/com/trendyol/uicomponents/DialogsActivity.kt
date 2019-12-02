@@ -9,6 +9,7 @@ import androidx.core.text.bold
 import androidx.core.text.color
 import com.trendyol.uicomponents.dialogs.agreementDialog
 import com.trendyol.uicomponents.dialogs.infoDialog
+import com.trendyol.uicomponents.dialogs.selectionDialog
 import kotlinx.android.synthetic.main.activity_dialogs.*
 
 class DialogsActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class DialogsActivity : AppCompatActivity() {
 
         button_info_dialog.setOnClickListener { showInfoDialog() }
         button_agreement_dialog.setOnClickListener { showAgreementDialog() }
+        button_selection_dialog.setOnClickListener { showSelectionDialog() }
     }
 
     private fun showInfoDialog() {
@@ -32,7 +34,7 @@ class DialogsActivity : AppCompatActivity() {
     }
 
     private fun showAgreementDialog() {
-        val dialog = agreementDialog {
+        val agreementDialog = agreementDialog {
             title = "Agreement Dialog Sample"
             leftButtonText = "Cancel"
             rightButtonText = "Agree"
@@ -48,7 +50,25 @@ class DialogsActivity : AppCompatActivity() {
             }
         }
 
-        dialog.showDialog(supportFragmentManager)
+        agreementDialog.showDialog(supportFragmentManager)
+    }
+
+    private fun showSelectionDialog() {
+        val selectionDialog = selectionDialog {
+            title = "Selection Dialog Sample"
+            content = getHtmlString()
+            showContentAsHtml = true
+            showCloseButton = false
+            contentImage = android.R.drawable.ic_dialog_email
+            items = getListItems()
+            showItemsAsHtml = false
+            onItemSelectedListener = { dialogFragment, i ->
+                dialogFragment.dismiss()
+                showToast("Selection changed to ${i + 1}th ")
+            }
+        }
+
+        selectionDialog.showDialog(supportFragmentManager)
     }
 
     private fun getSpannableString(): SpannableStringBuilder =
@@ -77,6 +97,13 @@ class DialogsActivity : AppCompatActivity() {
                 "<li>The first item in your list</li>\n" +
                 "<li>The second item; <i>italicize</i> key words</li>\n" +
                 "</ul>"
+
+    private fun getListItems(): List<Pair<Boolean, String>> =
+        mutableListOf<Pair<Boolean, String>>().apply {
+            for (i in 1..15) {
+                add((i == 6) to "${i}th option")
+            }
+        }.toList()
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

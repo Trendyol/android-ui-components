@@ -5,3 +5,6 @@ fun infoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment =
 
 fun agreementDialog(block: AgreementDialogBuilder.() -> Unit): DialogFragment =
     AgreementDialogBuilder().buildAgreementDialog(block)
+
+fun selectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
+    SelectionDialogBuilder().buildSelectionDialog(block)
