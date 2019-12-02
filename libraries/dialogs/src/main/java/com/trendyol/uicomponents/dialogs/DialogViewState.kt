@@ -26,5 +26,9 @@ data class DialogViewState(
         SpannableString(content)
     }
 
+    fun isContentVisible(): Boolean = content.isNotEmpty()
+
+    fun isContentImageVisible(): Boolean = contentImage != null
+
     fun isListVisible(): Boolean = !listItems.isNullOrEmpty()
 }
