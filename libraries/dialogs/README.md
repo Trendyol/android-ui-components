@@ -33,7 +33,7 @@ Simple dialog to show information, error or text.
 | ------------- |-------------|-------------| ------------- |  
 | `title` | String |Title of the dialog | "" |  
 |  `showCloseButton` | Boolean | Close button visibility | false |  
-| `closeButtonListener` | (Dialog) -> Unit |Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
+| `closeButtonListener` | (DialogFragment) -> Unit |Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
 | `contentImage` | Int | Drawable resource id of an visual, will be shown on top of `content` | 0 |
@@ -58,8 +58,8 @@ All arguments plus these arguments will be applicable to show agreement dialogs.
 | ------------- |-------------|-------------| ------------- |  
 | `rightButtonText` | String | Text of the right button. Will not be shown if given string is empty. | "" | 
 | `leftButtonText` | String | Text of the left button. Will not be shown if given string is empty. | "" |
-| `rightButtonClickListener` | (Dialog) -> Unit | Listener for right button's click events. Will be invoked with dialog instance. | { } |
-| `leftButtonClickListener` | (Dialog) -> Unit | Listener for left button's click events. Will be invoked with dialog instance. | { } |
+| `rightButtonClickListener` | (DialogFragment) -> Unit | Listener for right button's click events. Will be invoked with dialog instance. | { } |
+| `leftButtonClickListener` | (DialogFragment) -> Unit | Listener for left button's click events. Will be invoked with dialog instance. | { } |
 
 Sample usage:
 ```kotlin
