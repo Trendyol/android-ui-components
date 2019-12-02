@@ -15,118 +15,124 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/margin_dialog_outer" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/margin_dialog_outer" />
-
-            <View
+            <LinearLayout
                 android:id="@+id/viewTitleBackground"
-                android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:background="#f5f5f5"
-                app:layout_constraintBottom_toTopOf="@id/imageContent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingStart="@dimen/margin_dialog_outer"
+                android:paddingEnd="@dimen/margin_dialog_outer">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textTitle"
-                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@{viewState.title}"
-                android:textAlignment="viewStart"
-                app:layout_constraintBottom_toBottomOf="@id/viewTitleBackground"
-                app:layout_constraintEnd_toStartOf="@id/imageClose"
-                app:layout_constraintStart_toStartOf="@id/guideStart"
-                app:layout_constraintTop_toTopOf="@id/viewTitleBackground"
-                tools:text="Lorem Ipsum" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textTitle"
+                    style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@{viewState.title}"
+                    tools:text="Lorem Ipsum" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_dialog_inner"
-                app:layout_constraintBottom_toBottomOf="@id/viewTitleBackground"
-                app:layout_constraintEnd_toEndOf="@id/guideEnd"
-                app:layout_constraintStart_toEndOf="@id/textTitle"
-                app:layout_constraintTop_toTopOf="@id/viewTitleBackground"
-                app:isVisible="@{viewState.showCloseButton}"
-                app:srcCompat="@drawable/ic_close" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/margin_dialog_inner"
+                    app:isVisible="@{viewState.showCloseButton}"
+                    app:srcCompat="@drawable/ic_close" />
+            </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageContent"
-                android:layout_width="wrap_content"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_dialog_outer"
-                android:layout_marginBottom="@dimen/margin_dialog_outer"
-                app:drawableResource="@{viewState.contentImage}"
-                app:layout_constraintBottom_toTopOf="@id/textContent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewTitleBackground"
-                tools:srcCompat="@android:drawable/btn_star" />
+                android:paddingStart="@dimen/margin_dialog_outer"
+                android:paddingEnd="@dimen/margin_dialog_outer">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textContent"
-                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_dialog_outer"
-                android:text="@{viewState.content}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageContent"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonLeft"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.4"
-                android:layout_marginBottom="@dimen/margin_dialog_outer"
-                android:text="@{viewState.leftButtonText}"
-                app:isVisible="@{viewState.leftButtonVisible}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/buttonRight"
-                app:layout_constraintStart_toStartOf="@id/guideStart"
-                app:layout_constraintTop_toBottomOf="@id/textContent"
-                tools:text="Cancel"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:textAllCaps="false"
-                app:strokeColor="?attr/colorAccent"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_dialog_outer"
+                        android:layout_marginBottom="@dimen/margin_dialog_outer"
+                        app:drawableResource="@{viewState.contentImage}"
+                        app:layout_constraintBottom_toTopOf="@id/textContent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@android:drawable/btn_star" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonRight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Button"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.4"
-                android:layout_marginBottom="@dimen/margin_dialog_outer"
-                android:text="@{viewState.rightButtonText}"
-                app:isVisible="@{viewState.rightButtonVisible}"
-                app:layout_constraintEnd_toEndOf="@id/guideEnd"
-                app:layout_constraintStart_toEndOf="@id/buttonLeft"
-                app:layout_constraintTop_toBottomOf="@id/textContent"
-                android:textAllCaps="false"
-                tools:text="Ok"
-                android:visibility="visible"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textContent"
+                        style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/margin_dialog_outer"
+                        android:text="@{viewState.content}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imageContent"
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewItems"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_dialog_inner"
+                        app:isVisible="@{viewState.listVisible}"
+                        app:items="@{viewState.listItems}"
+                        tools:listitem="@layout/item_list"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textContent"
+                        tools:visibility="visible" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonLeft"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_dialog_outer"
+                        android:text="@{viewState.leftButtonText}"
+                        android:textAllCaps="false"
+                        app:isVisible="@{viewState.leftButtonVisible}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/buttonRight"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerViewItems"
+                        app:layout_constraintWidth_default="percent"
+                        app:layout_constraintWidth_percent="0.4"
+                        app:strokeColor="?attr/colorAccent"
+                        tools:text="Cancel" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonRight"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_dialog_outer"
+                        android:text="@{viewState.rightButtonText}"
+                        android:textAllCaps="false"
+                        app:isVisible="@{viewState.rightButtonVisible}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/buttonLeft"
+                        app:layout_constraintTop_toTopOf="@id/buttonLeft"
+                        app:layout_constraintWidth_default="percent"
+                        app:layout_constraintWidth_percent="0.4"
+                        tools:text="Ok" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

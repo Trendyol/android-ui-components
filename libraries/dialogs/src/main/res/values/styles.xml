@@ -33,4 +33,8 @@
         <item name="android:textColor">#666666</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Trendyol.UIComponents.Dialogs.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="buttonCompat">@drawable/selector_radio_button</item>
+    </style>
 </resources>

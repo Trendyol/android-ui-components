@@ -5,19 +5,25 @@ import androidx.annotation.DrawableRes
 import androidx.fragment.app.FragmentManager
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
+import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 
 class DialogFragment internal constructor(
     private val title: String? = null,
     private val showCloseButton: Boolean? = null,
     private val closeButtonListener: ((DialogFragment) -> Unit)? = null,
-    private val content: SpannableString? = null,
+    private val content: CharSequence? = null,
     private val showContentAsHtml: Boolean = false,
     @DrawableRes private val contentImage: Int? = null,
     private val leftButtonText: String? = null,
     private val rightButtonText: String? = null,
     private val leftButtonClickListener: ((DialogFragment) -> Unit)? = null,
-    private val rightButtonClickListener: ((DialogFragment) -> Unit)? = null
+    private val rightButtonClickListener: ((DialogFragment) -> Unit)? = null,
+    private val items: List<Pair<Boolean, CharSequence>>? = null,
+    private val showItemsAsHtml: Boolean = false,
+    private val onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
 ) : BaseBottomSheetDialog<FragmentDialogBinding>() {
+
+    private val itemsAdapter by lazy { DialogListAdapter(showItemsAsHtml) }
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
@@ -33,6 +39,13 @@ class DialogFragment internal constructor(
             buttonRight.setOnClickListener {
                 rightButtonClickListener?.invoke(this@DialogFragment)
             }
+
+            recyclerViewItems.adapter = itemsAdapter
+            recyclerViewItems.isNestedScrollingEnabled = false
+
+            itemsAdapter.onItemSelectedListener = { position ->
+                onItemSelectedListener?.invoke(this@DialogFragment, position)
+            }
         }
     }
 
@@ -44,8 +57,10 @@ class DialogFragment internal constructor(
             showContentAsHtml = showContentAsHtml,
             contentImage = contentImage,
             leftButtonText = leftButtonText,
-            rightButtonText = rightButtonText
+            rightButtonText = rightButtonText,
+            listItems = items
         )
+
         binding.viewState = viewState
         binding.executePendingBindings()
     }
