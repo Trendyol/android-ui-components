@@ -23,7 +23,7 @@
             <LinearLayout
                 android:id="@+id/viewTitleBackground"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="?attr/actionBarSize"
                 android:background="#f5f5f5"
                 android:paddingStart="@dimen/margin_dialog_outer"
                 android:paddingEnd="@dimen/margin_dialog_outer">
