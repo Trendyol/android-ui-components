@@ -1,12 +1,12 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/>
   
-$dialogsVersion = dialogs-1.0.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.0.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
   
-# Installation  
+## Installation  
   - To implement **Dialogs** to your Android project via Gradle, you need to add JitPack repository to your root build.gradle.  
 ```gradle  
 allprojects {  
@@ -20,10 +20,10 @@ dependencies {
 :warning: To use **Dialogs**, you have to enable dataBinding from your main project, and implement material library into app level `build.gradle`.  
 :warning: **Dialogs** can only usable via Kotlin.  
   
-# Usage  
+## Usage  
 You can configure your dialog with given extensions with Kotlin DSL syntax.
 
-To show the dialog you just need to call `show(FragmentManager)` function.
+To show the dialog you just need to call `showDialog(FragmentManager)` function.
   
 * Info Dialog:
 
@@ -78,18 +78,44 @@ agreementDialog {
     }
 }.showDialog(supportFragmentManager)
 ```
-# TODOs
+
+* Selection Dialog:
+
+Dialog with list that user can select. There will be checkBox on the left side of each line and user can change the selection. 
+All **Info Dialog** arguments plus these arguments will be applicable to show selection dialogs.
+
+| Field | Type | Description | Default Value |  
+| ------------- |-------------|-------------| ------------- |  
+| `items` | List<Pair<Boolean, String>> | Item list that will be listed on dialog. | null | 
+| `showItemsAsHtml` | Boolean | Item texts will be parsed as Html if this flag setted as true. | false |
+| `onItemSelectedListener` | (DialogFragment, Int) -> Unit | Listener to notify selected index.  | null |
+
+Sample usage:
+```kotlin
+selectionDialog {
+    title = "Selection Dialog Title"
+    content = getContent()
+    items = getItemsAsHtml()
+    showItemsAsHtml = true
+    onItemSelectedListener = { dialog, index -> 
+        dialog.dismiss()
+        onItemSelected(index)
+    }
+}
+```
+
+## TODOs
 * Implement ListDialog. 
-* Implement SelectionDialog
+* ~~Implement SelectionDialog~~
     * Implement search line.
     * Implement multiple selectable type.
 * Provide theme for more styling.
 * Update builder for Java.
 
-# Contributors
+## Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
 
-# License
+## License
     Copyright 2019 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");

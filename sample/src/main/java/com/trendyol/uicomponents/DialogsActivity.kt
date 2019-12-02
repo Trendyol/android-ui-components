@@ -63,8 +63,8 @@ class DialogsActivity : AppCompatActivity() {
             items = getListItems()
             showItemsAsHtml = false
             onItemSelectedListener = { dialogFragment, i ->
+                dialogFragment.dismiss()
                 showToast("Selection changed to ${i + 1}th ")
-                //dialogFragment.dismiss()
             }
         }
 
