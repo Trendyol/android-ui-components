@@ -31,7 +31,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     }
 }
 
-class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
+open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
 
     var rightButtonText: String = ""
     var leftButtonText: String = ""
@@ -51,6 +51,28 @@ class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                 leftButtonText = it.leftButtonText,
                 rightButtonClickListener = it.rightButtonClickListener,
                 leftButtonClickListener = it.leftButtonClickListener
+            )
+        }
+}
+
+class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
+
+    var items: List<Pair<Boolean, CharSequence>> = emptyList()
+    var showItemsAsHtml: Boolean = false
+    var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+
+    internal fun buildSelectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
+        SelectionDialogBuilder().apply(block).let {
+            DialogFragment(
+                title = it.title,
+                showCloseButton = it.showCloseButton,
+                closeButtonListener = it.closeButtonListener,
+                content = SpannableString(it.content),
+                showContentAsHtml = it.showContentAsHtml,
+                contentImage = it.contentImage,
+                items = it.items,
+                showItemsAsHtml = it.showItemsAsHtml,
+                onItemSelectedListener = it.onItemSelectedListener
             )
         }
 }
