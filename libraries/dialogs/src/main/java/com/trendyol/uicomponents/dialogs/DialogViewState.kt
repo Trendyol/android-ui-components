@@ -1,7 +1,5 @@
 package com.trendyol.uicomponents.dialogs
 
-import android.text.SpannableString
-import android.text.Spanned
 import androidx.annotation.DrawableRes
 import androidx.core.text.HtmlCompat
 
@@ -20,10 +18,10 @@ data class DialogViewState(
 
     fun isRightButtonVisible(): Boolean = rightButtonText != null
 
-    fun getContent(): Spanned = if (showContentAsHtml) {
+    fun getContent(): CharSequence = if (showContentAsHtml) {
         HtmlCompat.fromHtml(content.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
     } else {
-        SpannableString(content)
+        content
     }
 
     fun isContentVisible(): Boolean = content.isNotEmpty()
