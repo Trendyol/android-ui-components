@@ -1,0 +1,23 @@
+package com.trendyol.uicomponents.imageslider.touchdelegator
+
+import android.view.MotionEvent
+import android.view.Window
+import com.trendyol.uicomponents.imageslider.CVFloatingZoomView
+
+class ZoomWindowTouchListener : WindowTouchListener,
+    CVFloatingZoomView.FloatingZoomListener {
+
+    private var zoomView: CVFloatingZoomView? = null
+
+    override fun onHandlingStart(zoomView: CVFloatingZoomView?) {
+        this.zoomView = zoomView
+    }
+
+    override fun onHandlingEnd(instance: CVFloatingZoomView?) {
+        this.zoomView = null
+    }
+
+    override fun onTouchEvent(window: Window, event: MotionEvent): Boolean {
+        return zoomView?.onTouch(zoomView?.originalImage, event) ?: false
+    }
+}

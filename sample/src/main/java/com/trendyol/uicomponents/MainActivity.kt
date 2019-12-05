@@ -17,5 +17,8 @@ class MainActivity : AppCompatActivity() {
         button_dialogs.setOnClickListener {
             startActivity(Intent(this, DialogsActivity::class.java))
         }
+        button_imageslider.setOnClickListener {
+            startActivity(Intent(this, ImageSliderActivity::class.java))
+        }
     }
 }
