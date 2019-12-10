@@ -4,13 +4,12 @@ import android.view.MotionEvent
 import android.view.Window
 import com.trendyol.uicomponents.imageslider.CVFloatingZoomView
 
-class ZoomWindowTouchListener : WindowTouchListener,
-    CVFloatingZoomView.FloatingZoomListener {
+class ZoomWindowTouchListener : WindowTouchListener, CVFloatingZoomView.FloatingZoomListener {
 
     private var zoomView: CVFloatingZoomView? = null
 
-    override fun onHandlingStart(zoomView: CVFloatingZoomView?) {
-        this.zoomView = zoomView
+    override fun onHandlingStart(instance: CVFloatingZoomView?) {
+        this.zoomView = instance
     }
 
     override fun onHandlingEnd(instance: CVFloatingZoomView?) {
@@ -18,6 +17,6 @@ class ZoomWindowTouchListener : WindowTouchListener,
     }
 
     override fun onTouchEvent(window: Window, event: MotionEvent): Boolean {
-        return zoomView?.onTouch(zoomView?.originalImage, event) ?: false
+        return zoomView?.originalImage?.let { zoomView?.onTouch(it, event) } ?: false
     }
 }

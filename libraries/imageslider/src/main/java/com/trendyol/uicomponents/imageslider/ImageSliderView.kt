@@ -1,26 +1,32 @@
 package com.trendyol.uicomponents.imageslider
 
+import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.trendyol.uicomponents.imageslider.databinding.ViewImageSliderBinding
 import java.lang.ref.WeakReference
 
-class ImageSliderView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr),
-    ImagesPagerAdapter.SliderAdapterItemClickListener,
-    ImageSlider {
+class ImageSliderView : FrameLayout, ImagesPagerAdapter.SliderAdapterItemClickListener, ImageSlider {
 
     private var binding: ViewImageSliderBinding = inflate(R.layout.view_image_slider)
 
     private var hostActivityWeakReference: WeakReference<Activity>
 
     private var imageSliderViewListener: ImageSliderViewListener? = null
+
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     interface ImageSliderViewListener {
 
