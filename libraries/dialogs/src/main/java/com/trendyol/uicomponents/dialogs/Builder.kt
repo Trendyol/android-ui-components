@@ -60,6 +60,9 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
     var items: List<Pair<Boolean, CharSequence>> = emptyList()
     var showItemsAsHtml: Boolean = false
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var enableSearch: Boolean = false
+    var showClearSearchButton: Boolean = false
+    var searchHint: String = ""
 
     internal fun buildSelectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
         SelectionDialogBuilder().apply(block).let {
@@ -72,7 +75,10 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                 contentImage = it.contentImage,
                 items = it.items,
                 showItemsAsHtml = it.showItemsAsHtml,
-                onItemSelectedListener = it.onItemSelectedListener
+                onItemSelectedListener = it.onItemSelectedListener,
+                enableSearch = it.enableSearch,
+                showClearSearchButton = it.showClearSearchButton,
+                searchHint = it.searchHint
             )
         }
 }

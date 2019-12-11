@@ -12,7 +12,7 @@ import com.trendyol.dialog.R
 
 abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFragment() {
 
-    protected lateinit var binding: DB
+    lateinit var binding: DB
 
     @LayoutRes
     abstract fun getLayoutResId(): Int

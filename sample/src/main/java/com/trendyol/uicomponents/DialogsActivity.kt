@@ -21,6 +21,7 @@ class DialogsActivity : AppCompatActivity() {
         button_info_dialog.setOnClickListener { showInfoDialog() }
         button_agreement_dialog.setOnClickListener { showAgreementDialog() }
         button_selection_dialog.setOnClickListener { showSelectionDialog() }
+        button_selection_with_search_dialog.setOnClickListener { showSelectionWithSearchDialog() }
     }
 
     private fun showInfoDialog() {
@@ -69,6 +70,23 @@ class DialogsActivity : AppCompatActivity() {
         }
 
         selectionDialog.showDialog(supportFragmentManager)
+    }
+
+    private fun showSelectionWithSearchDialog() {
+        selectionDialog {
+            title = "Selection Dialog with Search Sample"
+            content = getHtmlString()
+            showContentAsHtml = true
+            showCloseButton = false
+            contentImage = android.R.drawable.ic_dialog_email
+            items = getListItems()
+            onItemSelectedListener = { dialogFragment, i ->
+                showToast("Selection changed to ${i + 1}th ")
+            }
+            enableSearch = true
+            showClearSearchButton = true
+            searchHint = "Hint for search"
+        }.showDialog(supportFragmentManager)
     }
 
     private fun getSpannableString(): SpannableStringBuilder =

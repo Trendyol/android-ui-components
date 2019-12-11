@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsTranslucent">true</item>
@@ -11,10 +11,11 @@
         <item name="android:windowIsFloating">true</item>
         <item name="behavior_peekHeight">0dp</item>
         <item name="state_collapsed">true</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryCard" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
+        <item name="cardCornerRadius">@dimen/dialogs_corner_radius</item>
         <item name="cardElevation">2dp</item>
         <item name="layout_behavior">android.support.design.widget.BottomSheetBehavior</item>
     </style>
