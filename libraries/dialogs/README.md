@@ -126,7 +126,7 @@ selectionDialog {
 ## TODOs
 * Implement ListDialog. 
 * ~~Implement SelectionDialog~~
-    * Implement search line.
+    * ~~Implement search line.~
     * Implement multiple selectable type.
 * Provide theme for more styling.
 * Update builder for Java.
