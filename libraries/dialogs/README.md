@@ -1,7 +1,7 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="240"/>
   
-$dialogsVersion = dialogs-1.0.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.0.3 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -89,6 +89,9 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `items` | List<Pair<Boolean, String>> | Item list that will be listed on dialog. | null | 
 | `showItemsAsHtml` | Boolean | Item texts will be parsed as Html if this flag setted as true. | false |
 | `onItemSelectedListener` | (DialogFragment, Int) -> Unit | Listener to notify selected index.  | null |
+| `enableSearch` | Boolean | Enables search function in given `items`  | false |
+| `showClearSearchButton` | Boolean | Shows clean button on the right of the search input line.  | false |
+| `searchHint` | String | Hint to show on search input line.  | "" |
 
 Sample usage:
 ```kotlin
@@ -101,6 +104,22 @@ selectionDialog {
         dialog.dismiss()
         onItemSelected(index)
     }
+}
+```
+
+Sample usage with search:
+```kotlin
+selectionDialog {
+    title = "Selection Dialog with Search Title"
+    content = getContent()
+    items = getItemsAsHtml()
+    showItemsAsHtml = true
+    onItemSelectedListener = { dialog, index ->
+        onItemSelected(index)
+    }
+    enableSearch = true
+    showClearSearchButton = true
+    searchHint = "Hint for search"
 }
 ```
 
