@@ -25,7 +25,7 @@
                 android:id="@+id/viewTitleBackground"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#f5f5f5"
+                android:background="@color/dialogs_gray"
                 android:focusableInTouchMode="true"
                 android:paddingStart="@dimen/dialogs_margin_outer"
                 android:paddingEnd="@dimen/dialogs_margin_outer">
@@ -96,7 +96,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dialogs_margin_inner"
-                        android:background="#f5f5f5"
+                        android:background="@color/dialogs_gray"
                         android:hint="@{viewState.searchHint}"
                         android:paddingStart="@dimen/dialogs_margin_inner"
                         android:paddingTop="@dimen/dialogs_margin_inner"
