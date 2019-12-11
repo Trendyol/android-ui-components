@@ -9,9 +9,12 @@ data class DialogViewState(
     private val content: CharSequence,
     val showContentAsHtml: Boolean,
     @DrawableRes val contentImage: Int?,
-    val leftButtonText: String? = null,
-    val rightButtonText: String? = null,
-    val listItems: List<Pair<Boolean, CharSequence>>? = null
+    val leftButtonText: String?,
+    val rightButtonText: String?,
+    val isListVisible: Boolean,
+    val isSearchEnabled: Boolean,
+    val isClearSearchButtonVisible: Boolean,
+    val searchHint: String
 ) {
 
     fun isLeftButtonVisible(): Boolean = leftButtonText != null
@@ -27,6 +30,4 @@ data class DialogViewState(
     fun isContentVisible(): Boolean = content.isNotEmpty()
 
     fun isContentImageVisible(): Boolean = contentImage != null
-
-    fun isListVisible(): Boolean = !listItems.isNullOrEmpty()
 }

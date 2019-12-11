@@ -11,6 +11,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         style="@style/Trendyol.UIComponents.Dialogs.PrimaryCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,8 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="#f5f5f5"
-                android:paddingStart="@dimen/margin_dialog_outer"
-                android:paddingEnd="@dimen/margin_dialog_outer">
+                android:focusableInTouchMode="true"
+                android:paddingStart="@dimen/dialogs_margin_outer"
+                android:paddingEnd="@dimen/dialogs_margin_outer">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textTitle"
@@ -43,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/margin_dialog_inner"
+                    android:padding="@dimen/dialogs_margin_inner"
                     app:isVisible="@{viewState.showCloseButton}"
                     app:srcCompat="@drawable/ic_close" />
             </LinearLayout>
@@ -51,10 +53,11 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/margin_dialog_outer"
-                android:paddingEnd="@dimen/margin_dialog_outer">
+                android:paddingStart="@dimen/dialogs_margin_outer"
+                android:paddingEnd="@dimen/dialogs_margin_outer">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:descendantFocusability="blocksDescendants">
@@ -63,10 +66,10 @@
                         android:id="@+id/imageContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_dialog_outer"
-                        android:layout_marginBottom="@dimen/margin_dialog_outer"
-                        app:isVisible="@{viewState.contentImageVisible}"
+                        android:layout_marginTop="@dimen/dialogs_margin_outer"
+                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
                         app:drawableResource="@{viewState.contentImage}"
+                        app:isVisible="@{viewState.contentImageVisible}"
                         app:layout_constraintBottom_toTopOf="@id/textContent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -78,26 +81,59 @@
                         style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        app:isVisible="@{viewState.contentVisible}"
-                        android:padding="@dimen/margin_dialog_outer"
+                        android:layout_marginBottom="@dimen/dialogs_margin_inner"
+                        android:padding="@dimen/dialogs_margin_inner"
                         android:text="@{viewState.content}"
+                        app:isVisible="@{viewState.contentVisible}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/imageContent"
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
 
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/editTextSearch"
+                        style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dialogs_margin_inner"
+                        android:background="#f5f5f5"
+                        android:hint="@{viewState.searchHint}"
+                        android:paddingStart="@dimen/dialogs_margin_inner"
+                        android:paddingTop="@dimen/dialogs_margin_inner"
+                        android:paddingEnd="@dimen/dialogs_margin_outer"
+                        android:paddingBottom="@dimen/dialogs_margin_inner"
+                        app:isVisible="@{viewState.searchEnabled}"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textContent"
+                        tools:hint="Your search query" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageClearSearchQuery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:adjustViewBounds="true"
+                        android:padding="@dimen/dialogs_margin_inner"
+                        app:isVisible="@{viewState.clearSearchButtonVisible}"
+                        app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
+                        app:layout_constraintEnd_toEndOf="@id/editTextSearch"
+                        app:layout_constraintTop_toTopOf="@id/editTextSearch"
+                        app:srcCompat="@drawable/ic_close" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewItems"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_dialog_inner"
                         app:isVisible="@{viewState.listVisible}"
-                        app:items="@{viewState.listItems}"
-                        tools:listitem="@layout/item_list"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toTopOf="@id/buttonLeft"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textContent"
+                        app:layout_constraintTop_toBottomOf="@id/editTextSearch"
+                        tools:listitem="@layout/item_list"
                         tools:visibility="visible" />
 
                     <com.google.android.material.button.MaterialButton
@@ -105,7 +141,8 @@
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_dialog_outer"
+                        android:layout_marginTop="@dimen/dialogs_margin_inner"
+                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
                         android:text="@{viewState.leftButtonText}"
                         android:textAllCaps="false"
                         app:isVisible="@{viewState.leftButtonVisible}"
@@ -123,7 +160,7 @@
                         style="@style/Widget.MaterialComponents.Button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_dialog_outer"
+                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
                         android:text="@{viewState.rightButtonText}"
                         android:textAllCaps="false"
                         app:isVisible="@{viewState.rightButtonVisible}"

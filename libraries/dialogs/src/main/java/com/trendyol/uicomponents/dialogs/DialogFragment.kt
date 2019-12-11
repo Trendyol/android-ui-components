@@ -1,11 +1,17 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import androidx.annotation.DrawableRes
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
+import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
 
 class DialogFragment internal constructor(
     private val title: String? = null,
@@ -20,14 +26,22 @@ class DialogFragment internal constructor(
     private val rightButtonClickListener: ((DialogFragment) -> Unit)? = null,
     private val items: List<Pair<Boolean, CharSequence>>? = null,
     private val showItemsAsHtml: Boolean = false,
-    private val onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    private val onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null,
+    private val enableSearch: Boolean = false,
+    private val showClearSearchButton: Boolean = false,
+    private val searchHint: String = ""
 ) : BaseBottomSheetDialog<FragmentDialogBinding>() {
 
     private val itemsAdapter by lazy { DialogListAdapter(showItemsAsHtml) }
+    private val dialogListViewModel by lazy {
+        ViewModelProviders.of(this)[DialogListViewModel::class.java]
+    }
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
     override fun setUpView() {
+        animateCornerRadiusWithStateChanged()
+        
         with(binding) {
             imageClose.setOnClickListener {
                 dismiss()
@@ -40,11 +54,32 @@ class DialogFragment internal constructor(
                 rightButtonClickListener?.invoke(this@DialogFragment)
             }
 
-            recyclerViewItems.adapter = itemsAdapter
-            recyclerViewItems.isNestedScrollingEnabled = false
+            if (items != null) {
+                recyclerViewItems.adapter = itemsAdapter
+                recyclerViewItems.isNestedScrollingEnabled = false
 
-            itemsAdapter.onItemSelectedListener = { position ->
-                onItemSelectedListener?.invoke(this@DialogFragment, position)
+                itemsAdapter.onItemSelectedListener = { position ->
+                    dialogListViewModel.onSelectionChanged(position)
+                }
+
+                editTextSearch.setOnFocusChangeListener { _, hasFocus ->
+                    if (hasFocus) {
+                        setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
+                    }
+                }
+
+                editTextSearch.doAfterTextChanged {
+                    dialogListViewModel.search(it.toString())
+                }
+
+                imageClearSearchQuery.setOnClickListener {
+                    editTextSearch.text?.clear()
+                    dialogListViewModel.clearSearch()
+                }
+
+                constraintLayout.descendantFocusability = FOCUS_AFTER_DESCENDANTS
+
+                setUpViewModel(items)
             }
         }
     }
@@ -58,7 +93,10 @@ class DialogFragment internal constructor(
             contentImage = contentImage,
             leftButtonText = leftButtonText,
             rightButtonText = rightButtonText,
-            listItems = items
+            isListVisible = items != null,
+            isSearchEnabled = enableSearch,
+            isClearSearchButtonVisible = showClearSearchButton,
+            searchHint = searchHint
         )
 
         binding.viewState = viewState
@@ -67,6 +105,18 @@ class DialogFragment internal constructor(
 
     fun showDialog(fragmentManager: FragmentManager) {
         show(fragmentManager, TAG)
+    }
+
+    private fun setUpViewModel(items: List<Pair<Boolean, CharSequence>>) {
+        with(dialogListViewModel) {
+            getDialogSearchItemsLiveData().observe(viewLifecycleOwner, Observer { items ->
+                itemsAdapter.setItems(items)
+            })
+            getLastChangedItemLiveData().observeNonNull(viewLifecycleOwner) { position ->
+                onItemSelectedListener?.invoke(this@DialogFragment, position)
+            }
+            setInitialItems(items)
+        }
     }
 
     companion object {
