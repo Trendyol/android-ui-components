@@ -130,6 +130,7 @@ selectionDialog {
     * Implement multiple selectable type.
 * Provide theme for more styling.
 * Update builder for Java.
+* Stop using DialogFragment's constructor inorder to build DialogFragment
 
 ## Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
