@@ -10,6 +10,8 @@ class DialogListViewModel : ViewModel() {
     private val dialogSearchItemsLiveData: MutableLiveData<List<Pair<Boolean, CharSequence>>> =
         MutableLiveData()
 
+    private lateinit var originalList: List<Pair<Boolean, CharSequence>>
+
     private val lastChangedItemLiveData: SingleLiveEvent<Int> = SingleLiveEvent()
 
     fun getDialogSearchItemsLiveData(): LiveData<List<Pair<Boolean, CharSequence>>> =
@@ -17,42 +19,43 @@ class DialogListViewModel : ViewModel() {
 
     fun getLastChangedItemLiveData(): LiveData<Int> = lastChangedItemLiveData
 
-    private lateinit var items: List<Pair<Boolean, CharSequence>>
-
     private var searchQuery: String = ""
 
     fun setInitialItems(items: List<Pair<Boolean, CharSequence>>) {
-        this.items = items
-        dialogSearchItemsLiveData.value = items
+        if (dialogSearchItemsLiveData.value == null) {
+            dialogSearchItemsLiveData.value = items
+            originalList = items
+        }
     }
 
     fun search(query: String) {
         searchQuery = query
+        val listToFilter =
+            if (query.isEmpty()) originalList else dialogSearchItemsLiveData.value.orEmpty()
         dialogSearchItemsLiveData.value =
-            items.filter { it.second.contains(query, ignoreCase = true) }
+            listToFilter.filter { it.second.contains(query, ignoreCase = true) }
     }
 
     fun clearSearch() {
-        searchQuery = ""
-        dialogSearchItemsLiveData.value = items
+        search("")
     }
 
     fun onSelectionChanged(position: Int) {
         // First update all items, then update in liveData.
-        items.indexOf(dialogSearchItemsLiveData.value?.get(position)).also {
-            updateSelectedIndex(it)
-        }
+        originalList
+            .indexOf(dialogSearchItemsLiveData.value?.get(position))
+            .also { updateSelectedIndex(it) }
 
         search(searchQuery)
     }
 
     private fun updateSelectedIndex(position: Int) {
-        items = items.toMutableList().mapIndexed { index, item ->
-            item.copy(first = position == index).also {
-                if (it.first) {
-                    lastChangedItemLiveData.value = position
-                }
+        originalList = originalList.mapIndexed { index, item ->
+            val isSelected = position == index
+            if (isSelected) {
+                lastChangedItemLiveData.value = position
             }
+            item.copy(first = isSelected)
         }
     }
 }
