@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="Trendyol.UIComponents.Toolbar.Text" parent="TextAppearance.AppCompat" />
+    
+    <style name="Trendyol.UIComponents.Toolbar.Text.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="Trendyol.UIComponents.Toolbar.Text.UpperAction">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="Trendyol.UIComponents.Toolbar.Text.LowerAction">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#999999</item>
+    </style>
+</resources>

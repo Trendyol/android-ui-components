@@ -5,7 +5,9 @@
 
     <data>
 
-
+        <variable
+            name="viewState"
+            type="com.trendyol.uicomponents.toolbar.ToolbarViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,41 +18,76 @@
             android:id="@+id/imageLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/toolbar_margin_outer"
+            android:layout_marginStart="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:toolbarDrawableResource="@{viewState.leftImageDrawableResId}"
+            app:toolbarIsVisible="@{viewState.leftImageVisible}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textLeft"
-            android:layout_width="wrap_content"
+            android:id="@+id/textLeftUp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/toolbar_padding"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:text="@{viewState.upperLeftText}"
+            app:layout_constraintBottom_toTopOf="@id/textLeftDown"
             app:layout_constraintStart_toEndOf="@id/imageLeft"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Left Action?" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:textAppearance="@{viewState.upperLeftTextAppearance}"
+            app:toolbarIsVisible="@{viewState.upperLeftTextVisible}"
+            tools:text="Left Action" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textLeftDown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:text="@{viewState.lowerLeftText}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageLeft"
+            app:layout_constraintTop_toBottomOf="@id/textLeftUp"
+            app:textAppearance="@{viewState.lowerLeftTextAppearance}"
+            app:toolbarIsVisible="@{viewState.lowerLeftTextVisible}"
+            tools:text="Left Action down" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrierLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="end"
-            app:constraint_referenced_ids="imageLeft,textLeft" />
+            app:constraint_referenced_ids="imageLeft,textLeftUp,textLeftDown" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textMiddle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/barrierLeft"
-            app:layout_constraintEnd_toStartOf="@id/barrierRight"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Your Glorious App Name"
             android:ellipsize="middle"
-            android:gravity="center"/>
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/barrierRight"
+            app:layout_constraintStart_toEndOf="@id/barrierLeft"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAppearance="@{viewState.middleTextAppearance}"
+            app:toolbarIsVisible="@{viewState.middleTextVisible}"
+            tools:text="Your Glorious App Name"
+            tools:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageMiddle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/barrierRight"
+            app:layout_constraintStart_toEndOf="@id/barrierLeft"
+            app:layout_constraintTop_toTopOf="parent"
+            app:toolbarDrawableResource="@{viewState.middleImageDrawableResId}"
+            app:toolbarIsVisible="@{viewState.middleImageVisible}"
+            tools:src="@android:mipmap/sym_def_app_icon" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrierRight"
@@ -61,35 +98,43 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightUp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/toolbar_padding"
-            android:padding="@dimen/toolbar_padding"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:text="@{viewState.upperRightText}"
             app:layout_constraintBottom_toTopOf="@id/textRightDown"
             app:layout_constraintEnd_toStartOf="@id/imageRight"
-            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Right Action?" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:textAppearance="@{viewState.upperRightTextAppearance}"
+            app:toolbarIsVisible="@{viewState.upperRightTextVisible}"
+            tools:text="Right Action" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightDown"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/toolbar_padding"
-            android:padding="@dimen/toolbar_padding"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:text="@{viewState.lowerRightText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageRight"
             app:layout_constraintTop_toBottomOf="@id/textRightUp"
-            tools:text="Right Action?" />
+            app:textAppearance="@{viewState.lowerRightTextAppearance}"
+            app:toolbarIsVisible="@{viewState.lowerRightTextVisible}"
+            tools:text="Right Action down"
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/toolbar_margin_outer"
+            android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:toolbarDrawableResource="@{viewState.rightImageDrawableResId}"
+            app:toolbarIsVisible="@{viewState.rightImageVisible}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
