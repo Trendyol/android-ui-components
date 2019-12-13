@@ -36,4 +36,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_rating_bar"
         android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_dialogs"
+        android:layout_marginTop="32dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
