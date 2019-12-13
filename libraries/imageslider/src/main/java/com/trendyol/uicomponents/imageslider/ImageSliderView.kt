@@ -1,9 +1,7 @@
 package com.trendyol.uicomponents.imageslider
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -46,8 +44,12 @@ class ImageSliderView : FrameLayout, ImagesPagerAdapter.SliderAdapterItemClickLi
     }
 
     fun setViewState(imageSliderViewState: ImageSliderViewState?) {
-        if (imageSliderViewState == null) return
-        setImages(imageSliderViewState)
+        imageSliderViewState?.let {
+            binding.viewState = it
+            binding.executePendingBindings()
+
+            setImages(imageSliderViewState)
+        }
     }
 
     private fun setImages(imageSliderViewState: ImageSliderViewState?) {
@@ -62,6 +64,8 @@ class ImageSliderView : FrameLayout, ImagesPagerAdapter.SliderAdapterItemClickLi
             binding.indicatorImageSlider.setViewPager(binding.viewPagerImageSlider)
         }
     }
+
+
 
     override fun onImageItemClicked(imageUrlList: List<String>, position: Int) {
         imageSliderViewListener?.onImageSliderItemClicked(imageUrlList, position)
