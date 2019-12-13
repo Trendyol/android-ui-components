@@ -6,8 +6,17 @@ import com.google.android.material.appbar.AppBarLayout
 import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
 
 class Toolbar @JvmOverloads constructor(
-    context: Context?, attrs: AttributeSet? = null
+    context: Context?, private val attrs: AttributeSet? = null
 ) : AppBarLayout(context, attrs) {
+
+    var viewState: ToolbarViewState? = null
+        set(value) {
+            if (value != null) {
+                binding.viewState = viewState
+                binding.executePendingBindings()
+            }
+            field = value
+        }
 
     var leftImageClickListener: (() -> Unit)? = null
     var middleImageClickListener: (() -> Unit)? = null
@@ -29,12 +38,38 @@ class Toolbar @JvmOverloads constructor(
         binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
         binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
         binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
+
+        readFromAttributes()
     }
 
-    fun setViewState(viewState: ToolbarViewState?) {
-        if (viewState != null) {
-            binding.viewState = viewState
-            binding.executePendingBindings()
+    private fun readFromAttributes() {
+        context.theme?.obtainStyledAttributes(
+            attrs,
+            R.styleable.Toolbar,
+            0,
+            0
+        )?.apply {
+            val leftImageDrawableResId =
+                getResourceId(R.styleable.Toolbar_leftImageDrawable, R.drawable.ic_arrow_back)
+            val middleImageDrawableResId = getResourceId(R.styleable.Toolbar_middleImageDrawable, 0)
+            val rightImageDrawableResId = getResourceId(R.styleable.Toolbar_rightImageDrawable, 0)
+
+            val upperLeftText = getString(R.styleable.Toolbar_upperLeftText)
+            val lowerLeftText = getString(R.styleable.Toolbar_lowerLeftText)
+            val middleText = getString(R.styleable.Toolbar_middleText)
+            val upperRightText = getString(R.styleable.Toolbar_upperRightText)
+            val lowerRightText = getString(R.styleable.Toolbar_lowerRightText)
+
+            viewState = ToolbarViewState(
+                upperLeftText = upperLeftText,
+                lowerLeftText = lowerLeftText,
+                middleText = middleText,
+                upperRightText = upperRightText,
+                lowerRightText = lowerRightText,
+                leftImageDrawableResId = leftImageDrawableResId,
+                middleImageDrawableResId = middleImageDrawableResId,
+                rightImageDrawableResId = rightImageDrawableResId
+            )
         }
     }
 }

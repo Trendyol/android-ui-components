@@ -9,8 +9,8 @@ import androidx.core.widget.TextViewCompat
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("toolbarDrawableResource")
-internal fun AppCompatImageView.setDrawableResource(@DrawableRes drawableResId: Int?) {
-    if (drawableResId != null) {
+internal fun AppCompatImageView.setDrawableResource(@DrawableRes drawableResId: Int) {
+    if (drawableResId != 0) {
         visibility = View.VISIBLE
         setImageResource(drawableResId)
     } else {

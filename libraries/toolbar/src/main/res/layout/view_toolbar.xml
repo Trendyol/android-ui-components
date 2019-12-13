@@ -24,7 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarDrawableResource="@{viewState.leftImageDrawableResId}"
-            app:toolbarIsVisible="@{viewState.leftImageVisible}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
 
@@ -86,7 +85,6 @@
             app:layout_constraintStart_toEndOf="@id/barrierLeft"
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarDrawableResource="@{viewState.middleImageDrawableResId}"
-            app:toolbarIsVisible="@{viewState.middleImageVisible}"
             tools:src="@android:mipmap/sym_def_app_icon" />
 
         <androidx.constraintlayout.widget.Barrier
@@ -134,7 +132,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarDrawableResource="@{viewState.rightImageDrawableResId}"
-            app:toolbarIsVisible="@{viewState.rightImageVisible}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
