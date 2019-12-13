@@ -23,5 +23,6 @@
         <activity android:name=".RatingBarActivity" />
 
         <activity android:name=".DialogsActivity" />
+        <activity android:name=".PhoneNumberActivity" />
     </application>
 </manifest>
