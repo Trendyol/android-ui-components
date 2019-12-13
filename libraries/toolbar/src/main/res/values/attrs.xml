@@ -10,5 +10,6 @@
         <attr name="middleText" format="reference" />
         <attr name="upperRightText" format="reference" />
         <attr name="lowerRightText" format="reference" />
+        <attr name="toolbarBackground" format="reference" />
     </declare-styleable>
 </resources>

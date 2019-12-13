@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.TextViewCompat
 import androidx.databinding.BindingAdapter
 
@@ -23,7 +24,7 @@ internal fun View.setVisibility(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter("textAppearance")
-fun TextView.setStyle(@StyleRes styleResId: Int) {
+@BindingAdapter("toolbarTextAppearance")
+internal fun TextView.setStyle(@StyleRes styleResId: Int) {
     TextViewCompat.setTextAppearance(this, styleResId)
 }

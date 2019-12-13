@@ -9,11 +9,11 @@ class Toolbar : ConstraintLayout {
 
     var viewState: ToolbarViewState? = null
         set(value) {
-            if (value != null) {
+            field = value
+            if (field != null) {
                 binding.viewState = viewState
                 binding.executePendingBindings()
             }
-            field = value
         }
 
     var leftImageClickListener: (() -> Unit)? = null
@@ -70,6 +70,9 @@ class Toolbar : ConstraintLayout {
             val upperRightText = getString(R.styleable.Toolbar_upperRightText)
             val lowerRightText = getString(R.styleable.Toolbar_lowerRightText)
 
+            val toolbarBackground =
+                getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
+
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
                 lowerLeftText = lowerLeftText,
@@ -78,7 +81,8 @@ class Toolbar : ConstraintLayout {
                 lowerRightText = lowerRightText,
                 leftImageDrawableResId = leftImageDrawableResId,
                 middleImageDrawableResId = middleImageDrawableResId,
-                rightImageDrawableResId = rightImageDrawableResId
+                rightImageDrawableResId = rightImageDrawableResId,
+                toolbarBackground = toolbarBackground
             )
         }
     }
