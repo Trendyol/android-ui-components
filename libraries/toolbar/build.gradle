@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = "com.trendyol.toolbar"
+group = "com.trendyol.uicomponents"
 version = "1.0.0"
 
 android {
