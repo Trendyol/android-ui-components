@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group="com.trendyol.ui-components"
-version="1.0.2"
+version="1.0.0"
 
 android {
     compileSdkVersion 29

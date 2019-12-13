@@ -1,4 +1,4 @@
-package com.trendyol.uicomponents.phonenumbertextinputedittext
+package com.trendyol.uicomponents.phonenumber
 
 import android.content.ClipData
 import android.content.ClipboardManager

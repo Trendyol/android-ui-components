@@ -29,7 +29,7 @@ android {
 dependencies {
     implementation project(':libraries:rating-bar')
     implementation project(':libraries:dialogs')
-    implementation project(':libraries:phonenumbertextinputedittext')
+    implementation project(':libraries:phonenumber')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

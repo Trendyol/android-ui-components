@@ -1,2 +1,2 @@
-include ':sample', ':libraries:rating-bar', ':libraries:dialogs', ':libraries:phonenumbertextinputedittext'
+include ':sample', ':libraries:rating-bar', ':libraries:dialogs', ':libraries:phonenumber'
 rootProject.name='UI Components'
