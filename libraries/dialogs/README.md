@@ -94,6 +94,8 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `enableSearch` | Boolean | Enables search function in given `items`  | false |
 | `showClearSearchButton` | Boolean | Shows clean button on the right of the search input line.  | false |
 | `searchHint` | String | Hint to show on search input line.  | "" |
+| `selectedItemDrawable` | Int | Drawable resource for selected item icon.  | null |
+| `selectedTextColor` | Int | Color resource for selected item text color.  | null |
 
 Sample usage:
 ```kotlin
@@ -102,6 +104,8 @@ selectionDialog {
     content = getContent()
     items = getItemsAsHtml()
     showItemsAsHtml = true
+    selectedItemDrawable = R.drawable.ic_check
+    selectedTextColor = R.color.colorPrimary
     onItemSelectedListener = { dialog, index -> 
         dialog.dismiss()
         onItemSelected(index)
@@ -122,6 +126,9 @@ selectionDialog {
     enableSearch = true
     showClearSearchButton = true
     searchHint = "Hint for search"
+    selectedItemDrawable = R.drawable.ic_check
+    selectedTextColor = R.color.colorPrimary
+
 }
 ```
 
