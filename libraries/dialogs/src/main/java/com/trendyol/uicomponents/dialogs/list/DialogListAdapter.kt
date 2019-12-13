@@ -21,18 +21,6 @@ internal class DialogListAdapter(
         notifyDataSetChanged()
     }
 
-    private fun updateList(selectedItemPosition: Int) {
-        var firstSelectedItemPosition = 0
-        items = items.mapIndexed { index, item ->
-            if (item.first) {
-                firstSelectedItemPosition = index
-            }
-            item.copy(first = index == selectedItemPosition, second = item.second)
-        }
-        notifyItemChanged(firstSelectedItemPosition)
-        notifyItemChanged(selectedItemPosition)
-    }
-
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(items[position])
     }
@@ -49,7 +37,6 @@ internal class DialogListAdapter(
         init {
             binding.radioButtonItem.setOnCheckedChangeListener { radioButton, isChecked ->
                 if (radioButton.isPressed && isChecked) {
-                    updateList(selectedItemPosition = adapterPosition)
                     onItemSelectedListener?.invoke(adapterPosition)
                 }
             }

@@ -21,10 +21,3 @@ internal fun AppCompatImageView.setDrawableResource(@DrawableRes drawableResId: 
 internal fun View.setVisibility(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.GONE
 }
-
-@BindingAdapter("items")
-internal fun RecyclerView.setItems(items: List<Pair<Boolean, CharSequence>>?) {
-    if (items != null) {
-        (adapter as? DialogListAdapter)?.setItems(items)
-    }
-}

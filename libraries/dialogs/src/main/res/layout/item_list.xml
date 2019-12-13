@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="@{viewState.checked}"
-        android:padding="@dimen/margin_dialog_inner"
+        android:padding="@dimen/dialogs_margin_inner"
         android:text="@{viewState.text}"
         android:textAppearance="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
         tools:text="Click to select this item" />
