@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.trendyol.uicomponents.imageslider.ImageSliderViewState" />
+
+    </data>
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,6 +29,7 @@
             android:paddingTop="@dimen/indicator_padding_vertical"
             android:paddingRight="@dimen/indicator_padding_horizontal"
             android:paddingBottom="@dimen/indicator_padding_vertical"
+            android:visibility="@{viewState.indicatorVisibility}"
             app:ci_animator="@animator/animator_alpha"
             app:ci_animator_reverse="@animator/animator_alpha"
             app:ci_drawable="@drawable/shape_indicator_selected"
