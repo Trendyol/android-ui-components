@@ -86,7 +86,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             contentImage = dialogArguments.contentImage,
             leftButtonText = dialogArguments.leftButtonText,
             rightButtonText = dialogArguments.rightButtonText,
-            isListVisible = dialogArguments.items != null,
+            isListVisible = dialogArguments.items?.isNotEmpty() == true,
             isSearchEnabled = dialogArguments.enableSearch,
             isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
             searchHint = dialogArguments.searchHint
