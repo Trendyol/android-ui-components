@@ -2,12 +2,10 @@ package com.trendyol.uicomponents.toolbar
 
 import android.content.Context
 import android.util.AttributeSet
-import com.google.android.material.appbar.AppBarLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
 
-class Toolbar @JvmOverloads constructor(
-    context: Context?, private val attrs: AttributeSet? = null
-) : AppBarLayout(context, attrs) {
+class Toolbar : ConstraintLayout {
 
     var viewState: ToolbarViewState? = null
         set(value) {
@@ -29,6 +27,20 @@ class Toolbar @JvmOverloads constructor(
 
     private val binding: ViewToolbarBinding = inflate(R.layout.view_toolbar)
 
+    constructor(context: Context?) : super(context)
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        readFromAttributes(attrs)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        readFromAttributes(attrs)
+    }
+
     init {
         binding.imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
         binding.imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
@@ -38,11 +50,9 @@ class Toolbar @JvmOverloads constructor(
         binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
         binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
         binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
-
-        readFromAttributes()
     }
 
-    private fun readFromAttributes() {
+    private fun readFromAttributes(attrs: AttributeSet?) {
         context.theme?.obtainStyledAttributes(
             attrs,
             R.styleable.Toolbar,

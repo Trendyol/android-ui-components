@@ -17,5 +17,11 @@ class MainActivity : AppCompatActivity() {
         button_dialogs.setOnClickListener {
             startActivity(Intent(this, DialogsActivity::class.java))
         }
+        button_phone_number.setOnClickListener {
+            startActivity(Intent(this, PhoneNumberActivity::class.java))
+        }
+        button_toolbar.setOnClickListener {
+            startActivity(Intent(this, ToolbarActivity::class.java))
+        }
     }
 }

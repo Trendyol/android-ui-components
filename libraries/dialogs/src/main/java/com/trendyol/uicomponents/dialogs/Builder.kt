@@ -19,16 +19,22 @@ open class InfoDialogBuilder internal constructor() : Builder() {
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
-            DialogFragment(
-                title = it.title,
-                showCloseButton = it.showCloseButton,
-                closeButtonListener = it.closeButtonListener ?: { },
-                content = SpannableString(it.content),
-                contentImage = it.contentImage,
-                showContentAsHtml = it.showContentAsHtml
-            )
+            DialogFragment().apply {
+                arguments = DialogFragmentArguments(
+                    title = it.title,
+                    showCloseButton = it.showCloseButton,
+                    content = SpannableString(it.content),
+                    contentImage = it.contentImage,
+                    showContentAsHtml = it.showContentAsHtml
+                ).toBundle()
+                this.closeButtonListener = it.closeButtonListener ?: { }
+            }
         }
     }
+}
+
+class ClickEvent() {
+
 }
 
 open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
@@ -40,18 +46,20 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
 
     internal fun buildAgreementDialog(block: AgreementDialogBuilder.() -> Unit): DialogFragment =
         AgreementDialogBuilder().apply(block).let {
-            DialogFragment(
-                title = it.title,
-                showCloseButton = it.showCloseButton,
-                closeButtonListener = it.closeButtonListener,
-                content = SpannableString(it.content),
-                showContentAsHtml = it.showContentAsHtml,
-                contentImage = it.contentImage,
-                rightButtonText = it.rightButtonText,
-                leftButtonText = it.leftButtonText,
-                rightButtonClickListener = it.rightButtonClickListener,
+            DialogFragment().apply {
+                arguments = DialogFragmentArguments(
+                    title = it.title,
+                    showCloseButton = it.showCloseButton,
+                    content = SpannableString(it.content),
+                    showContentAsHtml = it.showContentAsHtml,
+                    contentImage = it.contentImage,
+                    rightButtonText = it.rightButtonText,
+                    leftButtonText = it.leftButtonText
+                ).toBundle()
+                closeButtonListener = it.closeButtonListener
+                rightButtonClickListener = it.rightButtonClickListener
                 leftButtonClickListener = it.leftButtonClickListener
-            )
+            }
         }
 }
 
@@ -60,19 +68,28 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
     var items: List<Pair<Boolean, CharSequence>> = emptyList()
     var showItemsAsHtml: Boolean = false
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var enableSearch: Boolean = false
+    var showClearSearchButton: Boolean = false
+    var searchHint: String = ""
 
     internal fun buildSelectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
         SelectionDialogBuilder().apply(block).let {
-            DialogFragment(
-                title = it.title,
-                showCloseButton = it.showCloseButton,
-                closeButtonListener = it.closeButtonListener,
-                content = SpannableString(it.content),
-                showContentAsHtml = it.showContentAsHtml,
-                contentImage = it.contentImage,
-                items = it.items,
-                showItemsAsHtml = it.showItemsAsHtml,
+            DialogFragment().apply {
+                arguments = DialogFragmentArguments(
+                    title = it.title,
+                    showCloseButton = it.showCloseButton,
+                    content = SpannableString(it.content),
+                    showContentAsHtml = it.showContentAsHtml,
+                    contentImage = it.contentImage,
+                    items = it.items,
+                    showItemsAsHtml = it.showItemsAsHtml,
+                    enableSearch = it.enableSearch,
+                    showClearSearchButton = it.showClearSearchButton,
+                    searchHint = it.searchHint
+                ).toBundle()
+                closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
-            )
+            }
+
         }
 }

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.color
+import com.trendyol.uicomponents.dialogs.DialogFragment
 import com.trendyol.uicomponents.dialogs.agreementDialog
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
@@ -21,13 +22,31 @@ class DialogsActivity : AppCompatActivity() {
         button_info_dialog.setOnClickListener { showInfoDialog() }
         button_agreement_dialog.setOnClickListener { showAgreementDialog() }
         button_selection_dialog.setOnClickListener { showSelectionDialog() }
+        button_selection_with_search_dialog.setOnClickListener { showSelectionWithSearchDialog() }
     }
+
+    private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dailog closed.") }
+
+    private val rightButtonClickListener: (DialogFragment) -> Unit = {
+        it.dismiss()
+        showToast("Right button clicked.")
+    }
+
+    private val leftButtonClickListener: (DialogFragment) -> Unit = {
+        it.dismiss()
+        showToast("Left buttonClicked")
+    }
+
+    private val onItemSelectedListener: (DialogFragment, Int) -> Unit =
+        { dialogFragment, position ->
+            showToast("Selection changed to ${position + 1}th ")
+        }
 
     private fun showInfoDialog() {
         infoDialog {
             title = "Info Dialog Sample"
             showCloseButton = true
-            closeButtonListener = { showToast("Info dailog closed.") }
+            closeButtonListener = infoDialogClosed
             content = SpannableString.valueOf(getSpannableString())
             contentImage = R.mipmap.ic_launcher_round
         }.showDialog(supportFragmentManager)
@@ -40,14 +59,8 @@ class DialogsActivity : AppCompatActivity() {
             rightButtonText = "Agree"
             content = getHtmlString()
             showContentAsHtml = true
-            rightButtonClickListener = {
-                it.dismiss()
-                showToast("Right button clicked.")
-            }
-            leftButtonClickListener = {
-                it.dismiss()
-                showToast("Left buttonClicked")
-            }
+            rightButtonClickListener = this@DialogsActivity.rightButtonClickListener
+            leftButtonClickListener = this@DialogsActivity.leftButtonClickListener
         }
 
         agreementDialog.showDialog(supportFragmentManager)
@@ -62,14 +75,42 @@ class DialogsActivity : AppCompatActivity() {
             contentImage = android.R.drawable.ic_dialog_email
             items = getListItems()
             showItemsAsHtml = false
-            onItemSelectedListener = { dialogFragment, i ->
-                dialogFragment.dismiss()
-                showToast("Selection changed to ${i + 1}th ")
-            }
+            onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
         }
 
         selectionDialog.showDialog(supportFragmentManager)
     }
+
+    private fun showSelectionWithSearchDialog() {
+        selectionDialog {
+            title = "Selection Dialog with Search Sample"
+            content = getHtmlString()
+            showContentAsHtml = true
+            showCloseButton = false
+            contentImage = android.R.drawable.ic_dialog_email
+            items = getListItems()
+            onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+            enableSearch = true
+            showClearSearchButton = true
+            searchHint = "Hint for search"
+        }.showDialog(supportFragmentManager)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        setDialogFragmentListenersIfNecessary()
+    }
+
+    private fun setDialogFragmentListenersIfNecessary() =
+        DialogFragment
+            .findFragment(supportFragmentManager)
+            ?.apply {
+                rightButtonClickListener = this@DialogsActivity.rightButtonClickListener
+                leftButtonClickListener = this@DialogsActivity.leftButtonClickListener
+                onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+                closeButtonListener = this@DialogsActivity.infoDialogClosed
+            }
+
 
     private fun getSpannableString(): SpannableStringBuilder =
         SpannableStringBuilder("Lorem ipsum dolor sit amet,")

@@ -10,9 +10,10 @@
             type="com.trendyol.uicomponents.toolbar.ToolbarViewState" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <merge
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageLeft"
@@ -134,5 +135,5 @@
             app:toolbarDrawableResource="@{viewState.rightImageDrawableResId}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </merge>
 </layout>

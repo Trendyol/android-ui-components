@@ -1,7 +1,7 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="240"/>
   
-$dialogsVersion = dialogs-1.0.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.0.3 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -24,7 +24,9 @@ dependencies {
 You can configure your dialog with given extensions with Kotlin DSL syntax.
 
 To show the dialog you just need to call `showDialog(FragmentManager)` function.
-  
+
+You can call DialogFragment.findFragment(supportFragmentManager) method inorder to retrieve DialogFragment's instance and use that instance to set click listeners after configuration change. 
+
 * Info Dialog:
 
 Simple dialog to show information, error or text.
@@ -89,6 +91,9 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `items` | List<Pair<Boolean, String>> | Item list that will be listed on dialog. | null | 
 | `showItemsAsHtml` | Boolean | Item texts will be parsed as Html if this flag setted as true. | false |
 | `onItemSelectedListener` | (DialogFragment, Int) -> Unit | Listener to notify selected index.  | null |
+| `enableSearch` | Boolean | Enables search function in given `items`  | false |
+| `showClearSearchButton` | Boolean | Shows clean button on the right of the search input line.  | false |
+| `searchHint` | String | Hint to show on search input line.  | "" |
 
 Sample usage:
 ```kotlin
@@ -104,13 +109,31 @@ selectionDialog {
 }
 ```
 
+Sample usage with search:
+```kotlin
+selectionDialog {
+    title = "Selection Dialog with Search Title"
+    content = getContent()
+    items = getItemsAsHtml()
+    showItemsAsHtml = true
+    onItemSelectedListener = { dialog, index ->
+        onItemSelected(index)
+    }
+    enableSearch = true
+    showClearSearchButton = true
+    searchHint = "Hint for search"
+}
+```
+
 ## TODOs
 * Implement ListDialog. 
 * ~~Implement SelectionDialog~~
-    * Implement search line.
+    * ~~Implement search line.~
     * Implement multiple selectable type.
 * Provide theme for more styling.
 * Update builder for Java.
+* ~~Stop using DialogFragment's constructor inorder to build DialogFragment~~
+
 
 ## Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
