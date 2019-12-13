@@ -2,7 +2,6 @@ package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
-import androidx.annotation.DrawableRes
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -13,35 +12,27 @@ import com.trendyol.dialog.databinding.FragmentDialogBinding
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
 
-class DialogFragment internal constructor(
-    private val title: String? = null,
-    private val showCloseButton: Boolean? = null,
-    private val closeButtonListener: ((DialogFragment) -> Unit)? = null,
-    private val content: CharSequence? = null,
-    private val showContentAsHtml: Boolean = false,
-    @DrawableRes private val contentImage: Int? = null,
-    private val leftButtonText: String? = null,
-    private val rightButtonText: String? = null,
-    private val leftButtonClickListener: ((DialogFragment) -> Unit)? = null,
-    private val rightButtonClickListener: ((DialogFragment) -> Unit)? = null,
-    private val items: List<Pair<Boolean, CharSequence>>? = null,
-    private val showItemsAsHtml: Boolean = false,
-    private val onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null,
-    private val enableSearch: Boolean = false,
-    private val showClearSearchButton: Boolean = false,
-    private val searchHint: String = ""
-) : BaseBottomSheetDialog<FragmentDialogBinding>() {
+class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDialogBinding>() {
 
-    private val itemsAdapter by lazy { DialogListAdapter(showItemsAsHtml) }
+    private val dialogArguments by lazy(LazyThreadSafetyMode.NONE)
+    { requireNotNull(DialogFragmentArguments.fromBundle(requireArguments())) }
+
+    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) { DialogListAdapter(dialogArguments.showItemsAsHtml) }
+
     private val dialogListViewModel by lazy {
         ViewModelProviders.of(this)[DialogListViewModel::class.java]
     }
+
+    var closeButtonListener: ((DialogFragment) -> Unit)? = null
+    var leftButtonClickListener: ((DialogFragment) -> Unit)? = null
+    var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
+    var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
     override fun setUpView() {
         animateCornerRadiusWithStateChanged()
-        
+
         with(binding) {
             imageClose.setOnClickListener {
                 dismiss()
@@ -54,14 +45,8 @@ class DialogFragment internal constructor(
                 rightButtonClickListener?.invoke(this@DialogFragment)
             }
 
-            if (items != null) {
-                recyclerViewItems.adapter = itemsAdapter
-                recyclerViewItems.isNestedScrollingEnabled = false
-
-                itemsAdapter.onItemSelectedListener = { position ->
-                    dialogListViewModel.onSelectionChanged(position)
-                }
-
+            dialogArguments.items?.let { items ->
+                initializeRecyclerView()
                 editTextSearch.setOnFocusChangeListener { _, hasFocus ->
                     if (hasFocus) {
                         setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
@@ -84,19 +69,27 @@ class DialogFragment internal constructor(
         }
     }
 
+    private fun initializeRecyclerView() = with(binding.recyclerViewItems) {
+        adapter = itemsAdapter.apply {
+            onItemSelectedListener =
+                { position -> dialogListViewModel.onSelectionChanged(position) }
+        }
+        isNestedScrollingEnabled = false
+    }
+
     override fun setViewState() {
         val viewState = DialogViewState(
-            title = title,
-            showCloseButton = showCloseButton,
-            content = content ?: SpannableString(""),
-            showContentAsHtml = showContentAsHtml,
-            contentImage = contentImage,
-            leftButtonText = leftButtonText,
-            rightButtonText = rightButtonText,
-            isListVisible = items != null,
-            isSearchEnabled = enableSearch,
-            isClearSearchButtonVisible = showClearSearchButton,
-            searchHint = searchHint
+            title = dialogArguments.title,
+            showCloseButton = dialogArguments.showCloseButton,
+            content = dialogArguments.content ?: SpannableString(""),
+            showContentAsHtml = dialogArguments.showContentAsHtml,
+            contentImage = dialogArguments.contentImage,
+            leftButtonText = dialogArguments.leftButtonText,
+            rightButtonText = dialogArguments.rightButtonText,
+            isListVisible = dialogArguments.items?.isNotEmpty() == true,
+            isSearchEnabled = dialogArguments.enableSearch,
+            isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
+            searchHint = dialogArguments.searchHint
         )
 
         binding.viewState = viewState
@@ -122,5 +115,9 @@ class DialogFragment internal constructor(
     companion object {
 
         const val TAG: String = "TRENDYOL_BOTTOM_SHEET_DIALOG"
+
+        fun findFragment(fragmentManager: FragmentManager): DialogFragment? {
+            return fragmentManager.findFragmentByTag(TAG) as? DialogFragment
+        }
     }
 }
