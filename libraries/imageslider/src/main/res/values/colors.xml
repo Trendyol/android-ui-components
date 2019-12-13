@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blackSuperAlpha">#78000000</color>
+
+    <color name="indicator_selected">#ffffff</color>
+    <color name="indicator_unselected">#bbbbbb</color>
+</resources>

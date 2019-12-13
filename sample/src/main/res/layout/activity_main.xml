@@ -38,14 +38,24 @@
         app:layout_constraintTop_toBottomOf="@id/button_rating_bar" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_imageslider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image Slider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_dialogs"
+        android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Phone Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_dialogs" />
+        app:layout_constraintTop_toBottomOf="@id/button_imageslider"
+        android:layout_marginTop="32dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_toolbar"

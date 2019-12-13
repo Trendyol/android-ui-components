@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="indicator_height">16dp</dimen>
+    <dimen name="indicator_padding_horizontal">8dp</dimen>
+    <dimen name="indicator_padding_vertical">4dp</dimen>
+    <dimen name="indicator_margin_bottom">16dp</dimen>
+    <dimen name="indicator_size">6dp</dimen>
+</resources>
