@@ -17,7 +17,14 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE)
     { requireNotNull(DialogFragmentArguments.fromBundle(requireArguments())) }
 
-    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) { DialogListAdapter(dialogArguments.showItemsAsHtml) }
+    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE)
+    {
+        DialogListAdapter(
+            dialogArguments.showItemsAsHtml,
+            dialogArguments.selectedItemDrawable,
+            dialogArguments.selectedTextColor
+        )
+    }
 
     private val dialogListViewModel by lazy {
         ViewModelProviders.of(this)[DialogListViewModel::class.java]

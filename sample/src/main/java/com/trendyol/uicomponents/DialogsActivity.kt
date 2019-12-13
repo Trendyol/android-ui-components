@@ -76,6 +76,8 @@ class DialogsActivity : AppCompatActivity() {
             items = getListItems()
             showItemsAsHtml = false
             onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+            selectedItemDrawable = R.drawable.ic_check
+            selectedTextColor = R.color.colorPrimary
         }
 
         selectionDialog.showDialog(supportFragmentManager)
@@ -93,6 +95,8 @@ class DialogsActivity : AppCompatActivity() {
             enableSearch = true
             showClearSearchButton = true
             searchHint = "Hint for search"
+            selectedItemDrawable = R.drawable.ic_check
+            selectedTextColor = R.color.colorPrimary
         }.showDialog(supportFragmentManager)
     }
 

@@ -2,6 +2,7 @@ package com.trendyol.uicomponents.dialogs
 
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.os.bundleOf
 import kotlinx.android.parcel.Parcelize
@@ -19,7 +20,9 @@ class DialogFragmentArguments(
     val showItemsAsHtml: Boolean = false,
     val enableSearch: Boolean = false,
     val showClearSearchButton: Boolean = false,
-    val searchHint: String = ""
+    val searchHint: String = "",
+    @DrawableRes val selectedItemDrawable: Int? = null,
+    @ColorRes val selectedTextColor: Int? = null
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)

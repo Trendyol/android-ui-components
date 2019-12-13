@@ -7,7 +7,9 @@ import com.trendyol.dialog.databinding.ItemListBinding
 import com.trendyol.uicomponents.dialogs.inflate
 
 internal class DialogListAdapter(
-    private val showItemsAsHtml: Boolean
+    private val showItemsAsHtml: Boolean,
+    private val selectedItemDrawable: Int?,
+    private val selectedTextColor: Int?
 ) : RecyclerView.Adapter<DialogListAdapter.ItemViewHolder>() {
 
     private var items: List<Pair<Boolean, CharSequence>> = emptyList()
@@ -35,8 +37,8 @@ internal class DialogListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.radioButtonItem.setOnCheckedChangeListener { radioButton, isChecked ->
-                if (radioButton.isPressed && isChecked) {
+            binding.root.setOnClickListener {
+                if (binding.viewState?.isChecked == false) {
                     onItemSelectedListener?.invoke(adapterPosition)
                 }
             }
@@ -46,6 +48,8 @@ internal class DialogListAdapter(
             binding.viewState = DialogListItemViewState(
                 name = item.second,
                 showAsHtml = showItemsAsHtml,
+                selectedItemDrawable = selectedItemDrawable,
+                selectedTextColor = selectedTextColor,
                 isChecked = item.first
             )
             binding.executePendingBindings()
