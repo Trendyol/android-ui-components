@@ -29,10 +29,9 @@
             android:id="@+id/imageLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/trendyol_uicomponents_toolbar_margin_outer"
             android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideStart"
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarDrawableResource="@{viewState.leftImageDrawableResId}"
             tools:srcCompat="@drawable/ic_arrow_back"
@@ -75,10 +74,10 @@
             android:maxLines="2"
             android:text="@{viewState.middleText}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
             app:toolbarIsVisible="@{viewState.middleTextVisible}"
             app:toolbarTextAppearance="@{viewState.middleTextAppearance}"
             tools:text="Your Glorious App Name might be long"
@@ -89,13 +88,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
             app:toolbarDrawableResource="@{viewState.middleImageDrawableResId}"
             tools:src="@android:mipmap/sym_def_app_icon"
-            tools:visibility="gone"/>
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightUp"
@@ -131,13 +130,26 @@
             android:id="@+id/imageRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
             android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintTop_toTopOf="parent"
             app:toolbarDrawableResource="@{viewState.rightImageDrawableResId}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
             tools:tint="@android:color/black" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/trendyol_uicomponents_toolbar_margin_outer" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/trendyol_uicomponents_toolbar_margin_outer" />
     </merge>
 </layout>
