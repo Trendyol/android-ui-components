@@ -172,11 +172,10 @@ class PhoneNumberTextInputEditText : TextInputEditText {
     }
 
     override fun onSaveInstanceState(): Parcelable? {
-        bundleOf(
+        return bundleOf(
             SUPER_STATE_KEY to super.onSaveInstanceState(),
             STATE_KEY to viewState
         )
-        return super.onSaveInstanceState()
     }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
