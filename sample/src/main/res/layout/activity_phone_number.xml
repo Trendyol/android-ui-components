@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
 
-    <com.google.android.material.textfield.TextInputLayout
+        <variable
+            name="viewState"
+            type="com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditTextViewState" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <com.trendyol.uicomponents.phonenumbertextinputedittext.PhoneNumberTextInputEditText
-            android:id="@+id/editTextPhone"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="17"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
+
+            <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
+                android:id="@+id/editTextPhoneDot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="17"
+                app:maskCharacter="@{'●'}"
+                app:maskable="@{true}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
+                android:id="@+id/editTextPhoneStar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="17"
+                app:viewState="@{viewState}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
