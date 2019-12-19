@@ -3,14 +3,23 @@ package com.trendyol.uicomponents.phonenumber
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import androidx.core.os.bundleOf
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.parcel.Parcelize
 
 class PhoneNumberTextInputEditText : TextInputEditText {
+
+    var viewState: PhoneNumberTextInputEditTextViewState = PhoneNumberTextInputEditTextViewState(
+        maskable = false,
+        maskCharacter = '*'
+    )
 
     constructor(context: Context) : this(context, null)
 
@@ -29,11 +38,9 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         maxLines = 1
         setSingleLine()
         setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                if (length() == 0) {
-                    setText(FIRST_CHARACTER_ZERO)
-                    setSelection(AFTER_ZERO_SELECTION_INDEX)
-                }
+            if (hasFocus && (text.isNullOrEmpty() || (isMaskable() && hasMaskCharacter()))) {
+                setText(FIRST_CHARACTER_ZERO)
+                setSelection(AFTER_ZERO_SELECTION_INDEX)
             } else {
                 if (text == null || text.toString() == FIRST_CHARACTER_ZERO) {
                     setText(EMPTY)
@@ -92,6 +99,18 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         })
     }
 
+    private fun hasMaskCharacter() = text?.toString()?.contains(viewState.maskCharacter) == true
+
+    fun setMaskCharacter(maskCharacter: Char) {
+        viewState = viewState.copy(maskCharacter = maskCharacter)
+    }
+
+    fun isMaskable() = viewState.maskable
+
+    fun setMaskable(maskable: Boolean) {
+        viewState = viewState.copy(maskable = maskable)
+    }
+
     override fun onTextContextMenuItem(id: Int): Boolean {
         when (id) {
             android.R.id.paste -> {
@@ -134,7 +153,8 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         }
     }
 
-    private fun parsePhoneNumber(text: String) = text.replace("[^\\d]".toRegex(), "")
+    private fun parsePhoneNumber(text: String) =
+        text.replace("[^\\d${viewState.maskCharacter}]".toRegex(), "")
 
     fun getPhoneNumber(): String {
         return parsePhoneNumber(text?.toString() ?: "")
@@ -151,7 +171,30 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         super.removeTextChangedListener(watcher)
     }
 
+    override fun onSaveInstanceState(): Parcelable? {
+        bundleOf(
+            SUPER_STATE_KEY to super.onSaveInstanceState(),
+            STATE_KEY to viewState
+        )
+        return super.onSaveInstanceState()
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is Bundle) {
+            state
+                .getParcelable<PhoneNumberTextInputEditTextViewState>(STATE_KEY)
+                ?.let { this.viewState = it }
+
+            super.onRestoreInstanceState(state.getParcelable(SUPER_STATE_KEY))
+        } else {
+            super.onRestoreInstanceState(state)
+        }
+    }
+
     companion object {
+        val SUPER_STATE_KEY = "SUPER_STATE_KEY"
+        val STATE_KEY = "SUPER_STATE_KEY"
+
         private const val FIRST_CHARACTER_ZERO = "0"
         private const val CLEAR_SELECTION_INDEX = 0
         private const val AFTER_ZERO_SELECTION_INDEX = 1
@@ -174,3 +217,9 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         }
     }
 }
+
+@Parcelize
+data class PhoneNumberTextInputEditTextViewState(
+    val maskable: Boolean,
+    val maskCharacter: Char
+) : Parcelable
