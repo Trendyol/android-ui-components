@@ -10,50 +10,60 @@
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select component"
         android:layout_marginTop="64dp"
+        android:text="Select component"
+        app:layout_constraintBottom_toTopOf="@id/button_rating_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_rating_bar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Rating Bar"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_dialogs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Dialogs"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_rating_bar"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_rating_bar" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_imageslider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMAGE SLIDER"
+        android:text="Image Slider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_dialogs"
         android:layout_marginTop="32dp"/>
-  
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_imageslider"
         android:layout_marginTop="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_phone_number" />
 </androidx.constraintlayout.widget.ConstraintLayout>

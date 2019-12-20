@@ -26,5 +26,8 @@ class MainActivity : AppCompatActivity() {
         button_phone_number.setOnClickListener {
             startActivity(Intent(this, PhoneNumberActivity::class.java))
         }
+        button_toolbar.setOnClickListener {
+            startActivity(Intent(this, ToolbarActivity::class.java))
+        }
     }
 }

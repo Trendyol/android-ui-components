@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Toolbar">
+        <attr name="leftImageDrawable" format="reference" />
+        <attr name="middleImageDrawable" format="reference" />
+        <attr name="rightImageDrawable" format="reference" />
+        <attr name="upperLeftText" format="reference" />
+        <attr name="lowerLeftText" format="reference" />
+        <attr name="middleText" format="reference" />
+        <attr name="upperRightText" format="reference" />
+        <attr name="lowerRightText" format="reference" />
+        <attr name="toolbarBackground" format="reference" />
+    </declare-styleable>
+</resources>

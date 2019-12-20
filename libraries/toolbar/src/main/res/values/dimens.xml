@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="trendyol_uicomponents_toolbar_margin_outer">8dp</dimen>
+
+    <dimen name="trendyol_uicomponents_toolbar_padding">4dp</dimen>
+</resources>

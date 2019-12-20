@@ -30,5 +30,7 @@
         <activity android:name=".ImageSliderActivity" />
       
         <activity android:name=".PhoneNumberActivity" />
+
+        <activity android:name=".ToolbarActivity" />
     </application>
 </manifest>
