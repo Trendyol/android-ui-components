@@ -8,6 +8,7 @@ open class Builder internal constructor() {
     var title: String = ""
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
+    var animateCornerRadiusWhenExpand: Boolean = false
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -23,6 +24,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                 arguments = DialogFragmentArguments(
                     title = it.title,
                     showCloseButton = it.showCloseButton,
+                    animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     content = SpannableString(it.content),
                     contentImage = it.contentImage,
                     showContentAsHtml = it.showContentAsHtml
@@ -31,10 +33,6 @@ open class InfoDialogBuilder internal constructor() : Builder() {
             }
         }
     }
-}
-
-class ClickEvent() {
-
 }
 
 open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {

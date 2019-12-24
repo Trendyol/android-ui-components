@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="240"/>
   
-$dialogsVersion = dialogs-1.0.3 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.0.5 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -31,11 +31,12 @@ You can call DialogFragment.findFragment(supportFragmentManager) method inorder 
 
 Simple dialog to show information, error or text.
   
-| Field | Type | Description | Default Value |  
-| ------------- |-------------|-------------| ------------- |  
-| `title` | String |Title of the dialog | "" |  
-|  `showCloseButton` | Boolean | Close button visibility | false |  
-| `closeButtonListener` | (DialogFragment) -> Unit |Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
+| Field | Type | Description | Default Value |
+| ------------- | ------------- | ------------- | ------------- |
+| `title` | String |Title of the dialog | "" |
+| `showCloseButton` | Boolean | Close button visibility | false |
+| `animateCornerRadiusWhenExpand` | Boolean | Corner radius will be removed with an animation when set true. | false |  
+| `closeButtonListener` | (DialogFragment) -> Unit | Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
 | `contentImage` | Int | Drawable resource id of an visual, will be shown on top of `content` | 0 |
