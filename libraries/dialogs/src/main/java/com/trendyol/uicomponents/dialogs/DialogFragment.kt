@@ -14,11 +14,11 @@ import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
 
 class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDialogBinding>() {
 
-    private val dialogArguments by lazy(LazyThreadSafetyMode.NONE)
-    { requireNotNull(DialogFragmentArguments.fromBundle(requireArguments())) }
+    private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
+        requireNotNull(DialogFragmentArguments.fromBundle(requireArguments()))
+    }
 
-    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE)
-    {
+    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) {
         DialogListAdapter(
             dialogArguments.showItemsAsHtml,
             dialogArguments.selectedItemDrawable,
@@ -38,7 +38,9 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
     override fun setUpView() {
-        animateCornerRadiusWithStateChanged()
+        if (dialogArguments.animateCornerRadiusWhenExpand) {
+            animateCornerRadiusWithStateChanged()
+        }
 
         with(binding) {
             imageClose.setOnClickListener {
