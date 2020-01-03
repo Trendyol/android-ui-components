@@ -29,5 +29,5 @@ data class DialogViewState(
 
     fun isContentVisible(): Boolean = content.isNotEmpty()
 
-    fun isContentImageVisible(): Boolean = contentImage != null
+    fun isContentImageVisible(): Boolean = contentImage?.takeIf { it != 0 } != null
 }
