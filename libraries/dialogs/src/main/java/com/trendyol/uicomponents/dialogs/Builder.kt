@@ -15,7 +15,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
 
     var content: CharSequence = SpannableString("")
     @DrawableRes
-    var contentImage: Int = 0
+    var contentImage: Int? = null
     var showContentAsHtml: Boolean = false
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
