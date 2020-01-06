@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs.list
 
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.ItemListBinding
@@ -10,27 +11,19 @@ internal class DialogListAdapter(
     private val showItemsAsHtml: Boolean,
     private val selectedItemDrawable: Int?,
     private val selectedTextColor: Int?
-) : RecyclerView.Adapter<DialogListAdapter.ItemViewHolder>() {
-
-    private var items: List<Pair<Boolean, CharSequence>> = emptyList()
+) : ListAdapter<Pair<Boolean, CharSequence>, DialogListAdapter.ItemViewHolder>(ListItemDiffCallback()) {
     var onItemSelectedListener: ((Int) -> Unit)? = null
 
     fun setItems(list: List<Pair<Boolean, CharSequence>>) {
-        items = items.toMutableList().apply {
-            clear()
-            addAll(list)
-        }
-        notifyDataSetChanged()
+        submitList(list.toMutableList())
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
         ItemViewHolder(parent.inflate(R.layout.item_list, false))
-
-    override fun getItemCount(): Int = items.size
 
     inner class ItemViewHolder(
         private val binding: ItemListBinding
