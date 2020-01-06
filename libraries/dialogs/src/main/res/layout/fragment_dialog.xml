@@ -47,6 +47,7 @@
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/dialogs_margin_inner"
                     app:isVisible="@{viewState.showCloseButton}"
+                    android:background="?selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_close" />
             </LinearLayout>
 
