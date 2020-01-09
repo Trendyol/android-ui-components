@@ -39,10 +39,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textLeftUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_min="wrap"
             android:singleLine="true"
+            android:gravity="bottom"
             android:text="@{viewState.upperLeftText}"
             app:layout_constraintBottom_toTopOf="@id/textLeftDown"
             app:layout_constraintStart_toEndOf="@id/imageLeft"
@@ -54,10 +55,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textLeftDown"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_min="wrap"
             android:singleLine="true"
+            android:gravity="top"
             android:text="@{viewState.lowerLeftText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageLeft"
@@ -98,9 +100,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_min="wrap"
             android:singleLine="true"
             android:text="@{viewState.upperRightText}"
             app:layout_constraintBottom_toTopOf="@id/textRightDown"
@@ -113,9 +115,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightDown"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/trendyol_uicomponents_toolbar_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_min="wrap"
             android:singleLine="true"
             android:text="@{viewState.lowerRightText}"
             app:layout_constraintBottom_toBottomOf="parent"
