@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_text_color">#333333</color>
+    <color name="text_color_selected_suggestion_item">#ffffff</color>
+    <color name="text_color_unselected_suggestion_item">#333333</color>
+</resources>

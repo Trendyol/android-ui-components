@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.trendyol.uicomponents">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".RatingBarActivity" />
-
         <activity android:name=".DialogsActivity" />
-      
         <activity android:name=".ImageSliderActivity" />
-      
         <activity android:name=".PhoneNumberActivity" />
-
         <activity android:name=".ToolbarActivity" />
+        <activity android:name=".suggestioninput.SuggestionInputActivity"/>
     </application>
+
 </manifest>
