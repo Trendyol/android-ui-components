@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_suggestion_item">14sp</dimen>
+    <dimen name="horizontal_padding_suggestion_item">4dp</dimen>
+    <dimen name="vertical_padding_suggestion_item">12dp</dimen>
+    <dimen name="minWidth_suggestion_item">80dp</dimen>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".suggestioninput.SuggestionInputActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.trendyol.suggestioninputview.SuggestionInputView
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:id="@+id/suggestionInputView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:inputSuffix="₺"
+                app:inputButtonBackground="@drawable/shape_selected_background_suggestion_item"
+                app:inputButtonText="TAMAM"
+                app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
+                app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
+                app:minWidth="@dimen/minWidth_suggestion_item"
+                app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
+                app:verticalPadding="@dimen/vertical_padding_suggestion_item"
+                app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
+                app:selectedTextColor="@color/text_color_selected_suggestion_item"
+                app:textSize="@dimen/text_size_suggestion_input"
+                app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
+                app:unselectedTextColor="@color/text_color_unselected_suggestion_item" />
+        </androidx.cardview.widget.CardView>
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Selected Text: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/selectedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Selected Value: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/selectedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

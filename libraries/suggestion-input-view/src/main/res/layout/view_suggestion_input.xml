@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.trendyol.suggestioninputview.SuggestionInputViewState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSuggestionItems"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutInput"
+            app:layout_constraintTop_toTopOf="parent"
+            app:suggestionItems="@{viewState.getItems()}" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/itemSpacing_suggestion_item"
+            android:paddingEnd="@dimen/itemSpacing_suggestion_item"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                tools:text="500 TL"
+                android:layout_marginStart="@dimen/margin_input_items"
+                android:layout_marginEnd="@dimen/margin_input_items"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonDone"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

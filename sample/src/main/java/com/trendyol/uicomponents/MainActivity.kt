@@ -3,6 +3,7 @@ package com.trendyol.uicomponents
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.trendyol.uicomponents.suggestioninput.SuggestionInputActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         }
         button_toolbar.setOnClickListener {
             startActivity(Intent(this, ToolbarActivity::class.java))
+        }
+        button_suggestion_input_view.setOnClickListener {
+            startActivity(Intent(this, SuggestionInputActivity::class.java))
         }
     }
 }

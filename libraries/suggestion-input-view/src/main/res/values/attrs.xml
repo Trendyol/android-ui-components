@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SuggestionInputView">
+        <!-- unselected chip background color -->
+        <attr name="unselectedBackground" format="reference" />
+        <!-- selected chip background color -->
+        <attr name="selectedBackground" format="reference" />
+        <!-- unselected chip text color -->
+        <attr name="unselectedTextColor" format="color" />
+        <!-- selected chip text color -->
+        <attr name="selectedTextColor" format="reference" />
+        <!-- chip text size -->
+        <attr name="textSize" format="dimension" />
+        <!-- chip padding -->
+        <attr name="horizontalPadding" format="dimension" />
+        <attr name="verticalPadding" format="dimension" />
+        <!-- min width for suggestion items -->
+        <attr name="minWidth" format="dimension" />
+        <!-- input views's button text -->
+        <attr name="inputButtonText" format="string" />
+        <!-- input views's button background -->
+        <attr name="inputButtonBackground" format="reference" />
+        <!-- input views's button text color -->
+        <attr name="inputButtonTextColor" format="color" />
+        <!-- input views's edit text background -->
+        <attr name="inputEditTextBackground" format="reference" />
+        <!-- input views's edit text suffix -->
+        <attr name="inputSuffix" format="string" />
+        <!-- input type for input view's edit text -->
+        <attr name="android:inputType" />
+    </declare-styleable>
+</resources>

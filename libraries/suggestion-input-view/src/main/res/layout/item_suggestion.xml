@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.trendyol.suggestioninputview.SuggestionInputItemViewState" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@{viewState.getBackground()}"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
+        android:minWidth="@{viewState.getMinWidth()}"
+        android:paddingStart="@{viewState.getHorizontalPadding()}"
+        android:paddingTop="@{viewState.getVerticalPadding()}"
+        android:paddingEnd="@{viewState.getHorizontalPadding()}"
+        android:paddingBottom="@{viewState.getVerticalPadding()}"
+        android:text="@{viewState.getText()}"
+        android:textColor="@{viewState.getTextColor()}"
+        android:textSize="@{viewState.getTextSize()}"
+        tools:text="50 TL" />
+</layout>
