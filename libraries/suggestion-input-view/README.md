@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/suggestion-input-view-1.gif" width="240"/>
 
-suggestionInputViewVersion = suggestion-input-view-1.0.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$suggestionInputViewVersion = suggestion-input-view-1.0.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## SuggestionInputView
 SuggestionInputView allows selecting pre-selected options or entering a custom option
@@ -18,7 +18,7 @@ allprojects {
  - After adding JitPack repository, you can add **SuggestionInputView** dependency to your app level build.gradle.
 ```gradle
 dependencies {
-    implementation "com.trendyol.ui-components:suggestion-input-view:suggestionInputViewVersion"
+    implementation "com.trendyol.ui-components:suggestion-input-view:$suggestionInputViewVersion"
 }
 ```
 :warning: To use **SuggestionInputView**, you have to enable dataBinding from your main project.
