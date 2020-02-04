@@ -18,7 +18,7 @@ allprojects {
  - After adding JitPack repository, you can add **RatingBar** dependency to your app level build.gradle.
 ```gradle
 dependencies {
-    implementation "com.trendyol.ui-components:rating-bar:$ratingBarVersion"
+    implementation "com.github.Trendyol.ui-components:rating-bar:$ratingBarVersion"
 }
 ```
 :warning: To use **RatingBar**, you have to enable dataBinding from your main project.
