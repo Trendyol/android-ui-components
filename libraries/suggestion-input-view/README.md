@@ -18,7 +18,7 @@ allprojects {
  - After adding JitPack repository, you can add **SuggestionInputView** dependency to your app level build.gradle.
 ```gradle
 dependencies {
-    implementation "com.trendyol.ui-components:suggestion-input-view:$suggestionInputViewVersion"
+    implementation "com.github.Trendyol.android-ui-components:suggestion-input-view:$suggestionInputViewVersion"
 }
 ```
 :warning: To use **SuggestionInputView**, you have to enable dataBinding from your main project.
