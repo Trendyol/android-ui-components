@@ -252,7 +252,7 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            if (item.type == SuggestionItemType.INPUT) {
+            if (item.type == SuggestionItemType.INPUT && item.value.trim().isNotEmpty()) {
                 updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text))
             } else {
                 updatedItems.add(item.copy(isSelected = false))
