@@ -25,6 +25,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var unselectedBackground: Drawable? = null
 
+    private var errorBackground: Drawable? = null
+
     @ColorInt
     private var selectedTextColor: Int = 0
 
@@ -56,6 +58,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var inputType: Int = 0
 
+    private var shouldShowError: Boolean = false
+
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
     private val bindingInput: ViewSuggestionInputBinding =
@@ -81,6 +85,9 @@ class SuggestionInputView @JvmOverloads constructor(
                 unselectedBackground =
                     getDrawable(R.styleable.SuggestionInputView_unselectedBackground)
                         ?: context.drawable(R.drawable.shape_unselected_background_suggestion_item)
+                errorBackground =
+                    getDrawable(R.styleable.SuggestionInputView_errorBackground)
+                        ?: context.drawable(R.drawable.shape_error_background_suggestion_item)
                 selectedTextColor = getColor(
                     R.styleable.SuggestionInputView_selectedTextColor,
                     context.color(R.color.text_color_selected_suggestion_item)
@@ -203,11 +210,18 @@ class SuggestionInputView @JvmOverloads constructor(
         setInitializeSelection()
     }
 
+    fun shouldShowError(shouldShowError: Boolean) {
+        this.shouldShowError = shouldShowError
+        notifyErrorToItems()
+        notifyAdapter()
+    }
+
     fun setSuggestionItemClickListener(function: (SuggestionInputItem) -> (Unit)) {
         this.onSuggestionItemClickListener = function
     }
 
     private fun onSuggestionItemClicked(suggestionInputItemViewState: SuggestionInputItemViewState) {
+        shouldShowError(false)
         val itemType = suggestionInputItemViewState.type
         if (itemType == SuggestionItemType.SELECTABLE) {
             setSelectionToSuggestionItem(suggestionInputItemViewState)
@@ -229,8 +243,8 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun setInitializeSelection() {
-        val selectedItem: SuggestionInputItemViewState? =  items.firstOrNull { item ->
-           item.isSelected
+        val selectedItem: SuggestionInputItemViewState? = items.firstOrNull { item ->
+            item.isSelected
         }
 
         if (selectedItem != null) {
@@ -245,8 +259,7 @@ class SuggestionInputView @JvmOverloads constructor(
         }
 
         items = updatedItems
-        bindingSelectables.recyclerViewSuggestionItems.adapter = itemsAdapter
-        itemsAdapter.submitList(items)
+        notifyAdapter()
     }
 
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
@@ -260,8 +273,7 @@ class SuggestionInputView @JvmOverloads constructor(
         }
 
         items = updatedItems
-        bindingSelectables.recyclerViewSuggestionItems.adapter = itemsAdapter
-        itemsAdapter.submitList(items)
+        notifyAdapter()
     }
 
     private fun showInputView() {
@@ -323,7 +335,9 @@ class SuggestionInputView @JvmOverloads constructor(
                 horizontalPadding = horizontalPadding,
                 verticalPadding = verticalPadding,
                 minWidth = minWidth,
-                suffix = inputSuffix
+                suffix = inputSuffix,
+                errorBackground = errorBackground,
+                shouldShowError = shouldShowError
             )
         }
     }
@@ -368,6 +382,17 @@ class SuggestionInputView @JvmOverloads constructor(
         inputType = inputType,
         suffix = inputSuffix
     )
+
+    private fun notifyErrorToItems() {
+        items =  items.map {
+            it.copy(shouldShowError = shouldShowError)
+        }
+    }
+
+    private fun notifyAdapter() {
+        bindingSelectables.recyclerViewSuggestionItems.adapter = itemsAdapter
+        itemsAdapter.submitList(items)
+    }
 
     companion object {
         const val ID_FREE_TEXT = 192

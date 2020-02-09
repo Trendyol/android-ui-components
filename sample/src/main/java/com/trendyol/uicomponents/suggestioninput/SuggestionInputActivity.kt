@@ -21,6 +21,12 @@ class SuggestionInputActivity : AppCompatActivity() {
 
         binding.suggestionInputView.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
         binding.suggestionInputView.setItems(createSuggestionInputItems())
+        binding.buttonLoad.setOnClickListener { onLoadClicked() }
+    }
+
+    private fun onLoadClicked() {
+        binding.shouldShowError = true
+        binding.executePendingBindings()
     }
 
     private fun onSuggestionItemClicked(suggestionInputItem: SuggestionInputItem) {
