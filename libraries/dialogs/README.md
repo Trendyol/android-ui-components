@@ -15,7 +15,7 @@ allprojects {
  - After adding JitPack repository, you can add **Dialogs** dependency to your app level build.gradle.  
 ```gradle  
 dependencies {  
- implementation "com.trendyol.ui-components:dialogs:$dialogsVersion"}  
+ implementation "com.github.Trendyol.android-ui-components:dialogs:$dialogsVersion"}  
 ```  
 :warning: To use **Dialogs**, you have to enable dataBinding from your main project, and implement material library into app level `build.gradle`.  
 :warning: **Dialogs** can only usable via Kotlin.  

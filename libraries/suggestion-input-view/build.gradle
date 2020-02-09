@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group="com.trendyol.ui-components"
+
 version="1.0.2"
 
 android {
@@ -16,6 +17,7 @@ android {
         targetSdkVersion 29
         versionCode 3
         versionName "1.0.2"
+
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles 'consumer-rules.pro'

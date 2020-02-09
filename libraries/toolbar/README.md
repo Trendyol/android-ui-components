@@ -18,7 +18,7 @@ allprojects {
  - After adding JitPack repository, you can add **Toolbar** dependency to your app level build.gradle.
 ```gradle
 dependencies {
-    implementation "com.trendyol.ui-components:toolbar:$toolbarVersion"
+    implementation "com.github.Trendyol.android-ui-components:toolbar:$toolbarVersion"
 }
 ```
 :warning: To use **Toolbar**, you have to enable dataBinding from your main project.
