@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="shouldShowError"
+            type="Boolean" />
 
     </data>
 
@@ -19,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.trendyol.suggestioninputview.SuggestionInputView
+                android:clickable="false"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:id="@+id/suggestionInputView"
@@ -36,9 +40,20 @@
                 app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
                 app:selectedTextColor="@color/text_color_selected_suggestion_item"
                 app:textSize="@dimen/text_size_suggestion_input"
+                app:shouldShowError="@{shouldShowError}"
+                app:errorBackground="@drawable/shape_error_background_suggestion_item"
                 app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
                 app:unselectedTextColor="@color/text_color_unselected_suggestion_item" />
         </androidx.cardview.widget.CardView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonLoad"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="LOAD"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
 
 
 

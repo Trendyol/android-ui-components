@@ -28,5 +28,7 @@
         <attr name="inputSuffix" format="string" />
         <!-- input type for input view's edit text -->
         <attr name="android:inputType" />
+        <!-- error background -->
+        <attr name="errorBackground" format="reference" />
     </declare-styleable>
 </resources>

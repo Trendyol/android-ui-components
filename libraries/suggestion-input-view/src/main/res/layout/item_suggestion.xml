@@ -10,7 +10,6 @@
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
