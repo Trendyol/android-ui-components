@@ -46,7 +46,6 @@
                 app:unselectedTextColor="@color/text_color_unselected_suggestion_item" />
         </androidx.cardview.widget.CardView>
 
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonLoad"
             android:layout_margin="16dp"
@@ -55,10 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
 
-
-
         <LinearLayout
-            android:visibility="gone"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -73,7 +69,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

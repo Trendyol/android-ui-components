@@ -14,6 +14,4 @@ data class SuggestionInputViewState(
     val verticalPadding: Float,
     val suffix: String,
     val inputType: Int
-) {
-    fun getInputHint() = " $suffix"
-}
+)

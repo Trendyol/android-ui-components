@@ -265,7 +265,7 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            if (item.type == SuggestionItemType.INPUT && item.value.trim().isNotEmpty()) {
+            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.text.trim().isNotEmpty()) {
                 updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text))
             } else {
                 updatedItems.add(item.copy(isSelected = false))
@@ -354,8 +354,8 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun mapFreeTextToInputItem(): SuggestionInputItem {
-        val text: String = bindingSelectables.editText.text.toString()
-        val value = text.removeSuffix(inputSuffix)
+        val text: String = bindingSelectables.editText.text.toString() + " " + inputSuffix
+        val value = bindingSelectables.editText.text.toString()
         return SuggestionInputItem(
             id = ID_FREE_TEXT,
             text = text,
