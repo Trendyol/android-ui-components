@@ -43,8 +43,9 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_arrow_back" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.trendyol.suggestioninputview.SuggestionInputEditText
                 android:id="@+id/editText"
+                app:suffix="@{viewState.suffix}"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:gravity="center_vertical"
@@ -52,7 +53,7 @@
                 tools:text="500 TL"
                 android:layout_marginStart="@dimen/margin_input_items"
                 android:layout_marginEnd="@dimen/margin_input_items"
-                android:layout_weight="1" />
+                android:layout_weight="1"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonDone"

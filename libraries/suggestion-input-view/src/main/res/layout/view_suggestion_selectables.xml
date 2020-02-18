@@ -44,15 +44,15 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_arrow_back" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.trendyol.suggestioninputview.SuggestionInputEditText
                 android:id="@+id/editText"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="@dimen/margin_input_items"
                 android:layout_marginEnd="@dimen/margin_input_items"
+                app:suffix="@{viewState.suffix}"
                 android:paddingStart="8dp"
                 android:layout_weight="1"
-                android:text="@{viewState.getInputHint()}"
                 android:inputType="@{viewState.inputType}"
                 android:background="@{viewState.editTextBackground}" />
 
