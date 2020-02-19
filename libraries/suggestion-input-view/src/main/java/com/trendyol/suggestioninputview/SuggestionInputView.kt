@@ -266,7 +266,7 @@ class SuggestionInputView @JvmOverloads constructor(
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
             if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim().isNotEmpty()) {
-                updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text))
+                updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text, value = suggestionInputItem.value))
             } else {
                 updatedItems.add(
                     item.copy(
@@ -293,9 +293,21 @@ class SuggestionInputView @JvmOverloads constructor(
         setTransition()
         applyConstraintSet(constraintSet)
         postDelayed({
+            bindingSelectables.editText.setText(getInputText())
             bindingSelectables.editText.requestFocus()
+            bindingSelectables.editText.setSelection(getInputText().length)
             showKeyboard()
         }, 500)
+    }
+
+    private fun getInputText(): String {
+        var inputText = ""
+        items.forEach {item ->
+            if(item.type == SuggestionItemType.INPUT) {
+                inputText = item.value.replace(inputSuffix, "")
+            }
+        }
+        return inputText
     }
 
     private fun showSelectableView() {
