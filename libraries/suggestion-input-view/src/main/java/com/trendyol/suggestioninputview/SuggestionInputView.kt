@@ -265,16 +265,27 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.text.trim().isNotEmpty()) {
+            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim().isNotEmpty()) {
                 updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text))
             } else {
-                updatedItems.add(item.copy(isSelected = false))
+                updatedItems.add(
+                    item.copy(
+                        isSelected = isSelectableItemSelected(item, suggestionInputItem),
+                        text = item.text
+                    )
+                )
             }
         }
 
         items = updatedItems
         notifyAdapter()
     }
+
+    private fun isSelectableItemSelected(
+        suggestionInputItemViewState: SuggestionInputItemViewState,
+        suggestionInputItem: SuggestionInputItem
+    ): Boolean =
+        suggestionInputItemViewState.isSelected && suggestionInputItem.value.trim().isEmpty()
 
     private fun showInputView() {
         val constraintSet = ConstraintSet()
@@ -384,7 +395,7 @@ class SuggestionInputView @JvmOverloads constructor(
     )
 
     private fun notifyErrorToItems() {
-        items =  items.map {
+        items = items.map {
             it.copy(shouldShowError = shouldShowError)
         }
     }
