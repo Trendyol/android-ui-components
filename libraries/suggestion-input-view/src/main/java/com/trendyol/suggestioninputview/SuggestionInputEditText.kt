@@ -2,6 +2,7 @@ package com.trendyol.suggestioninputview
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Rect
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 
@@ -27,7 +28,8 @@ internal class SuggestionInputEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val textWidth: Float = paint.measureText(suffix + text) + suffixPaddingLeft
-        canvas.drawText(suffix, textWidth, baseline.toFloat(), paint)
+        val suffixWidth: Float = paint.measureText(suffix) / 2
+        val textWidth: Float = paint.measureText(text.toString()) + suffixPaddingLeft
+        canvas.drawText(suffix, textWidth + suffixWidth, baseline.toFloat(), paint)
     }
 }

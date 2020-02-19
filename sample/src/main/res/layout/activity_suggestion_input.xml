@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shouldShowError"
             type="Boolean" />
@@ -11,75 +12,80 @@
     </data>
 
     <LinearLayout
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".suggestioninput.SuggestionInputActivity">
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp">
+
             <com.trendyol.suggestioninputview.SuggestionInputView
-                android:clickable="false"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:id="@+id/suggestionInputView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="false"
                 android:inputType="number"
-                app:inputSuffix="₺"
+                app:errorBackground="@drawable/shape_error_background_suggestion_item"
+                app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
                 app:inputButtonBackground="@drawable/shape_selected_background_suggestion_item"
                 app:inputButtonText="TAMAM"
                 app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
                 app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
+                app:inputSuffix="TL"
                 app:minWidth="@dimen/minWidth_suggestion_item"
-                app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
-                app:verticalPadding="@dimen/vertical_padding_suggestion_item"
                 app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
                 app:selectedTextColor="@color/text_color_selected_suggestion_item"
-                app:textSize="@dimen/text_size_suggestion_input"
                 app:shouldShowError="@{shouldShowError}"
-                app:errorBackground="@drawable/shape_error_background_suggestion_item"
+                app:textSize="@dimen/text_size_suggestion_input"
                 app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
-                app:unselectedTextColor="@color/text_color_unselected_suggestion_item" />
+                app:unselectedTextColor="@color/text_color_unselected_suggestion_item"
+                app:verticalPadding="@dimen/vertical_padding_suggestion_item" />
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonLoad"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="LOAD"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:text="LOAD" />
 
         <LinearLayout
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp">
+
             <TextView
-                android:text="Selected Text: "
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Selected Text: " />
+
             <TextView
                 android:id="@+id/selectedText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
             <TextView
-                android:text="Selected Value: "
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Selected Value: " />
+
             <TextView
                 android:id="@+id/selectedValue"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
 
