@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.suggestioninput
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.trendyol.suggestioninputview.Rule
 import com.trendyol.suggestioninputview.SuggestionInputItem
 import com.trendyol.suggestioninputview.SuggestionItemType
 import com.trendyol.uicomponents.R
@@ -19,6 +20,11 @@ class SuggestionInputActivity : AppCompatActivity() {
             R.layout.activity_suggestion_input
         )
 
+        val rule = Rule.Builder()
+            .smallerThan("50")
+            .errorMessage("Hatali giriş")
+            .build()
+        binding.suggestionInputView.setRule(rule)
         binding.suggestionInputView.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
         binding.suggestionInputView.setItems(createSuggestionInputItems())
         binding.buttonLoad.setOnClickListener { onLoadClicked() }

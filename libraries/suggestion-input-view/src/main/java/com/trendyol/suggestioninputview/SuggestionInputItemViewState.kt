@@ -14,7 +14,7 @@ data class SuggestionInputItemViewState(
     val unselectedBackground: Drawable?,
     val errorBackground: Drawable?,
     val suffix: String,
-    val shouldShowError: Boolean,
+    val shouldShowSelectableItemError: Boolean,
     @ColorInt val selectedTextColor: Int,
     @ColorInt val unselectedTextColor: Int,
     @Dimension val textSize: Float,
@@ -23,7 +23,7 @@ data class SuggestionInputItemViewState(
     @Dimension val minWidth: Float
 ) {
     fun getBackground(): Drawable? = when {
-        shouldShowError -> errorBackground
+        shouldShowSelectableItemError -> errorBackground
         isSelected -> selectedBackground
         else -> unselectedBackground
     }

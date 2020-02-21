@@ -41,7 +41,7 @@
                 app:minWidth="@dimen/minWidth_suggestion_item"
                 app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
                 app:selectedTextColor="@color/text_color_selected_suggestion_item"
-                app:shouldShowError="@{shouldShowError}"
+                app:shouldShowSelectableItemError="@{shouldShowError}"
                 app:textSize="@dimen/text_size_suggestion_input"
                 app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
                 app:unselectedTextColor="@color/text_color_unselected_suggestion_item"

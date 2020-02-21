@@ -3,6 +3,8 @@ package com.trendyol.suggestioninputview
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.util.AttributeSet
@@ -58,7 +60,11 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var inputType: Int = 0
 
-    private var shouldShowError: Boolean = false
+    private var shouldShowSelectableItemError: Boolean = false
+
+    private var shouldShowInputItemError: Boolean = false
+
+    private var rule: Rule? = null
 
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
@@ -135,6 +141,17 @@ class SuggestionInputView @JvmOverloads constructor(
             itemsAdapter.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
             bindingSelectables.buttonDone.setOnClickListener { onDoneClicked() }
             bindingSelectables.imageViewBack.setOnClickListener { showSelectableView() }
+            bindingSelectables.editText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun afterTextChanged(editable: Editable?) {
+                    clearInputError()
+                }
+            })
             setViewState(createViewState())
         }
     }
@@ -210,8 +227,8 @@ class SuggestionInputView @JvmOverloads constructor(
         setInitializeSelection()
     }
 
-    fun shouldShowError(shouldShowError: Boolean) {
-        this.shouldShowError = shouldShowError
+    fun shouldShowSelectableItemError(shouldShowError: Boolean) {
+        this.shouldShowSelectableItemError = shouldShowError
         notifyErrorToItems()
         notifyAdapter()
     }
@@ -220,8 +237,12 @@ class SuggestionInputView @JvmOverloads constructor(
         this.onSuggestionItemClickListener = function
     }
 
+    fun setRule(rule: Rule) {
+        this.rule = rule
+    }
+
     private fun onSuggestionItemClicked(suggestionInputItemViewState: SuggestionInputItemViewState) {
-        shouldShowError(false)
+        shouldShowSelectableItemError(false)
         val itemType = suggestionInputItemViewState.type
         if (itemType == SuggestionItemType.SELECTABLE) {
             setSelectionToSuggestionItem(suggestionInputItemViewState)
@@ -236,10 +257,29 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun onDoneClicked() {
+        val selectedValue = bindingSelectables.editText.text.toString()
+        if(RuleValidator.isValid(rule, selectedValue)) {
+            setSelection()
+            showSelectableView()
+        }else {
+            showInputError()
+        }
+    }
+
+    private fun setSelection() {
         val inputItem = mapFreeTextToInputItem()
         setSelectionToInput(inputItem)
         onSuggestionItemClickListener?.invoke(inputItem)
-        showSelectableView()
+    }
+
+    private fun showInputError() {
+        this.shouldShowInputItemError = true
+        setViewState(createViewState())
+    }
+
+    private fun clearInputError() {
+        this.shouldShowInputItemError = false
+        setViewState(createViewState())
     }
 
     private fun setInitializeSelection() {
@@ -311,6 +351,7 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun showSelectableView() {
+        clearInputError()
         val constraintSet = ConstraintSet()
         constraintSet.clone(context, R.layout.view_suggestion_selectables)
         setTransition()
@@ -360,7 +401,7 @@ class SuggestionInputView @JvmOverloads constructor(
                 minWidth = minWidth,
                 suffix = inputSuffix,
                 errorBackground = errorBackground,
-                shouldShowError = shouldShowError
+                shouldShowSelectableItemError = shouldShowSelectableItemError
             )
         }
     }
@@ -401,14 +442,17 @@ class SuggestionInputView @JvmOverloads constructor(
         buttonText = inputButtonText,
         buttonTextColor = inputButtonTextColor,
         editTextBackground = inputEditTextBackground,
+        editTextErrorBackground = errorBackground,
         verticalPadding = verticalPadding,
         inputType = inputType,
-        suffix = inputSuffix
+        suffix = inputSuffix,
+        shouldShowInputItemError = shouldShowInputItemError,
+        inputErrorMessage = rule?.errorMessage ?: ""
     )
 
     private fun notifyErrorToItems() {
         items = items.map {
-            it.copy(shouldShowError = shouldShowError)
+            it.copy(shouldShowSelectableItemError = shouldShowSelectableItemError)
         }
     }
 
