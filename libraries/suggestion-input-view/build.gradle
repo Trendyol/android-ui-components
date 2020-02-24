@@ -6,7 +6,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 group="com.trendyol.ui-components"
 
-version="1.0.8"
+version="1.0.9"
 
 android {
     compileSdkVersion 29
@@ -15,8 +15,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.0.8"
+        versionCode 10
+        versionName "1.0.9"
 
         vectorDrawables.useSupportLibrary = true
 
