@@ -77,6 +77,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var onSuggestionItemClickListener: ((SuggestionInputItem) -> Unit)? = null
 
+    private var currentSelectedItem: SuggestionInputItem? = null
+
     private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) {
         SuggestionItemAdapter()
     }
@@ -148,7 +150,10 @@ class SuggestionInputView @JvmOverloads constructor(
 
             itemsAdapter.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
             bindingSelectables.buttonDone.setOnClickListener { onDoneClicked() }
-            bindingSelectables.imageViewBack.setOnClickListener { showSelectableView() }
+            bindingSelectables.imageViewBack.setOnClickListener {
+                setSelectionToCurrentSelection()
+                showSelectableView()
+            }
             bindingSelectables.editText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
@@ -158,6 +163,11 @@ class SuggestionInputView @JvmOverloads constructor(
 
                 override fun afterTextChanged(editable: Editable?) {
                     clearInputError()
+                    val selectedValue = bindingSelectables.editText.text.toString()
+                    val validation = RuleValidator.validate(rules, selectedValue)
+                    if (validation.first) {
+                        setSelection(false)
+                    }
                 }
             })
             setViewState(createViewState())
@@ -253,6 +263,7 @@ class SuggestionInputView @JvmOverloads constructor(
         shouldShowSelectableItemError(false)
         val itemType = suggestionInputItemViewState.type
         if (itemType == SuggestionItemType.SELECTABLE) {
+            currentSelectedItem = mapItemViewStateToInputItem(suggestionInputItemViewState)
             setSelectionToSelectableItem(suggestionInputItemViewState)
         } else {
             showInputView()
@@ -268,25 +279,35 @@ class SuggestionInputView @JvmOverloads constructor(
         val selectedValue = bindingSelectables.editText.text.toString()
         val validation = RuleValidator.validate(rules, selectedValue)
         if (validation.first) {
-            setSelection()
+            currentSelectedItem = mapFreeTextToInputItem()
+            setSelection(true)
             showSelectableView()
         } else {
             showInputError(validation.second)
         }
     }
 
-    private fun setSelection() {
-        if (isSelectableItemsContainsInputValue()) {
-            setSelectionToSelectableItem(getSelectableItemFromInputValue())
+    private fun setSelection(shouldSelect: Boolean) {
+        if (isSelectableItemsContainsTo(bindingSelectables.editText.text.toString())) {
+            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()))
         } else {
             val inputItem = mapFreeTextToInputItem()
-            setSelectionToInput(inputItem)
+            if(shouldSelect) setSelectionToInput(inputItem)
             onSuggestionItemClickListener?.invoke(inputItem)
         }
     }
 
-    private fun isSelectableItemsContainsInputValue(): Boolean {
-        val value = bindingSelectables.editText.text.toString()
+    private fun setSelectionToCurrentSelection() {
+        val currentItemValue = currentSelectedItem?.value ?: ""
+        if (isSelectableItemsContainsTo(currentItemValue)) {
+            setSelectionToSelectableItem(getSelectableItem(currentItemValue))
+        } else {
+            setSelectionToInput(currentSelectedItem!!)
+            onSuggestionItemClickListener?.invoke(currentSelectedItem!!)
+        }
+    }
+
+    private fun isSelectableItemsContainsTo(value: String): Boolean {
         items.forEach { item ->
             if (item.value == value) {
                 return true
@@ -295,8 +316,7 @@ class SuggestionInputView @JvmOverloads constructor(
         return false
     }
 
-    private fun getSelectableItemFromInputValue(): SuggestionInputItemViewState {
-        val value = bindingSelectables.editText.text.toString()
+    private fun getSelectableItem(value: String): SuggestionInputItemViewState {
         return items.find { it.value == value }!!
     }
 
@@ -398,8 +418,8 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val transition = ChangeBounds()
-            transition.interpolator = AnticipateInterpolator(1.0f)
-            transition.duration = 700
+            transition.interpolator = AnticipateInterpolator(2.0f)
+            transition.duration = 400
             TransitionManager.beginDelayedTransition(
                 bindingSelectables.constraintLayoutSelectables,
                 transition
