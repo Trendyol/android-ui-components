@@ -2,24 +2,39 @@ package com.trendyol.suggestioninputview
 
 object RuleValidator {
 
-    fun isValid(rule: Rule?, value: String): Boolean {
-        if(rule == null) return true
-        return when(rule.type) {
-            RuleTypes.MUST_BIGGER -> {
-                rule.value?.toDoubleOrNull() ?: 0.0 < value.toDoubleOrNull() ?: 0.0
-            }
-            RuleTypes.MUST_SMALL -> {
-                rule.value?.toDoubleOrNull() ?: 0.0 > value.toDoubleOrNull() ?: 0.0
-            }
-            RuleTypes.MUST_EQUALS -> {
-                rule.value?.toDoubleOrNull() ?: 0.0 == value.toDoubleOrNull() ?: 0.0
-            }
-            RuleTypes.MUST_NOT_EQUALS -> {
-                rule.value?.toDoubleOrNull() ?: 0.0 != value.toDoubleOrNull() ?: 0.0
-            }
-            else -> {
-                false
+    fun validate(rules: List<Rule>?, value: String): Pair<Boolean, Rule?> {
+        var valid = true
+        var invalidRule: Rule? = null
+
+        if (rules == null) valid = true
+        rules?.forEach { rule ->
+            when (rule.type) {
+                RuleTypes.MUST_BIGGER -> {
+                    if (rule.value?.toDoubleOrNull() ?: 0.0 > value.toDoubleOrNull() ?: 0.0) {
+                        invalidRule = rule
+                        valid = false
+                    }
+                }
+                RuleTypes.MUST_SMALL -> {
+                    if (rule.value?.toDoubleOrNull() ?: 0.0 < value.toDoubleOrNull() ?: 0.0) {
+                        invalidRule = rule
+                        valid = false
+                    }
+                }
+                RuleTypes.MUST_EQUALS -> {
+                    if (rule.value?.toDoubleOrNull() ?: 0.0 != value.toDoubleOrNull() ?: 0.0) {
+                        invalidRule = rule
+                        valid = false
+                    }
+                }
+                RuleTypes.MUST_NOT_EQUALS -> {
+                    if (rule.value?.toDoubleOrNull() ?: 0.0 == value.toDoubleOrNull() ?: 0.0) {
+                        invalidRule = rule
+                        valid = false
+                    }
+                }
             }
         }
+        return Pair(valid, invalidRule)
     }
 }

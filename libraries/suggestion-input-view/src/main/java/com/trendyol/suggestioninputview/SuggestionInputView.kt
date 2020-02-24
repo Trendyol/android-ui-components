@@ -3,6 +3,8 @@ package com.trendyol.suggestioninputview
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.ChangeBounds
@@ -64,7 +66,9 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var shouldShowInputItemError: Boolean = false
 
-    private var rule: Rule? = null
+    private var rules: List<Rule>? = null
+
+    private var inputErrorMessage: String = ""
 
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
@@ -75,6 +79,10 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) {
         SuggestionItemAdapter()
+    }
+
+    private val vibrator: Vibrator by lazy(LazyThreadSafetyMode.NONE) {
+        context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     }
 
     init {
@@ -237,42 +245,64 @@ class SuggestionInputView @JvmOverloads constructor(
         this.onSuggestionItemClickListener = function
     }
 
-    fun setRule(rule: Rule) {
-        this.rule = rule
+    fun setRuleSet(rules: List<Rule>) {
+        this.rules = rules
     }
 
     private fun onSuggestionItemClicked(suggestionInputItemViewState: SuggestionInputItemViewState) {
         shouldShowSelectableItemError(false)
         val itemType = suggestionInputItemViewState.type
         if (itemType == SuggestionItemType.SELECTABLE) {
-            setSelectionToSuggestionItem(suggestionInputItemViewState)
-            onSuggestionItemClickListener?.invoke(
-                mapItemViewStateToInputItem(
-                    suggestionInputItemViewState
-                )
-            )
+            setSelectionToSelectableItem(suggestionInputItemViewState)
         } else {
             showInputView()
         }
     }
 
+    private fun setSelectionToSelectableItem(selectableItem: SuggestionInputItemViewState) {
+        setSelectionToSuggestionItem(selectableItem)
+        onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
+    }
+
     private fun onDoneClicked() {
         val selectedValue = bindingSelectables.editText.text.toString()
-        if(RuleValidator.isValid(rule, selectedValue)) {
+        val validation = RuleValidator.validate(rules, selectedValue)
+        if (validation.first) {
             setSelection()
             showSelectableView()
-        }else {
-            showInputError()
+        } else {
+            showInputError(validation.second)
         }
     }
 
     private fun setSelection() {
-        val inputItem = mapFreeTextToInputItem()
-        setSelectionToInput(inputItem)
-        onSuggestionItemClickListener?.invoke(inputItem)
+        if (isSelectableItemsContainsInputValue()) {
+            setSelectionToSelectableItem(getSelectableItemFromInputValue())
+        } else {
+            val inputItem = mapFreeTextToInputItem()
+            setSelectionToInput(inputItem)
+            onSuggestionItemClickListener?.invoke(inputItem)
+        }
     }
 
-    private fun showInputError() {
+    private fun isSelectableItemsContainsInputValue(): Boolean {
+        val value = bindingSelectables.editText.text.toString()
+        items.forEach { item ->
+            if (item.value == value) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun getSelectableItemFromInputValue(): SuggestionInputItemViewState {
+        val value = bindingSelectables.editText.text.toString()
+        return items.find { it.value == value }!!
+    }
+
+    private fun showInputError(rule: Rule?) {
+        vibrate()
+        this.inputErrorMessage = rule?.errorMessage ?: ""
         this.shouldShowInputItemError = true
         setViewState(createViewState())
     }
@@ -306,7 +336,13 @@ class SuggestionInputView @JvmOverloads constructor(
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
             if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim().isNotEmpty()) {
-                updatedItems.add(item.copy(isSelected = true, text = suggestionInputItem.text, value = suggestionInputItem.value))
+                updatedItems.add(
+                    item.copy(
+                        isSelected = true,
+                        text = suggestionInputItem.text,
+                        value = suggestionInputItem.value
+                    )
+                )
             } else {
                 updatedItems.add(
                     item.copy(
@@ -342,8 +378,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private fun getInputText(): String {
         var inputText = ""
-        items.forEach {item ->
-            if(item.type == SuggestionItemType.INPUT) {
+        items.forEach { item ->
+            if (item.type == SuggestionItemType.INPUT) {
                 inputText = item.value.replace(inputSuffix, "")
             }
         }
@@ -381,6 +417,14 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private fun hideKeyboard() {
         bindingSelectables.editText.hideKeyboard()
+    }
+
+    private fun vibrate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrator.vibrate(200)
+        }
     }
 
     private fun mapInputItemsToItemViewState(items: List<SuggestionInputItem>): List<SuggestionInputItemViewState> {
@@ -447,7 +491,7 @@ class SuggestionInputView @JvmOverloads constructor(
         inputType = inputType,
         suffix = inputSuffix,
         shouldShowInputItemError = shouldShowInputItemError,
-        inputErrorMessage = rule?.errorMessage ?: ""
+        inputErrorMessage = inputErrorMessage
     )
 
     private fun notifyErrorToItems() {

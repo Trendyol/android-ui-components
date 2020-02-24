@@ -20,11 +20,15 @@ class SuggestionInputActivity : AppCompatActivity() {
             R.layout.activity_suggestion_input
         )
 
-        val rule = Rule.Builder()
+        val rule1 = Rule.Builder()
             .smallerThan("50")
             .errorMessage("Hatali giriş")
             .build()
-        binding.suggestionInputView.setRule(rule)
+        val rule2 = Rule.Builder()
+            .notEqualsTo("0")
+            .errorMessage("0 giremezsin")
+            .build()
+        binding.suggestionInputView.setRuleSet(listOf(rule1,rule2))
         binding.suggestionInputView.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
         binding.suggestionInputView.setItems(createSuggestionInputItems())
         binding.buttonLoad.setOnClickListener { onLoadClicked() }
