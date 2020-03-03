@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="small">4dp</dimen>
+    <dimen name="medium">8dp</dimen>
+    <dimen name="big">16dp</dimen>
+
+    <dimen name="height_input_field">40dp</dimen>
+    <dimen name="width_expiry_field">70dp</dimen>
+</resources>
