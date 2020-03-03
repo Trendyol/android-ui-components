@@ -1,2 +1,0 @@
-include ':sample', ':libraries:rating-bar', ':libraries:dialogs', ':libraries:imageslider', ':libraries:phonenumber', ':libraries:toolbar', ':libraries:suggestion-input-view'
-rootProject.name='UI Components'

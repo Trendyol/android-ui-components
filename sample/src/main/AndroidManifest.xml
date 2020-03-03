@@ -25,7 +25,6 @@
         <activity android:name=".ImageSliderActivity" />
         <activity android:name=".PhoneNumberActivity" />
         <activity android:name=".ToolbarActivity" />
-        <activity android:name=".suggestioninput.SuggestionInputActivity"/>
+        <activity android:name=".SuggestionInputActivity" />
     </application>
-
 </manifest>

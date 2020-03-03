@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".suggestioninput.SuggestionInputActivity">
+        tools:context=".SuggestionInputActivity">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
