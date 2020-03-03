@@ -3,7 +3,6 @@ package com.trendyol.uicomponents
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.trendyol.uicomponents.suggestioninput.SuggestionInputActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
