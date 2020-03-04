@@ -7,13 +7,17 @@ import android.view.autofill.AutofillValue
 import androidx.annotation.RequiresApi
 import com.google.android.material.textfield.TextInputEditText
 
-class AutofillAppCompatEditText : TextInputEditText {
+internal class AutofillAppCompatEditText : TextInputEditText {
 
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     var autofillValueListener: ((String) -> Unit)? = null
 

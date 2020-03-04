@@ -1,8 +1,9 @@
 package com.trendyol.cardinput.validator
 
-internal object LuhnValidator {
+internal class LuhnValidator {
+
     fun isValid(input: String?): Boolean {
-        if (input?.removePrefix(" ")?.length != 16) return false
+        if (input?.replace(" ", "")?.length != LENGTH_CARD_NUMBER) return false
 
         val sanitizedInput = input.replace(" ", "")
 
@@ -26,5 +27,7 @@ internal object LuhnValidator {
 
     private fun String.digits() = this.map(Character::getNumericValue)
 
-    private val LENGTH_CARD_NUMBER = 16
+    companion object {
+        private const val LENGTH_CARD_NUMBER = 16
+    }
 }

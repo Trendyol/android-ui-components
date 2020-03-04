@@ -2,7 +2,9 @@ package com.trendyol.cardinput.validator
 
 internal class CreditCardValidator {
 
-    fun isCardNumberValid(cardNumber: String?): Boolean = LuhnValidator.isValid(cardNumber)
+    fun isCardNumberValid(cardNumber: String?): Boolean {
+        return LuhnValidator().isValid(cardNumber)
+    }
 
     fun isCvvValid(cvv: String?): Boolean = cvv?.matches("\\d\\d\\d".toRegex()) == true
 

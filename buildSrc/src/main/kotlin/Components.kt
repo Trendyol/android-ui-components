@@ -6,4 +6,5 @@ object Components {
     const val phoneNumber = ":libraries:phonenumber"
     const val toolbar = ":libraries:toolbar"
     const val suggestionInputView = ":libraries:suggestion-input-view"
+    const val cardInput = ":libraries:card-input"
 }

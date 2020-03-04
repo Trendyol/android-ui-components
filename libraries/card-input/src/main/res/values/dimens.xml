@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="small">4dp</dimen>
-    <dimen name="medium">8dp</dimen>
-    <dimen name="big">16dp</dimen>
+    <dimen name="card_input_small">4dp</dimen>
+    <dimen name="card_input_medium">8dp</dimen>
+    <dimen name="card_input_big">16dp</dimen>
 
-    <dimen name="height_input_field">40dp</dimen>
-    <dimen name="width_expiry_field">70dp</dimen>
+    <dimen name="card_input_height_input_field">40dp</dimen>
+    <dimen name="card_input_width_expiry_cvv_field">70dp</dimen>
+    <dimen name="card_input_size_cvv_info">30dp</dimen>
+    <dimen name="card_input_error_stroke_width">1dp</dimen>
+    <dimen name="card_input_divider_width">0.5dp</dimen>
 </resources>

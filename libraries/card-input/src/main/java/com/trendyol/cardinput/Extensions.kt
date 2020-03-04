@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -13,21 +15,17 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.bumptech.glide.Glide
 
 internal fun <T : ViewDataBinding> ViewGroup?.inflate(
     @LayoutRes layoutId: Int,
     attachToParent: Boolean = true
-): T {
-    if (this?.isInEditMode == true) {
-        View.inflate(context, layoutId, parent as? ViewGroup?)
-    }
-    return DataBindingUtil.inflate(
-        LayoutInflater.from(this!!.context),
-        layoutId,
-        this,
-        attachToParent
-    )
-}
+): T = DataBindingUtil.inflate(
+    LayoutInflater.from(this!!.context),
+    layoutId,
+    this,
+    attachToParent
+)
 
 @ColorInt
 internal fun Context.color(@ColorRes colorResId: Int): Int =
@@ -36,7 +34,15 @@ internal fun Context.color(@ColorRes colorResId: Int): Int =
 internal fun Context.drawable(@DrawableRes drawableResId: Int): Drawable? =
     ContextCompat.getDrawable(this, drawableResId)
 
-@BindingAdapter("isVisible")
-internal fun View.setVisibility(isVisible: Boolean) {
-    visibility = if (isVisible) View.VISIBLE else View.GONE
+internal fun View.showKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    postDelayed({
+        requestFocus()
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }, 100L)
+}
+
+internal fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
 }
