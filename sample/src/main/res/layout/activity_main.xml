@@ -41,21 +41,21 @@
         android:id="@+id/button_imageslider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Image Slider"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_dialogs"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_dialogs" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Phone Number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_imageslider"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintTop_toBottomOf="@id/button_imageslider" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_toolbar"
@@ -76,4 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_card_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Card Input View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_suggestion_input_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

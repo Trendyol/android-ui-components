@@ -39,6 +39,7 @@ dependencies {
     implementation(project(Components.phoneNumber))
     implementation(project(Components.toolbar))
     implementation(project(Components.suggestionInputView))
+    implementation(project(Components.cardInput))
 
     implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
