@@ -59,19 +59,22 @@ data class CardInputViewState(
         getErrorBackgroundDrawable(context)
     }
 
-    fun getExpiryMonthBackground(context: Context): Drawable? = if (expiryMonthValid) {
+    fun getExpiryMonthBackground(context: Context): Drawable? = 
+    if (expiryMonthValid) {
         getValidBackgroundDrawable(context)
     } else {
         getErrorBackgroundDrawable(context)
     }
 
-    fun getExpiryYearBackground(context: Context): Drawable? = if (expiryYearValid) {
+    fun getExpiryYearBackground(context: Context): Drawable? = 
+    if (expiryYearValid) {
         getValidBackgroundDrawable(context)
     } else {
         getErrorBackgroundDrawable(context)
     }
 
-    fun getCvvBackground(context: Context): Drawable? = if (cvvValid) {
+    fun getCvvBackground(context: Context): Drawable? = 
+    if (cvvValid) {
         getValidBackgroundDrawable(context)
     } else {
         getErrorBackgroundDrawable(context)
