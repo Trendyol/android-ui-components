@@ -37,7 +37,6 @@ class CardInputView : ConstraintLayout {
 
     init {
         if (isInEditMode) View.inflate(context, R.layout.view_card_input, this)
-
         setUpView()
     }
 
