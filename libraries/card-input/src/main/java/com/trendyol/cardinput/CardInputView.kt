@@ -88,7 +88,7 @@ class CardInputView : ConstraintLayout {
      *
      * @return [CardInformation] if all fields are valid, if not returns null.
      */
-    fun validateEndGet(): CardInformation? =
+    fun validateAndGet(): CardInformation? =
         if (validate()) binding.viewState?.cardInformation else null
 
     /**
