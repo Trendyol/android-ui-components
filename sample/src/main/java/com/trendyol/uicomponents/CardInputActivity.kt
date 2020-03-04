@@ -69,7 +69,7 @@ class CardInputActivity : AppCompatActivity() {
 
         button_validate.setOnClickListener { card_input_view.validate() }
         button_validate_and_get.setOnClickListener {
-            val result = card_input_view.validateEndGet()
+            val result = card_input_view.validateAndGet()
             if (result != null) showCardInformationDialog(result)
         }
         button_reset.setOnClickListener { card_input_view.reset() }
