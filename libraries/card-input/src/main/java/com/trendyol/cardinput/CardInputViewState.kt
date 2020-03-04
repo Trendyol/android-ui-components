@@ -52,7 +52,8 @@ data class CardInputViewState(
         }
     val isDividerVisible = cardBankLogoUrl != null
 
-    fun getCardNumberBackground(context: Context): Drawable? = if (cardNumberValid) {
+    fun getCardNumberBackground(context: Context): Drawable? =
+     if (cardNumberValid) {
         getValidBackgroundDrawable(context)
     } else {
         getErrorBackgroundDrawable(context)
