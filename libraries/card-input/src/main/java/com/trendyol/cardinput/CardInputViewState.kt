@@ -14,8 +14,8 @@ data class CardInputViewState(
     private val expiryYearTitle: String,
     val validationEnabled: Boolean = false,
     val showCvvInfoButton: Boolean = true,
-    @DrawableRes private val inputBackground: Int = R.drawable.shape_card_input_field_background,
-    @DrawableRes private val inputErrorBackground: Int = R.drawable.shape_card_input_field_error_background,
+    @DrawableRes private val inputBackgroundResource: Int = R.drawable.shape_card_input_field_background,
+    @DrawableRes private val inputErrorBackgroundResource: Int = R.drawable.shape_card_input_field_error_background,
     @ColorInt val inputTextColor: Int = Color.DKGRAY,
     @ColorInt val titleColor: Int = Color.BLACK,
     @ColorInt val cvvInfoColor: Int = Color.RED,
@@ -53,38 +53,38 @@ data class CardInputViewState(
     val isDividerVisible = cardBankLogoUrl != null
 
     fun getCardNumberBackground(context: Context): Drawable? =
-     if (cardNumberValid) {
-        getValidBackgroundDrawable(context)
-    } else {
-        getErrorBackgroundDrawable(context)
-    }
+        if (cardNumberValid) {
+            getValidBackgroundDrawable(context)
+        } else {
+            getErrorBackgroundDrawable(context)
+        }
 
-    fun getExpiryMonthBackground(context: Context): Drawable? = 
-    if (expiryMonthValid) {
-        getValidBackgroundDrawable(context)
-    } else {
-        getErrorBackgroundDrawable(context)
-    }
+    fun getExpiryMonthBackground(context: Context): Drawable? =
+        if (expiryMonthValid) {
+            getValidBackgroundDrawable(context)
+        } else {
+            getErrorBackgroundDrawable(context)
+        }
 
-    fun getExpiryYearBackground(context: Context): Drawable? = 
-    if (expiryYearValid) {
-        getValidBackgroundDrawable(context)
-    } else {
-        getErrorBackgroundDrawable(context)
-    }
+    fun getExpiryYearBackground(context: Context): Drawable? =
+        if (expiryYearValid) {
+            getValidBackgroundDrawable(context)
+        } else {
+            getErrorBackgroundDrawable(context)
+        }
 
-    fun getCvvBackground(context: Context): Drawable? = 
-    if (cvvValid) {
-        getValidBackgroundDrawable(context)
-    } else {
-        getErrorBackgroundDrawable(context)
-    }
+    fun getCvvBackground(context: Context): Drawable? =
+        if (cvvValid) {
+            getValidBackgroundDrawable(context)
+        } else {
+            getErrorBackgroundDrawable(context)
+        }
 
     private fun getValidBackgroundDrawable(context: Context): Drawable? =
-        context.drawable(inputBackground)
+        context.drawable(inputBackgroundResource)
 
     private fun getErrorBackgroundDrawable(context: Context): Drawable? =
-        context.drawable(inputErrorBackground)
+        context.drawable(inputErrorBackgroundResource)
 
     internal fun reset(): CardInputViewState = copy(
         cardInformation = CardInformation(),
