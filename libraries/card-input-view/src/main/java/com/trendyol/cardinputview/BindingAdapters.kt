@@ -1,14 +1,9 @@
 package com.trendyol.cardinputview
 
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
 
-@BindingAdapter("civ_cardInfoLogoUrl")
-internal fun ImageView.setCardInfoLogoUrl(imageUrl: String?) {
-    if (imageUrl?.isNotEmpty() == true) {
-        Glide.with(context).load(imageUrl).into(this)
-    } else {
-        setImageDrawable(null)
-    }
-}
+@BindingAdapter("civ_cardInfoLogoDrawable")
+internal fun ImageView.setCardInfoLogo(logoDrawable: Drawable?) =
+    setImageDrawable(logoDrawable)

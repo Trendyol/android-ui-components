@@ -41,5 +41,4 @@ dependencies {
 
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.androidXMaterial)
-    implementation(Dependencies.glide)
 }

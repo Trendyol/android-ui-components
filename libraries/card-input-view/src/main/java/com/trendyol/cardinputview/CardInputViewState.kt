@@ -20,8 +20,8 @@ data class CardInputViewState(
     @ColorInt val inputTextColor: Int = Color.DKGRAY,
     @ColorInt val titleColor: Int = Color.BLACK,
     @ColorInt val cvvInfoColor: Int = Color.RED,
-    val cardTypeLogoUrl: String? = null,
-    val cardBankLogoUrl: String? = null,
+    val cardTypeLogoDrawable: Drawable? = null,
+    val cardBankLogoDrawable: Drawable? = null,
     private val cardNumberValid: Boolean = true,
     private val expiryMonthValid: Boolean = true,
     private val expiryYearValid: Boolean = true,
@@ -51,7 +51,7 @@ data class CardInputViewState(
             cardInformation = cardInformation.copy(expiryYear = value)
             field = value
         }
-    val dividerVisibility: Int = if (cardBankLogoUrl != null) View.VISIBLE else View.GONE
+    val dividerVisibility: Int = if (cardBankLogoDrawable != null) View.VISIBLE else View.GONE
     val cvvInfoButtonVisibility: Int = if (showCvvInfoButton) View.VISIBLE else View.GONE
 
     fun getCardNumberBackground(context: Context): Drawable? =
@@ -90,8 +90,8 @@ data class CardInputViewState(
 
     internal fun reset(): CardInputViewState = copy(
         cardInformation = CardInformation(),
-        cardTypeLogoUrl = null,
-        cardBankLogoUrl = null,
+        cardTypeLogoDrawable = null,
+        cardBankLogoDrawable = null,
         cardNumberValid = true,
         expiryMonthValid = true,
         expiryYearValid = true,

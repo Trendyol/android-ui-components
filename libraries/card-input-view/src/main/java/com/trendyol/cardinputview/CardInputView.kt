@@ -1,6 +1,7 @@
 package com.trendyol.cardinputview
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -141,11 +142,11 @@ class CardInputView : ConstraintLayout {
      *
      * Setter for card's type logo.
      *
-     * @param cardLogoUrl, link for logo.
+     * @param cardTypeLogoDrawable, [android.graphics.drawable.Drawable] for logo. If null, will be removed.
      */
-    fun setCardTypeLogoUrl(cardLogoUrl: String) {
+    fun setCardTypeLogoDrawable(cardTypeLogoDrawable: Drawable?) {
         binding.viewState = binding.viewState?.copy(
-            cardTypeLogoUrl = cardLogoUrl
+            cardTypeLogoDrawable = cardTypeLogoDrawable
         )
         binding.executePendingBindings()
     }
@@ -154,11 +155,11 @@ class CardInputView : ConstraintLayout {
      *
      * Setter for card's logo.
      *
-     * @param cardBankLogoUrl, link for logo.
+     * @param cardBankLogoDrawable, [android.graphics.drawable.Drawable] for logo. If null, will be removed.
      */
-    fun setCardBankLogoUrl(cardBankLogoUrl: String) {
+    fun setCardBankLogoDrawable(cardBankLogoDrawable: Drawable?) {
         binding.viewState = binding.viewState?.copy(
-            cardBankLogoUrl = cardBankLogoUrl
+            cardBankLogoDrawable = cardBankLogoDrawable
         )
         binding.executePendingBindings()
     }
