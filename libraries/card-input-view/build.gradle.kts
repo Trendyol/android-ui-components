@@ -6,7 +6,7 @@ plugins {
 }
 
 group = Configs.group
-//version = ComponentVersions.cardInputVersion
+version = ComponentVersions.cardInputViewVersion
 
 android {
     compileSdkVersion(Configs.compileSdkVersion)
