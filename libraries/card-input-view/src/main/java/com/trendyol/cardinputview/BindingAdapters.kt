@@ -1,4 +1,4 @@
-package com.trendyol.cardinput
+package com.trendyol.cardinputview
 
 import android.view.View
 import android.widget.ImageView

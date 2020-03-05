@@ -1,4 +1,4 @@
-package com.trendyol.cardinput.validator
+package com.trendyol.cardinputview.validator
 
 internal class CreditCardValidator {
 

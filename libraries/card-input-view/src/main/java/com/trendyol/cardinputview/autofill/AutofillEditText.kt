@@ -1,4 +1,4 @@
-package com.trendyol.cardinput.autofill
+package com.trendyol.cardinputview.autofill
 
 import android.content.Context
 import android.os.Build

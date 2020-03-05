@@ -1,4 +1,4 @@
-package com.trendyol.cardinput
+package com.trendyol.cardinputview
 
 import android.content.Context
 import android.graphics.Color

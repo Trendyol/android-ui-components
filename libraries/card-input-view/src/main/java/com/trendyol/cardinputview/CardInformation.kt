@@ -1,4 +1,4 @@
-package com.trendyol.cardinput
+package com.trendyol.cardinputview
 
 data class CardInformation(
     val cardNumber: String = "",

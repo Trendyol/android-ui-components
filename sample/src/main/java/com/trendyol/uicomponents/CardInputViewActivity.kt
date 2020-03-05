@@ -4,13 +4,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.trendyol.cardinput.CardInformation
-import com.trendyol.cardinput.CardInputViewState
+import com.trendyol.cardinputview.CardInformation
+import com.trendyol.cardinputview.CardInputViewState
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
 import kotlinx.android.synthetic.main.activity_card_input.*
 
-class CardInputActivity : AppCompatActivity() {
+class CardInputViewActivity : AppCompatActivity() {
 
     private val months =
         listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
@@ -45,7 +45,7 @@ class CardInputActivity : AppCompatActivity() {
             }
             onCvvInfoClicked = {
                 Toast.makeText(
-                    this@CardInputActivity,
+                    this@CardInputViewActivity,
                     "CVV number is on the back of your card.",
                     Toast.LENGTH_LONG
                 ).show()

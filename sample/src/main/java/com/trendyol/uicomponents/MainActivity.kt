@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SuggestionInputActivity::class.java))
         }
         button_card_input.setOnClickListener {
-            startActivity(Intent(this, CardInputActivity::class.java))
+            startActivity(Intent(this, CardInputViewActivity::class.java))
         }
     }
 }

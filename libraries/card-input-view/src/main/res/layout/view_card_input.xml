@@ -7,7 +7,7 @@
 
         <variable
             name="viewState"
-            type="com.trendyol.cardinput.CardInputViewState" />
+            type="com.trendyol.cardinputview.CardInputViewState" />
     </data>
 
     <merge
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="@id/editTextCardNumber"
             tools:background="@drawable/shape_card_input_field_background" />
 
-        <com.trendyol.cardinput.autofill.AutofillAppCompatEditText
+        <com.trendyol.cardinputview.autofill.AutofillAppCompatEditText
             android:id="@+id/editTextCardNumber"
             android:layout_width="0dp"
             android:layout_height="@dimen/card_input_height_input_field"

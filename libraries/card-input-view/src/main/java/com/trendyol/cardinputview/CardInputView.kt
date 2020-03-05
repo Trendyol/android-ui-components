@@ -1,4 +1,4 @@
-package com.trendyol.cardinput
+package com.trendyol.cardinputview
 
 import android.content.Context
 import android.text.Editable
@@ -7,9 +7,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.trendyol.cardinput.databinding.ViewCardInputBinding
-import com.trendyol.cardinput.formatter.CardNumberFormatterTextWatcher
-import com.trendyol.cardinput.validator.CreditCardValidator
+import com.trendyol.cardinputview.databinding.ViewCardInputBinding
+import com.trendyol.cardinputview.formatter.CardNumberFormatterTextWatcher
+import com.trendyol.cardinputview.validator.CreditCardValidator
 
 class CardInputView : ConstraintLayout {
 

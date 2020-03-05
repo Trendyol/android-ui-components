@@ -1,4 +1,4 @@
-package com.trendyol.cardinput.formatter
+package com.trendyol.cardinputview.formatter
 
 import android.text.Editable
 import android.text.InputFilter

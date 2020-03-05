@@ -13,7 +13,7 @@
         app:cardElevation="4dp"
         app:contentPadding="8dp">
 
-        <com.trendyol.cardinput.CardInputView
+        <com.trendyol.cardinputview.CardInputView
             android:id="@+id/card_input_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
