@@ -51,7 +51,8 @@ data class CardInputViewState(
             cardInformation = cardInformation.copy(expiryYear = value)
             field = value
         }
-    val isDividerVisible: Int = if (cardBankLogoUrl != null) View.VISIBLE else View.GONE
+    val dividerVisibility: Int = if (cardBankLogoUrl != null) View.VISIBLE else View.GONE
+    val cvvInfoButtonVisibility: Int = if (showCvvInfoButton) View.VISIBLE else View.GONE
 
     fun getCardNumberBackground(context: Context): Drawable? =
         if (cardNumberValid) {
