@@ -3,6 +3,7 @@ package com.trendyol.cardinputview
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 
@@ -50,7 +51,8 @@ data class CardInputViewState(
             cardInformation = cardInformation.copy(expiryYear = value)
             field = value
         }
-    val isDividerVisible = cardBankLogoUrl != null
+    val dividerVisibility: Int = if (cardBankLogoUrl != null) View.VISIBLE else View.GONE
+    val cvvInfoButtonVisibility: Int = if (showCvvInfoButton) View.VISIBLE else View.GONE
 
     fun getCardNumberBackground(context: Context): Drawable? =
         if (cardNumberValid) {
