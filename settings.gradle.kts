@@ -5,5 +5,6 @@ include(":libraries:imageslider")
 include(":libraries:phonenumber")
 include(":libraries:toolbar")
 include(":libraries:suggestion-input-view")
+include(":libraries:card-input")
 
 rootProject.name = "UI Components"

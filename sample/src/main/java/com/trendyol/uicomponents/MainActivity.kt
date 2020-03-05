@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         button_rating_bar.setOnClickListener {
             startActivity(Intent(this, RatingBarActivity::class.java))
         }
-      
+
         button_dialogs.setOnClickListener {
             startActivity(Intent(this, DialogsActivity::class.java))
         }
-      
+
         button_imageslider.setOnClickListener {
             startActivity(Intent(this, ImageSliderActivity::class.java))
         }
-      
+
         button_phone_number.setOnClickListener {
             startActivity(Intent(this, PhoneNumberActivity::class.java))
         }
@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         }
         button_suggestion_input_view.setOnClickListener {
             startActivity(Intent(this, SuggestionInputActivity::class.java))
+        }
+        button_card_input.setOnClickListener {
+            startActivity(Intent(this, CardInputActivity::class.java))
         }
     }
 }
