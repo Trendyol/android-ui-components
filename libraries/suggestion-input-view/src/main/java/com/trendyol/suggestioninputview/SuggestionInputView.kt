@@ -70,6 +70,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var inputErrorMessage: String = ""
 
+    private var hint: String = ""
+
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
     private val bindingInput: ViewSuggestionInputBinding =
@@ -144,6 +146,7 @@ class SuggestionInputView @JvmOverloads constructor(
                     R.styleable.SuggestionInputView_android_inputType,
                     EditorInfo.TYPE_TEXT_VARIATION_NORMAL
                 )
+                hint = getString(R.styleable.SuggestionInputView_inputHint) ?: ""
             } finally {
                 recycle()
             }
@@ -511,7 +514,8 @@ class SuggestionInputView @JvmOverloads constructor(
         inputType = inputType,
         suffix = inputSuffix,
         shouldShowInputItemError = shouldShowInputItemError,
-        inputErrorMessage = inputErrorMessage
+        inputErrorMessage = inputErrorMessage,
+        hint = hint
     )
 
     private fun notifyErrorToItems() {

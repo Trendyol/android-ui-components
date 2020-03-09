@@ -59,10 +59,13 @@
                     android:layout_marginEnd="@dimen/margin_input_items"
                     android:layout_weight="1"
                     android:maxLength="5"
+                    android:textSize="@{viewState.textSize}"
                     android:background="@{viewState.getInputBackground()}"
                     android:inputType="@{viewState.inputType}"
                     android:paddingStart="8dp"
                     app:suffix="@{viewState.suffix}"
+                    app:suffixVisible="@{viewState.isSuffixVisible()}"
+                    android:hint="@{viewState.hint}"
                     tools:background="@drawable/shape_error_background_suggestion_item" />
 
                 <androidx.appcompat.widget.AppCompatButton
