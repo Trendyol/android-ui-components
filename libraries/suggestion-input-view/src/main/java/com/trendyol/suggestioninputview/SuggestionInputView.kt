@@ -70,6 +70,8 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var inputErrorMessage: String = ""
 
+    private var disabledItemBackground: Drawable? = null
+
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
     private val bindingInput: ViewSuggestionInputBinding =
@@ -144,6 +146,9 @@ class SuggestionInputView @JvmOverloads constructor(
                     R.styleable.SuggestionInputView_android_inputType,
                     EditorInfo.TYPE_TEXT_VARIATION_NORMAL
                 )
+                disabledItemBackground =
+                    getDrawable(R.styleable.SuggestionInputView_disabledItemBackground)
+                        ?: context.drawable(R.drawable.shape_disabled_background_suggestion_item)
             } finally {
                 recycle()
             }
@@ -465,7 +470,9 @@ class SuggestionInputView @JvmOverloads constructor(
                 minWidth = minWidth,
                 suffix = inputSuffix,
                 errorBackground = errorBackground,
-                shouldShowSelectableItemError = shouldShowSelectableItemError
+                shouldShowSelectableItemError = shouldShowSelectableItemError,
+                isEnable = suggestionInputItem.isEnable,
+                disabledItemBackground = disabledItemBackground
             )
         }
     }
@@ -477,7 +484,8 @@ class SuggestionInputView @JvmOverloads constructor(
             value = itemViewState.value,
             isSelected = itemViewState.isSelected,
             type = itemViewState.type,
-            suffix = inputSuffix
+            suffix = inputSuffix,
+            isEnable = itemViewState.isEnable
         )
     }
 
@@ -490,7 +498,8 @@ class SuggestionInputView @JvmOverloads constructor(
             value = value,
             isSelected = true,
             type = SuggestionItemType.INPUT,
-            suffix = inputSuffix
+            suffix = inputSuffix,
+            isEnable = true
         )
     }
 

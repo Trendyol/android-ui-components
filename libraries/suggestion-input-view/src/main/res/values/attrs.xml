@@ -30,5 +30,7 @@
         <attr name="android:inputType" />
         <!-- error background -->
         <attr name="errorBackground" format="reference" />
+        <!-- disable items background-->
+        <attr name="disabledItemBackground" format="reference"/>
     </declare-styleable>
 </resources>

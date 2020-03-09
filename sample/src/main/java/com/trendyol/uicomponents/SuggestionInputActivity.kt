@@ -51,14 +51,16 @@ class SuggestionInputActivity : AppCompatActivity() {
             type = SuggestionItemType.SELECTABLE,
             isSelected = true,
             text = "10 ₺",
-            value = "10"
+            value = "10",
+            isEnable = true
         )
         val item2 = SuggestionInputItem(
             id = 2,
             type = SuggestionItemType.SELECTABLE,
             isSelected = false,
             text = "20 ₺",
-            value = "20"
+            value = "20",
+            isEnable = true
         )
 
         val item3 = SuggestionInputItem(
@@ -66,7 +68,8 @@ class SuggestionInputActivity : AppCompatActivity() {
             type = SuggestionItemType.SELECTABLE,
             isSelected = false,
             text = "30 ₺",
-            value = "30"
+            value = "30",
+            isEnable = false
         )
 
         val item4 = SuggestionInputItem(
@@ -75,7 +78,8 @@ class SuggestionInputActivity : AppCompatActivity() {
             isSelected = false,
             text = "Other",
             suffix = "₺",
-            value = ""
+            value = "",
+            isEnable = true
         )
 
         items.add(item1)
