@@ -1,7 +1,7 @@
 object Plugins {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.6.0"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.5.0"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.61"
     const val mavenGradlePlugin = "com.github.dcendents:android-maven-gradle-plugin:2.1"
 
     const val androidApplication = "com.android.application"
