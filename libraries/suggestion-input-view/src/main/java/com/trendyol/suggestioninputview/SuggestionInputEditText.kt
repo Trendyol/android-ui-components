@@ -33,7 +33,7 @@ internal class SuggestionInputEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if(isSuffixVisible.not()) return
+        if(isSuffixVisible.not() && text?.isEmpty() == true) return
         val suffixWidth: Float = paint.measureText(suffix) / 2
         val textWidth: Float = paint.measureText(text.toString()) + suffixPaddingLeft
         canvas.drawText(suffix, textWidth + suffixWidth, baseline.toFloat(), paint)
