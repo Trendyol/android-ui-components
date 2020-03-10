@@ -17,7 +17,8 @@ data class SuggestionInputViewState(
     val suffix: String,
     val inputType: Int,
     val shouldShowInputItemError: Boolean,
-    val inputErrorMessage: String
+    val inputErrorMessage: String,
+    val hint: String
 ) {
     fun getInputBackground(): Drawable? =
         if(shouldShowInputItemError) {
@@ -31,4 +32,6 @@ data class SuggestionInputViewState(
     fun getErrorTextVisiblity(): Int = if(shouldShowInputItemError) View.VISIBLE else View.GONE
 
     fun getErrorText(): String = inputErrorMessage
+
+    fun isSuffixVisible(): Boolean = hint.isEmpty() && suffix.isNotEmpty()
 }

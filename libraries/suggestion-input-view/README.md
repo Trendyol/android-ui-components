@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/suggestion-input-view-1.gif" width="240"/>
 
-suggestionInputViewVersion = suggestion-input-view-1.0.10 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+suggestionInputViewVersion = suggestion-input-view-1.0.11 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## SuggestionInputView
 SuggestionInputView allows selecting pre-selected options or entering a custom option
@@ -42,6 +42,7 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | `app:inputSuffix` | `setInputSuffix(String)` | Suffix of input view's edit text | Empty String | app:inputSuffix="₺"|
 | `android:inputType` | `` | Input type of input view's edit text input type | TYPE_TEXT_VARIATION_NORMAL | android:inputType="number"|
 | `app:shouldShowSelectableItemError` | `shouldShowSelectableItemError(Boolean)` | Change suggestion item's background | false | app:shouldShowError="@{true}"|
+| `app:inputHint` |  | Hint of input view's edit text | Empty String | app:inputHint="Hint of input edit text"|
 
 # Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.

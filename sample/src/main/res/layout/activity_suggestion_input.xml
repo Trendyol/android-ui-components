@@ -38,6 +38,7 @@
                 app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
                 app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
                 app:inputSuffix="TL"
+                app:inputHint="En fazla 357.88 TL yükleyebilirsin"
                 app:minWidth="@dimen/minWidth_suggestion_item"
                 app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
                 app:selectedTextColor="@color/text_color_selected_suggestion_item"

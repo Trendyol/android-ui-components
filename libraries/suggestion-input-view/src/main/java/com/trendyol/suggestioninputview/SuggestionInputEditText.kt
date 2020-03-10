@@ -19,6 +19,7 @@ internal class SuggestionInputEditText : AppCompatEditText {
     )
 
     private var suffix = ""
+    private var isSuffixVisible: Boolean = false
     private val suffixPaddingLeft =
         resources.getDimensionPixelSize(R.dimen.horizontal_padding_suggestion_item)
 
@@ -26,8 +27,13 @@ internal class SuggestionInputEditText : AppCompatEditText {
         this.suffix = suffix
     }
 
+    fun setSuffixVisible(isActive: Boolean) {
+        isSuffixVisible = isActive
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        if(isSuffixVisible.not() && text?.isEmpty() == true) return
         val suffixWidth: Float = paint.measureText(suffix) / 2
         val textWidth: Float = paint.measureText(text.toString()) + suffixPaddingLeft
         canvas.drawText(suffix, textWidth + suffixWidth, baseline.toFloat(), paint)
