@@ -242,6 +242,11 @@ class SuggestionInputView @JvmOverloads constructor(
         setViewState(createViewState())
     }
 
+    fun setInputHint(hint: String) {
+        this.hint = hint
+        setViewState(createViewState())
+    }
+
     fun setItems(items: List<SuggestionInputItem>) {
         this.items = mapInputItemsToItemViewState(items)
         setViewState(createViewState())
