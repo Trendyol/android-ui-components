@@ -237,13 +237,13 @@ class SuggestionInputView @JvmOverloads constructor(
         setViewState(createViewState())
     }
 
-    fun setInputSuffix(suffix: String) {
-        this.inputSuffix = suffix
+    fun setInputSuffix(suffix: String?) {
+        this.inputSuffix = suffix ?: ""
         setViewState(createViewState())
     }
 
-    fun setInputHint(hint: String) {
-        this.hint = hint
+    fun setInputHint(hint: String?) {
+        this.hint = hint ?: ""
         setViewState(createViewState())
     }
 
