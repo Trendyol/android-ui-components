@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation(Dependencies.kotlinJDK)
 
+    implementation(Dependencies.coreKtx)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.androidXMaterial)
 }

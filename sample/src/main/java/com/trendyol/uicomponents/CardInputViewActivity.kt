@@ -33,8 +33,6 @@ class CardInputViewActivity : AppCompatActivity() {
         )
 
         with(card_input_view) {
-            setViewState(cardInputViewState)
-
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
                     card_input_view.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))

@@ -16,7 +16,16 @@
         <com.trendyol.cardinputview.CardInputView
             android:id="@+id/card_input_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:civ_cardNumberTitle="Card Number"
+            app:civ_cvvInfoColor="@android:color/holo_red_light"
+            app:civ_cvvTitle="Cvv Number"
+            app:civ_expiryMonthTitle="MM"
+            app:civ_expiryTitle="Expire date"
+            app:civ_expiryYearTitle="YY"
+            app:civ_inputTextColor="@android:color/secondary_text_light"
+            app:civ_titleTextColor="@android:color/primary_text_light"
+            app:civ_validationEnabled="true" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
