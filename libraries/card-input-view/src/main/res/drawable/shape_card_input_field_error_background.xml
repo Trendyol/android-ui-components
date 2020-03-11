@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
 
-    <solid android:color="@color/card_input_error_background" />
+    <solid android:color="@color/civ_error_background" />
 
     <stroke
-        android:width="@dimen/card_input_error_stroke_width"
-        android:color="@color/card_input_error_stroke" />
+        android:width="@dimen/civ_stroke_width"
+        android:color="@color/civ_error_stroke" />
+
+    <corners android:radius="@dimen/civ_radius" />
 </shape>

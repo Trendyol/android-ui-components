@@ -1,9 +1,11 @@
 package com.trendyol.uicomponents
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.trendyol.cardinputview.CardInformation
 import com.trendyol.cardinputview.CardInputViewState
 import com.trendyol.uicomponents.dialogs.infoDialog
@@ -31,12 +33,9 @@ class CardInputViewActivity : AppCompatActivity() {
         )
 
         with(card_input_view) {
-            setViewState(cardInputViewState)
-
             onCardNumberChanged = { cardNumber ->
-                if (cardNumber.length == 1) {
-                    val cardLogoUrl = getCardTypeLogoUrl(cardNumber)
-                    card_input_view.setCardTypeLogoUrl(cardLogoUrl)
+                if (cardNumber.length <= 1) {
+                    card_input_view.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
                 }
                 text_card_number.text = cardNumber
             }
@@ -110,11 +109,11 @@ class CardInputViewActivity : AppCompatActivity() {
         }.showDialog(supportFragmentManager)
     }
 
-    private fun getCardTypeLogoUrl(firstNumber: String): String = when {
+    private fun getCardTypeLogoUrl(firstNumber: String): Drawable? = when {
         firstNumber.startsWith("4") ->
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Visa_2014_logo_detail.svg/320px-Visa_2014_logo_detail.svg.png"
+            ContextCompat.getDrawable(this, R.drawable.ic_visa_logo)
         firstNumber.startsWith("5") ->
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/320px-Mastercard_2019_logo.svg.png"
-        else -> ""
+            ContextCompat.getDrawable(this, R.drawable.ic_mc_logo)
+        else -> null
     }
 }

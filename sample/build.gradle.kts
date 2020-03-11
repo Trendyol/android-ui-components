@@ -45,4 +45,5 @@ dependencies {
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
+    implementation(Dependencies.glide)
 }

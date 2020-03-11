@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CardInputView">
+        <attr name="civ_cardNumberTitle" format="string" />
+        <attr name="civ_expiryTitle" format="string" />
+        <attr name="civ_expiryMonthTitle" format="string" />
+        <attr name="civ_expiryYearTitle" format="string" />
+        <attr name="civ_cvvTitle" format="string" />
+        <attr name="civ_titleTextColor" format="color" />
+        <attr name="civ_inputTextColor" format="color" />
+        <attr name="civ_inputBackground" format="reference" />
+        <attr name="civ_inputErrorBackground" format="reference" />
+        <attr name="civ_cvvInfoColor" format="color" />
+        <attr name="civ_showCvvInfoButton" format="boolean" />
+        <attr name="civ_validationEnabled" format="boolean" />
+    </declare-styleable>
+</resources>

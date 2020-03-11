@@ -1,11 +1,9 @@
 package com.trendyol.cardinputview
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.annotation.DrawableRes
 
 data class CardInputViewState(
     val cardNumberTitle: String,
@@ -15,13 +13,13 @@ data class CardInputViewState(
     private val expiryYearTitle: String,
     val validationEnabled: Boolean = false,
     val showCvvInfoButton: Boolean = true,
-    @DrawableRes private val inputBackgroundResource: Int = R.drawable.shape_card_input_field_background,
-    @DrawableRes private val inputErrorBackgroundResource: Int = R.drawable.shape_card_input_field_error_background,
+    private val inputBackgroundDrawable: Drawable? = null,
+    private val inputErrorBackgroundDrawable: Drawable? = null,
     @ColorInt val inputTextColor: Int = Color.DKGRAY,
-    @ColorInt val titleColor: Int = Color.BLACK,
+    @ColorInt val titleTextColor: Int = Color.BLACK,
     @ColorInt val cvvInfoColor: Int = Color.RED,
-    val cardTypeLogoUrl: String? = null,
-    val cardBankLogoUrl: String? = null,
+    val cardTypeLogoDrawable: Drawable? = null,
+    val cardBankLogoDrawable: Drawable? = null,
     private val cardNumberValid: Boolean = true,
     private val expiryMonthValid: Boolean = true,
     private val expiryYearValid: Boolean = true,
@@ -51,47 +49,37 @@ data class CardInputViewState(
             cardInformation = cardInformation.copy(expiryYear = value)
             field = value
         }
-    val dividerVisibility: Int = if (cardBankLogoUrl != null) View.VISIBLE else View.GONE
+    val dividerVisibility: Int = if (cardBankLogoDrawable != null) View.VISIBLE else View.GONE
     val cvvInfoButtonVisibility: Int = if (showCvvInfoButton) View.VISIBLE else View.GONE
-
-    fun getCardNumberBackground(context: Context): Drawable? =
+    val cardNumberBackground: Drawable? =
         if (cardNumberValid) {
-            getValidBackgroundDrawable(context)
+            inputBackgroundDrawable
         } else {
-            getErrorBackgroundDrawable(context)
-        }
-
-    fun getExpiryMonthBackground(context: Context): Drawable? =
+            inputErrorBackgroundDrawable
+        }?.constantState?.newDrawable()
+    val expiryMonthBackground: Drawable? =
         if (expiryMonthValid) {
-            getValidBackgroundDrawable(context)
+            inputBackgroundDrawable
         } else {
-            getErrorBackgroundDrawable(context)
-        }
-
-    fun getExpiryYearBackground(context: Context): Drawable? =
+            inputErrorBackgroundDrawable
+        }?.constantState?.newDrawable()
+    val expiryYearBackground: Drawable? =
         if (expiryYearValid) {
-            getValidBackgroundDrawable(context)
+            inputBackgroundDrawable
         } else {
-            getErrorBackgroundDrawable(context)
-        }
-
-    fun getCvvBackground(context: Context): Drawable? =
+            inputErrorBackgroundDrawable
+        }?.constantState?.newDrawable()
+    val cvvBackground: Drawable? =
         if (cvvValid) {
-            getValidBackgroundDrawable(context)
+            inputBackgroundDrawable
         } else {
-            getErrorBackgroundDrawable(context)
-        }
-
-    private fun getValidBackgroundDrawable(context: Context): Drawable? =
-        context.drawable(inputBackgroundResource)
-
-    private fun getErrorBackgroundDrawable(context: Context): Drawable? =
-        context.drawable(inputErrorBackgroundResource)
+            inputErrorBackgroundDrawable
+        }?.constantState?.newDrawable()
 
     internal fun reset(): CardInputViewState = copy(
         cardInformation = CardInformation(),
-        cardTypeLogoUrl = null,
-        cardBankLogoUrl = null,
+        cardTypeLogoDrawable = null,
+        cardBankLogoDrawable = null,
         cardNumberValid = true,
         expiryMonthValid = true,
         expiryYearValid = true,
