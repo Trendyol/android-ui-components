@@ -17,10 +17,11 @@ UI Components includes several custom views for Android platform to make develop
 * [Dialogs](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs): **Dialogs** is collection of BottomSheetDialogs to present user an info, agreement or list.
 * [Toolbar](https://github.com/Trendyol/android-ui-components/tree/master/libraries/toolbar): **Toolbar** is customizable and easy to use component.
 * [SuggestionInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
+* [CardInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 
 License
 --------
-    Copyright 2019 Trendyol.com
+    Copyright 2020 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
