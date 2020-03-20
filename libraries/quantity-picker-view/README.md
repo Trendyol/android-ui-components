@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.0.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.0.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
