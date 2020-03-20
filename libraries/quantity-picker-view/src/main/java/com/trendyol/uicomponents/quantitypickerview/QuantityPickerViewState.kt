@@ -26,6 +26,8 @@ data class QuantityPickerViewState(
 
     private fun isSingleQuantity(): Boolean = currentQuantity == 1
 
+    internal fun isLoading(): Boolean = showLoading
+
     fun getLeftIconDrawable(): Drawable =
         if (isSingleQuantity()) removeIconDrawable else subtractIconDrawable
 

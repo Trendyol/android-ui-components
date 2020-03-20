@@ -59,22 +59,30 @@ class QuantityPickerView : ConstraintLayout {
     private fun setUpView() {
         with(binding) {
             text.setOnClickListener {
-                if (viewState?.isInQuantityMode() == false) {
-                    setQuantityPickerViewState(
-                        if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) viewState?.getWithLoading(
-                            increment = true
-                        ) else viewState?.getWithAddValue()
-                    )
-                }
-            }
-            imageSubtract.setOnClickListener {
-                val showLoading = onSubtractClicked?.invoke(viewState?.currentQuantity ?: 0) == true
+                if (viewState?.isLoading() == true || viewState?.isInQuantityMode() == true) return@setOnClickListener
 
                 setQuantityPickerViewState(
-                    if (showLoading) viewState?.getWithLoading(increment = false) else viewState?.getWithSubtractValue()
+                    if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
+                        viewState?.getWithLoading(increment = true)
+                    } else {
+                        viewState?.getWithAddValue()
+                    }
+                )
+            }
+            imageSubtract.setOnClickListener {
+                if (viewState?.isLoading() == true) return@setOnClickListener
+
+                setQuantityPickerViewState(
+                    if (onSubtractClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
+                        viewState?.getWithLoading(increment = false)
+                    } else {
+                        viewState?.getWithSubtractValue()
+                    }
                 )
             }
             imageAdd.setOnClickListener {
+                if (viewState?.isLoading() == true) return@setOnClickListener
+
                 setQuantityPickerViewState(
                     if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
                         viewState?.getWithLoading(true)
@@ -115,7 +123,10 @@ class QuantityPickerView : ConstraintLayout {
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
             val currentQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_currentQuantity, 0)
             val background = it.getDrawable(R.styleable.QuantityPickerView_android_background)
-                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_shape_default_background)!!
+                ?: AppCompatResources.getDrawable(
+                    context,
+                    R.drawable.qpv_shape_default_background
+                )!!
             val progressTintColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_android_progressTint,
