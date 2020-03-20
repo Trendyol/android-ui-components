@@ -17,8 +17,7 @@ allprojects {
 dependencies {  
  implementation "com.github.Trendyol.android-ui-components:card-input-view:$cardInputViewVersion"}
 ```  
-:warning: To use **CardInputView**, you have to enable dataBinding from your main project, and implement material library into app level `build.gradle`.  
-:warning: **CardInputView** can only usable via Kotlin.
+:warning: To use **QuantityPickerView**, you have to enable dataBinding from your project's `build.gradle`.
 
 ## Usage
 You can inflate **CardInputView** via XML or programmatically. View can be configurable either in XML or setting a ViewState.
@@ -61,7 +60,7 @@ To get updates on **CardInputView** you need to set this listeners:
 | openMonthSelectionListener |  | To open dialog or input field for expire month. |
 | openYearSelectionListener |  | To open dialog or input field for expire year. |
 
-## Usage
+## Implementation
 
 From XML, you can use attributes like below:
 
