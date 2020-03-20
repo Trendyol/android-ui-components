@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="qpv_default_padding">8dp</dimen>
+    <dimen name="qpv_default_extra_padding">16dp</dimen>
+    <dimen name="qpv_default_small_padding">4dp</dimen>
+</resources>
