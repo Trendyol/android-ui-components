@@ -29,4 +29,5 @@
         <activity android:name=".SuggestionInputViewActivity" />
         <activity android:name=".CardInputViewActivity" />
     </application>
+
 </manifest>
