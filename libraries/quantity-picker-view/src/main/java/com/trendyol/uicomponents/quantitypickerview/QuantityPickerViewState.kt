@@ -7,15 +7,15 @@ import androidx.annotation.ColorInt
 
 data class QuantityPickerViewState(
     private val text: String,
-    @ColorInt private val textColor: Int = Color.parseColor("#f27a1a"),
+    @ColorInt private val textColor: Int = Color.parseColor(COLOR_ORANGE),
     private val textSize: Int,
     private val textStyle: Int = 0,
-    @ColorInt private val quantityTextColor: Int = Color.parseColor("#f27a1a"),
+    @ColorInt private val quantityTextColor: Int = Color.parseColor(COLOR_QUANTITY_TEXT),
     private val quantityTextSize: Int,
     private val quantityTextStyle: Int = 0,
     val currentQuantity: Int = 0,
     val backgroundDrawable: Drawable,
-    @ColorInt val progressTintColor: Int = Color.parseColor("#f27a1a"),
+    @ColorInt val progressTintColor: Int = Color.parseColor(COLOR_ORANGE),
     val addIconDrawable: Drawable,
     private val subtractIconDrawable: Drawable,
     private val removeIconDrawable: Drawable,
@@ -24,7 +24,7 @@ data class QuantityPickerViewState(
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
 
-    internal fun isSingleQuantity(): Boolean = currentQuantity == 1
+    private fun isSingleQuantity(): Boolean = currentQuantity == 1
 
     fun getLeftIconDrawable(): Drawable =
         if (isSingleQuantity()) removeIconDrawable else subtractIconDrawable
@@ -64,4 +64,10 @@ data class QuantityPickerViewState(
     internal fun stopLoading(): QuantityPickerViewState = copy(showLoading = false)
 
     internal fun reset(): QuantityPickerViewState = copy(currentQuantity = 0, showLoading = false)
+
+    companion object {
+
+        private const val COLOR_ORANGE = "#f27a1a"
+        private const val COLOR_QUANTITY_TEXT = "#666666"
+    }
 }

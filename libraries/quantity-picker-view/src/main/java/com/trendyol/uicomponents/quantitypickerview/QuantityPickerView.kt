@@ -1,7 +1,6 @@
 package com.trendyol.uicomponents.quantitypickerview
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -97,7 +96,7 @@ class QuantityPickerView : ConstraintLayout {
             val text = it.getString(R.styleable.QuantityPickerView_qpv_text) ?: ""
             val textColor = it.getColor(
                 R.styleable.QuantityPickerView_qpv_textColor,
-                Color.parseColor("#f27a1a")
+                ContextCompat.getColor(context, R.color.qpv_default_orange)
             )
             val textSize =
                 it.getDimensionPixelSize(R.styleable.QuantityPickerView_qpv_textSize, toSP(12))
@@ -105,7 +104,7 @@ class QuantityPickerView : ConstraintLayout {
             val quantityTextColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_qpv_quantityTextColor,
-                    Color.parseColor("#666666")
+                    ContextCompat.getColor(context, R.color.qpv_default_quantity)
                 )
             val quantityTextSize =
                 it.getDimensionPixelSize(
@@ -120,7 +119,7 @@ class QuantityPickerView : ConstraintLayout {
             val progressTintColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_android_progressTint,
-                    Color.parseColor("#f27a1a")
+                    ContextCompat.getColor(context, R.color.qpv_default_quantity)
                 )
             val removeIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_removeIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_remove)!!
