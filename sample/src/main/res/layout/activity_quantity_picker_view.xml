@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 app:qpv_quantityTextSize="14sp"
-                app:qpv_text="Add to Basket"
+                app:qpv_text="Add to Cart"
                 app:qpv_currentQuantity="1"
                 app:qpv_textSize="12sp" />
         </LinearLayout>

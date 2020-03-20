@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
@@ -115,18 +116,18 @@ class QuantityPickerView : ConstraintLayout {
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
             val currentQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_currentQuantity, 0)
             val background = it.getDrawable(R.styleable.QuantityPickerView_android_background)
-                ?: ContextCompat.getDrawable(context, R.drawable.qpv_shape_default_background)!!
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_shape_default_background)!!
             val progressTintColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_android_progressTint,
                     Color.parseColor("#f27a1a")
                 )
             val removeIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_removeIcon)
-                ?: ContextCompat.getDrawable(context, R.drawable.qpv_ic_default_remove)!!
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_remove)!!
             val addIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_addIcon)
-                ?: ContextCompat.getDrawable(context, R.drawable.qpv_ic_default_add)!!
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_add)!!
             val subtractIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_subtractIcon)
-                ?: ContextCompat.getDrawable(context, R.drawable.qpv_ic_default_subtract)!!
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_subtract)!!
 
             val quantityPickerViewState = QuantityPickerViewState(
                 text = text,
