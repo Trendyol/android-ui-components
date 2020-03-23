@@ -30,10 +30,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ToolbarActivity::class.java))
         }
         button_suggestion_input_view.setOnClickListener {
-            startActivity(Intent(this, SuggestionInputActivity::class.java))
+            startActivity(Intent(this, SuggestionInputViewActivity::class.java))
         }
         button_card_input.setOnClickListener {
             startActivity(Intent(this, CardInputViewActivity::class.java))
+        }
+        button_quantity_picker.setOnClickListener {
+            startActivity(Intent(this, QuantityPickerViewActivity::class.java))
         }
     }
 }
