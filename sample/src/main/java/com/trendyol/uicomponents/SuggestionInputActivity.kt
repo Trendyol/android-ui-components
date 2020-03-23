@@ -39,7 +39,6 @@ class SuggestionInputActivity : AppCompatActivity() {
     }
 
     private fun onSuggestionItemClicked(suggestionInputItem: SuggestionInputItem) {
-        if (suggestionInputItem.value.trim().isEmpty()) return
         binding.selectedText.text = suggestionInputItem.text
         binding.selectedValue.text = suggestionInputItem.value
     }
