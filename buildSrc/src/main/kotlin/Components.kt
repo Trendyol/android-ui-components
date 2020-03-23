@@ -7,4 +7,5 @@ object Components {
     const val toolbar = ":libraries:toolbar"
     const val suggestionInputView = ":libraries:suggestion-input-view"
     const val cardInputView = ":libraries:card-input-view"
+    const val quantityPickerView = ":libraries:quantity-picker-view"
 }

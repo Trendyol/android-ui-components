@@ -8,7 +8,7 @@ import com.trendyol.suggestioninputview.SuggestionInputItem
 import com.trendyol.suggestioninputview.SuggestionItemType
 import com.trendyol.uicomponents.databinding.ActivitySuggestionInputBinding
 
-class SuggestionInputActivity : AppCompatActivity() {
+class SuggestionInputViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuggestionInputBinding
 

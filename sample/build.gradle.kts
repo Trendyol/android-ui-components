@@ -39,10 +39,12 @@ dependencies {
     implementation(project(Components.toolbar))
     implementation(project(Components.suggestionInputView))
     implementation(project(Components.cardInputView))
+    implementation(project(Components.quantityPickerView))
 
     implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
+    implementation(Dependencies.glide)
 }

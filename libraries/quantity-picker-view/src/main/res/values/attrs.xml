@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="QuantityPickerView">
+        <attr name="qpv_text" format="string" />
+        <attr name="qpv_textColor" format="color" />
+        <attr name="qpv_textSize" format="dimension" />
+        <attr name="qpv_textStyle" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="qpv_quantityTextColor" format="color" />
+        <attr name="qpv_quantityTextSize" format="dimension" />
+        <attr name="qpv_quantityTextStyle" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="qpv_currentQuantity" format="integer" />
+        <attr name="android:background" format="reference" />
+        <attr name="android:progressTint" format="color" />
+        <attr name="qpv_removeIcon" format="reference" />
+        <attr name="qpv_addIcon" format="reference" />
+        <attr name="qpv_subtractIcon" format="reference" />
+    </declare-styleable>
+</resources>
