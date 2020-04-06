@@ -29,7 +29,7 @@ internal fun TextView.setStyle(@StyleRes styleResId: Int) {
     TextViewCompat.setTextAppearance(this, styleResId)
 }
 
-@BindingAdapter("android:layout_marginLeft")
+@BindingAdapter("toolbar_layout_marginLeft")
 fun setLeftMargin(view: View, leftMargin: Int?) {
     leftMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
@@ -41,7 +41,7 @@ fun setLeftMargin(view: View, leftMargin: Int?) {
     }
 }
 
-@BindingAdapter("android:layout_marginRight")
+@BindingAdapter("toolbar_layout_marginRight")
 fun setRightMargin(view: View, rightMargin: Int?) {
     rightMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
@@ -53,7 +53,7 @@ fun setRightMargin(view: View, rightMargin: Int?) {
     }
 }
 
-@BindingAdapter("android:layout_marginTop")
+@BindingAdapter("toolbar_layout_marginTop")
 fun setTopMargin(view: View, topMargin: Int?) {
     topMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
@@ -65,7 +65,7 @@ fun setTopMargin(view: View, topMargin: Int?) {
     }
 }
 
-@BindingAdapter("android:layout_marginBottom")
+@BindingAdapter("toolbar_layout_marginBottom")
 fun setBottomMargin(view: View, bottomMargin: Int?) {
     bottomMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
@@ -77,7 +77,7 @@ fun setBottomMargin(view: View, bottomMargin: Int?) {
     }
 }
 
-@BindingAdapter("android:layout_marginStart")
+@BindingAdapter("toolbar_layout_marginStart")
 fun setStartMargin(view: View, startMargin: Int?) {
     startMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
@@ -86,7 +86,7 @@ fun setStartMargin(view: View, startMargin: Int?) {
     }
 }
 
-@BindingAdapter("android:layout_marginEnd")
+@BindingAdapter("toolbar_layout_marginEnd")
 fun setEndMargin(view: View, endMargin: Int?) {
     endMargin?.let {
         val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams

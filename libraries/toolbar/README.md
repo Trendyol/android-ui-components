@@ -38,6 +38,12 @@ To customize **Toolbar** you can provide `ToolbarViewState` or use attributes li
 | `app:upperRightText` | Upper right text resource. | null | `app:upperRightText="@string/action_select_all"` |
 | `app:lowerRightText` | Lower right text resource. If upper left text is set and this is not set, upper left text would be centered vertically. | null | `app:lowerRightText="@string/action_clear"` |
 | `app:toolbarBackground` | Background color or drawable resource. | android.R.color.white | `app:toolbarBackground="@drawable/toolbar_background"` |
+| `app:upperLeftTextMarginStart` | Start margin for upper left text. | trendyol_uicomponents_toolbar_margin_left_side_text | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
+| `app:lowerLeftTextMarginStart` | Start margin for lower left text. | trendyol_uicomponents_toolbar_margin_left_side_text | `app:lowerLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
+| `app:upperRightTextMarginEnd` | End margin for upper right text. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
+| `app:lowerRightTextMarginEnd` | End margin for upper right text. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
+| `app:leftImageDrawableMarginStart` | Start margin for left drawable. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
+| `app:rightImageDrawableMarginEnd` | End margin for left drawable. | 0 | `app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_right_side_icon"` |
 
 Sample usage with attributes:
 
