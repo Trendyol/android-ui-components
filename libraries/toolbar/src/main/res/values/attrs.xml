@@ -11,5 +11,11 @@
         <attr name="upperRightText" format="reference" />
         <attr name="lowerRightText" format="reference" />
         <attr name="toolbarBackground" format="reference" />
+        <attr name="upperLeftTextMarginStart" format="dimension" />
+        <attr name="lowerLeftTextMarginStart" format="dimension" />
+        <attr name="upperRightTextMarginEnd" format="dimension" />
+        <attr name="lowerRightTextMarginEnd" format="dimension" />
+        <attr name="rightImageDrawableMarginEnd" format="dimension" />
+        <attr name="leftImageDrawableMarginStart" format="dimension" />
     </declare-styleable>
 </resources>
