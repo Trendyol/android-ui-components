@@ -8,4 +8,5 @@ object Components {
     const val suggestionInputView = ":libraries:suggestion-input-view"
     const val cardInputView = ":libraries:card-input-view"
     const val quantityPickerView = ":libraries:quantity-picker-view"
+    const val timelineView = ":libraries:timeline-view"
 }

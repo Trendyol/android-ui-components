@@ -37,8 +37,8 @@
                 app:inputButtonText="TAMAM"
                 app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
                 app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
-                app:inputSuffix="TL"
                 app:inputHint="En fazla 334534534534557.88 TL yükleyebilirsin"
+                app:inputSuffix="TL"
                 app:minWidth="@dimen/minWidth_suggestion_item"
                 app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
                 app:selectedTextColor="@color/text_color_selected_suggestion_item"
@@ -49,8 +49,9 @@
                 app:verticalPadding="@dimen/vertical_padding_suggestion_item" />
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLoad"
+            style="@style/Sample.ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"

@@ -40,9 +40,9 @@
                 android:id="@+id/quantity_picker_view"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
+                app:qpv_currentQuantity="1"
                 app:qpv_quantityTextSize="14sp"
                 app:qpv_text="Add to Cart"
-                app:qpv_currentQuantity="1"
                 app:qpv_textSize="12sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -84,8 +84,9 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_reset"
+        style="@style/Sample.ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"

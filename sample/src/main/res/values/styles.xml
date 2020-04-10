@@ -11,9 +11,10 @@
 
     <style name="Sample" />
 
-    <style name="Sample.ButtonStyle">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:background">@android:drawable/btn_default</item>
+    <style name="Sample.ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="backgroundTint">#F27A1A</item>
         <item name="android:padding">8dp</item>
     </style>
 </resources>

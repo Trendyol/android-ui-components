@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TimelineView">
+        <attr name="tlv_dotSize" format="dimension" />
+        <attr name="tlv_borderWidth" format="dimension" />
+        <attr name="tlv_textSize" format="dimension" />
+    </declare-styleable>
+</resources>

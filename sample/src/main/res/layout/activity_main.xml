@@ -12,96 +12,92 @@
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="Select component"/>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_rating_bar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Rating Bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="16dp"
+                android:text="Rating Bar" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_dialogs"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Dialogs"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_rating_bar" />
+                android:layout_marginTop="8dp"
+                android:text="Dialogs" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_imageslider"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Image Slider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_dialogs" />
+                android:layout_marginTop="8dp"
+                android:text="Image Slider" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_phone_number"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Phone Number"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_imageslider" />
+                android:layout_marginTop="8dp"
+                android:text="Phone Number" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_toolbar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Toolbar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_phone_number" />
+                android:layout_marginTop="8dp"
+                android:text="Toolbar" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_suggestion_input_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Suggestion Input View"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_toolbar" />
+                android:layout_marginTop="8dp"
+                android:text="Suggestion Input View" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_card_input"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Card Input View"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_suggestion_input_view" />
+                android:layout_marginTop="8dp"
+                android:text="Card Input View"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
                 android:id="@+id/button_quantity_picker"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Quantity Picker View"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_card_input" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                android:layout_marginTop="8dp"
+                android:text="Quantity Picker View" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
+                android:id="@+id/button_timeline_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Timeline View" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

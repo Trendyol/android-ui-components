@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".QuantityPickerViewActivity"></activity>
+        <activity android:name=".TimelineViewActivity"></activity>
+        <activity android:name=".QuantityPickerViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
