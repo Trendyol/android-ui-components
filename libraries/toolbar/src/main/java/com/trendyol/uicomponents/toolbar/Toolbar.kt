@@ -27,6 +27,7 @@ class Toolbar : ConstraintLayout {
 
     private val binding: ViewToolbarBinding = inflate(R.layout.view_toolbar)
     private var leftTextDefaultMargin: Int
+    private var rightTextDefaultMarginEnd: Int
 
     constructor(context: Context?) : super(context)
 
@@ -53,6 +54,9 @@ class Toolbar : ConstraintLayout {
         binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
         leftTextDefaultMargin =
             resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
+
+        rightTextDefaultMarginEnd =
+            resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_outer)
     }
 
     private fun readFromAttributes(attrs: AttributeSet?) {
@@ -81,8 +85,10 @@ class Toolbar : ConstraintLayout {
             val lowerLeftTextMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_lowerLeftTextMarginStart, leftTextDefaultMargin)
 
-            val upperRightTextMarginEnd = getDimensionPixelOffset(R.styleable.Toolbar_upperRightTextMarginEnd, 0)
-            val lowerRightTextMarginEnd = getDimensionPixelOffset(R.styleable.Toolbar_lowerRightTextMarginEnd, 0)
+            val upperRightTextMarginEnd =
+                getDimensionPixelOffset(R.styleable.Toolbar_upperRightTextMarginEnd, rightTextDefaultMarginEnd)
+            val lowerRightTextMarginEnd =
+                getDimensionPixelOffset(R.styleable.Toolbar_lowerRightTextMarginEnd, rightTextDefaultMarginEnd)
             val rightImageDrawableMarginEnd =
                 getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
             val leftImageDrawableMarginStart =
