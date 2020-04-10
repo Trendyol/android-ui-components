@@ -22,7 +22,7 @@ UI Components includes several custom views for Android platform to make develop
 * [SuggestionInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
 * [CardInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 * [QuantityPickerView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
-* [TimelineView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/timeline-view): **TimelineView** for creates a timeline and shows actions over time
+* [TimelineView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
 
 License
 --------
