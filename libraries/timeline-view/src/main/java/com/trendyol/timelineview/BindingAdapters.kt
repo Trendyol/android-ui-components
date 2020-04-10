@@ -15,6 +15,6 @@ fun setLayoutHeight(view: View, height: Float) {
 }
 
 @BindingAdapter("bind:layout_width")
-fun setLayoutWidth(view: View, height: Float) {
-    view.layoutParams = view.layoutParams.apply { this.width = height.toInt() }
+fun setLayoutWidth(view: View, width: Float) {
+    view.layoutParams = view.layoutParams.apply { this.width = width.toInt() }
 }
