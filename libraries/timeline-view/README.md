@@ -29,7 +29,7 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | ------------- |-------------| ------------- |------------- |------------- |
 | `app:tlv_dotSize` | `setDotSize(Float)` | size of each dot item | 16dp | app:tlv_dotSize="20dp"|
 | `app:tlv_borderWidth` | `setBorderWidth(Float)` | width of each dot item's border | 3dp | app:tlv_borderWidth="3dp"|
-| `app:tlv_textSize` | `setTextSize(Float)` | text size of eact time line item | 10sp | app:tlv_textSize="12sp"|
+| `app:tlv_textSize` | `setTextSize(Float)` | text size of each time line item | 10sp | app:tlv_textSize="12sp"|
 
 
 # Contributors
