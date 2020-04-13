@@ -14,6 +14,7 @@ class TimelineItemAdapter : RecyclerView.Adapter<TimelineItemAdapter.TimelineVie
     fun submitList(list: List<TimelineItemViewState> = emptyList()) {
         this.timelineItems.clear()
         this.timelineItems.addAll(list)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimelineViewHolder {
