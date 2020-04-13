@@ -38,5 +38,8 @@ class MainActivity : AppCompatActivity() {
         button_quantity_picker.setOnClickListener {
             startActivity(Intent(this, QuantityPickerViewActivity::class.java))
         }
+        button_timeline_view.setOnClickListener {
+            startActivity(Intent(this, TimelineViewActivity::class.java))
+        }
     }
 }

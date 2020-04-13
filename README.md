@@ -7,7 +7,10 @@ UI Components for Android by Trendyol Android team.
 
 UI Components includes several custom views for Android platform to make developers life easier!
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/2.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic2.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic4.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic5.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/timeline-view" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/suggestion-input-view-1.gif" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/quantity-picker-view-1.gif" width="240"/>
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
@@ -19,6 +22,7 @@ UI Components includes several custom views for Android platform to make develop
 * [SuggestionInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
 * [CardInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 * [QuantityPickerView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
+* [TimelineView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
 
 License
 --------
