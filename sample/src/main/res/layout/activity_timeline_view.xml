@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         tools:context=".TimelineViewActivity">
 
-
         <com.trendyol.timelineview.TimelineView
             android:id="@+id/timelineViewClaim"
             android:layout_width="match_parent"

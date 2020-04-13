@@ -2,14 +2,28 @@ package com.trendyol.timelineview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.Dimension
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import com.trendyol.timelineview.databinding.ViewTimelineBinding
 
-class TimelineView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class TimelineView : ConstraintLayout {
+
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        readAttributes(attrs, 0)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        readAttributes(attrs, defStyleAttr)
+    }
 
     @Dimension
     private var dotSize: Float = 0F
@@ -27,8 +41,11 @@ class TimelineView @JvmOverloads constructor(
     }
 
     init {
+        if (isInEditMode) View.inflate(context, R.layout.view_timeline, this)
         binding.recyclerViewTimelineItems.adapter = timelineItemAdapter
+    }
 
+    private fun readAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.TimelineView,
@@ -70,7 +87,6 @@ class TimelineView @JvmOverloads constructor(
             timelineItems = mapTimelineItemsToTimelineItemViewState(items)
         )
         binding.executePendingBindings()
-        timelineItemAdapter.submitList(mapTimelineItemsToTimelineItemViewState(items))
     }
 
     private fun mapTimelineItemsToTimelineItemViewState(items: List<TimelineItem>?)
