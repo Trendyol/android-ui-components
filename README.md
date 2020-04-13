@@ -9,7 +9,7 @@ UI Components includes several custom views for Android platform to make develop
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic2.png" width="240"/>
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic4.png" width="240"/>
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic5.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/timeline-view" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/uic5.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/timeline-view.png" width="240"/>
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/suggestion-input-view-1.gif" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/quantity-picker-view-1.gif" width="240"/>
 
 ## Why? ##
