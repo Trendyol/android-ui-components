@@ -13,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TimelineViewActivity"></activity>
-        <activity android:name=".QuantityPickerViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +27,8 @@
         <activity android:name=".ToolbarActivity" />
         <activity android:name=".SuggestionInputViewActivity" />
         <activity android:name=".CardInputViewActivity" />
+        <activity android:name=".QuantityPickerViewActivity" />
+        <activity android:name=".TimelineViewActivity"/>
     </application>
 
 </manifest>
