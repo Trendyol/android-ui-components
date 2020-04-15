@@ -1,6 +1,6 @@
 package com.trendyol.timelineview
 
-class TimelineItem(
+data class TimelineItem(
     val outsideColor: String,
     val insideColor: String,
     val text: String,
