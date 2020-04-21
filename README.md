@@ -1,5 +1,4 @@
-
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/logo.png" width="400"/>
+<img src="images/logo.png" width="400"/>
 
 UI Components for Android by Trendyol Android team.
 
@@ -7,18 +6,18 @@ UI Components for Android by Trendyol Android team.
 
 UI Components includes several custom views for Android platform to make developers life easier!
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/2.png" width="240"/>
+<img src="images/1.png" width="240"/> <img src="images/2.png" width="240"/>
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
 
 ## Components ## 
-* [Rating Bar](https://github.com/Trendyol/android-ui-components/tree/master/libraries/rating-bar): **RatingBarView**, easy to use and customizable rating view.
-* [Dialogs](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs): **Dialogs** is collection of BottomSheetDialogs to present user an info, agreement or list.
-* [Toolbar](https://github.com/Trendyol/android-ui-components/tree/master/libraries/toolbar): **Toolbar** is customizable and easy to use component.
-* [SuggestionInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
-* [CardInputView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
-* [QuantityPickerView](https://github.com/Trendyol/android-ui-components/tree/master/libraries/quantity-picler-view): **QuantityPickerView** for picking quantity easily without keyboard input.
+* [Rating Bar](libraries/rating-bar): **RatingBarView**, easy to use and customizable rating view.
+* [Dialogs](libraries/dialogs): **Dialogs** is collection of BottomSheetDialogs to present user an info, agreement or list.
+* [Toolbar](libraries/toolbar): **Toolbar** is customizable and easy to use component.
+* [SuggestionInputView](libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
+* [CardInputView](libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
+* [QuantityPickerView](libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
 
 License
 --------
