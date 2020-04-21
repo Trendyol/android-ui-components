@@ -16,10 +16,17 @@ data class ToolbarViewState(
     @DrawableRes val rightImageDrawableResId: Int = 0,
     @StyleRes val upperLeftTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val lowerLeftTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_LowerAction,
-    @StyleRes val middleTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_Title,
+    @StyleRes val middleTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val upperRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val lowerRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_LowerAction,
-    @DrawableRes val toolbarBackground: Int = android.R.color.white
+    @DrawableRes val toolbarBackground: Int = android.R.color.white,
+    val upperLeftTextMarginStartInPixel: Int? = null,
+    val lowerLeftTextMarginStartInPixel: Int?= null,
+    val upperRightTextMarginEndInPixel: Int?= null,
+    val lowerRightTextMarginEndInPixel: Int?= null,
+    val rightImageDrawableMarginEndInPixel: Int?= null,
+    val leftImageDrawableMarginStartInPixel: Int?= null
+
 ) {
 
     fun getUpperLeftText(): Spanned? = upperLeftText?.let {

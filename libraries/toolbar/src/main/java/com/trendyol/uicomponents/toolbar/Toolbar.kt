@@ -26,6 +26,8 @@ class Toolbar : ConstraintLayout {
     var lowerRightTextClickListener: (() -> Unit)? = null
 
     private val binding: ViewToolbarBinding = inflate(R.layout.view_toolbar)
+    private var leftTextDefaultMargin: Int
+    private var rightTextDefaultMarginEnd: Int
 
     constructor(context: Context?) : super(context)
 
@@ -50,6 +52,11 @@ class Toolbar : ConstraintLayout {
         binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
         binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
         binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
+        leftTextDefaultMargin =
+            resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
+
+        rightTextDefaultMarginEnd =
+            resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_outer)
     }
 
     private fun readFromAttributes(attrs: AttributeSet?) {
@@ -73,6 +80,20 @@ class Toolbar : ConstraintLayout {
             val toolbarBackground =
                 getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
 
+            val upperLeftTextMarginStart =
+                getDimensionPixelOffset(R.styleable.Toolbar_upperLeftTextMarginStart, leftTextDefaultMargin)
+            val lowerLeftTextMarginStart =
+                getDimensionPixelOffset(R.styleable.Toolbar_lowerLeftTextMarginStart, leftTextDefaultMargin)
+
+            val upperRightTextMarginEnd =
+                getDimensionPixelOffset(R.styleable.Toolbar_upperRightTextMarginEnd, rightTextDefaultMarginEnd)
+            val lowerRightTextMarginEnd =
+                getDimensionPixelOffset(R.styleable.Toolbar_lowerRightTextMarginEnd, rightTextDefaultMarginEnd)
+            val rightImageDrawableMarginEnd =
+                getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
+            val leftImageDrawableMarginStart =
+                getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
+
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
                 lowerLeftText = lowerLeftText,
@@ -82,7 +103,13 @@ class Toolbar : ConstraintLayout {
                 leftImageDrawableResId = leftImageDrawableResId,
                 middleImageDrawableResId = middleImageDrawableResId,
                 rightImageDrawableResId = rightImageDrawableResId,
-                toolbarBackground = toolbarBackground
+                toolbarBackground = toolbarBackground,
+                upperLeftTextMarginStartInPixel = upperLeftTextMarginStart,
+                lowerLeftTextMarginStartInPixel = lowerLeftTextMarginStart,
+                upperRightTextMarginEndInPixel = upperRightTextMarginEnd,
+                lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
+                rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
+                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart
             )
         }
     }

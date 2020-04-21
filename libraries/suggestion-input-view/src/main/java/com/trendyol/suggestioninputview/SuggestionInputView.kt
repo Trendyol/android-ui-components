@@ -168,8 +168,15 @@ class SuggestionInputView @JvmOverloads constructor(
                     clearInputError()
                     val selectedValue = bindingSelectables.editText.text.toString()
                     val validation = RuleValidator.validate(rules, selectedValue)
-                    if (validation.first) {
-                        setSelection(false)
+                    when {
+                        validation.first -> setSelection(false)
+                        selectedValue.isNotEmpty() -> {
+                            showInputError(validation.second)
+                            resetSelection()
+                        }
+                        else -> {
+
+                        }
                     }
                 }
             })
@@ -300,9 +307,22 @@ class SuggestionInputView @JvmOverloads constructor(
             setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()))
         } else {
             val inputItem = mapFreeTextToInputItem()
-            if(shouldSelect) setSelectionToInput(inputItem)
+            if (shouldSelect) setSelectionToInput(inputItem)
             onSuggestionItemClickListener?.invoke(inputItem)
         }
+    }
+
+    private fun resetSelection() {
+        onSuggestionItemClickListener?.invoke(
+            SuggestionInputItem(
+                0,
+                "",
+                "",
+                false,
+                SuggestionItemType.INPUT,
+                ""
+            )
+        )
     }
 
     private fun setSelectionToCurrentSelection() {

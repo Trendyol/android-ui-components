@@ -1,20 +1,24 @@
 plugins {
-    id(Plugins.androidApplication)
+    id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinKapt)
+    id(Plugins.androidMaven)
 }
+
+group = Configs.group
+version = ComponentVersions.timelineViewVersion
 
 android {
     compileSdkVersion(Configs.compileSdkVersion)
     buildToolsVersion(Configs.buildToolsVersion)
 
     defaultConfig {
-        applicationId = Configs.applicationId
         minSdkVersion(Configs.minSdkVersion)
         targetSdkVersion(Configs.targetSdkVersion)
-        versionCode = 1
-        versionName = "1.0"
+        vectorDrawables.useSupportLibrary = true
+
+        consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
@@ -32,20 +36,9 @@ android {
 }
 
 dependencies {
-    implementation(project(Components.ratingBar))
-    implementation(project(Components.dialogs))
-    implementation(project(Components.imageSlider))
-    implementation(project(Components.phoneNumber))
-    implementation(project(Components.toolbar))
-    implementation(project(Components.suggestionInputView))
-    implementation(project(Components.cardInputView))
-    implementation(project(Components.quantityPickerView))
-    implementation(project(Components.timelineView))
-
     implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
-    implementation(Dependencies.material)
+    implementation(Dependencies.recyclerView)
     implementation(Dependencies.constraintLayout)
-    implementation(Dependencies.glide)
 }

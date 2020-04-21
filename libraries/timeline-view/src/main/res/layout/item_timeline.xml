@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewState"
+            type="com.trendyol.timelineview.TimelineItemViewState" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/viewLeftLine"
+            android:layout_width="35dp"
+            android:layout_height="2dp"
+            tools:visibility="gone"
+            android:background="@{itemViewState.getLeftLineColor()}"
+            android:visibility="@{itemViewState.getLeftLineVisibility()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
+            tools:background="#000000" />
+
+        <View
+            android:id="@+id/viewRightLine"
+            android:layout_width="35dp"
+            android:layout_height="2dp"
+            android:background="@{itemViewState.getRightLineColor()}"
+            android:visibility="@{itemViewState.getRightLineVisibility()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintStart_toEndOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
+            tools:background="#000000" />
+
+        <View
+            android:id="@+id/imageViewOutsideShadow"
+            tools:layout_width="18dp"
+            tools:layout_height="18dp"
+            bind:layout_width="@{itemViewState.getShadowDotSize()}"
+            bind:layout_height="@{itemViewState.getShadowDotSize()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@{itemViewState.getInsideColor()}"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTimeline"
+            app:layout_constraintStart_toStartOf="@+id/textViewTimeline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="#bb00" />
+
+        <View
+            android:id="@+id/imageViewOutside"
+            tools:layout_width="16dp"
+            tools:layout_height="16dp"
+            bind:layout_width="@{itemViewState.getOutsideDotSize()}"
+            bind:layout_height="@{itemViewState.getOutsideDotSize()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@{itemViewState.getOutsideColor()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintStart_toStartOf="@+id/imageViewOutsideShadow"
+            app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
+            tools:backgroundTint="#fff" />
+
+        <View
+            android:id="@+id/imageViewInside"
+            tools:layout_width="10dp"
+            tools:layout_height="10dp"
+            bind:layout_width="@{itemViewState.getInsideDotSize()}"
+            bind:layout_height="@{itemViewState.getInsideDotSize()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@{itemViewState.getInsideColor()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutside"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewOutside"
+            app:layout_constraintStart_toStartOf="@+id/imageViewOutside"
+            app:layout_constraintTop_toTopOf="@+id/imageViewOutside"
+            tools:backgroundTint="#bb00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewTimeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="@{itemViewState.getText()}"
+            android:textColor="@{itemViewState.getTextColor()}"
+            android:textSize="@{itemViewState.textSize}"
+            tools:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewOutside"
+            tools:text="İade\nTalebi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,6 +2,6 @@
 <resources>
 
     <dimen name="trendyol_uicomponents_toolbar_margin_outer">8dp</dimen>
-
-    <dimen name="trendyol_uicomponents_toolbar_padding">4dp</dimen>
+    <dimen name="trendyol_uicomponents_toolbar_margin_left_side_text">24dp</dimen>
+    <dimen name="trendyol_uicomponents_toolbar_padding">8dp</dimen>
 </resources>

@@ -6,7 +6,10 @@ UI Components for Android by Trendyol Android team.
 
 UI Components includes several custom views for Android platform to make developers life easier!
 
-<img src="images/1.png" width="240"/> <img src="images/2.png" width="240"/>
+<img src="images/uic1.png" width="240"/> <img src="images/uic2.png" width="240"/>
+<img src="images/uic3.png" width="240"/> <img src="images/uic4.png" width="240"/>
+<img src="images/uic5.png" width="240"/> <img src="images/timeline-view.png" width="240"/>
+<img src="images/suggestion-input-view-1.gif" width="240"/> <img src="images/quantity-picker-view-1.gif" width="240"/>
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
@@ -18,6 +21,7 @@ UI Components includes several custom views for Android platform to make develop
 * [SuggestionInputView](libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
 * [CardInputView](libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 * [QuantityPickerView](libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
+* [TimelineView](libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
 
 License
 --------

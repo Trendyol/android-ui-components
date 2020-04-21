@@ -58,6 +58,7 @@
                     android:layout_marginStart="@dimen/margin_input_items"
                     android:layout_marginEnd="@dimen/margin_input_items"
                     android:layout_weight="1"
+                    android:ellipsize="end"
                     android:maxLength="5"
                     android:textSize="@{viewState.textSize}"
                     android:background="@{viewState.getInputBackground()}"
