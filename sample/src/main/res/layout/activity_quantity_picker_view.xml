@@ -40,9 +40,10 @@
                 android:id="@+id/quantity_picker_view"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
+                app:qpv_currentQuantity="1"
+                app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityTextSize="14sp"
                 app:qpv_text="Add to Cart"
-                app:qpv_currentQuantity="1"
                 app:qpv_textSize="12sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

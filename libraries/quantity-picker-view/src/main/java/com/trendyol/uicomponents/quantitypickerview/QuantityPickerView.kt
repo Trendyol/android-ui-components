@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerBinding
@@ -33,13 +32,16 @@ class QuantityPickerView : ConstraintLayout {
     }
 
     init {
-        if (isInEditMode) View.inflate(context, R.layout.view_quantity_picker, this)
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.view_quantity_picker,
-            this,
-            true
-        )
+        if (isInEditMode) {
+            View.inflate(context, R.layout.view_quantity_picker, this)
+        } else {
+            binding = DataBindingUtil.inflate(
+                LayoutInflater.from(context),
+                R.layout.view_quantity_picker,
+                this,
+                true
+            )
+        }
         setUpView()
     }
 
@@ -104,20 +106,20 @@ class QuantityPickerView : ConstraintLayout {
             val text = it.getString(R.styleable.QuantityPickerView_qpv_text) ?: ""
             val textColor = it.getColor(
                 R.styleable.QuantityPickerView_qpv_textColor,
-                ContextCompat.getColor(context, R.color.qpv_default_orange)
+                context.themeColor(R.attr.colorAccent)
             )
             val textSize =
-                it.getDimensionPixelSize(R.styleable.QuantityPickerView_qpv_textSize, toSP(12))
+                it.getDimensionPixelSize(R.styleable.QuantityPickerView_qpv_textSize, context.asSP(12))
             val textStyle = it.getInt(R.styleable.QuantityPickerView_qpv_textStyle, 0)
             val quantityTextColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_qpv_quantityTextColor,
-                    ContextCompat.getColor(context, R.color.qpv_default_quantity)
+                    context.themeColor(R.attr.colorPrimary)
                 )
             val quantityTextSize =
                 it.getDimensionPixelSize(
                     R.styleable.QuantityPickerView_qpv_quantityTextSize,
-                    toSP(14)
+                    context.asSP(14)
                 )
             val quantityTextStyle =
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
@@ -130,7 +132,7 @@ class QuantityPickerView : ConstraintLayout {
             val progressTintColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_android_progressTint,
-                    ContextCompat.getColor(context, R.color.qpv_default_quantity)
+                    context.themeColor(R.attr.colorPrimary)
                 )
             val removeIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_removeIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_remove)!!
@@ -138,6 +140,9 @@ class QuantityPickerView : ConstraintLayout {
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_add)!!
             val subtractIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_subtractIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_subtract)!!
+            val quantityBackground =
+                it.getDrawable(R.styleable.QuantityPickerView_qpv_quantityBackground)
+                    ?: AppCompatResources.getDrawable(context, android.R.color.transparent)!!
 
             val quantityPickerViewState = QuantityPickerViewState(
                 text = text,
@@ -153,7 +158,8 @@ class QuantityPickerView : ConstraintLayout {
                 removeIconDrawable = removeIcon,
                 addIconDrawable = addIcon,
                 subtractIconDrawable = subtractIcon,
-                showLoading = false
+                showLoading = false,
+                quantityBackgroundDrawable = quantityBackground
             )
             setQuantityPickerViewState(quantityPickerViewState)
         }

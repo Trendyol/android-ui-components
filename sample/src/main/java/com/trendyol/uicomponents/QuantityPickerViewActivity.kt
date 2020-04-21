@@ -3,8 +3,6 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerViewState
 import kotlinx.android.synthetic.main.activity_quantity_picker_view.*
 
@@ -16,12 +14,16 @@ class QuantityPickerViewActivity : AppCompatActivity() {
 
         val viewState = QuantityPickerViewState(
             text = "Fresh Money",
-            textSize = (12 * resources.displayMetrics.scaledDensity).toInt(),
-            quantityTextSize = (14 * resources.displayMetrics.scaledDensity).toInt(),
-            backgroundDrawable = AppCompatResources.getDrawable(this, R.drawable.qpv_shape_default_background)!!,
-            removeIconDrawable = AppCompatResources.getDrawable(this, R.drawable.qpv_ic_default_remove)!!,
-            subtractIconDrawable = AppCompatResources.getDrawable(this, R.drawable.qpv_ic_default_subtract)!!,
-            addIconDrawable = AppCompatResources.getDrawable(this, R.drawable.qpv_ic_default_add)!!
+            textSize = asSP(12),
+            quantityTextSize = asSP(14),
+            backgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
+            removeIconDrawable = drawable(R.drawable.qpv_ic_default_remove),
+            subtractIconDrawable = drawable(R.drawable.qpv_ic_default_subtract),
+            addIconDrawable = drawable(R.drawable.qpv_ic_default_add),
+            quantityBackgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
+            textColor = themeColor(R.attr.colorAccent),
+            progressTintColor = themeColor(R.attr.colorAccent),
+            quantityTextColor = themeColor(R.attr.colorPrimary)
         )
 
         quantity_picker_view_2.setQuantityPickerViewState(viewState)

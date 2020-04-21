@@ -1,25 +1,25 @@
 package com.trendyol.uicomponents.quantitypickerview
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
 
 data class QuantityPickerViewState(
     private val text: String,
-    @ColorInt private val textColor: Int = Color.parseColor(COLOR_ORANGE),
+    @ColorInt private val textColor: Int,
     private val textSize: Int,
     private val textStyle: Int = 0,
-    @ColorInt private val quantityTextColor: Int = Color.parseColor(COLOR_QUANTITY_TEXT),
+    @ColorInt private val quantityTextColor: Int,
     private val quantityTextSize: Int,
     private val quantityTextStyle: Int = 0,
     val currentQuantity: Int = 0,
     val backgroundDrawable: Drawable,
-    @ColorInt val progressTintColor: Int = Color.parseColor(COLOR_ORANGE),
+    @ColorInt val progressTintColor: Int,
     val addIconDrawable: Drawable,
     private val subtractIconDrawable: Drawable,
     private val removeIconDrawable: Drawable,
-    private val showLoading: Boolean = false
+    private val showLoading: Boolean = false,
+    private val quantityBackgroundDrawable: Drawable
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
@@ -47,6 +47,10 @@ data class QuantityPickerViewState(
             QuantityPickerTextAppearance(textColor, textSize, textStyle)
         }
 
+    fun getQuantityBackgroundDrawable(): Drawable = quantityBackgroundDrawable
+
+    fun getQuantityBackgroundVisibility(): Int = if (isInQuantityMode()) View.VISIBLE else View.GONE
+
     internal fun getWithLoading(increment: Boolean? = null): QuantityPickerViewState =
         when (increment) {
             true -> copy(showLoading = true, currentQuantity = currentQuantity + 1)
@@ -66,10 +70,4 @@ data class QuantityPickerViewState(
     internal fun stopLoading(): QuantityPickerViewState = copy(showLoading = false)
 
     internal fun reset(): QuantityPickerViewState = copy(currentQuantity = 0, showLoading = false)
-
-    companion object {
-
-        private const val COLOR_ORANGE = "#f27a1a"
-        private const val COLOR_QUANTITY_TEXT = "#666666"
-    }
 }
