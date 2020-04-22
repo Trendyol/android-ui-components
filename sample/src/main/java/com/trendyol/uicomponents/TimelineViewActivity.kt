@@ -26,7 +26,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item1 = TimelineItem(
             outsideColor = colorWhite,
             insideColor = colorRed,
-            text = "İade\nTalebi",
+            text = "İade Talebi",
             textColor = colorRed,
             rightLineColor = colorRed
         )
@@ -35,7 +35,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item2 = TimelineItem(
             outsideColor = colorWhite,
             insideColor = colorRed,
-            text = "İade Kargoya\nVerildi",
+            text = "İade Kargoya Verildi",
             textColor = colorRed,
             leftLineColor = colorRed,
             rightLineColor = colorGray
@@ -45,7 +45,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item3 = TimelineItem(
             outsideColor = colorGray,
             insideColor = colorWhite,
-            text = "İade\nİnceleniyor",
+            text = "İade İnceleniyor",
             textColor = colorGray,
             leftLineColor = colorGray,
             rightLineColor = colorGray
@@ -55,7 +55,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item4 = TimelineItem(
             outsideColor = colorGray,
             insideColor = colorWhite,
-            text = "İade\nEdildi",
+            text = "İade Edildi",
             textColor = colorGray,
             leftLineColor = colorGray
         )
@@ -67,7 +67,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item1 = TimelineItem(
             outsideColor = colorWhite,
             insideColor = colorGreen,
-            text = "Siparişiniz\nAlındı",
+            text = "Siparişiniz Alındı",
             textColor = colorGreen,
             rightLineColor = colorGreen
         )
@@ -76,7 +76,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item2 = TimelineItem(
             outsideColor = colorWhite,
             insideColor = colorGreen,
-            text = "Siparişiniz\nHazırlanıyor",
+            text = "Siparişiniz Hazırlanıyor",
             textColor = colorGreen,
             leftLineColor = colorGreen,
             rightLineColor = colorGreen
@@ -86,7 +86,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item3 = TimelineItem(
             outsideColor = colorWhite,
             insideColor = colorGreen,
-            text = "Kargoya\nVerildi",
+            text = "Kargoya Verildi",
             textColor = colorGreen,
             leftLineColor = colorGreen,
             rightLineColor = colorGray
@@ -96,7 +96,7 @@ class TimelineViewActivity : AppCompatActivity() {
         val item4 = TimelineItem(
             outsideColor = colorGray,
             insideColor = colorWhite,
-            text = "Teslim\nEdildi",
+            text = "Teslim Edildi",
             textColor = colorGray,
             leftLineColor = colorGray
         )

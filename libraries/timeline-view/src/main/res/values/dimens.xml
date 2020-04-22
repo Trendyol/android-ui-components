@@ -3,4 +3,5 @@
     <dimen name="tlv_default_dot_size">16dp</dimen>
     <dimen name="tlv_default_border_width">3dp</dimen>
     <dimen name="tlv_default_text_size">10sp</dimen>
+    <dimen name="tlv_width_lines">35dp</dimen>
 </resources>

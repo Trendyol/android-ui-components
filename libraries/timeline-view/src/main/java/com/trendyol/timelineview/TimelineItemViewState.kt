@@ -1,5 +1,6 @@
 package com.trendyol.timelineview
 
+import android.content.Context
 import android.graphics.Color
 import android.view.View
 
@@ -28,9 +29,11 @@ class TimelineItemViewState(
 
     fun getOutsideDotSize(): Float = dotSize
 
-    fun getInsideDotSize(): Float = (dotSize - (borderWidth * 2))
+    fun getInsideDotSize(): Float = dotSize - (borderWidth * 2)
 
-    fun getShadowDotSize(): Float = (dotSize + borderWidth)
+    fun getShadowDotSize(): Float = dotSize + borderWidth
+
+    fun getItemWidth(context: Context): Float = dotSize + borderWidth + (context.resources.getDimension(R.dimen.tlv_width_lines) * 2)
 
     companion object {
         private const val hexColorWhite = "#000000"
