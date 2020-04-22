@@ -23,5 +23,6 @@
         <attr name="qpv_removeIcon" format="reference" />
         <attr name="qpv_addIcon" format="reference" />
         <attr name="qpv_subtractIcon" format="reference" />
+        <attr name="qpv_quantityBackground" format="reference" />
     </declare-styleable>
 </resources>
