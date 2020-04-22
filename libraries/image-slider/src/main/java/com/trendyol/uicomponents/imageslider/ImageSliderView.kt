@@ -8,23 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.trendyol.uicomponents.imageslider.databinding.ViewImageSliderBinding
 import java.lang.ref.WeakReference
 
-class ImageSliderView : FrameLayout, ImagesPagerAdapter.SliderAdapterItemClickListener, ImageSlider {
+class ImageSliderView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr),
+    ImagesPagerAdapter.SliderAdapterItemClickListener,
+    ImageSlider {
 
     private var binding: ViewImageSliderBinding = inflate(R.layout.view_image_slider)
 
     private var hostActivityWeakReference: WeakReference<Activity>
 
     private var imageSliderViewListener: ImageSliderViewListener? = null
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    )
 
     interface ImageSliderViewListener {
 
@@ -59,12 +55,12 @@ class ImageSliderView : FrameLayout, ImagesPagerAdapter.SliderAdapterItemClickLi
                     addToImageList(images)
                     imageHeight = imageSliderViewState.imageHeight
                     isImageDynamic = imageSliderViewState.isImageDynamic == true
+                    scaleType = imageSliderViewState.scaleType
                 }
             binding.viewPagerImageSlider.adapter = pagerAdapter
             binding.indicatorImageSlider.setViewPager(binding.viewPagerImageSlider)
         }
     }
-
 
 
     override fun onImageItemClicked(imageUrlList: List<String>, position: Int) {

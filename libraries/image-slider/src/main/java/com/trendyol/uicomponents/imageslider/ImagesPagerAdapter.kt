@@ -21,6 +21,7 @@ class ImagesPagerAdapter(
     private var binding: ViewImageBinding? = null
     var imageHeight: Int? = null
     var isImageDynamic: Boolean = false
+    var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
 
     private val zoomWindowListener: ZoomWindowTouchListener?
         get() {
@@ -59,6 +60,7 @@ class ImagesPagerAdapter(
             .apply {
                 binding = this
                 collection.addView(linearLayoutSliderImageWrapper)
+                imageViewSlider.scaleType = scaleType
                 loadImage(
                     collection,
                     imageViewSlider,
