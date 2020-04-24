@@ -15,7 +15,8 @@ class TimelineItemViewState(
 
     fun getInsideColor(): Int = Color.parseColor(timelineItem.insideColor)
 
-    fun getText(): String = timelineItem.text
+    fun getText(): String =
+        timelineItem.text.replaceFirst(" ","\n")
 
     fun getTextColor(): Int = Color.parseColor(timelineItem.textColor)
 
@@ -23,9 +24,11 @@ class TimelineItemViewState(
 
     fun getRightLineColor(): Int = Color.parseColor(timelineItem.rightLineColor ?: hexColorWhite)
 
-    fun getLeftLineVisibility(): Int = if(timelineItem.leftLineColor != null) View.VISIBLE else View.GONE
+    fun getLeftLineVisibility(): Int =
+        if (timelineItem.leftLineColor != null) View.VISIBLE else View.GONE
 
-    fun getRightLineVisibility(): Int = if(timelineItem.rightLineColor != null) View.VISIBLE else View.GONE
+    fun getRightLineVisibility(): Int =
+        if (timelineItem.rightLineColor != null) View.VISIBLE else View.GONE
 
     fun getOutsideDotSize(): Float = dotSize
 
@@ -33,7 +36,8 @@ class TimelineItemViewState(
 
     fun getShadowDotSize(): Float = dotSize + borderWidth
 
-    fun getItemWidth(context: Context): Float = dotSize + borderWidth + (context.resources.getDimension(R.dimen.tlv_width_lines) * 2)
+    fun getItemWidth(context: Context): Float =
+        dotSize + borderWidth + (context.resources.getDimension(R.dimen.tlv_width_lines) * 2)
 
     companion object {
         private const val hexColorWhite = "#000000"
