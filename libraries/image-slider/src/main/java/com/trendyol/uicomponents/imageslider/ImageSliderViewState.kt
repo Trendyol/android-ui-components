@@ -1,14 +1,17 @@
 package com.trendyol.uicomponents.imageslider
 
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
+import androidx.annotation.ColorInt
 
 data class ImageSliderViewState(
     val imageList: List<String>,
     var isImageDynamic: Boolean? = null,
     var imageHeight: Int? = null,
     var isIndicatorAlwaysVisible: Boolean = false,
-    val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
+    val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP,
+    @ColorInt val backgroundColor: Int = Color.WHITE
 ) {
 
     fun getIndicatorVisibility(): Int {
