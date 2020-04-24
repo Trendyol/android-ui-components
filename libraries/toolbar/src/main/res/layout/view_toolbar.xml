@@ -109,13 +109,14 @@
             android:gravity="bottom"
             android:singleLine="true"
             android:text="@{viewState.upperRightText}"
+            android:enabled="@{viewState.isUpperRightTextEnabled}"
             app:layout_constraintBottom_toTopOf="@id/textRightDown"
             app:layout_constraintEnd_toStartOf="@id/imageRight"
             app:layout_constraintHeight_min="wrap"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             app:toolbarIsVisible="@{viewState.upperRightTextVisible}"
-            app:toolbarTextAppearance="@{viewState.upperRightTextAppearance}"
+            app:toolbarTextAppearance="@{viewState.getRightTextAppearance()}"
             tools:text="Right Action" />
 
         <androidx.appcompat.widget.AppCompatTextView

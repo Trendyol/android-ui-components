@@ -19,13 +19,15 @@ data class ToolbarViewState(
     @StyleRes val middleTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val upperRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val lowerRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_LowerAction,
+    @StyleRes val upperRightTextDisabledAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled,
     @DrawableRes val toolbarBackground: Int = android.R.color.white,
     val upperLeftTextMarginStartInPixel: Int? = null,
     val lowerLeftTextMarginStartInPixel: Int?= null,
     val upperRightTextMarginEndInPixel: Int?= null,
     val lowerRightTextMarginEndInPixel: Int?= null,
     val rightImageDrawableMarginEndInPixel: Int?= null,
-    val leftImageDrawableMarginStartInPixel: Int?= null
+    val leftImageDrawableMarginStartInPixel: Int?= null,
+    val isUpperRightTextEnabled: Boolean = false
 
 ) {
 
@@ -58,4 +60,6 @@ data class ToolbarViewState(
     fun isUpperRightTextVisible(): Boolean = upperRightText != null
 
     fun isLowerRightTextVisible(): Boolean = lowerRightText != null
+
+    fun getRightTextAppearance(): Int = if (isUpperRightTextEnabled) upperRightTextAppearance else upperRightTextDisabledAppearance
 }
