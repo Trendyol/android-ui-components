@@ -1,7 +1,7 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/quantity-picker-view-1.gif" />
+<img src="../../images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.0.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.0.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
@@ -22,23 +22,28 @@ dependencies {
 ## Usage
 You can inflate **QuantityPickerView** via XML or programmatically. View can be configurable either in XML or setting a *QuantityPickerViewState*.
 
+Default colors will be set from your theme's `colorAccent` and `colorPrimary` attributes.
+
 To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewState(QuantityPickerViewState)`.
 
-| Attribute |  Method | Description | Default Value |
+:warning: You need to provide all properties if you wish to set programmatically via providing QuantityPickerViewState.
+
+| Attribute |  ViewState Field | Description | Default Value |
 | ------------- | ------------- | ------------- | ------------- |
 | qpv_text | text | Text to show when currentQuantity is 0. | "" |
-| qpv_textColor | textColor |  Text color. | `orange |
-| qpv_textSize | textSize | Text size. Should be pixel value if programmatically set. | 12sp |
-| qpv_textStyle | textStyle | Text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | normal |
-| qpv_quantityTextColor | quantityTextColor | Quantity text color. | `gray |
-| qpv_quantityTextSize | quantityTextSize | Quantity text size. Should be pixel value if programmatically set.  | 14sp |
-| qpv_quantityTextStyle | quantityTextStyle | Quantity text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | normal |
+| qpv_textColor | textColor |  Text color. | `colorAccent` |
+| qpv_textSize | textSize | Text size. Should be pixel value if programmatically set. | `12sp` |
+| qpv_textStyle | textStyle | Text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | `normal` |
+| qpv_quantityTextColor | quantityTextColor | Quantity text color. | `colorPrimary` |
+| qpv_quantityTextSize | quantityTextSize | Quantity text size. Should be pixel value if programmatically set.  | `14sp |
+| qpv_quantityTextStyle | quantityTextStyle | Quantity text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | `normal` |
 | qpv_currentQuantity | currentQuantity | Quantity value, optional. | 0 |
-| android:progressTint | progressTintColor | Tint for loading ProgressBar. | `orange |
+| android:progressTint | progressTintColor | Tint for loading ProgressBar. | `colorAccent` |
 | android:background | backgroundDrawable | Background to all view. | [qpv_shape_default_background.xml](src/main/res/drawable/qpv_shape_default_background.xml) |
 | qpv_removeIcon | removeIconDrawable | Icon for remove, will be only visible when currentQuantity is 1. | [qpv_ic_default_remove.xml](src/main/res/drawable/qpv_ic_default_remove.xml) |
 | qpv_addIcon | addIconDrawable | Icon for add, will be visible when currentQuantity is 1 or more. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
 | qpv_subtractIcon | subtractIconDrawable | Icon for subtract, will be visible when currentQuantity is 2 or more. | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml) |
+| qpv_quantityBackground | quantityBackgroundDrawable | Background for quantity text. | `transparent` |
 
 # Public methods
 
@@ -46,7 +51,7 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | ------------- | ------------- | ------------- |
 | setQuantityPickerViewState | viewState :QuantityPickerViewState | To set QuantityPickerViewState programmatically. |
 | setQuantity | quantity: Int | To set quantity immediately. |
-| stopLoading |  | To stop current loading |
+| stopLoading |  | To stop current loading.|
 | reset |  | To stop loading and set currentQuantity to 0. |
 
 ## Listeners
@@ -66,9 +71,10 @@ From XML, you can use attributes like below:
     android:id="@+id/quantity_picker_view"
     android:layout_width="match_parent"
     android:layout_height="36dp"
-    app:qpv_quantityTextSize="14sp"
-    app:qpv_text="Add to Basket"
     app:qpv_currentQuantity="1"
+    app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
+    app:qpv_quantityTextSize="14sp"
+    app:qpv_text="Add to Cart"
     app:qpv_textSize="12sp" />
 ```
 
@@ -77,12 +83,16 @@ To set *QuantityPickerViewState* programmatically:
 ```kotlin
 val viewState = QuantityPickerViewState(
     text = "Fresh Money",
-    textSize = (12 * resources.displayMetrics.scaledDensity).toInt(),
-    quantityTextSize = (14 * resources.displayMetrics.scaledDensity).toInt(),
-    backgroundDrawable = ContextCompat.getDrawable(this, R.drawable.shape_quantity_background)!!,
-    removeIconDrawable = ContextCompat.getDrawable(this, R.ic_remove)!!,
-    subtractIconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_minus)!!,
-    addIconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_add)!!
+    textSize = asSP(12),
+    quantityTextSize = asSP(14),
+    backgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
+    removeIconDrawable = drawable(R.drawable.qpv_ic_default_remove),
+    subtractIconDrawable = drawable(R.drawable.qpv_ic_default_subtract),
+    addIconDrawable = drawable(R.drawable.qpv_ic_default_add),
+    quantityBackgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
+    textColor = themeColor(R.attr.colorAccent),
+    progressTintColor = themeColor(R.attr.colorAccent),
+    quantityTextColor = themeColor(R.attr.colorPrimary)
 )
         
 findViewById<QuantityPickerView>(R.id.quantity_picker_view).setQuantityPickerViewState(viewState)

@@ -42,7 +42,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/qpv_ic_default_remove"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageQuantityBackground"
+            qpv_src="@{viewState.quantityBackgroundDrawable}"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            tools:src="@drawable/qpv_shape_default_background"
+            tools:visibility="visible"
+            android:paddingBottom="@dimen/qpv_default_small_padding"
+            android:paddingTop="@dimen/qpv_default_small_padding"
+            android:visibility="@{viewState.quantityBackgroundVisibility}"
+            app:layout_constraintBottom_toBottomOf="@id/text"
+            app:layout_constraintEnd_toStartOf="@id/image_add"
+            app:layout_constraintStart_toEndOf="@id/image_subtract"
+            app:layout_constraintTop_toTopOf="@id/text" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
@@ -60,8 +76,8 @@
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Add to basket"
-            tools:visibility="gone" />
+            tools:text="1"
+            tools:visibility="visible" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -94,7 +110,7 @@
             app:layout_constraintStart_toStartOf="@id/barrier_start"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/qpv_ic_default_add"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_end"
