@@ -26,7 +26,7 @@ class ToolbarActivity : AppCompatActivity() {
         toolbar4.viewState = ToolbarViewState(
             upperLeftText = "Left Text",
             upperRightText = "Right Text",
-            upperRightTextDisabledAppearance = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled,
+            upperRightTextDisabledAppearance = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled
         )
 
     }

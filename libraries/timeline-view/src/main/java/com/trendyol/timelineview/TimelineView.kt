@@ -34,6 +34,8 @@ class TimelineView : ConstraintLayout {
     @Dimension
     private var textSize: Float = 0F
 
+    private var fontFamily: String = ""
+
     private val binding: ViewTimelineBinding = inflate(R.layout.view_timeline)
 
     private val timelineItemAdapter by lazy(LazyThreadSafetyMode.NONE) {
@@ -67,6 +69,10 @@ class TimelineView : ConstraintLayout {
                     R.styleable.TimelineView_tlv_textSize,
                     context.resources.getDimension(R.dimen.tlv_default_text_size)
                 )
+            fontFamily =
+                typedArray.getString(
+                    R.styleable.TimelineView_android_fontFamily
+                ) ?: context.resources.getString(R.string.tlv_default_font)
         }
     }
 
@@ -80,6 +86,10 @@ class TimelineView : ConstraintLayout {
 
     fun setTextSize(@Dimension textSize: Float?) {
         this.textSize = textSize ?: context.resources.getDimension(R.dimen.tlv_default_text_size)
+    }
+
+    fun setFontFamily(fontFamily: String?) {
+        this.fontFamily = fontFamily ?: context.resources.getString(R.string.tlv_default_font)
     }
 
     fun setItems(items: List<TimelineItem>?) {
@@ -96,7 +106,8 @@ class TimelineView : ConstraintLayout {
                 timelineItem = timelineItem,
                 dotSize = dotSize,
                 borderWidth = borderWidth,
-                textSize = textSize
+                textSize = textSize,
+                fontFamily = fontFamily
             )
         } ?: emptyList()
     }

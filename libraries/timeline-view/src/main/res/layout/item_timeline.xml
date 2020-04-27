@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tlv="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,7 +13,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        bind:layout_width="@{itemViewState.getItemWidth(context)}"
+        tlv:layout_width="@{itemViewState.getItemWidth(context)}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_width="wrap_content">
@@ -51,8 +51,8 @@
             app:layout_constraintEnd_toEndOf="@+id/textViewTimeline"
             app:layout_constraintStart_toStartOf="@+id/textViewTimeline"
             app:layout_constraintTop_toTopOf="parent"
-            bind:layout_height="@{itemViewState.getShadowDotSize()}"
-            bind:layout_width="@{itemViewState.getShadowDotSize()}"
+            tlv:layout_height="@{itemViewState.getShadowDotSize()}"
+            tlv:layout_width="@{itemViewState.getShadowDotSize()}"
             tools:backgroundTint="#bb00"
             tools:layout_height="18dp"
             tools:layout_width="18dp" />
@@ -67,8 +67,8 @@
             app:layout_constraintEnd_toEndOf="@+id/imageViewOutsideShadow"
             app:layout_constraintStart_toStartOf="@+id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
-            bind:layout_height="@{itemViewState.getOutsideDotSize()}"
-            bind:layout_width="@{itemViewState.getOutsideDotSize()}"
+            tlv:layout_height="@{itemViewState.getOutsideDotSize()}"
+            tlv:layout_width="@{itemViewState.getOutsideDotSize()}"
             tools:backgroundTint="#fff"
             tools:layout_height="16dp"
             tools:layout_width="16dp" />
@@ -83,8 +83,8 @@
             app:layout_constraintEnd_toEndOf="@+id/imageViewOutside"
             app:layout_constraintStart_toStartOf="@+id/imageViewOutside"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutside"
-            bind:layout_height="@{itemViewState.getInsideDotSize()}"
-            bind:layout_width="@{itemViewState.getInsideDotSize()}"
+            tlv:layout_height="@{itemViewState.getInsideDotSize()}"
+            tlv:layout_width="@{itemViewState.getInsideDotSize()}"
             tools:backgroundTint="#bb00"
             tools:layout_height="10dp"
             tools:layout_width="10dp" />
@@ -104,6 +104,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewOutside"
             tools:text="İade\nTalebi"
+            tlv:fontFamily="@{itemViewState.fontFamily}"
             tools:textSize="10sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

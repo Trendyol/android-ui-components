@@ -8,7 +8,8 @@ class TimelineItemViewState(
     private val timelineItem: TimelineItem,
     val dotSize: Float,
     val borderWidth: Float,
-    val textSize: Float
+    val textSize: Float,
+    val fontFamily: String
 ) {
 
     fun getOutsideColor(): Int = Color.parseColor(timelineItem.outsideColor)
