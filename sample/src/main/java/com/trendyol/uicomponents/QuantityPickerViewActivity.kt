@@ -3,6 +3,9 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import com.trendyol.uicomponents.quantitypickerview.ExpansionState
+import com.trendyol.uicomponents.quantitypickerview.QuantityPickerView
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerViewState
 import kotlinx.android.synthetic.main.activity_quantity_picker_view.*
 
@@ -31,7 +34,7 @@ class QuantityPickerViewActivity : AppCompatActivity() {
         with(quantity_picker_view) {
             onAddClicked = { number ->
                 Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
-                completeLoading()
+                completeLoading(this, increment = +1)
                 true
             }
             onSubtractClicked = { number ->
@@ -39,15 +42,28 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 false
             }
         }
+        with(quantity_picker_view_collapsed) {
+            onAddClicked = { number ->
+                Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
+                completeLoading(this, increment = +1)
+                true
+            }
+            onSubtractClicked = { number ->
+                Toast.makeText(context, "Subtract/Remove click: $number", Toast.LENGTH_SHORT).show()
+                completeLoading(this, increment = -1)
+                true
+            }
+        }
         button_reset.setOnClickListener {
             quantity_picker_view.reset()
             quantity_picker_view_2.reset()
+            quantity_picker_view_collapsed.reset()
         }
     }
 
-    private fun completeLoading(delay: Long = 500L) {
-        quantity_picker_view.postDelayed({
-            quantity_picker_view.stopLoading()
+    private fun completeLoading(quantityPickerView: QuantityPickerView, increment: Int, delay: Long = 500L) {
+        quantityPickerView.postDelayed({
+            quantityPickerView.incrementQuantityBy(increment)
         }, delay)
     }
 }

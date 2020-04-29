@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.quantitypickerview
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -41,18 +42,39 @@ class QuantityPickerView : ConstraintLayout {
                 this,
                 true
             )
+            setUpView()
         }
-        setUpView()
     }
 
-    fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) =
+    fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) {
+        if (isInEditMode || quantityPickerViewState == null) return
+        bindRootViewProperties(quantityPickerViewState)
         with(binding) {
             viewState = quantityPickerViewState
             executePendingBindings()
         }
+    }
+
+    private fun bindRootViewProperties(quantityPickerViewState: QuantityPickerViewState) {
+        setBackground(quantityPickerViewState.backgroundDrawable)
+
+        val horizontalPadding = quantityPickerViewState.getRootViewHorizontalPadding(context)
+        setPadding(
+            horizontalPadding,
+            paddingTop,
+            horizontalPadding,
+            paddingBottom
+        )
+    }
 
     fun setQuantity(quantity: Int) =
         setQuantityPickerViewState(binding.viewState?.getWithQuantity(quantity))
+
+    fun incrementQuantityBy(quantity: Int) {
+        val viewState = binding.viewState ?: return
+        val updatedViewState = viewState.getWithIncrementQuantity(quantity)
+        setQuantityPickerViewState(updatedViewState)
+    }
 
     fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
 
@@ -65,18 +87,28 @@ class QuantityPickerView : ConstraintLayout {
 
                 setQuantityPickerViewState(
                     if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading(increment = true)
+                        viewState?.getWithLoading()
                     } else {
                         viewState?.getWithAddValue()
                     }
                 )
+            }
+            quantityText.setOnClickListener {
+                val showLoading = onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true
+                val updatedViewState = if (showLoading) {
+                    viewState?.getWithLoading()
+                } else {
+                    viewState?.getWithAddValue()
+                }
+                setQuantityPickerViewState(updatedViewState)
+
             }
             imageSubtract.setOnClickListener {
                 if (viewState?.isLoading() == true) return@setOnClickListener
 
                 setQuantityPickerViewState(
                     if (onSubtractClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading(increment = false)
+                        viewState?.getWithLoading()
                     } else {
                         viewState?.getWithSubtractValue()
                     }
@@ -87,12 +119,16 @@ class QuantityPickerView : ConstraintLayout {
 
                 setQuantityPickerViewState(
                     if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading(true)
+                        viewState?.getWithLoading()
                     } else {
                         viewState?.getWithAddValue()
                     }
                 )
             }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            clipToOutline = true
         }
     }
 
@@ -109,7 +145,10 @@ class QuantityPickerView : ConstraintLayout {
                 context.themeColor(R.attr.colorAccent)
             )
             val textSize =
-                it.getDimensionPixelSize(R.styleable.QuantityPickerView_qpv_textSize, context.asSP(12))
+                it.getDimensionPixelSize(
+                    R.styleable.QuantityPickerView_qpv_textSize,
+                    context.asSP(12)
+                )
             val textStyle = it.getInt(R.styleable.QuantityPickerView_qpv_textStyle, 0)
             val quantityTextColor =
                 it.getColor(
@@ -144,6 +183,11 @@ class QuantityPickerView : ConstraintLayout {
                 it.getDrawable(R.styleable.QuantityPickerView_qpv_quantityBackground)
                     ?: AppCompatResources.getDrawable(context, android.R.color.transparent)!!
 
+            val collapsible = it.getBoolean(R.styleable.QuantityPickerView_qpv_collapsible, false)
+
+            val expansionState =
+                if (collapsible) ExpansionState.Collapsible(expanded = currentQuantity > 0) else ExpansionState.NonCollapsible
+
             val quantityPickerViewState = QuantityPickerViewState(
                 text = text,
                 textColor = textColor,
@@ -159,7 +203,8 @@ class QuantityPickerView : ConstraintLayout {
                 addIconDrawable = addIcon,
                 subtractIconDrawable = subtractIcon,
                 showLoading = false,
-                quantityBackgroundDrawable = quantityBackground
+                quantityBackgroundDrawable = quantityBackground,
+                expansionState = expansionState
             )
             setQuantityPickerViewState(quantityPickerViewState)
         }

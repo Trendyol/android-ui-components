@@ -24,5 +24,6 @@
         <attr name="qpv_addIcon" format="reference" />
         <attr name="qpv_subtractIcon" format="reference" />
         <attr name="qpv_quantityBackground" format="reference" />
+        <attr name="qpv_collapsible" format="boolean" />
     </declare-styleable>
 </resources>
