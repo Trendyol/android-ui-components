@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.use
 import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerBinding
+import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerVerticalBinding
+
 
 class QuantityPickerView : ConstraintLayout {
 
@@ -18,10 +21,12 @@ class QuantityPickerView : ConstraintLayout {
 
     private lateinit var binding: ViewQuantityPickerBinding
 
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context) {
+        initializeView(context, null, 0)
+    }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        setUpAttributes(attrs, 0)
+        initializeView(context, attrs, 0)
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
@@ -29,56 +34,35 @@ class QuantityPickerView : ConstraintLayout {
         attrs,
         defStyleAttr
     ) {
-        setUpAttributes(attrs, defStyleAttr)
+        initializeView(context, attrs, defStyleAttr)
     }
 
-    init {
+    private fun initializeView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int) {
+        val viewState = readAttributes(attrs, defStyleAttr)
         if (isInEditMode) {
-            View.inflate(context, R.layout.view_quantity_picker, this)
+            inflateViewForPreview(viewState)
         } else {
-            binding = DataBindingUtil.inflate(
-                LayoutInflater.from(context),
-                R.layout.view_quantity_picker,
-                this,
-                true
-            )
+            inflateView()
             setUpView()
+            setQuantityPickerViewState(viewState)
+            applyVerticalConstraintsIfNeeded()
         }
     }
 
-    fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) {
-        if (isInEditMode || quantityPickerViewState == null) return
-        bindRootViewProperties(quantityPickerViewState)
-        with(binding) {
-            viewState = quantityPickerViewState
-            executePendingBindings()
-        }
-    }
-
-    private fun bindRootViewProperties(quantityPickerViewState: QuantityPickerViewState) {
-        setBackground(quantityPickerViewState.backgroundDrawable)
-
-        val horizontalPadding = quantityPickerViewState.getRootViewHorizontalPadding(context)
-        setPadding(
-            horizontalPadding,
-            paddingTop,
-            horizontalPadding,
-            paddingBottom
+    private fun inflateView() {
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.view_quantity_picker,
+            this,
+            true
         )
     }
 
-    fun setQuantity(quantity: Int) =
-        setQuantityPickerViewState(binding.viewState?.getWithQuantity(quantity))
-
-    fun incrementQuantityBy(quantity: Int) {
-        val viewState = binding.viewState ?: return
-        val updatedViewState = viewState.getWithIncrementQuantity(quantity)
-        setQuantityPickerViewState(updatedViewState)
+    private fun inflateViewForPreview(viewState: QuantityPickerViewState) {
+        val layoutId =
+            if (viewState.orientation == VERTICAL_ORIENTATION) R.layout.view_quantity_picker_vertical else R.layout.view_quantity_picker
+        View.inflate(context, layoutId, this)
     }
-
-    fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
-
-    fun reset() = setQuantityPickerViewState(binding.viewState?.reset())
 
     private fun setUpView() {
         with(binding) {
@@ -132,7 +116,84 @@ class QuantityPickerView : ConstraintLayout {
         }
     }
 
-    private fun setUpAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
+    fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) {
+        if (quantityPickerViewState == null) return
+        bindRootViewProperties(quantityPickerViewState)
+        with(binding) {
+            viewState = quantityPickerViewState
+            executePendingBindings()
+        }
+    }
+
+    private fun bindRootViewProperties(quantityPickerViewState: QuantityPickerViewState) {
+        setBackground(quantityPickerViewState.backgroundDrawable)
+        applyHorizontalPaddingToRootViewIfNeeded(quantityPickerViewState)
+    }
+
+    private fun applyHorizontalPaddingToRootViewIfNeeded(viewState: QuantityPickerViewState) {
+        if (viewState.orientation != HORIZONTAL_ORIENTATION) return
+        val horizontalPadding = viewState.getRootViewHorizontalPadding(context)
+        setPadding(
+            horizontalPadding,
+            paddingTop,
+            horizontalPadding,
+            paddingBottom
+        )
+    }
+
+    fun setQuantity(quantity: Int) =
+        setQuantityPickerViewState(binding.viewState?.getWithQuantity(quantity))
+
+    fun incrementQuantityBy(quantity: Int) {
+        val viewState = binding.viewState ?: return
+        val updatedViewState = viewState.getWithIncrementQuantity(quantity)
+        setQuantityPickerViewState(updatedViewState)
+    }
+
+    fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
+
+    fun reset() = setQuantityPickerViewState(binding.viewState?.reset())
+
+    // region vertical constraints
+    private fun applyVerticalConstraintsIfNeeded() {
+        if (binding.viewState?.orientation != VERTICAL_ORIENTATION) return
+
+        val verticalConstraintLayout = ConstraintLayout(context)
+        val bindingVertical = DataBindingUtil.inflate<ViewQuantityPickerVerticalBinding>(
+            LayoutInflater.from(context),
+            R.layout.view_quantity_picker_vertical,
+            verticalConstraintLayout,
+            true
+        )
+        bindingVertical.viewState = this.binding.viewState
+        bindingVertical.executePendingBindings()
+        ConstraintSet().apply {
+            clone(verticalConstraintLayout)
+            applyTo(this@QuantityPickerView)
+        }
+
+        applyVerticalProperties()
+    }
+
+    private fun applyVerticalProperties() {
+        binding.text.minEms = 0
+        rotateQuantityBackgroundPadding()
+    }
+
+    private fun rotateQuantityBackgroundPadding() {
+        with(binding.imageQuantityBackground) {
+            setPadding(
+                paddingTop /*left*/,
+                paddingLeft /*top*/,
+                paddingBottom /*right*/,
+                paddingLeft /*bottom*/
+            )
+        }
+    }
+    // endregion vertical constraints
+
+    // region readAttrs
+    private fun readAttributes(attrs: AttributeSet?, defStyleAttr: Int): QuantityPickerViewState {
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.QuantityPickerView,
@@ -188,7 +249,10 @@ class QuantityPickerView : ConstraintLayout {
             val expansionState =
                 if (collapsible) ExpansionState.Collapsible(expanded = currentQuantity > 0) else ExpansionState.NonCollapsible
 
-            val quantityPickerViewState = QuantityPickerViewState(
+            val orientation =
+                it.getInt(R.styleable.QuantityPickerView_qpv_orientation, HORIZONTAL_ORIENTATION)
+
+            return QuantityPickerViewState(
                 text = text,
                 textColor = textColor,
                 textSize = textSize,
@@ -204,9 +268,14 @@ class QuantityPickerView : ConstraintLayout {
                 subtractIconDrawable = subtractIcon,
                 showLoading = false,
                 quantityBackgroundDrawable = quantityBackground,
-                expansionState = expansionState
+                expansionState = expansionState,
+                orientation = orientation
             )
-            setQuantityPickerViewState(quantityPickerViewState)
         }
+    }
+    // endregion readAttrs
+    companion object {
+        const val HORIZONTAL_ORIENTATION = 0
+        const val VERTICAL_ORIENTATION = 1
     }
 }

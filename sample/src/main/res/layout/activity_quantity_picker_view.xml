@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:qpv_currentQuantity="1"
+                android:animateLayoutChanges="true"
                 app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityTextSize="14sp"
                 app:qpv_text="Add to Cart"
@@ -128,6 +129,59 @@
                 app:qpv_collapsible="true"
                 app:qpv_currentQuantity="1"
                 android:animateLayoutChanges="true"
+                app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
+                app:qpv_quantityTextSize="14sp"
+                app:qpv_text="Add to Cart"
+                app:qpv_textSize="12sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_collapsed_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/card_view_right"
+        app:layout_constraintTop_toBottomOf="@id/card_view_right"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewCollapsedRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/sample_euro" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageViewCollapsedRight"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Fresh money" />
+
+            <com.trendyol.uicomponents.quantitypickerview.QuantityPickerView
+                android:id="@+id/quantity_picker_view_collapsed_right"
+                android:animateLayoutChanges="true"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:clipChildren="false"
+                android:elevation="4dp"
+                app:qpv_collapsible="true"
+                app:qpv_orientation="vertical"
+                app:qpv_currentQuantity="1"
                 app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityTextSize="14sp"
                 app:qpv_text="Add to Cart"

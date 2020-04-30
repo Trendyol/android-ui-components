@@ -57,7 +57,6 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:minEms="3"
-            android:padding="@dimen/qpv_default_padding"
             android:singleLine="true"
             android:text="@{viewState.quantity}"
             android:visibility="@{viewState.quantityVisibility}"
@@ -65,9 +64,8 @@
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_default="wrap"
-            tools:text="Add to Cart"
-            tools:visibility="gone" />
+            tools:text="1"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/quantityText"
@@ -85,8 +83,8 @@
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="1"
-            tools:visibility="visible" />
+            tools:text="Add to Cart"
+            tools:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

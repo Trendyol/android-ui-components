@@ -42,7 +42,7 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 false
             }
         }
-        with(quantity_picker_view_collapsed) {
+        with(quantity_picker_view_collapsed_right) {
             onAddClicked = { number ->
                 Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
                 completeLoading(this, increment = +1)
