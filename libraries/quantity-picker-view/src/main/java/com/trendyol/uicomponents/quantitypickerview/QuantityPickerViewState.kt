@@ -98,8 +98,10 @@ data class QuantityPickerViewState(
     internal fun getWithAddValue(): QuantityPickerViewState =
         copy(currentQuantity = currentQuantity + 1, expansionState = expansionState.expand())
 
-    internal fun getWithQuantity(quantity: Int): QuantityPickerViewState =
-        copy(currentQuantity = quantity, showLoading = false)
+    internal fun getWithQuantity(quantity: Int): QuantityPickerViewState {
+        val nextExpansionState = if (quantity == 0) expansionState.collapse() else expansionState.expand()
+        return copy(currentQuantity = quantity, showLoading = false, expansionState = nextExpansionState)
+    }
 
     internal fun getWithIncrementQuantity(quantity: Int): QuantityPickerViewState {
         val updatedQuantity = currentQuantity + quantity
