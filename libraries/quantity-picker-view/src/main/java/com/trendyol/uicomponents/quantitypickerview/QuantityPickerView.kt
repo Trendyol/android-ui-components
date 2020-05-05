@@ -18,6 +18,7 @@ class QuantityPickerView : ConstraintLayout {
 
     var onAddClicked: ((Int) -> Boolean)? = null
     var onSubtractClicked: ((Int) -> Boolean)? = null
+    var expansionListener: ((ExpansionState) -> Unit)? = null
 
     private lateinit var binding: ViewQuantityPickerBinding
 
@@ -119,9 +120,18 @@ class QuantityPickerView : ConstraintLayout {
     fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) {
         if (quantityPickerViewState == null) return
         bindRootViewProperties(quantityPickerViewState)
-        with(binding) {
-            viewState = quantityPickerViewState
-            executePendingBindings()
+        val previousViewState = binding.viewState
+        binding.viewState = quantityPickerViewState
+        binding.executePendingBindings()
+        onViewStateChanged(previousViewState, quantityPickerViewState)
+    }
+
+    private fun onViewStateChanged(
+        previousViewState: QuantityPickerViewState?,
+        currentViewState: QuantityPickerViewState
+    ) {
+        if (previousViewState?.isCollapsed() != currentViewState.isCollapsed()) {
+            expansionListener?.invoke(currentViewState.expansionState)
         }
     }
 

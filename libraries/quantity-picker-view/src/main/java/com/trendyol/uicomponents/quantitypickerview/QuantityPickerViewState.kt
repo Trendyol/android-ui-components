@@ -21,7 +21,7 @@ data class QuantityPickerViewState(
     private val removeIconDrawable: Drawable,
     private val showLoading: Boolean = false,
     private val quantityBackgroundDrawable: Drawable,
-    private val expansionState: ExpansionState = ExpansionState.NonCollapsible,
+    val expansionState: ExpansionState = ExpansionState.NonCollapsible,
     val orientation: Int = QuantityPickerView.HORIZONTAL_ORIENTATION
 ) {
 
