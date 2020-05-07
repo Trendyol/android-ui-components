@@ -21,7 +21,8 @@ data class QuantityPickerViewState(
     private val removeIconDrawable: Drawable,
     private val showLoading: Boolean = false,
     private val quantityBackgroundDrawable: Drawable,
-    private val expansionState: ExpansionState = ExpansionState.NonCollapsible
+    val expansionState: ExpansionState = ExpansionState.NonCollapsible,
+    val orientation: Int = QuantityPickerView.HORIZONTAL_ORIENTATION
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
@@ -51,7 +52,7 @@ data class QuantityPickerViewState(
 
     fun getQuantityTextAppearance() = QuantityPickerTextAppearance(quantityTextColor, quantityTextSize, quantityTextStyle)
 
-    fun getQuantity() = currentQuantity.toString()
+    fun getQuantity() = currentQuantity.takeIf { it != 0 }?.toString()
 
     fun getQuantityPickerText() = text
 
@@ -69,8 +70,15 @@ data class QuantityPickerViewState(
         }
     }
 
-    fun getQuantityBackgroundVisibility(): Int =
-        if (showLoading.not() && isInQuantityMode() && expansionState.isExpanded()) View.VISIBLE else View.GONE
+    fun getQuantityBackgroundVisibility(): Int  {
+        return if (showLoading.not() && isInQuantityMode() && expansionState.isExpanded()) {
+            View.VISIBLE
+        } else if (showLoading) {
+            View.INVISIBLE
+        } else {
+            View.GONE
+        }
+    }
 
     internal fun getWithLoading(): QuantityPickerViewState {
         return copy(
@@ -90,13 +98,15 @@ data class QuantityPickerViewState(
     internal fun getWithAddValue(): QuantityPickerViewState =
         copy(currentQuantity = currentQuantity + 1, expansionState = expansionState.expand())
 
-    internal fun getWithQuantity(quantity: Int): QuantityPickerViewState =
-        copy(currentQuantity = quantity, showLoading = false)
+    internal fun getWithQuantity(quantity: Int): QuantityPickerViewState {
+        val nextExpansionState = if (quantity == 0) expansionState.collapse() else expansionState.expand()
+        return copy(currentQuantity = quantity, showLoading = false, expansionState = nextExpansionState)
+    }
 
     internal fun getWithIncrementQuantity(quantity: Int): QuantityPickerViewState {
         val updatedQuantity = currentQuantity + quantity
         val nextExpansionState = if (updatedQuantity == 0) expansionState.collapse() else expansionState
-        return copy(currentQuantity = currentQuantity + quantity, showLoading = false, expansionState = nextExpansionState)
+        return copy(currentQuantity = updatedQuantity, showLoading = false, expansionState = nextExpansionState)
     }
 
     internal fun stopLoading(): QuantityPickerViewState =

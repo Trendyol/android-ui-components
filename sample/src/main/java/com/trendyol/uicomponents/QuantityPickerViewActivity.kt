@@ -41,8 +41,9 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 Toast.makeText(context, "Subtract/Remove click: $number", Toast.LENGTH_SHORT).show()
                 false
             }
+
         }
-        with(quantity_picker_view_collapsed) {
+        with(quantity_picker_view_collapsed_right) {
             onAddClicked = { number ->
                 Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
                 completeLoading(this, increment = +1)
@@ -52,6 +53,9 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 Toast.makeText(context, "Subtract/Remove click: $number", Toast.LENGTH_SHORT).show()
                 completeLoading(this, increment = -1)
                 true
+            }
+            expansionListener = {
+                Toast.makeText(context, "${it.toString()} ${it.expanded}", Toast.LENGTH_LONG).show()
             }
         }
         button_reset.setOnClickListener {

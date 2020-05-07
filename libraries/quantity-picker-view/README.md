@@ -44,6 +44,8 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | qpv_addIcon | addIconDrawable | Icon for add, will be visible when currentQuantity is 1 or more. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
 | qpv_subtractIcon | subtractIconDrawable | Icon for subtract, will be visible when currentQuantity is 2 or more. | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml) |
 | qpv_quantityBackground | quantityBackgroundDrawable | Background for quantity text. | `transparent` |
+| qpv_orientation | orientation | Determines view orientation. | 'horizontal` |
+| qpv_collapsible | collapsible | Determines if view is collapsible. | 'false'
 
 # Public methods
 
@@ -53,6 +55,7 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | setQuantity | quantity: Int | To set quantity immediately. |
 | stopLoading |  | To stop current loading.|
 | reset |  | To stop loading and set currentQuantity to 0. |
+| incrementQuantityBy | quantity | increments current total quantity by quantity parameter
 
 ## Listeners
 To get updates on **QuantityPickerView** you need to set this listeners:
@@ -61,6 +64,7 @@ To get updates on **QuantityPickerView** you need to set this listeners:
 | ------------- | ------------- | ------------- | ------------- |
 | onAddClicked | quantityAfterAdd: Int | showLoading: Boolean | Will be triggered when user clicks text when currentQuantity 0 or add button when currentQuantity bigger than 0. |
 | onSubtractClicked | quantityAfterSubtract: Int | showLoading: Boolean | Wil be triggered when user clicks remove or subtract icon. |
+| expansionListener | expansionState: ExpansionState | | Will be triggered after expansion state is changed. |
 
 ## Implementation
 
