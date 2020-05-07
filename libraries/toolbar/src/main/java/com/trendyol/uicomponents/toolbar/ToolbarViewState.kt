@@ -27,7 +27,7 @@ data class ToolbarViewState(
     val lowerRightTextMarginEndInPixel: Int?= null,
     val rightImageDrawableMarginEndInPixel: Int?= null,
     val leftImageDrawableMarginStartInPixel: Int?= null,
-    val isUpperRightTextEnabled: Boolean = false
+    val isUpperRightTextEnabled: Boolean = true
 
 ) {
 
