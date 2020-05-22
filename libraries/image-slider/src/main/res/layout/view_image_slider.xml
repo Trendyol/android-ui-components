@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewState"
             type="com.trendyol.uicomponents.imageslider.ImageSliderViewState" />
-
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <merge xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:parentTag="FrameLayout">
 
         <com.trendyol.uicomponents.imageslider.HackyViewPager
             android:id="@+id/viewPager_image_slider"
@@ -38,5 +39,5 @@
             app:ci_height="@dimen/indicator_size"
             app:ci_orientation="horizontal"
             app:ci_width="@dimen/indicator_size" />
-    </FrameLayout>
+    </merge>
 </layout>
