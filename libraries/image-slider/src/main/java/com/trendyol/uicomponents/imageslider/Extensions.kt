@@ -1,10 +1,8 @@
 package com.trendyol.uicomponents.imageslider
 
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.util.DisplayMetrics
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
@@ -14,7 +12,6 @@ import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
 import kotlin.math.pow
 import kotlin.math.sqrt
-
 
 internal fun Int.greaterThan(number: Int): Boolean = this > number
 
@@ -33,50 +30,9 @@ internal fun <T : ViewDataBinding> ViewGroup?.inflate(
     )
 }
 
-private const val PRODUCT_LIST_IMAGE_RATIO = 1
-
-internal fun ImageView.loadProductImageWithWidth(
-    imageUrl: String,
-    width: Int
-) {
-    val height = (width * PRODUCT_LIST_IMAGE_RATIO).toInt()
-    loadProductImage(imageUrl, width, height)
+fun ImageView.loadImage(imageUrl: String) {
+    Glide.with(context).load(imageUrl).into(this)
 }
-
-internal fun ImageView.loadProductImageWithHeight(
-    imageUrl: String,
-    height: Int
-) {
-    val width = (height / PRODUCT_LIST_IMAGE_RATIO).toInt()
-    loadProductImage(imageUrl, width, height)
-}
-
-internal fun ImageView.loadProductImage(imageUrl: String, width: Int, height: Int) {
-    updateImageViewSize(intArrayOf(width, height))
-    Glide.with(context)
-        .load(imageUrl)
-        .into(this)
-}
-
-internal fun ImageView.updateImageViewSize(size: IntArray) {
-    layoutParams = layoutParams.apply {
-        width = size[0]
-        height = size[1]
-    }
-}
-
-internal fun Context.deviceWidth(): Int {
-    (getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.let {
-        val metrics = DisplayMetrics()
-        it.defaultDisplay.getMetrics(metrics)
-        return metrics.widthPixels
-    } ?: return 0
-}
-
-fun Point.getMagnitude(): Float {
-    return calculateDistance(x.toFloat(), y.toFloat(), 0f, 0f)
-}
-
 
 internal val RETURN_ANIM_DURATION = 350
 
@@ -94,12 +50,6 @@ internal fun MotionEvent.calculateAverageTouch(): Point {
     }
 
     return Point(totalX / pointerCount, totalY / pointerCount)
-}
-
-internal fun calculateDistance(a: Point, b: Point): Float {
-    return sqrt(
-        (a.x - b.x).toDouble().pow(2.0) + (a.y - b.y).toDouble().pow(2.0)
-    ).toFloat()
 }
 
 internal fun calculateDistance(x: Float, y: Float, x1: Float, y1: Float): Float {
@@ -147,5 +97,3 @@ internal fun ColorDrawable.createFadeOut(): ObjectAnimator {
         0
     )
 }
-
-

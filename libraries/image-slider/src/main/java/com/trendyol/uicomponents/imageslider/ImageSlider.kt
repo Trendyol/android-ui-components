@@ -1,11 +1,10 @@
 package com.trendyol.uicomponents.imageslider
 
-import androidx.appcompat.app.AppCompatActivity
-
+import android.app.Activity
 
 interface ImageSlider {
 
     fun setImageSliderViewListener(imageSliderViewListener: ImageSliderView.ImageSliderViewListener)
 
-    fun setActivityInstance(activity: AppCompatActivity)
+    fun setActivityInstance(activity: Activity)
 }
