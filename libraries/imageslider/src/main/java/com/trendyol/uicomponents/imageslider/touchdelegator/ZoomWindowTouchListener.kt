@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.imageslider.touchdelegator
 import android.view.MotionEvent
 import android.view.Window
 import com.trendyol.uicomponents.imageslider.CVFloatingZoomView
+import com.trendyol.uicomponents.touchdelegator.WindowTouchListener
 
 class ZoomWindowTouchListener : WindowTouchListener, CVFloatingZoomView.FloatingZoomListener {
 

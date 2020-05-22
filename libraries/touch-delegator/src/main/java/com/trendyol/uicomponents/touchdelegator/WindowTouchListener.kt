@@ -1,4 +1,4 @@
-package com.trendyol.uicomponents.imageslider.touchdelegator
+package com.trendyol.uicomponents.touchdelegator
 
 import android.view.MotionEvent
 import android.view.Window
