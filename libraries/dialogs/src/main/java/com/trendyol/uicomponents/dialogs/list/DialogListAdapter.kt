@@ -10,7 +10,8 @@ import com.trendyol.uicomponents.dialogs.inflate
 internal class DialogListAdapter(
     private val showItemsAsHtml: Boolean,
     private val selectedItemDrawable: Int?,
-    private val selectedTextColor: Int?
+    private val selectedTextColor: Int?,
+    private val showRadioButton: Boolean
 ) : ListAdapter<Pair<Boolean, CharSequence>, DialogListAdapter.ItemViewHolder>(ListItemDiffCallback()) {
     var onItemSelectedListener: ((Int) -> Unit)? = null
 
@@ -43,7 +44,8 @@ internal class DialogListAdapter(
                 showAsHtml = showItemsAsHtml,
                 selectedItemDrawable = selectedItemDrawable,
                 selectedTextColor = selectedTextColor,
-                isChecked = item.first
+                isChecked = item.first,
+                showRadioButton = showRadioButton
             )
             binding.executePendingBindings()
         }
