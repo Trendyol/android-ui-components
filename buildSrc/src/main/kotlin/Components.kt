@@ -9,4 +9,6 @@ object Components {
     const val cardInputView = ":libraries:card-input-view"
     const val quantityPickerView = ":libraries:quantity-picker-view"
     const val timelineView = ":libraries:timeline-view"
+    const val touchDelegator = ":libraries:touch-delegator"
+
 }

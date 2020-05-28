@@ -9,7 +9,7 @@ import androidx.annotation.ColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.PagerAdapter
 import com.trendyol.uicomponents.imageslider.databinding.ViewImageBinding
-import com.trendyol.uicomponents.imageslider.touchdelegator.WindowTouchDelegator
+import com.trendyol.uicomponents.touchdelegator.WindowTouchDelegator
 import com.trendyol.uicomponents.imageslider.touchdelegator.ZoomWindowTouchListener
 import java.lang.ref.WeakReference
 
