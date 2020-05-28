@@ -97,6 +97,7 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `searchHint` | String | Hint to show on search input line.  | "" |
 | `selectedItemDrawable` | Int | Drawable resource for selected item icon.  | null |
 | `selectedTextColor` | Int | Color resource for selected item text color.  | null |
+| `showRadioButton` | Boolean | Radio button visibility  | false |
 
 Sample usage:
 ```kotlin
@@ -107,6 +108,7 @@ selectionDialog {
     showItemsAsHtml = true
     selectedItemDrawable = R.drawable.ic_check
     selectedTextColor = R.color.colorPrimary
+    showRadioButton = true
     onItemSelectedListener = { dialog, index -> 
         dialog.dismiss()
         onItemSelected(index)

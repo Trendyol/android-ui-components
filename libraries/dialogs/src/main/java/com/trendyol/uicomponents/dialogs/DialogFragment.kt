@@ -22,7 +22,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
         DialogListAdapter(
             dialogArguments.showItemsAsHtml,
             dialogArguments.selectedItemDrawable,
-            dialogArguments.selectedTextColor
+            dialogArguments.selectedTextColor,
+            dialogArguments.showRadioButton
         )
     }
 

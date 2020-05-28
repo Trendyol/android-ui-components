@@ -78,6 +78,7 @@ class DialogsActivity : AppCompatActivity() {
             onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
             selectedItemDrawable = R.drawable.ic_check
             selectedTextColor = R.color.colorPrimary
+            showRadioButton = true
         }
 
         selectionDialog.showDialog(supportFragmentManager)

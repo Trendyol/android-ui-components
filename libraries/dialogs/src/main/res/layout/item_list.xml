@@ -10,20 +10,38 @@
             type="com.trendyol.uicomponents.dialogs.list.DialogListItemViewState" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
         android:padding="@dimen/dialogs_margin_outer">
 
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/imageViewLeftImageDrawable"
+            style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{viewState.getRadioButtonChecked}"
+            android:paddingEnd="@dimen/dialogs_margin_inner"
+            android:visibility="@{viewState.getRadioButtonVisibility}"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/radioButtonItem"
+            tools:src="@tools:sample/avatars"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/radioButtonItem"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/imageViewCheckedDrawable"
             android:text="@{viewState.text}"
             android:textAppearance="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewLeftImageDrawable"
+            app:layout_constraintTop_toTopOf="parent"
             app:textColorResource="@{viewState.getSelectedTextColor()}"
             tools:text="Click to select this item" />
 
@@ -37,6 +55,11 @@
             android:layout_marginStart="@dimen/dialogs_margin_inner"
             android:src="@{viewState.getSelectedItemDrawable(context)}"
             android:visibility="@{viewState.selectedItemDrawableVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/radioButtonItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="1"
             tools:src="@tools:sample/avatars" />
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
