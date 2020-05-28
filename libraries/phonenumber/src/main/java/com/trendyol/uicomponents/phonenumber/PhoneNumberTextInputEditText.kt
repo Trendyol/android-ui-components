@@ -192,7 +192,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
 
     companion object {
         val SUPER_STATE_KEY = "SUPER_STATE_KEY"
-        val STATE_KEY = "SUPER_STATE_KEY"
+        val STATE_KEY = "STATE_KEY"
 
         private const val FIRST_CHARACTER_ZERO = "0"
         private const val CLEAR_SELECTION_INDEX = 0
