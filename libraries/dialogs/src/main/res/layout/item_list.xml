@@ -21,8 +21,6 @@
             style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
             android:checked="@{viewState.getRadioButtonChecked}"
             android:paddingEnd="@dimen/dialogs_margin_inner"
             android:visibility="@{viewState.getRadioButtonVisibility}"
@@ -50,7 +48,6 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewCheckedDrawable"
             style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
-            isVisible="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
