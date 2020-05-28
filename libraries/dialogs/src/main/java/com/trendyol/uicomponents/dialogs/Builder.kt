@@ -71,6 +71,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
     var searchHint: String = ""
     var selectedItemDrawable: Int? = null
     var selectedTextColor: Int? = null
+    var showRadioButton: Boolean = false
 
     internal fun buildSelectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
         SelectionDialogBuilder().apply(block).let {
@@ -87,7 +88,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showClearSearchButton = it.showClearSearchButton,
                     searchHint = it.searchHint,
                     selectedItemDrawable = it.selectedItemDrawable,
-                    selectedTextColor = it.selectedTextColor
+                    selectedTextColor = it.selectedTextColor,
+                    showRadioButton = it.showRadioButton
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener

@@ -11,7 +11,8 @@ data class DialogListItemViewState(
     val showAsHtml: Boolean,
     val selectedItemDrawable: Int?,
     val selectedTextColor: Int?,
-    val isChecked: Boolean
+    val isChecked: Boolean,
+    val showRadioButton: Boolean
 ) {
 
     fun getText(): CharSequence = if (showAsHtml) {
@@ -28,4 +29,9 @@ data class DialogListItemViewState(
 
     fun getSelectedTextColor() =
         if (selectedTextColor == null || isChecked.not()) R.color.primary_text_color else selectedTextColor
+
+    fun getRadioButtonVisibility() =
+        if(showRadioButton) View.VISIBLE else View.GONE
+
+    fun getRadioButtonChecked() = (selectedTextColor == null || isChecked.not()).not()
 }

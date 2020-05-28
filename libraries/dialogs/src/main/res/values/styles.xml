@@ -38,4 +38,11 @@
     <style name="Trendyol.UIComponents.Dialogs.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="buttonCompat">@drawable/selector_radio_button</item>
     </style>
+
+    <!-- Base application theme. -->
+    <style name="Trendyol.UIComponents.Sample.Dialogs" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#F27A1A</item>
+    </style>
+
 </resources>
