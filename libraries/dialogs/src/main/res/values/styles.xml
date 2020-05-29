@@ -43,6 +43,7 @@
     <style name="Trendyol.UIComponents.Sample.Dialogs" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#F27A1A</item>
+        <item name="colorAccent">#666666</item>
     </style>
 
 </resources>
