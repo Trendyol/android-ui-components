@@ -31,7 +31,7 @@ data class DialogListItemViewState(
         if (selectedTextColor == null || isChecked.not()) R.color.primary_text_color else selectedTextColor
 
     fun getRadioButtonVisibility() =
-        if(showRadioButton) View.VISIBLE else View.GONE
+        if (showRadioButton) View.VISIBLE else View.GONE
 
-    fun getRadioButtonChecked() = (selectedTextColor == null || isChecked.not()).not()
+    fun getRadioButtonChecked() = isChecked
 }
