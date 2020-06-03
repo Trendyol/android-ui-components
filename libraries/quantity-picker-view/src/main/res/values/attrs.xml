@@ -30,5 +30,9 @@
             <enum name="horizontal" value="0"/>
             <enum name="vertical" value="1" />
         </attr>
+        <attr name="qpv_buttonVerticalPadding" format="dimension"/>
+        <attr name="qpv_buttonHorizontalPadding" format="dimension" />
+        <attr name="qpv_progressVerticalPadding" format="dimension" />
+        <attr name="qpv_quantityBackgroundVerticalPadding" format="dimension" />
     </declare-styleable>
 </resources>

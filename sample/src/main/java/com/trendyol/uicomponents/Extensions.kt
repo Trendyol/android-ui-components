@@ -19,3 +19,6 @@ fun Context.drawable(@DrawableRes resId: Int): Drawable =
 
 fun Context.asSP(value: Int): Int =
     (value * resources.displayMetrics.scaledDensity).toInt()
+
+fun Context.asDP(value: Int): Int =
+    (value * resources.displayMetrics.density).toInt()

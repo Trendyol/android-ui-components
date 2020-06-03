@@ -1,7 +1,6 @@
-
 <img src="../../images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.0.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.2.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
@@ -45,7 +44,11 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | qpv_subtractIcon | subtractIconDrawable | Icon for subtract, will be visible when currentQuantity is 2 or more. | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml) |
 | qpv_quantityBackground | quantityBackgroundDrawable | Background for quantity text. | `transparent` |
 | qpv_orientation | orientation | Determines view orientation. | 'horizontal` |
-| qpv_collapsible | collapsible | Determines if view is collapsible. | 'false'
+| qpv_collapsible | collapsible | Determines if view is collapsible. | 'false' |
+| qpv_buttonVerticalPadding | buttonVerticalPadding | padding for buttons vertically. | `8dp` |
+| qpv_buttonHorizontalPadding | buttonHorizontalPadding | padding for buttons horizontally. | `8dp` |
+| qpv_progressVerticalPadding | progressVerticalPadding | padding for progress bar vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
+| qpv_quantityBackgroundVerticalPadding | quantityBackgroundVerticalPadding | padding for quantity background vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
 
 # Public methods
 

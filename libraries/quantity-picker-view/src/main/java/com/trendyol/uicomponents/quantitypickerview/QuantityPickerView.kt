@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerBinding
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerVerticalBinding
 
-
 class QuantityPickerView : ConstraintLayout {
 
     var onAddClicked: ((Int) -> Boolean)? = null
@@ -23,11 +22,11 @@ class QuantityPickerView : ConstraintLayout {
     private lateinit var binding: ViewQuantityPickerBinding
 
     constructor(context: Context) : super(context) {
-        initializeView(context, null, 0)
+        initializeView()
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        initializeView(context, attrs, 0)
+        initializeView(attrs)
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
@@ -35,10 +34,10 @@ class QuantityPickerView : ConstraintLayout {
         attrs,
         defStyleAttr
     ) {
-        initializeView(context, attrs, defStyleAttr)
+        initializeView(attrs, defStyleAttr)
     }
 
-    private fun initializeView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int) {
+    private fun initializeView(attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
         val viewState = readAttributes(attrs, defStyleAttr)
         if (isInEditMode) {
             inflateViewForPreview(viewState)
@@ -137,7 +136,7 @@ class QuantityPickerView : ConstraintLayout {
 
     private fun bindRootViewProperties(quantityPickerViewState: QuantityPickerViewState) {
         setBackground(quantityPickerViewState.backgroundDrawable)
-        applyHorizontalPaddingToRootViewIfNeeded(quantityPickerViewState)
+        //applyHorizontalPaddingToRootViewIfNeeded(quantityPickerViewState)
     }
 
     private fun applyHorizontalPaddingToRootViewIfNeeded(viewState: QuantityPickerViewState) {
@@ -262,6 +261,23 @@ class QuantityPickerView : ConstraintLayout {
             val orientation =
                 it.getInt(R.styleable.QuantityPickerView_qpv_orientation, HORIZONTAL_ORIENTATION)
 
+            val buttonHorizontalPadding = it.getDimensionPixelSize(
+                R.styleable.QuantityPickerView_qpv_buttonHorizontalPadding,
+                context.asDP(8)
+            )
+            val buttonVerticalPadding = it.getDimensionPixelSize(
+                R.styleable.QuantityPickerView_qpv_buttonVerticalPadding,
+                context.asDP(8)
+            )
+            val progressVerticalPadding = it.getDimensionPixelSize(
+                R.styleable.QuantityPickerView_qpv_progressVerticalPadding,
+                context.asDP(2)
+            )
+            val quantityBackgroundVerticalPadding = it.getDimensionPixelSize(
+                R.styleable.QuantityPickerView_qpv_quantityBackgroundVerticalPadding,
+                context.asDP(2)
+            )
+
             return QuantityPickerViewState(
                 text = text,
                 textColor = textColor,
@@ -279,10 +295,15 @@ class QuantityPickerView : ConstraintLayout {
                 showLoading = false,
                 quantityBackgroundDrawable = quantityBackground,
                 expansionState = expansionState,
-                orientation = orientation
+                orientation = orientation,
+                buttonHorizontalPadding = buttonHorizontalPadding,
+                buttonVerticalPadding = buttonVerticalPadding,
+                progressVerticalPadding = progressVerticalPadding,
+                quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding
             )
         }
     }
+
     // endregion readAttrs
     companion object {
         const val HORIZONTAL_ORIENTATION = 0
