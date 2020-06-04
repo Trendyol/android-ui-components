@@ -7,6 +7,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.TypedValue
+import android.view.View
 import android.widget.ProgressBar
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatImageView
@@ -49,4 +50,14 @@ internal fun setBackgroundDrawable(imageView: AppCompatImageView, drawable: Draw
 @BindingAdapter("qpv_src")
 internal fun setDrawableSrc(imageView: AppCompatImageView, drawable: Drawable?) {
     imageView.setImageDrawable(drawable)
+}
+
+@BindingAdapter("qpv_horizontalPadding")
+internal fun setHorizontalPadding(view: View, paddingValue: Int) {
+    view.setPadding(paddingValue, view.paddingTop, paddingValue, view.paddingBottom)
+}
+
+@BindingAdapter("qpv_verticalPadding")
+internal fun setVerticalPadding(view: View, paddingValue: Int) {
+    view.setPadding(view.paddingLeft, paddingValue, view.paddingRight, paddingValue)
 }

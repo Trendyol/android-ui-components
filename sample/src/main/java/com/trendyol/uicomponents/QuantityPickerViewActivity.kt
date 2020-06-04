@@ -26,7 +26,11 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             quantityBackgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
             textColor = themeColor(R.attr.colorAccent),
             progressTintColor = themeColor(R.attr.colorAccent),
-            quantityTextColor = themeColor(R.attr.colorPrimary)
+            quantityTextColor = themeColor(R.attr.colorPrimary),
+            buttonHorizontalPadding = asDP(8),
+            buttonVerticalPadding = asDP(8),
+            progressVerticalPadding = asDP(6),
+            quantityBackgroundVerticalPadding = asDP(6)
         )
 
         quantity_picker_view_2.setQuantityPickerViewState(viewState)

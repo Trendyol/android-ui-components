@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.DimenRes
 
 data class QuantityPickerViewState(
     private val text: String,
@@ -22,12 +23,14 @@ data class QuantityPickerViewState(
     private val showLoading: Boolean = false,
     private val quantityBackgroundDrawable: Drawable,
     val expansionState: ExpansionState = ExpansionState.NonCollapsible,
-    val orientation: Int = QuantityPickerView.HORIZONTAL_ORIENTATION
+    val orientation: Int = QuantityPickerView.HORIZONTAL_ORIENTATION,
+    val buttonHorizontalPadding: Int,
+    val buttonVerticalPadding: Int,
+    val progressVerticalPadding: Int,
+    val quantityBackgroundVerticalPadding: Int
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
-
-    private fun isSingleQuantity(): Boolean = currentQuantity == 1
 
     internal fun isLoading(): Boolean = showLoading
 

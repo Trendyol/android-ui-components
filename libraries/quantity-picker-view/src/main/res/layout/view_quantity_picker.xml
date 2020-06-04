@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,65 +13,68 @@
 
     <merge
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         tools:background="@drawable/qpv_shape_default_background"
-        tools:paddingHorizontal="4dp"
         tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_subtract"
-            qpv_src="@{viewState.leftIconDrawable}"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:padding="@dimen/qpv_default_padding"
+            android:layout_height="wrap_content"
             android:visibility="@{viewState.subtractButtonVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/barrier_end"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_horizontalPadding="@{viewState.buttonHorizontalPadding}"
+            bind:qpv_src="@{viewState.leftIconDrawable}"
+            bind:qpv_verticalPadding="@{viewState.buttonVerticalPadding}"
+            tools:paddingHorizontal="8dp"
+            tools:paddingVertical="8dp"
             tools:src="@drawable/qpv_ic_default_remove"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageQuantityBackground"
-            qpv_src="@{viewState.quantityBackgroundDrawable}"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
             android:visibility="@{viewState.quantityBackgroundVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_src="@{viewState.quantityBackgroundDrawable}"
+            bind:qpv_verticalPadding="@{viewState.quantityBackgroundVerticalPadding}"
+            tools:paddingVertical="2dp"
             tools:src="@drawable/qpv_shape_default_background"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
-            qpv_textAppearance="@{viewState.quantityTextAppearance}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:minEms="3"
-            android:singleLine="true"
+            android:maxLines="1"
+            android:minEms="2"
+            app:layout_constraintDimensionRatio="w, 1:1"
             android:text="@{viewState.quantity}"
             android:visibility="@{viewState.quantityVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_textAppearance="@{viewState.quantityTextAppearance}"
             tools:text="1"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/quantityText"
-            qpv_textAppearance="@{viewState.quantityPickerTextAppearance}"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
@@ -83,27 +87,29 @@
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_textAppearance="@{viewState.quantityPickerTextAppearance}"
             tools:text="Add to Cart"
             tools:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            qpv_progressTint="@{viewState.progressTintColor}"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="@{viewState.progressBarVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h 1:1"
             app:layout_constraintEnd_toStartOf="@id/image_add"
             app:layout_constraintStart_toEndOf="@id/image_subtract"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_progressTint="@{viewState.progressTintColor}"
+            bind:qpv_verticalPadding="@{viewState.progressVerticalPadding}"
+            tools:paddingVertical="2dp"
             tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_add"
-            qpv_src="@{viewState.addIconDrawable}"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:padding="@dimen/qpv_default_padding"
+            android:layout_height="wrap_content"
             android:visibility="@{viewState.addButtonVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
@@ -111,6 +117,11 @@
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="@id/barrier_start"
             app:layout_constraintTop_toTopOf="parent"
+            bind:qpv_horizontalPadding="@{viewState.buttonHorizontalPadding}"
+            bind:qpv_src="@{viewState.addIconDrawable}"
+            bind:qpv_verticalPadding="@{viewState.buttonVerticalPadding}"
+            tools:paddingHorizontal="8dp"
+            tools:paddingVertical="8dp"
             tools:src="@drawable/qpv_ic_default_add"
             tools:visibility="visible" />
 
@@ -119,13 +130,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="start"
-            app:constraint_referenced_ids="text,progress_bar" />
+            app:constraint_referenced_ids="imageQuantityBackground,progress_bar" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="end"
-            app:constraint_referenced_ids="text,progress_bar" />
+            app:constraint_referenced_ids="imageQuantityBackground,progress_bar" />
     </merge>
 </layout>
