@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+    <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackground">@android:color/transparent</item>
@@ -39,11 +39,5 @@
         <item name="buttonCompat">@drawable/selector_radio_button</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="Trendyol.UIComponents.Sample.Dialogs" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#F27A1A</item>
-        <item name="colorAccent">#666666</item>
-    </style>
 
 </resources>
