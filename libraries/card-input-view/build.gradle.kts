@@ -45,5 +45,5 @@ dependencies {
 
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.constraintLayout)
-    implementation(Dependencies.androidXMaterial)
+    implementation(Dependencies.material)
 }
