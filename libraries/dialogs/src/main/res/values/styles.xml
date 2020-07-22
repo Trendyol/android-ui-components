@@ -12,6 +12,8 @@
         <item name="behavior_peekHeight">0dp</item>
         <item name="state_collapsed">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>
+
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryCard" parent="Widget.MaterialComponents.CardView">
