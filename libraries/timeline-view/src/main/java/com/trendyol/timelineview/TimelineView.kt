@@ -1,12 +1,14 @@
 package com.trendyol.timelineview
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
-import android.widget.FrameLayout
 import androidx.annotation.Dimension
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.trendyol.timelineview.databinding.ViewTimelineBinding
 
 class TimelineView : ConstraintLayout {
@@ -33,6 +35,9 @@ class TimelineView : ConstraintLayout {
 
     @Dimension
     private var textSize: Float = 0F
+
+    @Dimension
+    private var lineWidth: Float = 0F
 
     private var fontFamily: String = ""
 
@@ -69,6 +74,11 @@ class TimelineView : ConstraintLayout {
                     R.styleable.TimelineView_tlv_textSize,
                     context.resources.getDimension(R.dimen.tlv_default_text_size)
                 )
+            lineWidth =
+                typedArray.getDimension(
+                    R.styleable.TimelineView_tlv_lineWidth,
+                    context.resources.getDimension(R.dimen.tlv_width_lines)
+                )
             fontFamily =
                 typedArray.getString(
                     R.styleable.TimelineView_android_fontFamily
@@ -81,11 +91,16 @@ class TimelineView : ConstraintLayout {
     }
 
     fun setBorderWidth(@Dimension borderWidth: Float?) {
-        this.borderWidth = borderWidth ?: context.resources.getDimension(R.dimen.tlv_default_border_width)
+        this.borderWidth =
+            borderWidth ?: context.resources.getDimension(R.dimen.tlv_default_border_width)
     }
 
     fun setTextSize(@Dimension textSize: Float?) {
         this.textSize = textSize ?: context.resources.getDimension(R.dimen.tlv_default_text_size)
+    }
+
+    fun setLineWidth(@Dimension lineWidth: Float?) {
+        this.lineWidth = lineWidth ?: context.resources.getDimension(R.dimen.tlv_width_lines)
     }
 
     fun setFontFamily(fontFamily: String?) {
@@ -99,6 +114,33 @@ class TimelineView : ConstraintLayout {
         binding.executePendingBindings()
     }
 
+    fun startTooltipAnimation(delay: Long, milliSecondsPerInch: Float) {
+        Handler().postDelayed({
+            binding.recyclerViewTimelineItems.addOnScrollListener(object :
+                RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(
+                    recyclerView: RecyclerView,
+                    newState: Int
+                ) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        binding.recyclerViewTimelineItems.removeOnScrollListener(this)
+                        val layoutManager: RecyclerView.LayoutManager =
+                            binding.recyclerViewTimelineItems.layoutManager ?: return
+                        val smoothScroller = SmoothScroller(context, milliSecondsPerInch)
+                        smoothScroller.targetPosition = -10
+                        layoutManager.startSmoothScroll(smoothScroller)
+                    }
+                }
+            })
+
+            val lm = binding.recyclerViewTimelineItems.layoutManager
+            val smoothScroller = SmoothScroller(context, milliSecondsPerInch)
+            smoothScroller.targetPosition = timelineItemAdapter.itemCount - 1
+            lm?.startSmoothScroll(smoothScroller)
+        }, delay)
+    }
+
     private fun mapTimelineItemsToTimelineItemViewState(items: List<TimelineItem>?)
             : List<TimelineItemViewState> {
         return items?.map { timelineItem ->
@@ -107,6 +149,7 @@ class TimelineView : ConstraintLayout {
                 dotSize = dotSize,
                 borderWidth = borderWidth,
                 textSize = textSize,
+                lineWidth = lineWidth,
                 fontFamily = fontFamily
             )
         } ?: emptyList()

@@ -13,33 +13,37 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        tlv:layout_width="@{itemViewState.getItemWidth(context)}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tlv:layout_width="@{itemViewState.getItemWidth()}"
         tools:layout_width="wrap_content">
 
         <View
             android:id="@+id/viewLeftLine"
-            android:layout_width="@dimen/tlv_width_lines"
+            android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:background="@{itemViewState.getLeftLineColor()}"
             android:visibility="@{itemViewState.getLeftLineVisibility()}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
             app:layout_constraintEnd_toStartOf="@+id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
+            tlv:layout_width="@{itemViewState.lineWidth}"
             tools:background="#000000"
+            tools:layout_width="@dimen/tlv_width_lines"
             tools:visibility="gone" />
 
         <View
             android:id="@+id/viewRightLine"
-            android:layout_width="@dimen/tlv_width_lines"
+            android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:background="@{itemViewState.getRightLineColor()}"
             android:visibility="@{itemViewState.getRightLineVisibility()}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
             app:layout_constraintStart_toEndOf="@+id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
-            tools:background="#000000" />
+            tlv:layout_width="@{itemViewState.lineWidth}"
+            tools:background="#000000"
+            tools:layout_width="@dimen/tlv_width_lines" />
 
         <View
             android:id="@+id/imageViewOutsideShadow"
@@ -103,8 +107,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewOutside"
-            tools:text="İade\nTalebi"
             tlv:fontFamily="@{itemViewState.fontFamily}"
+            tools:text="İade\nTalebi"
             tools:textSize="10sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

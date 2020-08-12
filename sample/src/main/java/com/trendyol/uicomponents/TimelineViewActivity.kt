@@ -19,6 +19,7 @@ class TimelineViewActivity : AppCompatActivity() {
 
         binding.timelineViewClaim.setItems(createClaimTimelineItems())
         binding.timelineViewShipment.setItems(createShipmentTimelineItems())
+        binding.timelineViewClaim.startTooltipAnimation(600, 200f)
     }
 
     private fun createClaimTimelineItems(): List<TimelineItem> {
@@ -59,7 +60,33 @@ class TimelineViewActivity : AppCompatActivity() {
             textColor = colorGray,
             leftLineColor = colorGray
         )
-        return listOf(item1, item2, item3, item4)
+
+        val item5 = TimelineItem(
+            outsideColor = colorGray,
+            insideColor = colorWhite,
+            text = "İade İnceleniyor",
+            textColor = colorGray,
+            leftLineColor = colorGray,
+            rightLineColor = colorGray
+        )
+
+        val item6 = TimelineItem(
+            outsideColor = colorGray,
+            insideColor = colorWhite,
+            text = "İade İnceleniyor",
+            textColor = colorGray,
+            leftLineColor = colorGray,
+            rightLineColor = colorGray
+        )
+
+        val item7 = TimelineItem(
+            outsideColor = colorGray,
+            insideColor = colorWhite,
+            text = "İade Edildi",
+            textColor = colorGray,
+            leftLineColor = colorGray
+        )
+        return listOf(item1, item2, item3, item4, item5, item6, item7)
     }
 
     private fun createShipmentTimelineItems(): List<TimelineItem> {
@@ -96,11 +123,20 @@ class TimelineViewActivity : AppCompatActivity() {
         val item4 = TimelineItem(
             outsideColor = colorGray,
             insideColor = colorWhite,
+            text = "Teslimat Noktasında",
+            textColor = colorGray,
+            leftLineColor = colorGray,
+            rightLineColor = colorGray
+        )
+
+        val item5 = TimelineItem(
+            outsideColor = colorGray,
+            insideColor = colorWhite,
             text = "Teslim Edildi",
             textColor = colorGray,
             leftLineColor = colorGray
         )
-        return listOf(item1, item2, item3, item4)
+        return listOf(item1, item2, item3, item4, item5)
     }
 
     companion object {
