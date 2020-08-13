@@ -4,6 +4,7 @@
         <attr name="tlv_dotSize" format="dimension" />
         <attr name="tlv_borderWidth" format="dimension" />
         <attr name="tlv_textSize" format="dimension" />
+        <attr name="tlv_lineWidth" format="dimension" />
         <attr name="android:fontFamily"  format="string"/>
     </declare-styleable>
 </resources>

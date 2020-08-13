@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/timeline-view.png" width="240"/>
 
-timelineViewVersion = timeline-view-0.1.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+timelineViewVersion = timeline-view-1.0.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## TimelineView
 TimelineView creates a timeline and shows actions over time
@@ -30,6 +30,18 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | `app:tlv_dotSize` | `setDotSize(Float)` | size of each dot item | 16dp | app:tlv_dotSize="20dp"|
 | `app:tlv_borderWidth` | `setBorderWidth(Float)` | width of each dot item's border | 3dp | app:tlv_borderWidth="3dp"|
 | `app:tlv_textSize` | `setTextSize(Float)` | text size of each time line item | 10sp | app:tlv_textSize="12sp"|
+| `app:tlv_lineWidth` | `setLineWidth(Float)` | width of each line between of dots | 25dp | app:tlv_lineWidth="50dp"|
+
+# Public methods
+
+| Method Name |  Parameter | Description |
+| ------------- | ------------- | ------------- |
+| setItems | List<TimelineItem> | To set timeline items |
+| startTooltipAnimation | delay: Long, milliSecondsPerInch: Float | set animation delay, set animation speed |
+| setDotSize | dotSize: Float | To set dotSize programmatically |
+| setBorderWidth | borderWidth: Float | To set borderWidth programmatically |
+| setTextSize | textSize: Float | To set setTextSize programmatically |
+| setLineWidth | lineWidth: Float | To set setLineWidth programmatically |
 
 
 # Contributors

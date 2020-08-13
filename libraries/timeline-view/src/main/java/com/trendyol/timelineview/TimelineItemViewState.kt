@@ -9,6 +9,7 @@ class TimelineItemViewState(
     val dotSize: Float,
     val borderWidth: Float,
     val textSize: Float,
+    val lineWidth: Float,
     val fontFamily: String
 ) {
 
@@ -37,8 +38,8 @@ class TimelineItemViewState(
 
     fun getShadowDotSize(): Float = dotSize + borderWidth
 
-    fun getItemWidth(context: Context): Float =
-        dotSize + borderWidth + (context.resources.getDimension(R.dimen.tlv_width_lines) * 2)
+    fun getItemWidth(): Float =
+        dotSize + borderWidth + lineWidth
 
     companion object {
         private const val hexColorWhite = "#000000"
