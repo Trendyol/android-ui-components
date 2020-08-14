@@ -8,7 +8,7 @@ object Dependencies {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val androidXMaterial = "com.google.android.material:material:1.0.0"
     const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
-    const val circleIndicator = "me.relex:circleindicator:2.1.4"
+    const val circleIndicator = "com.github.MertNYuksel:CircleIndicator:2a2e973374"
     const val glide = "com.github.bumptech.glide:glide:4.10.0"
     const val glideCompiler = "com.github.bumptech.glide:compiler:4.10.0"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.1.0"
