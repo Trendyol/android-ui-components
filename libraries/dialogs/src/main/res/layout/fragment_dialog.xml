@@ -28,7 +28,8 @@
                 android:background="@color/dialogs_gray"
                 android:focusableInTouchMode="true"
                 android:paddingStart="@dimen/dialogs_margin_outer"
-                android:paddingEnd="@dimen/dialogs_margin_outer">
+                android:paddingEnd="@dimen/dialogs_margin_outer"
+                app:isVisible="@{viewState.titleVisible}">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textTitle"
@@ -45,9 +46,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:padding="@dimen/dialogs_margin_inner"
                     app:isVisible="@{viewState.showCloseButton}"
-                    android:background="?selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_close" />
             </LinearLayout>
 
@@ -82,7 +83,6 @@
                         style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dialogs_margin_inner"
                         android:paddingTop="@dimen/dialogs_margin_inner"
                         android:paddingBottom="@dimen/dialogs_margin_inner"
                         android:text="@{viewState.content}"
@@ -98,15 +98,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dialogs_margin_inner"
+                        android:layout_marginTop="@dimen/dialogs_margin_outer"
                         android:background="@color/dialogs_gray"
                         android:hint="@{viewState.searchHint}"
+                        android:imeOptions="actionDone"
                         android:paddingStart="@dimen/dialogs_margin_inner"
                         android:paddingTop="@dimen/dialogs_margin_inner"
                         android:paddingEnd="@dimen/dialogs_margin_outer"
                         android:paddingBottom="@dimen/dialogs_margin_inner"
-                        app:isVisible="@{viewState.searchEnabled}"
-                        android:imeOptions="actionDone"
                         android:singleLine="true"
+                        app:isVisible="@{viewState.searchEnabled}"
                         app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

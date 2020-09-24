@@ -17,6 +17,8 @@ data class DialogViewState(
     val searchHint: String
 ) {
 
+    fun isTitleVisible(): Boolean = title.isNullOrEmpty().not()
+
     fun isLeftButtonVisible(): Boolean = leftButtonText != null
 
     fun isRightButtonVisible(): Boolean = rightButtonText != null
