@@ -41,6 +41,7 @@ dependencies {
     implementation(project(Components.cardInputView))
     implementation(project(Components.quantityPickerView))
     implementation(project(Components.timelineView))
+    implementation(project(Components.fitOptionMessageView))
 
     implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)

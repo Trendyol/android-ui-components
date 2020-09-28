@@ -10,5 +10,6 @@ object Components {
     const val quantityPickerView = ":libraries:quantity-picker-view"
     const val timelineView = ":libraries:timeline-view"
     const val touchDelegator = ":libraries:touch-delegator"
+    const val fitOptionMessageView = ":libraries:fit-option-message-view"
 
 }

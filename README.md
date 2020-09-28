@@ -22,6 +22,7 @@ UI Components includes several custom views for Android platform to make develop
 * [CardInputView](libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 * [QuantityPickerView](libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
 * [TimelineView](libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
+* [FitOptionMessage](libraries/fit-option-message-view): **FitOptionMessageView** for displaying text views with clipped imageviews.
 
 License
 --------

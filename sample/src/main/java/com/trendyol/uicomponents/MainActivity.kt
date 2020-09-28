@@ -41,5 +41,9 @@ class MainActivity : AppCompatActivity() {
         button_timeline_view.setOnClickListener {
             startActivity(Intent(this, TimelineViewActivity::class.java))
         }
+
+        button_fit_option_message_view.setOnClickListener {
+            startActivity(Intent(this, FitOptionMessageViewActivity::class.java))
+        }
     }
 }

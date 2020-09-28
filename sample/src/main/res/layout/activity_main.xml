@@ -98,6 +98,14 @@
                 android:layout_marginTop="8dp"
                 android:text="Timeline View" />
 
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Sample.ButtonStyle"
+                android:id="@+id/button_fit_option_message_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Fit Option Message View" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
