@@ -17,12 +17,12 @@ class FitOptionMessageViewActivity : AppCompatActivity() {
         )
 
         // setting a custom animation
-        binding.fitOptionMessage.revealAnimationProvider = { imageView, textView ->
+        /*binding.fitOptionMessage.revealAnimationProvider = { imageView, textView ->
             imageView.alpha = 0f
             textView.alpha = 0f
             textView.animate().alpha(1f).setDuration(1000).start()
             imageView.animate().alpha(1f).setDuration(1000).start()
         }
-
+*/
     }
 }

@@ -106,19 +106,30 @@ class FitOptionMessageView : LinearLayout {
         imageView.elevation = textView.elevation + 0.01f
     }
 
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val radius = imageView.measuredHeight / 2f
+        adjustMeasureSpec(heightMeasureSpec)
         textView.setPadding(
             initialLeftPaddingOfTextView + cradleMargin.toInt() + radius.toInt(),
             textView.paddingTop,
             textView.paddingRight,
             textView.paddingBottom
         )
-        setMeasuredDimension(
-            measuredWidth - radius.toInt(),
-            measuredHeight
+    }
+
+    private fun adjustMeasureSpec(heightMeasureSpec: Int) {
+        val lp = textView.layoutParams as LayoutParams
+        val radius = imageView.measuredHeight / 2
+
+        val childHeightMeasureSpec = getChildMeasureSpec(
+            heightMeasureSpec,
+            paddingTop + paddingBottom + lp.topMargin + lp.bottomMargin,
+            lp.height
         )
+        val childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth-radius, MeasureSpec.EXACTLY)
+        textView.measure(childWidthMeasureSpec, childHeightMeasureSpec)
     }
 
     private val maskPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
