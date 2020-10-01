@@ -6,6 +6,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.DimenRes
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -80,10 +81,16 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
                 expandAnimator.start()
             } else if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                 collapseAnimator.start()
+                binding.editTextSearch.hideKeyboard()
             }
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
         }
     })
+}
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
 }
