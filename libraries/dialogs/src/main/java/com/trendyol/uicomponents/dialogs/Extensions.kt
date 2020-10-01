@@ -72,7 +72,7 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
             duration = 250
         }
 
-    getBottomSheetBehavior<View>()?.setBottomSheetCallback(object :
+    getBottomSheetBehavior<View>()?.addBottomSheetCallback(object :
         BottomSheetBehavior.BottomSheetCallback() {
 
         override fun onStateChanged(bottomSheet: View, newState: Int) {
