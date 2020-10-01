@@ -77,11 +77,17 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
         BottomSheetBehavior.BottomSheetCallback() {
 
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                expandAnimator.start()
-            } else if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                collapseAnimator.start()
-                binding.editTextSearch.hideKeyboard()
+            when (newState) {
+                BottomSheetBehavior.STATE_EXPANDED -> {
+                    expandAnimator.start()
+                }
+                BottomSheetBehavior.STATE_COLLAPSED -> {
+                    collapseAnimator.start()
+                    binding.editTextSearch.hideKeyboard()
+                }
+                else -> {
+                    binding.editTextSearch.hideKeyboard()
+                }
             }
         }
 
