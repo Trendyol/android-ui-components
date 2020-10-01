@@ -8,7 +8,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.3</item>
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsFloating">false</item>
         <item name="behavior_peekHeight">0dp</item>
         <item name="state_collapsed">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>

@@ -1,12 +1,16 @@
 package com.trendyol.uicomponents.dialogs
 
+import android.app.Dialog
+import android.os.Bundle
 import android.text.SpannableString
+import android.view.View
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
@@ -60,6 +64,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
                 editTextSearch.setOnFocusChangeListener { _, hasFocus ->
                     if (hasFocus) {
                         setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
+                    } else {
+                        editTextSearch.hideKeyboard()
                     }
                 }
 
