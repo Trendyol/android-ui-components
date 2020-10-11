@@ -14,10 +14,14 @@ class DialogListViewModel : ViewModel() {
 
     private val lastChangedItemLiveData: SingleLiveEvent<Int> = SingleLiveEvent()
 
+    private val reselectionItemLiveData: SingleLiveEvent<Int> = SingleLiveEvent()
+
     fun getDialogSearchItemsLiveData(): LiveData<List<Pair<Boolean, CharSequence>>> =
         dialogSearchItemsLiveData
 
     fun getLastChangedItemLiveData(): LiveData<Int> = lastChangedItemLiveData
+
+    fun getReselectionItemLiveData(): LiveData<Int> = reselectionItemLiveData
 
     private var searchQuery: String = ""
 
@@ -57,5 +61,9 @@ class DialogListViewModel : ViewModel() {
             }
             item.copy(first = isSelected)
         }
+    }
+
+    fun onReselection(position: Int) {
+        reselectionItemLiveData.value = position
     }
 }

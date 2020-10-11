@@ -14,6 +14,7 @@ internal class DialogListAdapter(
     private val showRadioButton: Boolean
 ) : ListAdapter<Pair<Boolean, CharSequence>, DialogListAdapter.ItemViewHolder>(ListItemDiffCallback()) {
     var onItemSelectedListener: ((Int) -> Unit)? = null
+    var onItemReselectedListener: ((Int) -> Unit)? = null
 
     fun setItems(list: List<Pair<Boolean, CharSequence>>) {
         submitList(list.toMutableList())
@@ -34,6 +35,8 @@ internal class DialogListAdapter(
             binding.root.setOnClickListener {
                 if (binding.viewState?.isChecked == false) {
                     onItemSelectedListener?.invoke(adapterPosition)
+                } else {
+                    onItemReselectedListener?.invoke(adapterPosition)
                 }
             }
         }
