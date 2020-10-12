@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.color
 import com.trendyol.uicomponents.dialogs.DialogFragment
+import com.trendyol.uicomponents.dialogs.TextPosition
 import com.trendyol.uicomponents.dialogs.agreementDialog
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
@@ -49,6 +50,10 @@ class DialogsActivity : AppCompatActivity() {
             closeButtonListener = infoDialogClosed
             content = SpannableString.valueOf(getSpannableString())
             contentImage = R.mipmap.ic_launcher_round
+            titleTextColor = R.color.civ_error_stroke
+            titleBackgroundColor = R.color.civ_error_background
+            titleTextPosition = TextPosition.CENTER
+            contentTextPosition = TextPosition.END
         }.showDialog(supportFragmentManager)
     }
 
@@ -138,11 +143,11 @@ class DialogsActivity : AppCompatActivity() {
 
     private fun getHtmlString(): String =
         "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
-                "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
-                "<ul>\n" +
-                "<li>The first item in your list</li>\n" +
-                "<li>The second item; <i>italicize</i> key words</li>\n" +
-                "</ul>"
+            "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
+            "<ul>\n" +
+            "<li>The first item in your list</li>\n" +
+            "<li>The second item; <i>italicize</i> key words</li>\n" +
+            "</ul>"
 
     private fun getListItems(): List<Pair<Boolean, String>> =
         mutableListOf<Pair<Boolean, String>>().apply {

@@ -1,7 +1,10 @@
 package com.trendyol.uicomponents.dialogs
 
+import android.content.Context
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
+import com.trendyol.dialog.R
 
 data class DialogViewState(
     val title: String?,
@@ -14,7 +17,11 @@ data class DialogViewState(
     val isListVisible: Boolean,
     val isSearchEnabled: Boolean,
     val isClearSearchButtonVisible: Boolean,
-    val searchHint: String
+    val searchHint: String,
+    val titleBackgroundColor: Int,
+    val titleTextColor: Int,
+    val titleTextPosition: TextPosition,
+    val contentTextPosition: TextPosition
 ) {
 
     fun isTitleVisible(): Boolean = title.isNullOrEmpty().not()
@@ -32,4 +39,24 @@ data class DialogViewState(
     fun isContentVisible(): Boolean = content.isNotEmpty()
 
     fun isContentImageVisible(): Boolean = contentImage?.takeIf { it != 0 } != null
+
+    fun getTitleBackground(context: Context) = ContextCompat.getColor(context, titleBackgroundColor)
+
+    fun getTitleTextColor(context: Context) =  ContextCompat.getColor(context, titleTextColor)
+
+    fun getTitleTextPosition(): Int {
+        return when (titleTextPosition) {
+            TextPosition.CENTER -> 4
+            TextPosition.END -> 3
+            else -> 2
+        }
+    }
+
+    fun getContentTextPosition(): Int {
+        return when (contentTextPosition) {
+            TextPosition.CENTER -> 4
+            TextPosition.END -> 3
+            else -> 2
+        }
+    }
 }

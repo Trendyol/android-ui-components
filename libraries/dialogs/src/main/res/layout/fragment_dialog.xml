@@ -25,7 +25,7 @@
                 android:id="@+id/viewTitleBackground"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/dialogs_gray"
+                android:background="@{viewState.getTitleBackground(context)}"
                 android:focusableInTouchMode="true"
                 android:paddingStart="@dimen/dialogs_margin_outer"
                 android:paddingEnd="@dimen/dialogs_margin_outer"
@@ -38,6 +38,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:textAlignment="@{viewState.getTitleTextPosition}"
+                    android:textColor="@{viewState.getTitleTextColor(context)}"
                     android:text="@{viewState.title}"
                     tools:text="Lorem Ipsum" />
 
@@ -85,6 +87,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/dialogs_margin_inner"
                         android:paddingBottom="@dimen/dialogs_margin_inner"
+                        android:textAlignment="@{viewState.getContentTextPosition}"
                         android:text="@{viewState.content}"
                         app:isVisible="@{viewState.contentVisible}"
                         app:layout_constraintEnd_toEndOf="parent"
