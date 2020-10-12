@@ -39,6 +39,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
     var leftButtonClickListener: ((DialogFragment) -> Unit)? = null
     var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
@@ -89,6 +90,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
         adapter = itemsAdapter.apply {
             onItemSelectedListener =
                 { position -> dialogListViewModel.onSelectionChanged(position) }
+            onItemReselectedListener =
+                { position -> dialogListViewModel.onReselection(position) }
         }
         isNestedScrollingEnabled = false
     }
@@ -123,6 +126,9 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             })
             getLastChangedItemLiveData().observeNonNull(viewLifecycleOwner) { position ->
                 onItemSelectedListener?.invoke(this@DialogFragment, position)
+            }
+            getReselectionItemLiveData().observeNonNull(viewLifecycleOwner) { position ->
+                onItemReselectedListener?.invoke(this@DialogFragment, position)
             }
             setInitialItems(items)
         }

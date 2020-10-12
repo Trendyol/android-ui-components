@@ -66,6 +66,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
     var items: List<Pair<Boolean, CharSequence>> = emptyList()
     var showItemsAsHtml: Boolean = false
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
     var enableSearch: Boolean = false
     var showClearSearchButton: Boolean = false
     var searchHint: String = ""
@@ -93,6 +94,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
+                onItemReselectedListener = it.onItemReselectedListener
             }
 
         }

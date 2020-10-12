@@ -42,6 +42,11 @@ class DialogsActivity : AppCompatActivity() {
             showToast("Selection changed to ${position + 1}th ")
         }
 
+    private val onItemReselectedListener: (DialogFragment, Int) -> Unit =
+        { dialogFragment, position ->
+            showToast("Reselection ${position + 1}th ")
+        }
+
     private fun showInfoDialog() {
         infoDialog {
             title = "Info Dialog Sample"
@@ -76,6 +81,7 @@ class DialogsActivity : AppCompatActivity() {
             items = getListItems()
             showItemsAsHtml = false
             onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+            onItemReselectedListener = this@DialogsActivity.onItemReselectedListener
             selectedItemDrawable = R.drawable.ic_check
             selectedTextColor = R.color.colorPrimary
             showRadioButton = true
@@ -93,6 +99,7 @@ class DialogsActivity : AppCompatActivity() {
             contentImage = android.R.drawable.ic_dialog_email
             items = getListItems()
             onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+            onItemReselectedListener = this@DialogsActivity.onItemReselectedListener
             enableSearch = true
             showClearSearchButton = true
             searchHint = "Hint for search"
@@ -113,6 +120,7 @@ class DialogsActivity : AppCompatActivity() {
                 rightButtonClickListener = this@DialogsActivity.rightButtonClickListener
                 leftButtonClickListener = this@DialogsActivity.leftButtonClickListener
                 onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
+                onItemReselectedListener = this@DialogsActivity.onItemReselectedListener
                 closeButtonListener = this@DialogsActivity.infoDialogClosed
             }
 
