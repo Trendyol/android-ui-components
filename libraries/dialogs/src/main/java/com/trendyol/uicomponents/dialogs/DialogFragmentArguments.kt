@@ -24,7 +24,11 @@ class DialogFragmentArguments(
     val searchHint: String = "",
     @DrawableRes val selectedItemDrawable: Int? = null,
     @ColorRes val selectedTextColor: Int? = null,
-    val showRadioButton: Boolean = false
+    val showRadioButton: Boolean = false,
+    @ColorRes val titleBackgroundColor: Int? = null,
+    @ColorRes val titleTextColor: Int? = null,
+    val titleTextPosition: TextPosition? = null,
+    val contentTextPosition: TextPosition?= null
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)

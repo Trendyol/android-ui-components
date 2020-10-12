@@ -108,7 +108,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             isListVisible = dialogArguments.items?.isNotEmpty() == true,
             isSearchEnabled = dialogArguments.enableSearch,
             isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
-            searchHint = dialogArguments.searchHint
+            searchHint = dialogArguments.searchHint,
+            titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.dialogs_gray,
+            titleTextColor = dialogArguments.titleTextColor ?: R.color.primary_text_color,
+            titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
+            contentTextPosition =  dialogArguments.contentTextPosition ?: TextPosition.START
         )
 
         binding.viewState = viewState

@@ -14,9 +14,14 @@ open class Builder internal constructor() {
 open class InfoDialogBuilder internal constructor() : Builder() {
 
     var content: CharSequence = SpannableString("")
+
     @DrawableRes
     var contentImage: Int? = null
     var showContentAsHtml: Boolean = false
+    var titleBackgroundColor: Int? = null
+    var titleTextColor: Int? = null
+    var titleTextPosition: TextPosition? = null
+    var contentTextPosition: TextPosition? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -27,7 +32,11 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     content = SpannableString(it.content),
                     contentImage = it.contentImage,
-                    showContentAsHtml = it.showContentAsHtml
+                    showContentAsHtml = it.showContentAsHtml,
+                    titleBackgroundColor = it.titleBackgroundColor,
+                    titleTextColor = it.titleTextColor,
+                    titleTextPosition = it.titleTextPosition,
+                    contentTextPosition = it.contentTextPosition
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
             }
