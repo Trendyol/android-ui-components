@@ -9,5 +9,6 @@ include(":libraries:card-input-view")
 include(":libraries:quantity-picker-view")
 include(":libraries:timeline-view")
 include(":libraries:touch-delegator")
+include(":libraries:fit-option-message-view")
 
 rootProject.name = "UI Components"

@@ -10,6 +10,7 @@ UI Components includes several custom views for Android platform to make develop
 <img src="images/uic3.png" width="240"/> <img src="images/uic4.png" width="240"/>
 <img src="images/uic5.png" width="240"/> <img src="images/timeline-view.png" width="240"/>
 <img src="images/suggestion-input-view-1.gif" width="240"/> <img src="images/quantity-picker-view-1.gif" width="240"/>
+<img src="images/fitoptionmessageview.png" width="240"/> <img src="images/fitoptionmessageview.png" width="240"/>
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.
@@ -22,6 +23,7 @@ UI Components includes several custom views for Android platform to make develop
 * [CardInputView](libraries/card-input-view): **CardInputView** for get debit/credit card inputs and validations.
 * [QuantityPickerView](libraries/quantity-picker-view): **QuantityPickerView** for picking quantity easily without keyboard input.
 * [TimelineView](libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
+* [FitOptionMessage](libraries/fit-option-message-view): **FitOptionMessageView** for displaying text views with clipped imageviews.
 
 License
 --------

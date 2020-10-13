@@ -10,5 +10,6 @@ object ComponentVersions {
     const val quantityPickerViewVersion = "1.2.1"
     const val timelineViewVersion = "1.0.0"
     const val touchDelegatorVersion = "1.0.0"
+    const val fitOptionMessageView = "1.0.0"
 
 }

@@ -29,6 +29,8 @@
         <activity android:name=".CardInputViewActivity" />
         <activity android:name=".QuantityPickerViewActivity" />
         <activity android:name=".TimelineViewActivity"/>
+        <activity android:name=".FitOptionMessageViewActivity"/>
+
     </application>
 
 </manifest>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FitOptionMessageView">
+        <attr name="cradleMargin" format="dimension"/>
+        <attr name="revealAnimation" format="boolean"/>
+        <attr name="revealAnimationDuration" format="integer"/>
+
+    </declare-styleable>
+</resources>

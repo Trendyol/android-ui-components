@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:background="@drawable/ic_launcher_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp">
+
+                    <com.trendyol.fitoptionmessageview.FitOptionMessageView
+                        android:id="@+id/fitOptionMessage1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_gravity="center"
+                        android:clipChildren="false"
+                        app:cradleMargin="2dp"
+                        app:revealAnimation="true"
+                        app:revealAnimationDuration="1000">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/shape_card_input_cvv_info_background"
+                            android:tint="@color/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/rounded_corner"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="16dp"
+                            android:text="Test test, test test! Test"
+                            android:textColor="#333333"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+                    </com.trendyol.fitoptionmessageview.FitOptionMessageView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <com.trendyol.fitoptionmessageview.FitOptionMessageView
+                            android:id="@+id/fitOptionMessage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="16dp"
+                            app:cradleMargin="2dp"
+                            app:revealAnimation="true"
+                            app:revealAnimationDuration="1000">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/shape_card_input_cvv_info_background"
+                                android:tint="@color/colorPrimary" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/rounded_corner"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingHorizontal="2dp"
+                                android:paddingVertical="16dp"
+                                android:text="Test test, test test! Test"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="normal" />
+                        </com.trendyol.fitoptionmessageview.FitOptionMessageView>
+                        <com.trendyol.fitoptionmessageview.FitOptionMessageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="16dp"
+                            app:cradleMargin="2dp"
+                            app:revealAnimation="true"
+                            app:revealAnimationDuration="1000">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/shape_card_input_cvv_info_background"
+                                android:tint="@color/colorPrimary" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/rounded_corner"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="16dp"
+                                android:text="Test test, test test! Test"
+                                android:textColor="#333333"
+                                android:textSize="12sp"
+                                android:textStyle="normal" />
+                        </com.trendyol.fitoptionmessageview.FitOptionMessageView>
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>
