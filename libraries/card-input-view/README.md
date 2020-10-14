@@ -17,7 +17,7 @@ allprojects {
 dependencies {  
  implementation "com.github.Trendyol.android-ui-components:card-input-view:$cardInputViewVersion"}
 ```  
-:warning: To use **QuantityPickerView**, you have to enable dataBinding from your project's `build.gradle`.
+:warning: To use **CardInputView**, you have to enable dataBinding from your project's `build.gradle`.
 
 ## Usage
 You can inflate **CardInputView** via XML or programmatically. View can be configurable either in XML or setting a ViewState.
