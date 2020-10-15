@@ -278,6 +278,8 @@ class QuantityPickerView : ConstraintLayout {
                 context.asDP(2)
             )
 
+            val alwaysSubtractIcon = it.getBoolean(R.styleable.QuantityPickerView_qpv_alwaysSubtractIcon, false)
+
             return QuantityPickerViewState(
                 text = text,
                 textColor = textColor,
@@ -299,7 +301,8 @@ class QuantityPickerView : ConstraintLayout {
                 buttonHorizontalPadding = buttonHorizontalPadding,
                 buttonVerticalPadding = buttonVerticalPadding,
                 progressVerticalPadding = progressVerticalPadding,
-                quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding
+                quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding,
+                alwaysSubtractIcon = alwaysSubtractIcon
             )
         }
     }

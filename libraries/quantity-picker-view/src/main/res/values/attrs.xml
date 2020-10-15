@@ -34,5 +34,6 @@
         <attr name="qpv_buttonHorizontalPadding" format="dimension" />
         <attr name="qpv_progressVerticalPadding" format="dimension" />
         <attr name="qpv_quantityBackgroundVerticalPadding" format="dimension" />
+        <attr name="qpv_alwaysSubtractIcon" format="boolean" />
     </declare-styleable>
 </resources>

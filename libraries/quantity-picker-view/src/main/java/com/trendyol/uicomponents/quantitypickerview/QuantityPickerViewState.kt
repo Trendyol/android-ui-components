@@ -27,7 +27,8 @@ data class QuantityPickerViewState(
     val buttonHorizontalPadding: Int,
     val buttonVerticalPadding: Int,
     val progressVerticalPadding: Int,
-    val quantityBackgroundVerticalPadding: Int
+    val quantityBackgroundVerticalPadding: Int,
+    val alwaysSubtractIcon: Boolean = false
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
@@ -35,7 +36,7 @@ data class QuantityPickerViewState(
     internal fun isLoading(): Boolean = showLoading
 
     fun getLeftIconDrawable(): Drawable =
-        if (currentQuantity <= 1) removeIconDrawable else subtractIconDrawable
+        if (currentQuantity <= 1 && alwaysSubtractIcon.not()) removeIconDrawable else subtractIconDrawable
 
     fun getAddButtonVisibility(): Int =
         if (isInQuantityMode() || expansionState is ExpansionState.Collapsible || showLoading) View.VISIBLE else View.GONE

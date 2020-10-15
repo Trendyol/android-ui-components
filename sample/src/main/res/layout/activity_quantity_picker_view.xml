@@ -45,6 +45,7 @@
                 app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityTextSize="14sp"
                 app:qpv_text="Add to Cart"
+                app:qpv_alwaysSubtractIcon="true"
                 app:qpv_textSize="12sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
