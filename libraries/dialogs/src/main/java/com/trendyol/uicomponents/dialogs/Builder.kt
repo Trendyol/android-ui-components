@@ -9,6 +9,7 @@ open class Builder internal constructor() {
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
+    var onCloseButtonClickListener: ((DialogFragment) -> Unit)? = null
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -39,6 +40,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     contentTextPosition = it.contentTextPosition
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
+                onCloseButtonClickListener = it.onCloseButtonClickListener
             }
         }
     }
@@ -66,6 +68,7 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                 closeButtonListener = it.closeButtonListener
                 rightButtonClickListener = it.rightButtonClickListener
                 leftButtonClickListener = it.leftButtonClickListener
+                onCloseButtonClickListener = it.onCloseButtonClickListener
             }
         }
 }
@@ -104,6 +107,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
                 onItemReselectedListener = it.onItemReselectedListener
+                onCloseButtonClickListener = it.onCloseButtonClickListener
             }
 
         }

@@ -48,6 +48,11 @@ class DialogsActivity : AppCompatActivity() {
             showToast("Reselection ${position + 1}th ")
         }
 
+    private val onCloseButtonClickListener: (DialogFragment) -> Unit =
+        { dialogFragment ->
+            showToast("Close Button Clicked")
+        }
+
     private fun showInfoDialog() {
         infoDialog {
             title = "Info Dialog Sample"
@@ -59,6 +64,7 @@ class DialogsActivity : AppCompatActivity() {
             titleBackgroundColor = R.color.civ_error_background
             titleTextPosition = TextPosition.CENTER
             contentTextPosition = TextPosition.END
+            onCloseButtonClickListener = this@DialogsActivity.onCloseButtonClickListener
         }.showDialog(supportFragmentManager)
     }
 
@@ -71,6 +77,7 @@ class DialogsActivity : AppCompatActivity() {
             showContentAsHtml = true
             rightButtonClickListener = this@DialogsActivity.rightButtonClickListener
             leftButtonClickListener = this@DialogsActivity.leftButtonClickListener
+            onCloseButtonClickListener = this@DialogsActivity.onCloseButtonClickListener
         }
 
         agreementDialog.showDialog(supportFragmentManager)
@@ -90,6 +97,7 @@ class DialogsActivity : AppCompatActivity() {
             selectedItemDrawable = R.drawable.ic_check
             selectedTextColor = R.color.colorPrimary
             showRadioButton = true
+            onCloseButtonClickListener = this@DialogsActivity.onCloseButtonClickListener
         }
 
         selectionDialog.showDialog(supportFragmentManager)
@@ -110,6 +118,7 @@ class DialogsActivity : AppCompatActivity() {
             searchHint = "Hint for search"
             selectedItemDrawable = R.drawable.ic_check
             selectedTextColor = R.color.colorPrimary
+            onCloseButtonClickListener = this@DialogsActivity.onCloseButtonClickListener
         }.showDialog(supportFragmentManager)
     }
 
@@ -127,6 +136,7 @@ class DialogsActivity : AppCompatActivity() {
                 onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
                 onItemReselectedListener = this@DialogsActivity.onItemReselectedListener
                 closeButtonListener = this@DialogsActivity.infoDialogClosed
+                onCloseButtonClickListener = this@DialogsActivity.onCloseButtonClickListener
             }
 
 

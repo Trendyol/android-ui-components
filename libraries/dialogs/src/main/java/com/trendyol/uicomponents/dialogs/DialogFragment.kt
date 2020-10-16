@@ -40,6 +40,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
     var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onCloseButtonClickListener: ((DialogFragment) -> Unit)? = null
 
     override fun getLayoutResId(): Int = R.layout.fragment_dialog
 
@@ -52,6 +53,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             imageClose.setOnClickListener {
                 dismiss()
                 closeButtonListener?.invoke(this@DialogFragment)
+                onCloseButtonClickListener?.invoke(this@DialogFragment)
             }
             buttonLeft.setOnClickListener {
                 leftButtonClickListener?.invoke(this@DialogFragment)
