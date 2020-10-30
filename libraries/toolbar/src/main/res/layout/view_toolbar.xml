@@ -44,7 +44,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
             android:ellipsize="end"
-            android:gravity="bottom"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="@{viewState.upperLeftText}"
             app:layout_constraintBottom_toTopOf="@id/textLeftDown"
@@ -58,14 +58,15 @@
             app:toolbarIsVisible="@{viewState.upperLeftTextVisible}"
             app:toolbarTextAppearance="@{viewState.upperLeftTextAppearance}"
             app:toolbar_layout_marginStart="@{viewState.upperLeftTextMarginStartInPixel}"
-            tools:text="Left Action" />
+            tools:text="Left Action"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textLeftDown"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
-            android:gravity="top"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="@{viewState.lowerLeftText}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +79,8 @@
             app:toolbarIsVisible="@{viewState.lowerLeftTextVisible}"
             app:toolbarTextAppearance="@{viewState.lowerLeftTextAppearance}"
             app:toolbar_layout_marginStart="@{viewState.lowerLeftTextMarginStartInPixel}"
-            tools:text="Left Action down" />
+            tools:text="Left Action down"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textMiddle"
@@ -115,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:enabled="@{viewState.isUpperRightTextEnabled}"
-            android:gravity="bottom"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="@{viewState.upperRightText}"
             app:layout_constraintBottom_toTopOf="@id/textRightDown"
@@ -126,13 +128,14 @@
             app:toolbarIsVisible="@{viewState.upperRightTextVisible}"
             app:toolbarTextAppearance="@{viewState.getRightTextAppearance()}"
             app:toolbar_layout_marginEnd="@{viewState.upperRightTextMarginEndInPixel}"
-            tools:text="Right Action" />
+            tools:text="Right Action"
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textRightDown"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:gravity="top"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="@{viewState.lowerRightText}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -143,7 +146,7 @@
             app:toolbarTextAppearance="@{viewState.lowerRightTextAppearance}"
             app:toolbar_layout_marginEnd="@{viewState.lowerRightTextMarginEndInPixel}"
             tools:text="Right Action down"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageRight"
