@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.content.Context
+import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -46,17 +47,19 @@ data class DialogViewState(
 
     fun getTitleTextPosition(): Int {
         return when (titleTextPosition) {
-            TextPosition.CENTER -> 4
-            TextPosition.END -> 3
-            else -> 2
+            TextPosition.CENTER -> View.TEXT_ALIGNMENT_CENTER
+            TextPosition.END -> View.TEXT_ALIGNMENT_TEXT_END
+            TextPosition.START -> View.TEXT_ALIGNMENT_TEXT_START
+            else -> View.TEXT_ALIGNMENT_INHERIT
         }
     }
 
     fun getContentTextPosition(): Int {
         return when (contentTextPosition) {
-            TextPosition.CENTER -> 4
-            TextPosition.END -> 3
-            else -> 2
+            TextPosition.CENTER -> View.TEXT_ALIGNMENT_CENTER
+            TextPosition.END -> View.TEXT_ALIGNMENT_TEXT_END
+            TextPosition.START -> View.TEXT_ALIGNMENT_TEXT_START
+            else -> View.TEXT_ALIGNMENT_INHERIT
         }
     }
 }
