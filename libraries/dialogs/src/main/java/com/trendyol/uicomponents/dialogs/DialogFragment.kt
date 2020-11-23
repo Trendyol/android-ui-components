@@ -1,16 +1,14 @@
 package com.trendyol.uicomponents.dialogs
 
-import android.app.Dialog
-import android.os.Bundle
 import android.text.SpannableString
-import android.view.View
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
@@ -59,6 +57,9 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             buttonRight.setOnClickListener {
                 rightButtonClickListener?.invoke(this@DialogFragment)
             }
+
+            textContent.autoLinkMask = Linkify.ALL
+            textContent.movementMethod = LinkMovementMethod.getInstance()
 
             dialogArguments.items?.let { items ->
                 initializeRecyclerView()
@@ -112,7 +113,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.dialogs_gray,
             titleTextColor = dialogArguments.titleTextColor ?: R.color.primary_text_color,
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
-            contentTextPosition =  dialogArguments.contentTextPosition ?: TextPosition.START
+            contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START
         )
 
         binding.viewState = viewState

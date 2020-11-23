@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
-import com.trendyol.dialog.R
 
 data class DialogViewState(
     val title: String?,
@@ -31,7 +30,7 @@ data class DialogViewState(
     fun isRightButtonVisible(): Boolean = rightButtonText != null
 
     fun getContent(): CharSequence = if (showContentAsHtml) {
-        HtmlCompat.fromHtml(content.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+        HtmlCompat.fromHtml(content.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     } else {
         content
     }
@@ -42,7 +41,7 @@ data class DialogViewState(
 
     fun getTitleBackground(context: Context) = ContextCompat.getColor(context, titleBackgroundColor)
 
-    fun getTitleTextColor(context: Context) =  ContextCompat.getColor(context, titleTextColor)
+    fun getTitleTextColor(context: Context) = ContextCompat.getColor(context, titleTextColor)
 
     fun getTitleTextPosition(): Int {
         return when (titleTextPosition) {
