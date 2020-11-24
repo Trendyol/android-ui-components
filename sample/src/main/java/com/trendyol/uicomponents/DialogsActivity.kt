@@ -142,12 +142,18 @@ class DialogsActivity : AppCompatActivity() {
             .bold {
                 append(" Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
             }
+            .append("trendyol@trendyol.com")
+            .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+            .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+            .append("trendyol.com")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
             .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-            .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-            .append(" Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+            .append("+905066979797")
+
+
+
 
     private fun getHtmlString(): String =
         "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
@@ -155,6 +161,7 @@ class DialogsActivity : AppCompatActivity() {
             "<ul>\n" +
             "<li>The first item in your list</li>\n" +
             "<li>The second item; <i>italicize</i> key words</li>\n" +
+            "<a href=\"https://www.trendyol.com/\">Visit Trendyol!</a>" +
             "</ul>"
 
     private fun getListItems(): List<Pair<Boolean, String>> =
