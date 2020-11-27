@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-2.png" width="240"/>
   
-$cardInputViewVersion = card-input-view-1.0.5 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$cardInputViewVersion = card-input-view-1.1.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## CardInputView  
 CardInputView is custom view for Master or Visa debit/credit card inputs. It can verify card number, expire date and CVV for you.
