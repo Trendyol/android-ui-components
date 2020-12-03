@@ -34,7 +34,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
     }
 
     private fun initializeView() {
-        inputType = InputType.TYPE_CLASS_PHONE
+        inputType = InputType.TYPE_CLASS_NUMBER
         maxLines = 1
         setSingleLine()
         setOnFocusChangeListener { _, hasFocus ->
@@ -120,7 +120,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
 
                     it.primaryClip?.let { clipData ->
                         val text = clipData.getItemAt(0)?.text.toString()
-                        val clearedText = readPhoneNumberFromClipboardAsDigitAndTurkishStandart(text)
+                        val clearedText = readPhoneNumberFromClipboardAsDigitAndTurkishStandard(text)
                         it.setPrimaryClip(ClipData.newPlainText(EMPTY, clearedText))
                     }
                 }
@@ -129,7 +129,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         return super.onTextContextMenuItem(id)
     }
 
-    private fun readPhoneNumberFromClipboardAsDigitAndTurkishStandart(text: String): String {
+    private fun readPhoneNumberFromClipboardAsDigitAndTurkishStandard(text: String): String {
         val digitsText = text.digitsOnly()
         val digitsTextWithoutZeros = digitsText.replaceLeadingZeros()
         val clipboardText = if (digitsTextWithoutZeros.length >= EXPECTED_TURKISH_PHONE_NUMBER_LENGTH) {
