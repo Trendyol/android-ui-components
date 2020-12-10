@@ -5,7 +5,7 @@ object ComponentVersions {
     const val ratingBarVersion = "1.0.2"
     const val imageSliderVersion = "1.0.5"
     const val phoneNumberVersion = "1.0.2"
-    const val dialogsVersion = "1.1.0"
+    const val dialogsVersion = "1.1.1"
     const val cardInputViewVersion = "1.1.2"
     const val quantityPickerViewVersion = "1.2.1"
     const val timelineViewVersion = "1.0.0"
