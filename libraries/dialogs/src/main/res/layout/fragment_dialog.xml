@@ -96,6 +96,26 @@
                         app:layout_constraintTop_toBottomOf="@id/imageContent"
                         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
 
+                    <WebView
+                        android:id="@+id/webViewContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dialogs_margin_inner"
+                        android:paddingBottom="@dimen/dialogs_margin_inner"
+                        app:isVisible="@{viewState.webViewContentVisible}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textContent"
+                        app:loadWebViewContent="@{viewState.webViewContent}"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/barrierContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="bottom"
+                        app:constraint_referenced_ids="textContent,webViewContent" />
+
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/editTextSearch"
                         style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
@@ -115,7 +135,7 @@
                         app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textContent"
+                        app:layout_constraintTop_toBottomOf="@id/barrierContent"
                         tools:hint="Your search query" />
 
                     <androidx.appcompat.widget.AppCompatImageView

@@ -28,7 +28,8 @@ class DialogFragmentArguments(
     @ColorRes val titleBackgroundColor: Int? = null,
     @ColorRes val titleTextColor: Int? = null,
     val titleTextPosition: TextPosition? = null,
-    val contentTextPosition: TextPosition?= null
+    val contentTextPosition: TextPosition?= null,
+    val webViewContent: WebViewContent? = null
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)
