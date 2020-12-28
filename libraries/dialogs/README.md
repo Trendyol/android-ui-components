@@ -40,7 +40,7 @@ Simple dialog to show information, error or text.
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
 | `contentImage` | Int | Drawable resource id of an visual, will be shown on top of `content` | 0 |
-| `webViewContent` | WebViewContent | If you provide a webview content such as Html data content orl url , that will be shown in the webview. | null |
+| `webViewContent` | WebViewContent | If you provide a webview content such as Html data content or url , that will be shown in the webview. | null |
   
 Sample usage:
  ```kotlin 
