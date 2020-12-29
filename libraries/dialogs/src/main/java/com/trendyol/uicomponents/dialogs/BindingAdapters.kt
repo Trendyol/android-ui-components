@@ -36,7 +36,7 @@ internal fun WebView.loadWebViewContent(webViewContent: WebViewContent?) {
     webViewContent?.also { content ->
         when (content) {
             is WebViewContent.UrlContent -> loadUrl(content.url)
-            is WebViewContent.DataContent -> loadData(content.data, "text/html", "UTF-8")
+            is WebViewContent.DataContent -> loadDataWithBaseURL("",content.data, "text/html", "UTF-8",null)
         }
     }
 }
