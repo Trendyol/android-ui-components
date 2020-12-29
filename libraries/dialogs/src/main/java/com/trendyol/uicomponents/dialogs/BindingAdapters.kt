@@ -1,15 +1,13 @@
 package com.trendyol.uicomponents.dialogs
 
-import android.content.Context
 import android.view.View
+import android.webkit.WebView
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 
 @BindingAdapter("drawableResource")
 internal fun AppCompatImageView.setDrawableResource(@DrawableRes drawableResId: Int?) {
@@ -30,4 +28,15 @@ internal fun View.setVisibility(isVisible: Boolean) {
 @BindingAdapter("textColorResource")
 internal fun TextView.setTextColorResource(@ColorRes colorRes: Int) {
     setTextColor(ContextCompat.getColor(context, colorRes))
+}
+
+
+@BindingAdapter("loadWebViewContent")
+internal fun WebView.loadWebViewContent(webViewContent: WebViewContent?) {
+    webViewContent?.also { content ->
+        when (content) {
+            is WebViewContent.UrlContent -> loadUrl(content.url)
+            is WebViewContent.DataContent -> loadData(content.data, "text/html", "UTF-8")
+        }
+    }
 }

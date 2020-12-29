@@ -113,7 +113,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.dialogs_gray,
             titleTextColor = dialogArguments.titleTextColor ?: R.color.primary_text_color,
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
-            contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START
+            contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START,
+            webViewContent = dialogArguments.webViewContent
         )
 
         binding.viewState = viewState

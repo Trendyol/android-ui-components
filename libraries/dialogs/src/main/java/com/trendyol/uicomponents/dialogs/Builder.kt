@@ -22,6 +22,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var titleTextColor: Int? = null
     var titleTextPosition: TextPosition? = null
     var contentTextPosition: TextPosition? = null
+    var webViewContent: WebViewContent? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -36,7 +37,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     titleBackgroundColor = it.titleBackgroundColor,
                     titleTextColor = it.titleTextColor,
                     titleTextPosition = it.titleTextPosition,
-                    contentTextPosition = it.contentTextPosition
+                    contentTextPosition = it.contentTextPosition,
+                    webViewContent = it.webViewContent
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
             }
@@ -61,7 +63,8 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     rightButtonText = it.rightButtonText,
-                    leftButtonText = it.leftButtonText
+                    leftButtonText = it.leftButtonText,
+                    webViewContent = it.webViewContent
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 rightButtonClickListener = it.rightButtonClickListener
@@ -99,7 +102,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     searchHint = it.searchHint,
                     selectedItemDrawable = it.selectedItemDrawable,
                     selectedTextColor = it.selectedTextColor,
-                    showRadioButton = it.showRadioButton
+                    showRadioButton = it.showRadioButton,
+                    webViewContent = it.webViewContent
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
