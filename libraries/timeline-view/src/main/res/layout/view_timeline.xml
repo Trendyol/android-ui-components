@@ -19,11 +19,11 @@
             android:id="@+id/recyclerViewTimelineItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_timeline"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:timelineItems="@{viewState.getTimelineItems()}" />
+            app:timelineItems="@{viewState.getTimelineItems()}"
+            app:timelineOrientation="@{viewState.timelineOrientation}"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_timeline" />
 
     </merge>
 </layout>

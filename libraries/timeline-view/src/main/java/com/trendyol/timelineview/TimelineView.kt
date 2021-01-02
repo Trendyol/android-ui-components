@@ -43,6 +43,8 @@ class TimelineView : ConstraintLayout {
 
     private val binding: ViewTimelineBinding = inflate(R.layout.view_timeline)
 
+    private var timelineOrientation: TimelineOrientation = TimelineOrientation.HORIZONTAL
+
     private val timelineItemAdapter by lazy(LazyThreadSafetyMode.NONE) {
         TimelineItemAdapter()
     }
@@ -83,6 +85,12 @@ class TimelineView : ConstraintLayout {
                 typedArray.getString(
                     R.styleable.TimelineView_android_fontFamily
                 ) ?: context.resources.getString(R.string.tlv_default_font)
+            timelineOrientation =
+                if (typedArray.getInt(R.styleable.TimelineView_tlv_orientation, 0) == 0) {
+                    TimelineOrientation.HORIZONTAL
+                } else {
+                    TimelineOrientation.VERTICAL
+                }
         }
     }
 
@@ -107,8 +115,13 @@ class TimelineView : ConstraintLayout {
         this.fontFamily = fontFamily ?: context.resources.getString(R.string.tlv_default_font)
     }
 
+    fun setOrientation(timelineOrientation: TimelineOrientation) {
+        this.timelineOrientation = timelineOrientation
+    }
+
     fun setItems(items: List<TimelineItem>?) {
         binding.viewState = TimelineViewState(
+            timelineOrientation = timelineOrientation,
             timelineItems = mapTimelineItemsToTimelineItemViewState(items)
         )
         binding.executePendingBindings()

@@ -6,5 +6,9 @@
         <attr name="tlv_textSize" format="dimension" />
         <attr name="tlv_lineWidth" format="dimension" />
         <attr name="android:fontFamily"  format="string"/>
+        <attr name="tlv_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
     </declare-styleable>
 </resources>

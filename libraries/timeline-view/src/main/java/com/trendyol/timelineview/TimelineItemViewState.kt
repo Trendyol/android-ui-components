@@ -1,6 +1,5 @@
 package com.trendyol.timelineview
 
-import android.content.Context
 import android.graphics.Color
 import android.view.View
 
@@ -22,15 +21,15 @@ class TimelineItemViewState(
 
     fun getTextColor(): Int = Color.parseColor(timelineItem.textColor)
 
-    fun getLeftLineColor(): Int = Color.parseColor(timelineItem.leftLineColor ?: hexColorWhite)
+    fun getLeftLineColor(): Int = Color.parseColor(timelineItem.startLineColor ?: hexColorWhite)
 
-    fun getRightLineColor(): Int = Color.parseColor(timelineItem.rightLineColor ?: hexColorWhite)
+    fun getRightLineColor(): Int = Color.parseColor(timelineItem.endLineColor ?: hexColorWhite)
 
     fun getLeftLineVisibility(): Int =
-        if (timelineItem.leftLineColor != null) View.VISIBLE else View.GONE
+        if (timelineItem.startLineColor != null) View.VISIBLE else View.GONE
 
     fun getRightLineVisibility(): Int =
-        if (timelineItem.rightLineColor != null) View.VISIBLE else View.GONE
+        if (timelineItem.endLineColor != null) View.VISIBLE else View.GONE
 
     fun getOutsideDotSize(): Float = dotSize
 
