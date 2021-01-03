@@ -19,11 +19,11 @@
         tools:layout_width="wrap_content">
 
         <View
-            android:id="@+id/viewLeftLine"
+            android:id="@+id/viewStartLine"
             android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:background="@{itemViewState.getLeftLineColor()}"
-            android:visibility="@{itemViewState.getLeftLineVisibility()}"
+            android:background="@{itemViewState.getStartLineColor()}"
+            android:visibility="@{itemViewState.getStartLineVisibility()}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
             app:layout_constraintEnd_toStartOf="@+id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
@@ -33,11 +33,11 @@
             tools:visibility="gone" />
 
         <View
-            android:id="@+id/viewRightLine"
+            android:id="@+id/viewEndLine"
             android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:background="@{itemViewState.getRightLineColor()}"
-            android:visibility="@{itemViewState.getRightLineVisibility()}"
+            android:background="@{itemViewState.getEndLineColor()}"
+            android:visibility="@{itemViewState.getEndLineVisibility()}"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
             app:layout_constraintStart_toEndOf="@+id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"

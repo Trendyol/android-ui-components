@@ -17,11 +17,11 @@
         android:layout_height="wrap_content">
 
         <View
-            android:id="@+id/viewLeftLine"
+            android:id="@+id/viewStartLine"
             android:layout_width="2dp"
             android:layout_height="wrap_content"
-            android:background="@{itemViewState.getLeftLineColor()}"
-            android:visibility="@{itemViewState.getLeftLineVisibility()}"
+            android:background="@{itemViewState.getStartLineColor()}"
+            android:visibility="@{itemViewState.getStartLineVisibility()}"
             app:layout_constraintEnd_toEndOf="@id/imageViewOutsideShadow"
             app:layout_constraintStart_toStartOf="@id/imageViewOutsideShadow"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,11 +31,11 @@
             tools:visibility="gone" />
 
         <View
-            android:id="@+id/viewRightLine"
+            android:id="@+id/viewEndLine"
             android:layout_width="2dp"
             android:layout_height="wrap_content"
-            android:background="@{itemViewState.getRightLineColor()}"
-            android:visibility="@{itemViewState.getRightLineVisibility()}"
+            android:background="@{itemViewState.getEndLineColor()}"
+            android:visibility="@{itemViewState.getEndLineVisibility()}"
             app:layout_constraintEnd_toEndOf="@id/imageViewOutsideShadow"
             app:layout_constraintStart_toStartOf="@id/imageViewOutsideShadow"
             app:layout_constraintTop_toBottomOf="@id/imageViewOutsideShadow"
@@ -51,7 +51,7 @@
             android:background="@drawable/shape_oval"
             android:backgroundTint="@{itemViewState.getInsideColor()}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewLeftLine"
+            app:layout_constraintTop_toBottomOf="@id/viewStartLine"
             tlv:layout_height="@{itemViewState.getShadowDotSize()}"
             tlv:layout_width="@{itemViewState.getShadowDotSize()}"
             tools:backgroundTint="#bb00"

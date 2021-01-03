@@ -21,14 +21,14 @@ class TimelineItemViewState(
 
     fun getTextColor(): Int = Color.parseColor(timelineItem.textColor)
 
-    fun getLeftLineColor(): Int = Color.parseColor(timelineItem.startLineColor ?: hexColorWhite)
+    fun getStartLineColor(): Int = Color.parseColor(timelineItem.startLineColor ?: hexColorWhite)
 
-    fun getRightLineColor(): Int = Color.parseColor(timelineItem.endLineColor ?: hexColorWhite)
+    fun getEndLineColor(): Int = Color.parseColor(timelineItem.endLineColor ?: hexColorWhite)
 
-    fun getLeftLineVisibility(): Int =
+    fun getStartLineVisibility(): Int =
         if (timelineItem.startLineColor != null) View.VISIBLE else View.GONE
 
-    fun getRightLineVisibility(): Int =
+    fun getEndLineVisibility(): Int =
         if (timelineItem.endLineColor != null) View.VISIBLE else View.GONE
 
     fun getOutsideDotSize(): Float = dotSize
