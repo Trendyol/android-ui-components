@@ -29,7 +29,7 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorRed,
             text = "İade Talebi",
             textColor = colorRed,
-            rightLineColor = colorRed
+            endLineColor = colorRed
         )
 
         //active
@@ -38,8 +38,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorRed,
             text = "İade Kargoya Verildi",
             textColor = colorRed,
-            leftLineColor = colorRed,
-            rightLineColor = colorGray
+            startLineColor = colorRed,
+            endLineColor = colorGray
         )
 
         //passive
@@ -48,8 +48,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "İade İnceleniyor",
             textColor = colorGray,
-            leftLineColor = colorGray,
-            rightLineColor = colorGray
+            startLineColor = colorGray,
+            endLineColor = colorGray
         )
 
         //passive
@@ -58,7 +58,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "İade Edildi",
             textColor = colorGray,
-            leftLineColor = colorGray
+            startLineColor = colorGray,
+            endLineColor = colorGray
         )
 
         val item5 = TimelineItem(
@@ -66,8 +67,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "İade İnceleniyor",
             textColor = colorGray,
-            leftLineColor = colorGray,
-            rightLineColor = colorGray
+            startLineColor = colorGray,
+            endLineColor = colorGray
         )
 
         val item6 = TimelineItem(
@@ -75,8 +76,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "İade İnceleniyor",
             textColor = colorGray,
-            leftLineColor = colorGray,
-            rightLineColor = colorGray
+            startLineColor = colorGray,
+            endLineColor = colorGray
         )
 
         val item7 = TimelineItem(
@@ -84,7 +85,7 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "İade Edildi",
             textColor = colorGray,
-            leftLineColor = colorGray
+            startLineColor = colorGray
         )
         return listOf(item1, item2, item3, item4, item5, item6, item7)
     }
@@ -96,7 +97,7 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorGreen,
             text = "Siparişiniz Alındı",
             textColor = colorGreen,
-            rightLineColor = colorGreen
+            endLineColor = colorGreen
         )
 
         //active
@@ -105,8 +106,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorGreen,
             text = "Siparişiniz Hazırlanıyor",
             textColor = colorGreen,
-            leftLineColor = colorGreen,
-            rightLineColor = colorGreen
+            startLineColor = colorGreen,
+            endLineColor = colorGreen
         )
 
         //passive
@@ -115,8 +116,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorGreen,
             text = "Kargoya Verildi",
             textColor = colorGreen,
-            leftLineColor = colorGreen,
-            rightLineColor = colorGray
+            startLineColor = colorGreen,
+            endLineColor = colorGray
         )
 
         //passive
@@ -125,8 +126,8 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "Teslimat Noktasında",
             textColor = colorGray,
-            leftLineColor = colorGray,
-            rightLineColor = colorGray
+            startLineColor = colorGray,
+            endLineColor = colorGray
         )
 
         val item5 = TimelineItem(
@@ -134,7 +135,7 @@ class TimelineViewActivity : AppCompatActivity() {
             insideColor = colorWhite,
             text = "Teslim Edildi",
             textColor = colorGray,
-            leftLineColor = colorGray
+            startLineColor = colorGray
         )
         return listOf(item1, item2, item3, item4, item5)
     }

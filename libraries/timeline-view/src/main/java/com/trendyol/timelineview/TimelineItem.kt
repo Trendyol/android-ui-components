@@ -5,6 +5,6 @@ data class TimelineItem(
     val insideColor: String,
     val text: String,
     val textColor: String,
-    val leftLineColor: String? = null,
-    val rightLineColor: String? = null
+    val startLineColor: String? = null,
+    val endLineColor: String? = null
 )

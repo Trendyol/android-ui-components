@@ -29,12 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginTop="16dp"
             android:fontFamily="monospace"
             app:tlv_borderWidth="3dp"
             app:tlv_dotSize="20dp"
-            app:tlv_lineWidth="50dp"
-            app:tlv_textSize="10sp" />
+            app:tlv_lineWidth="25dp"
+            app:tlv_textSize="10sp"
+            app:tlv_orientation="vertical"
+            />
 
     </LinearLayout>
 </layout>

@@ -14,36 +14,34 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tlv:layout_width="@{itemViewState.getItemWidth()}"
-        tools:layout_width="wrap_content">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/viewStartLine"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
             android:background="@{itemViewState.getStartLineColor()}"
             android:visibility="@{itemViewState.getStartLineVisibility()}"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewOutsideShadow"
-            app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
-            tlv:layout_width="@{itemViewState.lineWidth}"
+            app:layout_constraintEnd_toEndOf="@id/imageViewOutsideShadow"
+            app:layout_constraintStart_toStartOf="@id/imageViewOutsideShadow"
+            app:layout_constraintTop_toTopOf="parent"
+            tlv:layout_height="@{itemViewState.lineWidth}"
             tools:background="#000000"
-            tools:layout_width="@dimen/tlv_width_lines"
+            tools:layout_height="@dimen/tlv_width_lines"
             tools:visibility="gone" />
 
         <View
             android:id="@+id/viewEndLine"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
             android:background="@{itemViewState.getEndLineColor()}"
             android:visibility="@{itemViewState.getEndLineVisibility()}"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewOutsideShadow"
-            app:layout_constraintStart_toEndOf="@+id/imageViewOutsideShadow"
-            app:layout_constraintTop_toTopOf="@+id/imageViewOutsideShadow"
-            tlv:layout_width="@{itemViewState.lineWidth}"
+            app:layout_constraintEnd_toEndOf="@id/imageViewOutsideShadow"
+            app:layout_constraintStart_toStartOf="@id/imageViewOutsideShadow"
+            app:layout_constraintTop_toBottomOf="@id/imageViewOutsideShadow"
+            tlv:layout_height="@{itemViewState.lineWidth}"
             tools:background="#000000"
-            tools:layout_width="@dimen/tlv_width_lines" />
+            tools:layout_height="@dimen/tlv_width_lines" />
 
         <View
             android:id="@+id/imageViewOutsideShadow"
@@ -52,9 +50,8 @@
             android:alpha="0.2"
             android:background="@drawable/shape_oval"
             android:backgroundTint="@{itemViewState.getInsideColor()}"
-            app:layout_constraintEnd_toEndOf="@+id/textViewTimeline"
-            app:layout_constraintStart_toStartOf="@+id/textViewTimeline"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewStartLine"
             tlv:layout_height="@{itemViewState.getShadowDotSize()}"
             tlv:layout_width="@{itemViewState.getShadowDotSize()}"
             tools:backgroundTint="#bb00"
@@ -97,18 +94,19 @@
             android:id="@+id/textViewTimeline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
+            android:layout_marginStart="4dp"
             android:text="@{itemViewState.getText()}"
             android:textColor="@{itemViewState.getTextColor()}"
             android:textSize="@{itemViewState.textSize}"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewOutsideShadow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewOutside"
+            app:layout_constraintStart_toEndOf="@id/imageViewOutsideShadow"
+            app:layout_constraintTop_toTopOf="@id/imageViewOutsideShadow"
             tlv:fontFamily="@{itemViewState.fontFamily}"
-            tools:text="İade\nTalebi"
+            tools:text="İade\nKargoya Verildi"
             tools:textSize="10sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
