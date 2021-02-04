@@ -53,9 +53,7 @@ internal fun MotionEvent.calculateAverageTouch(): Point {
 }
 
 internal fun calculateDistance(x: Float, y: Float, x1: Float, y1: Float): Float {
-    return sqrt(
-        (x - x1).toDouble().pow(2.0) + (y - y1).toDouble().pow(2.0)
-    ).toFloat()
+    return sqrt((x - x1).toDouble().pow(2.0) + (y - y1).toDouble().pow(2.0)).toFloat()
 }
 
 internal fun View.getScaledHeight(): Int {
@@ -72,8 +70,10 @@ internal fun View.setPivot(point: Point) {
 }
 
 internal fun View.setScale(scaleFactor: Float) {
-    scaleY = scaleFactor
-    scaleX = scaleFactor
+    if (scaleFactor in Float.MIN_VALUE..Float.MAX_VALUE) {
+        scaleY = scaleFactor
+        scaleX = scaleFactor
+    }
 }
 
 internal fun View.getViewPosition(): Point {
