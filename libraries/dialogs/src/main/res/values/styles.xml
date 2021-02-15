@@ -17,7 +17,7 @@
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryCard" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">@dimen/dialogs_corner_radius</item>
+        <item name="cardCornerRadius">0dp</item>
         <item name="cardElevation">2dp</item>
         <item name="contentPadding">0dp</item>
         <item name="layout_behavior">android.support.design.widget.BottomSheetBehavior</item>

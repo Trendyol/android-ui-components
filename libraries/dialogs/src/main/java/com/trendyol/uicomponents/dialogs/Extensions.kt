@@ -1,6 +1,6 @@
 package com.trendyol.uicomponents.dialogs
 
-import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -54,28 +54,30 @@ internal fun <T> LiveData<T>.observeNonNull(owner: LifecycleOwner, onNotNull: (T
     })
 
 internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
+    val roundedCardRadius = requireContext().pixel(R.dimen.dialogs_corner_radius)
     val expandAnimator =
-        ObjectAnimator.ofFloat(
-            binding.cardView,
-            "radius",
-            requireContext().pixel(R.dimen.dialogs_corner_radius),
-            0F
-        ).apply {
-            duration = 250
-        }
+        ValueAnimator.ofFloat(roundedCardRadius, 0.0f)
+            .apply {
+                duration = 250
+            }
     val collapseAnimator =
-        ObjectAnimator.ofFloat(
-            binding.cardView,
-            "radius",
-            0F,
-            requireContext().pixel(R.dimen.dialogs_corner_radius)
-        ).apply {
-            duration = 250
-        }
+        ValueAnimator.ofFloat(0.0f, roundedCardRadius)
+            .apply {
+                duration = 250
+            }
 
-    getBottomSheetBehavior<View>()?.addBottomSheetCallback(object :
-        BottomSheetBehavior.BottomSheetCallback() {
+    binding.cardView.clipToOutline = true
+    val outlineProvider = BottomSheetOutlineProvider(radius = roundedCardRadius)
 
+    val outlineUpdater = ValueAnimator.AnimatorUpdateListener {
+        outlineProvider.radius = it.animatedValue as Float
+        binding.cardView.outlineProvider = outlineProvider
+    }
+    expandAnimator.addUpdateListener(outlineUpdater)
+    collapseAnimator.addUpdateListener(outlineUpdater)
+
+    getBottomSheetBehavior<View>()
+        ?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             when (newState) {
                 BottomSheetBehavior.STATE_EXPANDED -> {
