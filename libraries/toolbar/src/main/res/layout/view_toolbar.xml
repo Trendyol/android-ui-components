@@ -80,7 +80,7 @@
             app:toolbarTextAppearance="@{viewState.lowerLeftTextAppearance}"
             app:toolbar_layout_marginStart="@{viewState.lowerLeftTextMarginStartInPixel}"
             tools:text="Left Action down"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textMiddle"
@@ -97,7 +97,7 @@
             app:toolbarIsVisible="@{viewState.middleTextVisible}"
             app:toolbarTextAppearance="@{viewState.middleTextAppearance}"
             tools:text="Your Glorious App Name might be long"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageMiddle"
@@ -146,7 +146,7 @@
             app:toolbarTextAppearance="@{viewState.lowerRightTextAppearance}"
             app:toolbar_layout_marginEnd="@{viewState.lowerRightTextMarginEndInPixel}"
             tools:text="Right Action down"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageRight"
@@ -159,7 +159,8 @@
             app:toolbarDrawableResource="@{viewState.rightImageDrawableResId}"
             app:toolbar_layout_marginEnd="@{viewState.rightImageDrawableMarginEndInPixel}"
             tools:srcCompat="@android:drawable/ic_dialog_alert"
-            tools:tint="@android:color/black" />
+            tools:tint="@android:color/black"
+            tools:visibility="gone" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideStart"

@@ -7,17 +7,20 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-internal fun <T : ViewDataBinding> ViewGroup?.inflate(
+internal fun <T : ViewDataBinding> ViewGroup.inflateCustomView(
     @LayoutRes layoutId: Int,
-    attachToParent: Boolean = true
-): T {
-    if (this?.isInEditMode == true) {
-        View.inflate(context, layoutId, parent as? ViewGroup?)
+    afterInflate: (T) -> Unit
+) {
+    if (isInEditMode) {
+        LayoutInflater.from(context).inflate(layoutId, this, true)
+    } else {
+        afterInflate.invoke(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(this!!.context),
+                layoutId,
+                this,
+                true
+            )
+        )
     }
-    return DataBindingUtil.inflate(
-        LayoutInflater.from(this!!.context),
-        layoutId,
-        this,
-        attachToParent
-    )
 }
