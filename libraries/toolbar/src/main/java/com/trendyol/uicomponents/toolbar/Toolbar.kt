@@ -25,7 +25,7 @@ class Toolbar : ConstraintLayout {
     var upperRightTextClickListener: (() -> Unit)? = null
     var lowerRightTextClickListener: (() -> Unit)? = null
 
-    private val binding: ViewToolbarBinding = inflate(R.layout.view_toolbar)
+    private lateinit var binding: ViewToolbarBinding
     private var leftTextDefaultMargin: Int
     private var rightTextDefaultMarginEnd: Int
 
@@ -44,14 +44,18 @@ class Toolbar : ConstraintLayout {
     }
 
     init {
-        binding.imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
-        binding.imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
-        binding.imageRight.setOnClickListener { rightImageClickListener?.invoke() }
-        binding.textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
-        binding.textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
-        binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
-        binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
-        binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
+        inflateCustomView<ViewToolbarBinding>(R.layout.view_toolbar) {
+            binding = it
+            binding.imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
+            binding.imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
+            binding.imageRight.setOnClickListener { rightImageClickListener?.invoke() }
+            binding.textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
+            binding.textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
+            binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
+            binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
+            binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
+        }
+
         leftTextDefaultMargin =
             resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
 
@@ -60,14 +64,15 @@ class Toolbar : ConstraintLayout {
     }
 
     private fun readFromAttributes(attrs: AttributeSet?) {
+        if (isInEditMode) return
+
         context.theme?.obtainStyledAttributes(
             attrs,
             R.styleable.Toolbar,
             0,
             0
         )?.apply {
-            val leftImageDrawableResId =
-                getResourceId(R.styleable.Toolbar_leftImageDrawable, R.drawable.ic_arrow_back)
+            val leftImageDrawableResId = getResourceId(R.styleable.Toolbar_leftImageDrawable, R.drawable.ic_arrow_back)
             val middleImageDrawableResId = getResourceId(R.styleable.Toolbar_middleImageDrawable, 0)
             val rightImageDrawableResId = getResourceId(R.styleable.Toolbar_rightImageDrawable, 0)
 
@@ -77,8 +82,7 @@ class Toolbar : ConstraintLayout {
             val upperRightText = getString(R.styleable.Toolbar_upperRightText)
             val lowerRightText = getString(R.styleable.Toolbar_lowerRightText)
 
-            val toolbarBackground =
-                getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
+            val toolbarBackground = getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
 
             val upperLeftTextMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_upperLeftTextMarginStart, leftTextDefaultMargin)
