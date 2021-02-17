@@ -1,9 +1,12 @@
 package com.trendyol.uicomponents.dialogs
 
+import android.graphics.Outline
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
+import android.view.View
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
+import android.view.ViewOutlineProvider
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -44,9 +47,12 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
     override fun setUpView() {
         if (dialogArguments.animateCornerRadiusWhenExpand) {
             animateCornerRadiusWithStateChanged()
+        } else {
+            binding.cardView.outlineProvider = BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.dialogs_corner_radius))
         }
 
         with(binding) {
+            binding.cardView.clipToOutline = true
             imageClose.setOnClickListener {
                 dismiss()
                 closeButtonListener?.invoke(this@DialogFragment)
@@ -137,6 +143,13 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
                 onItemReselectedListener?.invoke(this@DialogFragment, position)
             }
             setInitialItems(items)
+        }
+    }
+
+    inner class BottomSheetOutlineProvider constructor(var radius: Float): ViewOutlineProvider() {
+        override fun getOutline(view: View?, outline: Outline?) {
+            if (view == null) return
+            outline?.setRoundRect(0, 0, view.width, (view.height + radius).toInt(), radius)
         }
     }
 
