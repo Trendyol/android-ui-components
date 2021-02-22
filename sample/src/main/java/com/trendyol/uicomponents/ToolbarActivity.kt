@@ -22,12 +22,5 @@ class ToolbarActivity : AppCompatActivity() {
         toolbar3.upperLeftTextClickListener = {
             Toast.makeText(this, "toolbar3.upperLeftTextClickListener", Toast.LENGTH_SHORT).show()
         }
-
-        toolbar4.viewState = ToolbarViewState(
-            upperLeftText = "Left Text",
-            upperRightText = "Right Text",
-            upperRightTextDisabledAppearance = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled
-        )
-
     }
 }

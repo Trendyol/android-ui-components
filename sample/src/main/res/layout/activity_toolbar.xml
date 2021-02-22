@@ -52,12 +52,14 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="8dp"
+        app:leftImageDrawable="@drawable/abc_vector_test"
+        app:leftImageTint="?attr/colorOnPrimary"
         app:lowerLeftText="lowerLeftText"
         app:lowerRightText="lowerRightText"
-        app:middleImageTint="@color/colorAccent"
-        app:middleImageDrawable="@android:drawable/ic_menu_add"
-        app:rightImageDrawable="@drawable/trendyol_uicomponents_toolbar_arrow_back"
+        app:rightImageDrawable="@drawable/abc_vector_test"
         app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+        app:rightImageTint="?attr/colorPrimaryVariant"
+        app:toolbarBackground="?attr/colorPrimary"
         app:upperLeftText="upperLeftText"
         app:upperRightText="upperRightText" />
 </LinearLayout>
