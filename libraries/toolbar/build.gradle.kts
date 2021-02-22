@@ -26,8 +26,6 @@ android {
             setProguardFiles(mutableListOf(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"))
         }
     }
-
-    dataBinding.isEnabled = true
 }
 
 dependencies {

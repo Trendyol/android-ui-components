@@ -5,11 +5,11 @@
         <attr name="leftImageDrawable" format="reference" />
         <attr name="middleImageDrawable" format="reference" />
         <attr name="rightImageDrawable" format="reference" />
-        <attr name="upperLeftText" format="reference" />
-        <attr name="lowerLeftText" format="reference" />
-        <attr name="middleText" format="reference" />
-        <attr name="upperRightText" format="reference" />
-        <attr name="lowerRightText" format="reference" />
+        <attr name="upperLeftText" format="string" />
+        <attr name="lowerLeftText" format="string" />
+        <attr name="middleText" format="string" />
+        <attr name="upperRightText" format="string" />
+        <attr name="lowerRightText" format="string" />
         <attr name="toolbarBackground" format="reference" />
         <attr name="upperLeftTextMarginStart" format="dimension" />
         <attr name="lowerLeftTextMarginStart" format="dimension" />
@@ -17,5 +17,8 @@
         <attr name="lowerRightTextMarginEnd" format="dimension" />
         <attr name="rightImageDrawableMarginEnd" format="dimension" />
         <attr name="leftImageDrawableMarginStart" format="dimension" />
+        <attr name="leftImageTint" format="color" />
+        <attr name="middleImageTint" format="color" />
+        <attr name="rightImageTint" format="color" />
     </declare-styleable>
 </resources>

@@ -1,19 +1,19 @@
 package com.trendyol.uicomponents.toolbar
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
 
 class Toolbar : ConstraintLayout {
 
-    var viewState: ToolbarViewState? = null
+    var viewState: ToolbarViewState = ToolbarViewState()
         set(value) {
             field = value
-            if (field != null) {
-                binding.viewState = viewState
-                binding.executePendingBindings()
-            }
+            applyViewState()
         }
 
     var leftImageClickListener: (() -> Unit)? = null
@@ -25,9 +25,15 @@ class Toolbar : ConstraintLayout {
     var upperRightTextClickListener: (() -> Unit)? = null
     var lowerRightTextClickListener: (() -> Unit)? = null
 
-    private lateinit var binding: ViewToolbarBinding
-    private var leftTextDefaultMargin: Int
-    private var rightTextDefaultMarginEnd: Int
+    private val imageBackground: AppCompatImageView by lazy { findViewById<AppCompatImageView>(R.id.imageBackground) }
+    private val imageLeft: AppCompatImageView by lazy { findViewById<AppCompatImageView>(R.id.imageLeft) }
+    private val imageRight: AppCompatImageView by lazy { findViewById<AppCompatImageView>(R.id.imageRight) }
+    private val imageMiddle: AppCompatImageView by lazy { findViewById<AppCompatImageView>(R.id.imageMiddle) }
+    private val textLeftUp: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.textLeftUp) }
+    private val textLeftDown: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.textLeftDown) }
+    private val textRightUp: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.textRightUp) }
+    private val textRightDown: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.textRightDown) }
+    private val textMiddle: AppCompatTextView by lazy { findViewById<AppCompatTextView>(R.id.textMiddle) }
 
     constructor(context: Context) : super(context)
 
@@ -40,39 +46,26 @@ class Toolbar : ConstraintLayout {
         attrs,
         defStyleAttr
     ) {
-        readFromAttributes(attrs)
+        readFromAttributes(attrs, defStyleAttr)
     }
 
     init {
-        inflateCustomView<ViewToolbarBinding>(R.layout.view_toolbar) {
-            binding = it
-            binding.imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
-            binding.imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
-            binding.imageRight.setOnClickListener { rightImageClickListener?.invoke() }
-            binding.textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
-            binding.textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
-            binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
-            binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
-            binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
-        }
-
-        leftTextDefaultMargin =
-            resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
-
-        rightTextDefaultMarginEnd =
-            resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_outer)
+        inflate(context, R.layout.view_toolbar, this)
     }
 
-    private fun readFromAttributes(attrs: AttributeSet?) {
-        if (isInEditMode) return
-
+    private fun readFromAttributes(attrs: AttributeSet?, defStyleAttr: Int = 0) {
         context.theme?.obtainStyledAttributes(
             attrs,
             R.styleable.Toolbar,
-            0,
+            defStyleAttr,
             0
         )?.apply {
-            val leftImageDrawableResId = getResourceId(R.styleable.Toolbar_leftImageDrawable, R.drawable.ic_arrow_back)
+            val toolbarBackground = getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
+            val leftImageDrawableResId =
+                getResourceId(
+                    R.styleable.Toolbar_leftImageDrawable,
+                    R.drawable.trendyol_uicomponents_toolbar_arrow_back
+                )
             val middleImageDrawableResId = getResourceId(R.styleable.Toolbar_middleImageDrawable, 0)
             val rightImageDrawableResId = getResourceId(R.styleable.Toolbar_rightImageDrawable, 0)
 
@@ -82,12 +75,15 @@ class Toolbar : ConstraintLayout {
             val upperRightText = getString(R.styleable.Toolbar_upperRightText)
             val lowerRightText = getString(R.styleable.Toolbar_lowerRightText)
 
-            val toolbarBackground = getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
+            val leftTextDefaultMarginStart =
+                resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
+            val rightTextDefaultMarginEnd =
+                resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_outer)
 
             val upperLeftTextMarginStart =
-                getDimensionPixelOffset(R.styleable.Toolbar_upperLeftTextMarginStart, leftTextDefaultMargin)
+                getDimensionPixelOffset(R.styleable.Toolbar_upperLeftTextMarginStart, leftTextDefaultMarginStart)
             val lowerLeftTextMarginStart =
-                getDimensionPixelOffset(R.styleable.Toolbar_lowerLeftTextMarginStart, leftTextDefaultMargin)
+                getDimensionPixelOffset(R.styleable.Toolbar_lowerLeftTextMarginStart, leftTextDefaultMarginStart)
 
             val upperRightTextMarginEnd =
                 getDimensionPixelOffset(R.styleable.Toolbar_upperRightTextMarginEnd, rightTextDefaultMarginEnd)
@@ -97,6 +93,10 @@ class Toolbar : ConstraintLayout {
                 getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
             val leftImageDrawableMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
+
+            val leftImageTint = getColor(R.styleable.Toolbar_leftImageTint, Color.BLACK)
+            val middleImageTint = getColor(R.styleable.Toolbar_middleImageTint, Color.BLACK)
+            val rightImageTint = getColor(R.styleable.Toolbar_rightImageTint, Color.BLACK)
 
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
@@ -113,8 +113,53 @@ class Toolbar : ConstraintLayout {
                 upperRightTextMarginEndInPixel = upperRightTextMarginEnd,
                 lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
                 rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
-                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart
+                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
+                leftImageTint = leftImageTint,
+                middleImageTint = middleImageTint,
+                rightImageTint = rightImageTint
             )
+        }
+    }
+
+    private fun applyViewState() {
+        with(viewState) {
+            imageBackground.setDrawableResource(toolbarBackground)
+
+            imageLeft.setDrawableResource(leftImageDrawableResId)
+            imageLeft.setStartMargin(leftImageDrawableMarginStartInPixel)
+            imageLeft.setColorFilter(leftImageTint, PorterDuff.Mode.SRC_IN)
+
+            imageMiddle.setDrawableResource(middleImageDrawableResId)
+            imageMiddle.setColorFilter(middleImageTint, PorterDuff.Mode.SRC_IN)
+
+            imageRight.setDrawableResource(rightImageDrawableResId)
+            imageRight.setEndMargin(rightImageDrawableMarginEndInPixel)
+            imageRight.setColorFilter(rightImageTint, PorterDuff.Mode.SRC_IN)
+
+            textLeftUp.text = upperLeftTextValue
+            textLeftUp.visibility = upperLeftTextVisibility
+            textLeftUp.setStyle(upperLeftTextAppearance)
+            textLeftUp.setStartMargin(upperLeftTextMarginStartInPixel)
+
+            textLeftDown.text = lowerLeftTextValue
+            textLeftDown.visibility = lowerLeftTextVisibility
+            textLeftDown.setStyle(lowerLeftTextAppearance)
+            textLeftDown.setStartMargin(lowerLeftTextMarginStartInPixel)
+
+            textMiddle.text = middleTextValue
+            textMiddle.visibility = middleTextVisibility
+            textMiddle.setStyle(middleTextAppearance)
+
+            textRightUp.text = upperRightTextValue
+            textRightUp.visibility = upperRightTextVisibility
+            textRightUp.setStyle(upperRightTextAppearance)
+            textRightUp.setEndMargin(upperRightTextMarginEndInPixel)
+            textRightUp.isEnabled = isUpperRightTextEnabled
+
+            textRightDown.text = lowerRightTextValue
+            textRightDown.visibility = lowerRightTextVisibility
+            textRightDown.setStyle(lowerRightTextAppearance)
+            textRightDown.setEndMargin(lowerRightTextMarginEndInPixel)
         }
     }
 }
