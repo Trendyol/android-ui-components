@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,7 +9,8 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar height: actionBarSize" />
+        android:text="Toolbar height: actionBarSize"
+        tools:ignore="HardcodedText" />
 
     <com.trendyol.uicomponents.toolbar.Toolbar
         android:id="@+id/toolbar1"
@@ -18,7 +20,8 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar height: 100dp, custom background with upper left text" />
+        android:text="Toolbar height: 100dp, custom background with upper left text"
+        tools:ignore="HardcodedText" />
 
     <com.trendyol.uicomponents.toolbar.Toolbar
         android:id="@+id/toolbar2"
@@ -30,18 +33,30 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar height: actionBarSize, programmatically set" />
+        android:text="Toolbar height: wrap_content, programmatically set"
+        tools:ignore="HardcodedText" />
 
     <com.trendyol.uicomponents.toolbar.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer" />
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toolbar height: actionBarSize, set with attributes"
+        tools:ignore="HardcodedText" />
 
     <com.trendyol.uicomponents.toolbar.Toolbar
         android:id="@+id/toolbar4"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer" />
-
+        android:elevation="8dp"
+        app:lowerLeftText="lowerLeftText"
+        app:lowerRightText="lowerRightText"
+        app:rightImageDrawable="@drawable/trendyol_uicomponents_toolbar_arrow_back"
+        app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+        app:toolbarBackground="?attr/colorPrimary"
+        app:upperLeftText="upperLeftText"
+        app:upperRightText="upperRightText" />
 </LinearLayout>

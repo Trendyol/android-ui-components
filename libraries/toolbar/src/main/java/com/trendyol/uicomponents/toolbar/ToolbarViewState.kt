@@ -1,7 +1,11 @@
 package com.trendyol.uicomponents.toolbar
 
+import android.graphics.Color
 import android.text.Spanned
+import android.view.View
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.Px
 import androidx.annotation.StyleRes
 import androidx.core.text.HtmlCompat
 
@@ -11,7 +15,7 @@ data class ToolbarViewState(
     val middleText: CharSequence? = null,
     val upperRightText: CharSequence? = null,
     val lowerRightText: CharSequence? = null,
-    @DrawableRes val leftImageDrawableResId: Int = R.drawable.ic_arrow_back,
+    @DrawableRes val leftImageDrawableResId: Int = R.drawable.trendyol_uicomponents_toolbar_arrow_back,
     @DrawableRes val middleImageDrawableResId: Int = 0,
     @DrawableRes val rightImageDrawableResId: Int = 0,
     @StyleRes val upperLeftTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
@@ -19,47 +23,32 @@ data class ToolbarViewState(
     @StyleRes val middleTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val upperRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction,
     @StyleRes val lowerRightTextAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_LowerAction,
-    @StyleRes val upperRightTextDisabledAppearance: Int = R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled,
+    @StyleRes val upperRightTextDisabledAppearance: Int =
+        R.style.Trendyol_UIComponents_Toolbar_Text_UpperAction_Disabled,
     @DrawableRes val toolbarBackground: Int = android.R.color.white,
-    val upperLeftTextMarginStartInPixel: Int? = null,
-    val lowerLeftTextMarginStartInPixel: Int?= null,
-    val upperRightTextMarginEndInPixel: Int?= null,
-    val lowerRightTextMarginEndInPixel: Int?= null,
-    val rightImageDrawableMarginEndInPixel: Int?= null,
-    val leftImageDrawableMarginStartInPixel: Int?= null,
+    @Px val upperLeftTextMarginStartInPixel: Int? = null,
+    @Px val lowerLeftTextMarginStartInPixel: Int? = null,
+    @Px val upperRightTextMarginEndInPixel: Int? = null,
+    @Px val lowerRightTextMarginEndInPixel: Int? = null,
+    @Px val rightImageDrawableMarginEndInPixel: Int? = null,
+    @Px val leftImageDrawableMarginStartInPixel: Int? = null,
     val isUpperRightTextEnabled: Boolean = true
-
 ) {
 
-    fun getUpperLeftText(): Spanned? = upperLeftText?.let {
-        HtmlCompat.fromHtml(it.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
+    internal val upperLeftTextVisibility: Int = getFieldVisibility(upperLeftText)
+    internal val lowerLeftTextVisibility: Int = getFieldVisibility(lowerLeftText)
+    internal val middleTextVisibility: Int = getFieldVisibility(middleText)
+    internal val upperRightTextVisibility: Int = getFieldVisibility(upperRightText)
+    internal val lowerRightTextVisibility: Int = getFieldVisibility(lowerRightText)
 
-    fun getLowerLeftText(): Spanned? = lowerLeftText?.let {
-        HtmlCompat.fromHtml(it.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
+    internal val upperLeftTextValue: Spanned? = upperLeftText?.let(::getTextAsSpanned)
+    internal val lowerLeftTextValue: Spanned? = lowerLeftText?.let(::getTextAsSpanned)
+    internal val middleTextValue: Spanned? = middleText?.let(::getTextAsSpanned)
+    internal val upperRightTextValue: Spanned? = upperRightText?.let(::getTextAsSpanned)
+    internal val lowerRightTextValue: Spanned? = lowerRightText?.let(::getTextAsSpanned)
 
-    fun getMiddleText(): Spanned? = middleText?.let {
-        HtmlCompat.fromHtml(it.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
+    private fun getFieldVisibility(fieldValue: CharSequence?) = if (fieldValue == null) View.GONE else View.VISIBLE
 
-    fun getUpperRightText(): Spanned? = upperRightText?.let {
-        HtmlCompat.fromHtml(it.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
-
-    fun getLowerRightText(): Spanned? = lowerRightText?.let {
-        HtmlCompat.fromHtml(it.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-    }
-
-    fun isUpperLeftTextVisible(): Boolean = upperLeftText != null
-
-    fun isLowerLeftTextVisible(): Boolean = lowerLeftText != null
-
-    fun isMiddleTextVisible(): Boolean = middleText != null
-
-    fun isUpperRightTextVisible(): Boolean = upperRightText != null
-
-    fun isLowerRightTextVisible(): Boolean = lowerRightText != null
-
-    fun getRightTextAppearance(): Int = if (isUpperRightTextEnabled) upperRightTextAppearance else upperRightTextDisabledAppearance
+    private fun getTextAsSpanned(text: CharSequence): Spanned =
+        HtmlCompat.fromHtml(text.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
 }

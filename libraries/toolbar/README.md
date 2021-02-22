@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240"/>
 
-$toolbarVersion = toolbar-1.2.4  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$toolbarVersion = toolbar-2.0.3  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Toolbar
 Toolbar is alternative implementation of Toolbar component on Android.
@@ -21,7 +21,6 @@ dependencies {
     implementation "com.github.Trendyol.android-ui-components:toolbar:$toolbarVersion"
 }
 ```
-:warning: To use **Toolbar**, you have to enable dataBinding from your main project.
 
 # Usage
 
