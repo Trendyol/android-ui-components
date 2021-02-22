@@ -10,8 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 class Toolbar : ConstraintLayout {
 
-    var viewState: ToolbarViewState = ToolbarViewState()
+    var viewState: ToolbarViewState? = ToolbarViewState()
         set(value) {
+            if (value == null) return
             field = value
             applyViewState()
         }
@@ -122,7 +123,7 @@ class Toolbar : ConstraintLayout {
     }
 
     private fun applyViewState() {
-        with(viewState) {
+        with(viewState!!) {
             imageBackground.setDrawableResource(toolbarBackground)
 
             imageLeft.setDrawableResource(leftImageDrawableResId)
