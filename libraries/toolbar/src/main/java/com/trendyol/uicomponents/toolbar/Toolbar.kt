@@ -52,6 +52,15 @@ class Toolbar : ConstraintLayout {
 
     init {
         inflate(context, R.layout.view_toolbar, this)
+
+        imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
+        imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
+        imageRight.setOnClickListener { rightImageClickListener?.invoke() }
+        textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
+        textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
+        textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
+        textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
+        textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
     }
 
     private fun readFromAttributes(attrs: AttributeSet?, defStyleAttr: Int = 0) {
