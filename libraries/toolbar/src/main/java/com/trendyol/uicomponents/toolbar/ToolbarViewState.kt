@@ -32,10 +32,7 @@ data class ToolbarViewState(
     @Px val lowerRightTextMarginEndInPixel: Int? = null,
     @Px val rightImageDrawableMarginEndInPixel: Int? = null,
     @Px val leftImageDrawableMarginStartInPixel: Int? = null,
-    val isUpperRightTextEnabled: Boolean = true,
-    @ColorInt val leftImageTint: Int = Color.BLACK,
-    @ColorInt val middleImageTint: Int = Color.BLACK,
-    @ColorInt val rightImageTint: Int = Color.BLACK
+    val isUpperRightTextEnabled: Boolean = true
 ) {
 
     internal val upperLeftTextVisibility: Int = getFieldVisibility(upperLeftText)

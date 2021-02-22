@@ -95,10 +95,6 @@ class Toolbar : ConstraintLayout {
             val leftImageDrawableMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
 
-            val leftImageTint = getColor(R.styleable.Toolbar_leftImageTint, Color.BLACK)
-            val middleImageTint = getColor(R.styleable.Toolbar_middleImageTint, Color.BLACK)
-            val rightImageTint = getColor(R.styleable.Toolbar_rightImageTint, Color.BLACK)
-
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
                 lowerLeftText = lowerLeftText,
@@ -114,10 +110,7 @@ class Toolbar : ConstraintLayout {
                 upperRightTextMarginEndInPixel = upperRightTextMarginEnd,
                 lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
                 rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
-                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
-                leftImageTint = leftImageTint,
-                middleImageTint = middleImageTint,
-                rightImageTint = rightImageTint
+                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart
             )
         }
     }
@@ -128,14 +121,11 @@ class Toolbar : ConstraintLayout {
 
             imageLeft.setDrawableResource(leftImageDrawableResId)
             imageLeft.setStartMargin(leftImageDrawableMarginStartInPixel)
-            imageLeft.setColorFilter(leftImageTint, PorterDuff.Mode.SRC_IN)
 
             imageMiddle.setDrawableResource(middleImageDrawableResId)
-            imageMiddle.setColorFilter(middleImageTint, PorterDuff.Mode.SRC_IN)
 
             imageRight.setDrawableResource(rightImageDrawableResId)
             imageRight.setEndMargin(rightImageDrawableMarginEndInPixel)
-            imageRight.setColorFilter(rightImageTint, PorterDuff.Mode.SRC_IN)
 
             textLeftUp.text = upperLeftTextValue
             textLeftUp.visibility = upperLeftTextVisibility

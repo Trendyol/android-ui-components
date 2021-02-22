@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240"/>
 
-$toolbarVersion = toolbar-2.0.1  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$toolbarVersion = toolbar-2.0.2  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Toolbar
 Toolbar is alternative implementation of Toolbar component on Android.
@@ -43,9 +43,6 @@ To customize **Toolbar** you can provide `ToolbarViewState` or use attributes li
 | `app:lowerRightTextMarginEnd` | End margin for upper right text. | trendyol_uicomponents_toolbar_margin_outer | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
 | `app:leftImageDrawableMarginStart` | Start margin for left drawable. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
 | `app:rightImageDrawableMarginEnd` | End margin for left drawable. | 0 | `app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_right_side_icon"` |
-| `app:leftImageTint` | Tint value for left drawable. | Color.Black | `app:leftImageTint="@color/blue"` |
-| `app:middleImageTint` | Tint value for left drawable. | Color.Black | `app:middleImageTint="@color/colorAccent"` |
-| `app:rightImageTint` | Tint value for left drawable. | Color.Black | `app:rightImageTint="?attr/colorOnPrimary"` |
 
 Sample usage with attributes:
 
@@ -84,8 +81,7 @@ Sample usage with `ToolbarViewState`:
     toolbar.viewState = ToolbarViewState(
         upperLeftText = "<b>List</b>",
         leftImageDrawableResId = R.drawable.ic_arrow_back,
-        upperLeftTextAppearance = R.style.MyTextStyle_Body_2,
-        leftImageTint = Color.WHITE
+        upperLeftTextAppearance = R.style.MyTextStyle_Body_2
     )
 
 ```

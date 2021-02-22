@@ -17,8 +17,5 @@
         <attr name="lowerRightTextMarginEnd" format="dimension" />
         <attr name="rightImageDrawableMarginEnd" format="dimension" />
         <attr name="leftImageDrawableMarginStart" format="dimension" />
-        <attr name="leftImageTint" format="color" />
-        <attr name="middleImageTint" format="color" />
-        <attr name="rightImageTint" format="color" />
     </declare-styleable>
 </resources>
