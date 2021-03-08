@@ -1,9 +1,7 @@
 package com.trendyol.uicomponents.toolbar
 
-import android.graphics.Color
 import android.text.Spanned
 import android.view.View
-import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.Px
 import androidx.annotation.StyleRes

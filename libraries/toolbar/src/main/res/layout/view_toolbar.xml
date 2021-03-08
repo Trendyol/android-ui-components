@@ -118,8 +118,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideEnd"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/trendyol_uicomponents_toolbar_arrow_back"
-        tools:tint="@android:color/black" />
+        tools:srcCompat="@drawable/trendyol_uicomponents_toolbar_arrow_back" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideStart"

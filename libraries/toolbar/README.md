@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240"/>
 
-$toolbarVersion = toolbar-2.0.3  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$toolbarVersion = toolbar-2.0.4  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Toolbar
 Toolbar is alternative implementation of Toolbar component on Android.
@@ -24,7 +24,7 @@ dependencies {
 
 # Usage
 
-To customize **Toolbar** you can provide `ToolbarViewState` or use attributes listed below. All text attributes can be HTML formatted, **Toolbar** will style them.
+To customize **Toolbar** you can set [ToolbarViewState](src/main/java/com/trendyol/uicomponents/toolbar/ToolbarViewState.kt) via calling `Toolbar.setViewState` or use attributes listed below. All given text attributes will be formatted as [HTML](https://developer.android.com/reference/android/text/Html).
 
 | Attribute | Description | Default Value | Sample Usage |
 | ------------- | ------------- | ------------- | ------------- |
@@ -54,7 +54,7 @@ Sample usage with attributes:
         android:layout_height="?attr/actionBarSize"
         app:toolbarBackground="@color/background"
         app:middleText="@string/app_name"
-        app:upperRightText="@string/clear_all"/>
+        app:upperRightText="@string/clear_all" />
 
 ```
 
@@ -91,7 +91,7 @@ Sample usage with `ToolbarViewState`:
 This library is maintained mainly by Trendyol Android Team members. Everybody can contribute **Toolbar** or other UI Components with opening new PR's.
 
 # License
-    Copyright 2019 Trendyol.com
+    Copyright 2021 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
