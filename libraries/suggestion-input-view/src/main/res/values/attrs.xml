@@ -26,11 +26,13 @@
         <attr name="inputEditTextBackground" format="reference" />
         <!-- input views's edit text suffix -->
         <attr name="inputSuffix" format="string" />
+        <!-- input views's edit text hint-->
+        <attr name="inputHint" format="string"/>
         <!-- input type for input view's edit text -->
         <attr name="android:inputType" />
+        <!-- show keyboard or not by default for input view -->
+        <attr name="showKeyboardByDefault" format="boolean"/>
         <!-- error background -->
         <attr name="errorBackground" format="reference" />
-        <!-- hint of input edittext -->
-        <attr name="inputHint" format="string"/>
     </declare-styleable>
 </resources>
