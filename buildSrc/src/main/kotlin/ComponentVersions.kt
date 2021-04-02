@@ -1,7 +1,7 @@
 object ComponentVersions {
 
     const val toolbarVersion = "2.0.4"
-    const val suggestionInputViewVersion = "1.0.12"
+    const val suggestionInputViewVersion = "1.0.13"
     const val ratingBarVersion = "1.0.2"
     const val imageSliderVersion = "1.0.8"
     const val phoneNumberVersion = "1.0.2"

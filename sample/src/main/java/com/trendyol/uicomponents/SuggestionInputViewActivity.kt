@@ -1,7 +1,7 @@
 package com.trendyol.uicomponents
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.trendyol.suggestioninputview.Rule
 import com.trendyol.suggestioninputview.SuggestionInputItem
@@ -27,7 +27,7 @@ class SuggestionInputViewActivity : AppCompatActivity() {
             .notEqualsTo("0")
             .errorMessage("0 giremezsin")
             .build()
-        binding.suggestionInputView.setRuleSet(listOf(rule1,rule2))
+        binding.suggestionInputView.setRuleSet(listOf(rule1, rule2))
         binding.suggestionInputView.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
         binding.suggestionInputView.setItems(createSuggestionInputItems())
         binding.buttonLoad.setOnClickListener { onLoadClicked() }
