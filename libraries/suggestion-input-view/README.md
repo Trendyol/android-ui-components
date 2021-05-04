@@ -44,6 +44,7 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | `app:shouldShowSelectableItemError` | `shouldShowSelectableItemError(Boolean)` | Change suggestion item's background | false | app:shouldShowError="@{true}"|
 | `app:inputHint` | `setInputHint(String)` | Hint of input view's edit text | Empty String | app:inputHint="Hint of input edit text"|
 | `app:showKeyboardByDefault` |  | show keyboard or not by default for input view | true | app:showKeyboardByDefault="false"|
+| `app:canDeselectedItem` |  | for can deselected item | false | app:canDeselectedItem="false"|
 
 # Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
