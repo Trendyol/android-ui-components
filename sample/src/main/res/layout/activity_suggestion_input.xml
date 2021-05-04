@@ -31,6 +31,7 @@
                 android:layout_marginBottom="16dp"
                 android:clickable="false"
                 android:inputType="number"
+                app:canDeselectItem="true"
                 app:errorBackground="@drawable/shape_error_background_suggestion_item"
                 app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
                 app:inputButtonBackground="@drawable/shape_selected_background_suggestion_item"

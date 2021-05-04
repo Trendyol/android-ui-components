@@ -34,5 +34,7 @@
         <attr name="showKeyboardByDefault" format="boolean"/>
         <!-- error background -->
         <attr name="errorBackground" format="reference" />
+        <!-- can deselected item -->
+        <attr name="canDeselectItem" format="boolean" />
     </declare-styleable>
 </resources>
