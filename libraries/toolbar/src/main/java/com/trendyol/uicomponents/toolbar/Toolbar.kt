@@ -1,9 +1,8 @@
 package com.trendyol.uicomponents.toolbar
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -103,6 +102,7 @@ class Toolbar : ConstraintLayout {
                 getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
             val leftImageDrawableMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
+            val hideLeftImage = getBoolean(R.styleable.Toolbar_hideLeftImage, false)
 
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
@@ -119,7 +119,8 @@ class Toolbar : ConstraintLayout {
                 upperRightTextMarginEndInPixel = upperRightTextMarginEnd,
                 lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
                 rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
-                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart
+                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
+                hideLeftImage = hideLeftImage
             )
         }
     }
@@ -130,6 +131,7 @@ class Toolbar : ConstraintLayout {
 
             imageLeft.setDrawableResource(leftImageDrawableResId)
             imageLeft.setStartMargin(leftImageDrawableMarginStartInPixel)
+            imageLeft.visibility = if (hideLeftImage) View.GONE else View.VISIBLE
 
             imageMiddle.setDrawableResource(middleImageDrawableResId)
 
