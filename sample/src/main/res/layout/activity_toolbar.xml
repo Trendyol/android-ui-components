@@ -59,4 +59,18 @@
         app:toolbarBackground="?attr/colorPrimary"
         app:upperLeftText="upperLeftText"
         app:upperRightText="upperRightText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toolbar height: actionBarSize, hideLeftImage: true, upperLeftTextMarginStart: 8dp"
+        tools:ignore="HardcodedText" />
+
+    <com.trendyol.uicomponents.toolbar.Toolbar
+        android:id="@+id/toolbar5"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:upperLeftText="upperLeftText"
+        app:upperLeftTextMarginStart="8dp"
+        app:hideLeftImage="true" />
 </LinearLayout>

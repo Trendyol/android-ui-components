@@ -17,5 +17,6 @@
         <attr name="lowerRightTextMarginEnd" format="dimension" />
         <attr name="rightImageDrawableMarginEnd" format="dimension" />
         <attr name="leftImageDrawableMarginStart" format="dimension" />
+        <attr name="hideLeftImage" format="boolean" />
     </declare-styleable>
 </resources>

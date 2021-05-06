@@ -43,6 +43,7 @@ To customize **Toolbar** you can set [ToolbarViewState](src/main/java/com/trendy
 | `app:lowerRightTextMarginEnd` | End margin for upper right text. | trendyol_uicomponents_toolbar_margin_outer | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
 | `app:leftImageDrawableMarginStart` | Start margin for left drawable. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
 | `app:rightImageDrawableMarginEnd` | End margin for left drawable. | 0 | `app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_right_side_icon"` |
+| `app:hideLeftImage` | Hide flag for left image. | false | `app:hideLeftImage="true"` |
 
 Sample usage with attributes:
 
