@@ -290,7 +290,7 @@ class SuggestionInputView @JvmOverloads constructor(
         fromBack: Boolean = false
     ) {
         setSelectionToSuggestionItem(selectableItem, fromBack)
-        onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
+       // onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
     }
 
     private fun onDoneClicked() {
@@ -307,7 +307,7 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private fun setSelection(shouldSelect: Boolean) {
         if (isSelectableItemsContainsTo(bindingSelectables.editText.text.toString())) {
-            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()))
+            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()), shouldSelect)
         } else {
             val inputItem = mapFreeTextToInputItem()
             if (shouldSelect) setSelectionToInput(inputItem)
@@ -400,6 +400,7 @@ class SuggestionInputView @JvmOverloads constructor(
             )
         }
         items = updatedItems
+        onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(items.first { it.text == suggestionInputItemViewState.text }))
         notifyAdapter()
     }
 
@@ -411,7 +412,9 @@ class SuggestionInputView @JvmOverloads constructor(
 
         return if (canDeselectItem) {
             if (item.text == suggestionInputItemViewState.text.trim() && fromBack.not()) {
-                if (item.isSelected) currentSelectedItem = null
+                if (item.isSelected && item.type == SuggestionItemType.SELECTABLE) {
+                    currentSelectedItem = null
+                }
                 item.isSelected.not()
             } else {
                 item.text == suggestionInputItemViewState.text.trim()

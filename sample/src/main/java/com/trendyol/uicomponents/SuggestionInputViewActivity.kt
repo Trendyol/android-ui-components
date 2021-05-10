@@ -39,8 +39,13 @@ class SuggestionInputViewActivity : AppCompatActivity() {
     }
 
     private fun onSuggestionItemClicked(suggestionInputItem: SuggestionInputItem) {
-        binding.selectedText.text = suggestionInputItem.text
-        binding.selectedValue.text = suggestionInputItem.value
+        if(suggestionInputItem.isSelected) {
+            binding.selectedText.text = suggestionInputItem.text
+            binding.selectedValue.text = suggestionInputItem.value
+        } else {
+            binding.selectedText.text = ""
+            binding.selectedValue.text = ""
+        }
     }
 
     private fun createSuggestionInputItems(): List<SuggestionInputItem> {
