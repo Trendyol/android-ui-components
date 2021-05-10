@@ -151,7 +151,8 @@ class SuggestionInputView @JvmOverloads constructor(
                     EditorInfo.TYPE_TEXT_VARIATION_NORMAL
                 )
                 hint = getString(R.styleable.SuggestionInputView_inputHint) ?: ""
-                showKeyboardByDefault = getBoolean(R.styleable.SuggestionInputView_showKeyboardByDefault, true)
+                showKeyboardByDefault =
+                    getBoolean(R.styleable.SuggestionInputView_showKeyboardByDefault, true)
                 canDeselectItem = getBoolean(R.styleable.SuggestionInputView_canDeselectItem, false)
             } finally {
                 recycle()
@@ -160,7 +161,7 @@ class SuggestionInputView @JvmOverloads constructor(
             itemsAdapter.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
             bindingSelectables.buttonDone.setOnClickListener { onDoneClicked() }
             bindingSelectables.imageViewBack.setOnClickListener {
-                setSelectionToCurrentSelection()
+                setSelectionToCurrentSelection(true)
                 showSelectableView()
             }
             bindingSelectables.editText.addTextChangedListener(object : TextWatcher {
@@ -284,8 +285,11 @@ class SuggestionInputView @JvmOverloads constructor(
         renderSelection(suggestionInputItemViewState)
     }
 
-    private fun setSelectionToSelectableItem(selectableItem: SuggestionInputItemViewState, fromInput: Boolean = false) {
-        setSelectionToSuggestionItem(selectableItem, fromInput)
+    private fun setSelectionToSelectableItem(
+        selectableItem: SuggestionInputItemViewState,
+        fromBack: Boolean = false
+    ) {
+        setSelectionToSuggestionItem(selectableItem, fromBack)
         onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
     }
 
@@ -303,7 +307,7 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private fun setSelection(shouldSelect: Boolean) {
         if (isSelectableItemsContainsTo(bindingSelectables.editText.text.toString())) {
-            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()), true)
+            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()))
         } else {
             val inputItem = mapFreeTextToInputItem()
             if (shouldSelect) setSelectionToInput(inputItem)
@@ -312,6 +316,12 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun resetSelection() {
+        val updatedItems = mutableListOf<SuggestionInputItemViewState>()
+        items.forEach { item ->
+            updatedItems.add(item.copy(isSelected = false))
+        }
+        items = updatedItems
+        notifyAdapter()
         onSuggestionItemClickListener?.invoke(
             SuggestionInputItem(
                 0,
@@ -324,17 +334,21 @@ class SuggestionInputView @JvmOverloads constructor(
         )
     }
 
-    private fun setSelectionToCurrentSelection() {
-        val currentItemValue = currentSelectedItem?.value ?: ""
+    private fun setSelectionToCurrentSelection(fromBack: Boolean = false) {
+        val currentItemValue = currentSelectedItem?.value
         if (isSelectableItemsContainsTo(currentItemValue)) {
-            setSelectionToSelectableItem(getSelectableItem(currentItemValue), true)
+            setSelectionToSelectableItem(getSelectableItem(currentItemValue ?: ""), fromBack)
         } else {
-            setSelectionToInput(currentSelectedItem!!)
-            onSuggestionItemClickListener?.invoke(currentSelectedItem!!)
+            if (currentSelectedItem == null) {
+                resetSelection()
+            } else {
+                setSelectionToInput(currentSelectedItem!!)
+                onSuggestionItemClickListener?.invoke(currentSelectedItem!!)
+            }
         }
     }
 
-    private fun isSelectableItemsContainsTo(value: String): Boolean {
+    private fun isSelectableItemsContainsTo(value: String?): Boolean {
         items.forEach { item ->
             if (item.value == value) {
                 return true
@@ -369,20 +383,38 @@ class SuggestionInputView @JvmOverloads constructor(
         }
     }
 
-    private fun setSelectionToSuggestionItem(suggestionInputItemViewState: SuggestionInputItemViewState, fromInput: Boolean) {
+    private fun setSelectionToSuggestionItem(
+        suggestionInputItemViewState: SuggestionInputItemViewState,
+        fromBack: Boolean
+    ) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            updatedItems.add(item.copy(isSelected = getSelectedStatus(suggestionInputItemViewState, item, fromInput)))
+            updatedItems.add(
+                item.copy(
+                    isSelected = getSelectedStatus(
+                        suggestionInputItemViewState,
+                        item,
+                        fromBack
+                    )
+                )
+            )
         }
         items = updatedItems
         notifyAdapter()
     }
 
-    private fun getSelectedStatus(suggestionInputItemViewState: SuggestionInputItemViewState, item: SuggestionInputItemViewState, fromInput: Boolean): Boolean {
-        return if (canDeselectItem && fromInput.not()) {
-            if (item.text != suggestionInputItemViewState.text.trim()) false
-            else {
-                suggestionInputItemViewState.isSelected.not()
+    private fun getSelectedStatus(
+        suggestionInputItemViewState: SuggestionInputItemViewState,
+        item: SuggestionInputItemViewState,
+        fromBack: Boolean
+    ): Boolean {
+
+        return if (canDeselectItem) {
+            if (item.text == suggestionInputItemViewState.text.trim() && fromBack.not()) {
+                if (item.isSelected) currentSelectedItem = null
+                item.isSelected.not()
+            } else {
+                item.text == suggestionInputItemViewState.text.trim()
             }
         } else {
             item.text == suggestionInputItemViewState.text.trim()
@@ -392,7 +424,9 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim().isNotEmpty()) {
+            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim()
+                    .isNotEmpty()
+            ) {
                 updatedItems.add(
                     item.copy(
                         isSelected = true,
