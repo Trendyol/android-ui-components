@@ -1,7 +1,9 @@
+import com.android.build.gradle.internal.dsl.BuildType
+
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    id(Plugins.kotlinParcelize)
     id(Plugins.kotlinKapt)
     id(Plugins.androidMaven)
 }
@@ -21,7 +23,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
-        getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
+        getByName<BuildType>("release") {
             isMinifyEnabled = false
             setProguardFiles(
                 mutableListOf(
@@ -32,7 +34,10 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures {
+        viewBinding = true
+        buildConfig = false
+    }
 }
 
 dependencies {

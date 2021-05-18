@@ -27,7 +27,7 @@ data class SuggestionInputViewState(
             editTextBackground
         }
 
-    fun getMinWidth() = items.firstOrNull()?.getMinWidth()
+    fun getMinWidth() = items.firstOrNull()?.getMinimumWidth()
 
     fun getErrorTextVisiblity(): Int = if(shouldShowInputItemError) View.VISIBLE else View.GONE
 

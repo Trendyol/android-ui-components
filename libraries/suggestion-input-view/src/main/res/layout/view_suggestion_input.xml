@@ -66,7 +66,7 @@
                     android:background="@{viewState.buttonBackground}"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
-                    android:minWidth="@{viewState.getMinWidth()}"
+                    android:minWidth="@{viewState.minWidth}"
                     android:paddingTop="@{viewState.verticalPadding}"
                     android:paddingBottom="@{viewState.verticalPadding}"
                     android:text="@{viewState.buttonText}"

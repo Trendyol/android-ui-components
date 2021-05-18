@@ -26,7 +26,7 @@ class DialogsActivity : AppCompatActivity() {
         button_selection_with_search_dialog.setOnClickListener { showSelectionWithSearchDialog() }
     }
 
-    private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dailog closed.") }
+    private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
 
     private val rightButtonClickListener: (DialogFragment) -> Unit = {
         it.dismiss()

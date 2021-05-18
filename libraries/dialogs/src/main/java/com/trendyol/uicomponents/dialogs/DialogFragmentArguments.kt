@@ -5,7 +5,7 @@ import android.os.Parcelable
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.os.bundleOf
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class DialogFragmentArguments(
@@ -28,7 +28,7 @@ class DialogFragmentArguments(
     @ColorRes val titleBackgroundColor: Int? = null,
     @ColorRes val titleTextColor: Int? = null,
     val titleTextPosition: TextPosition? = null,
-    val contentTextPosition: TextPosition?= null,
+    val contentTextPosition: TextPosition? = null,
     val webViewContent: WebViewContent? = null
 ) : Parcelable {
 

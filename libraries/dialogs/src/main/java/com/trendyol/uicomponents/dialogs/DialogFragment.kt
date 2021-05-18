@@ -1,15 +1,17 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.graphics.Outline
+import android.os.Bundle
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import android.view.ViewOutlineProvider
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.trendyol.dialog.R
@@ -17,12 +19,18 @@ import com.trendyol.dialog.databinding.FragmentDialogBinding
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
 
-class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDialogBinding>() {
+class DialogFragment internal constructor() : BaseBottomSheetDialog() {
 
+    var closeButtonListener: ((DialogFragment) -> Unit)? = null
+    var leftButtonClickListener: ((DialogFragment) -> Unit)? = null
+    var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
+    var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
+
+    internal lateinit var binding: FragmentDialogBinding
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
         requireNotNull(DialogFragmentArguments.fromBundle(requireArguments()))
     }
-
     private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) {
         DialogListAdapter(
             dialogArguments.showItemsAsHtml,
@@ -31,24 +39,21 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             dialogArguments.showRadioButton
         )
     }
-
     private val dialogListViewModel by lazy {
         ViewModelProviders.of(this)[DialogListViewModel::class.java]
     }
 
-    var closeButtonListener: ((DialogFragment) -> Unit)? = null
-    var leftButtonClickListener: ((DialogFragment) -> Unit)? = null
-    var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
-    var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
-    var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
-
-    override fun getLayoutResId(): Int = R.layout.fragment_dialog
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentDialogBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun setUpView() {
         if (dialogArguments.animateCornerRadiusWhenExpand) {
             animateCornerRadiusWithStateChanged()
         } else {
-            binding.cardView.outlineProvider = BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.dialogs_corner_radius))
+            binding.cardView.outlineProvider =
+                BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.dialogs_corner_radius))
         }
 
         with(binding) {
@@ -123,8 +128,45 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
             webViewContent = dialogArguments.webViewContent
         )
 
-        binding.viewState = viewState
-        binding.executePendingBindings()
+        with(binding) {
+            with(viewTitleBackground) {
+                setBackgroundColor(viewState.getTitleBackgroundColor(context))
+                visibility = viewState.getTitleVisibility()
+            }
+            with(textTitle) {
+                text = viewState.title
+                textAlignment = viewState.getTitleTextPosition()
+                setTextColor(viewState.getTitleTextColor(context))
+            }
+            imageClose.visibility = viewState.getCloseButtonVisibility()
+            with(imageContent) {
+                setImageDrawable(viewState.getContentImageDrawable(context))
+                visibility = viewState.getContentImageVisibility()
+            }
+            with(textContent) {
+                text = viewState.getContent()
+                textAlignment = viewState.getContentTextPosition()
+                visibility = viewState.getContentTextVisibility()
+            }
+            with(webViewContent) {
+                visibility = viewState.getWebViewContentVisibility()
+                loadWebViewContent(viewState.webViewContent)
+            }
+            with(editTextSearch) {
+                hint = viewState.searchHint
+                visibility = viewState.isSearchVisible()
+            }
+            imageClearSearchQuery.visibility = viewState.getClearButtonVisibility()
+            recyclerViewItems.visibility = viewState.getListVisibility()
+            with(buttonLeft) {
+                text = viewState.leftButtonText
+                visibility = viewState.getLeftButtonVisibility()
+            }
+            with(buttonRight) {
+                text = viewState.rightButtonText
+                visibility = viewState.getRightButtonVisibility()
+            }
+        }
     }
 
     fun showDialog(fragmentManager: FragmentManager) {
@@ -133,9 +175,9 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
 
     private fun setUpViewModel(items: List<Pair<Boolean, CharSequence>>) {
         with(dialogListViewModel) {
-            getDialogSearchItemsLiveData().observe(viewLifecycleOwner, Observer { items ->
+            getDialogSearchItemsLiveData().observe(viewLifecycleOwner) { items ->
                 itemsAdapter.setItems(items)
-            })
+            }
             getLastChangedItemLiveData().observeNonNull(viewLifecycleOwner) { position ->
                 onItemSelectedListener?.invoke(this@DialogFragment, position)
             }
@@ -146,7 +188,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog<FragmentDial
         }
     }
 
-    inner class BottomSheetOutlineProvider constructor(var radius: Float): ViewOutlineProvider() {
+    class BottomSheetOutlineProvider constructor(var radius: Float) : ViewOutlineProvider() {
         override fun getOutline(view: View?, outline: Outline?) {
             if (view == null) return
             outline?.setRoundRect(0, 0, view.width, (view.height + radius).toInt(), radius)

@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs.list
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -15,23 +16,28 @@ data class DialogListItemViewState(
     val showRadioButton: Boolean
 ) {
 
-    fun getText(): CharSequence = if (showAsHtml) {
-        HtmlCompat.fromHtml(name.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
-    } else {
-        name
-    }
+    fun getText(): CharSequence =
+        if (showAsHtml) {
+            HtmlCompat.fromHtml(name.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+        } else {
+            name
+        }
 
-    fun getSelectedItemDrawable(context: Context) =
+    fun getSelectedItemDrawable(context: Context): Drawable? =
         selectedItemDrawable?.let { ContextCompat.getDrawable(context, it) }
 
-    fun getSelectedItemDrawableVisibility() =
+    fun getSelectedItemDrawableVisibility(): Int =
         if (selectedItemDrawable != null && isChecked) View.VISIBLE else View.INVISIBLE
 
-    fun getSelectedTextColor() =
-        if (selectedTextColor == null || isChecked.not()) R.color.primary_text_color else selectedTextColor
+    fun getSelectedTextColor(context: Context) =
+        if (selectedTextColor == null || isChecked.not()) {
+            ContextCompat.getColor(context, R.color.primary_text_color)
+        } else {
+            ContextCompat.getColor(context, selectedTextColor)
+        }
 
-    fun getRadioButtonVisibility() =
-        if (showRadioButton) View.VISIBLE else View.GONE
+    fun getRadioButtonVisibility(): Int = if (showRadioButton) View.VISIBLE else View.GONE
 
-    fun getRadioButtonChecked() = isChecked
+    fun getRadioButtonChecked(): Boolean = isChecked
 }
+

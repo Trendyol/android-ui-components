@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
-        android:minWidth="@{viewState.getMinWidth()}"
+        android:minWidth="@{viewState.minimumWidth}"
         android:paddingStart="@{viewState.getHorizontalPadding()}"
         android:paddingTop="@{viewState.getVerticalPadding()}"
         android:paddingEnd="@{viewState.getHorizontalPadding()}"

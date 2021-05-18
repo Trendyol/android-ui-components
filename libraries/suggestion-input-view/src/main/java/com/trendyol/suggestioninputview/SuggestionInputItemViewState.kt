@@ -31,5 +31,5 @@ data class SuggestionInputItemViewState(
     fun getTextColor(): Int =
         if (isSelected) selectedTextColor else unselectedTextColor
 
-    fun getMinWidth(): Int = minWidth.toInt()
+    fun getMinimumWidth(): Int = minWidth.toInt()
 }
