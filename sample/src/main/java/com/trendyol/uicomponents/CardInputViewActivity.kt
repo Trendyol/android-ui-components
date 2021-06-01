@@ -3,16 +3,25 @@ package com.trendyol.uicomponents
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.trendyol.cardinputview.CardInformation
+import com.trendyol.cardinputview.CardInputView
 import com.trendyol.cardinputview.CardInputViewState
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
-import kotlinx.android.synthetic.main.activity_card_input.*
 
 class CardInputViewActivity : AppCompatActivity() {
+
+    private val cardInputView by lazy { findViewById<CardInputView>(R.id.card_input_view) }
+    private val textCardNumber by lazy { findViewById<TextView>(R.id.text_card_number) }
+    private val textCvv by lazy { findViewById<TextView>(R.id.text_cvv) }
+    private val buttonValidate by lazy { findViewById<Button>(R.id.button_validate) }
+    private val buttonValidateAndGet by lazy { findViewById<Button>(R.id.button_validate_and_get) }
+    private val buttonReset by lazy { findViewById<Button>(R.id.button_reset) }
 
     private val months =
         listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
@@ -32,15 +41,15 @@ class CardInputViewActivity : AppCompatActivity() {
             inputTextColor = Color.BLACK
         )
 
-        with(card_input_view) {
+        with(cardInputView) {
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
-                    card_input_view.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
+                    cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
                 }
-                text_card_number.text = cardNumber
+                textCardNumber.text = cardNumber
             }
             onCvvChanged = { cvv ->
-                text_cvv.text = cvv
+                textCvv.text = cvv
             }
             onCvvInfoClicked = {
                 Toast.makeText(
@@ -51,13 +60,13 @@ class CardInputViewActivity : AppCompatActivity() {
             }
             onCardNumberComplete = { isValid ->
                 val color = if (isValid) Color.BLUE else Color.RED
-                text_card_number.setTextColor(color)
+                textCardNumber.setTextColor(color)
                 showMonthSelectionDialog()
             }
             onCvvComplete = { isValid ->
                 val color = if (isValid) Color.BLUE else Color.RED
-                text_cvv.setTextColor(color)
-                if (isValid) button_validate.performClick()
+                textCvv.setTextColor(color)
+                if (isValid) buttonValidate.performClick()
             }
 
             openMonthSelectionListener = { showMonthSelectionDialog() }
@@ -66,12 +75,12 @@ class CardInputViewActivity : AppCompatActivity() {
             focusToCardNumberField()
         }
 
-        button_validate.setOnClickListener { card_input_view.validate() }
-        button_validate_and_get.setOnClickListener {
-            val result = card_input_view.validateAndGet()
+        buttonValidate.setOnClickListener { cardInputView.validate() }
+        buttonValidateAndGet.setOnClickListener {
+            val result = cardInputView.validateAndGet()
             if (result != null) showCardInformationDialog(result)
         }
-        button_reset.setOnClickListener { card_input_view.reset() }
+        buttonReset.setOnClickListener { cardInputView.reset() }
     }
 
     private fun showCardInformationDialog(cardInformation: CardInformation) {
@@ -81,7 +90,7 @@ class CardInputViewActivity : AppCompatActivity() {
                     "Expiry: ${cardInformation.expiryMonth}/${cardInformation.expiryYear}\n\n" +
                     "Cvv: ${cardInformation.cvv}"
             showCloseButton = true
-            closeButtonListener = { card_input_view.reset() }
+            closeButtonListener = { cardInputView.reset() }
         }.showDialog(supportFragmentManager)
     }
 
@@ -91,7 +100,7 @@ class CardInputViewActivity : AppCompatActivity() {
             items = months.map { false to it }
             onItemSelectedListener = { dialog, position ->
                 dialog.dismiss()
-                card_input_view.setSelectedMonth(months[position])
+                cardInputView.setSelectedMonth(months[position])
                 showYearSelectionDialog()
             }
         }.showDialog(supportFragmentManager)
@@ -103,8 +112,8 @@ class CardInputViewActivity : AppCompatActivity() {
             items = years.map { false to it }
             onItemSelectedListener = { dialog, position ->
                 dialog.dismiss()
-                card_input_view.setSelectedYear(years[position])
-                card_input_view.focusToCvvField()
+                cardInputView.setSelectedYear(years[position])
+                cardInputView.focusToCvvField()
             }
         }.showDialog(supportFragmentManager)
     }

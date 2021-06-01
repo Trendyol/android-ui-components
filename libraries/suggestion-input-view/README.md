@@ -50,7 +50,7 @@ To set width you can use `android:layout_width` attribute. To customize more you
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
 
 # License
-    Copyright 2019 Trendyol.com
+    Copyright 2021 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

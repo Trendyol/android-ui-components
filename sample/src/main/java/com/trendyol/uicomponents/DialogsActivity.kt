@@ -3,27 +3,28 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.color
-import com.trendyol.uicomponents.dialogs.DialogFragment
-import com.trendyol.uicomponents.dialogs.TextPosition
-import com.trendyol.uicomponents.dialogs.agreementDialog
-import com.trendyol.uicomponents.dialogs.infoDialog
-import com.trendyol.uicomponents.dialogs.selectionDialog
-import kotlinx.android.synthetic.main.activity_dialogs.*
+import com.trendyol.uicomponents.dialogs.*
 
 class DialogsActivity : AppCompatActivity() {
+
+    private val buttonInfoDialog by lazy { findViewById<Button>(R.id.button_info_dialog) }
+    private val buttonAgreementDialog by lazy { findViewById<Button>(R.id.button_agreement_dialog) }
+    private val buttonSelectionDialog by lazy { findViewById<Button>(R.id.button_selection_dialog) }
+    private val buttonSelectionWithSearchDialog by lazy { findViewById<Button>(R.id.button_selection_with_search_dialog) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialogs)
 
-        button_info_dialog.setOnClickListener { showInfoDialog() }
-        button_agreement_dialog.setOnClickListener { showAgreementDialog() }
-        button_selection_dialog.setOnClickListener { showSelectionDialog() }
-        button_selection_with_search_dialog.setOnClickListener { showSelectionWithSearchDialog() }
+        buttonInfoDialog.setOnClickListener { showInfoDialog() }
+        buttonAgreementDialog.setOnClickListener { showAgreementDialog() }
+        buttonSelectionDialog.setOnClickListener { showSelectionDialog() }
+        buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
     }
 
     private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
