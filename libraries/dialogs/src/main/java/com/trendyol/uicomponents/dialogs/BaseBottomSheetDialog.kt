@@ -1,21 +1,10 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.trendyol.dialog.R
 
-abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFragment() {
-
-    lateinit var binding: DB
-
-    @LayoutRes
-    abstract fun getLayoutResId(): Int
+abstract class BaseBottomSheetDialog : BottomSheetDialogFragment() {
 
     abstract fun setUpView()
 
@@ -24,15 +13,6 @@ abstract class BaseBottomSheetDialog<DB : ViewDataBinding> : BottomSheetDialogFr
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_FRAME, R.style.Trendyol_UIComponents_Dialogs_BottomSheetDialogStyle)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
-        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

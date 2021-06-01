@@ -1,7 +1,7 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    id(Plugins.kotlinParcelize)
     id(Plugins.kotlinKapt)
     id(Plugins.androidMaven)
 }

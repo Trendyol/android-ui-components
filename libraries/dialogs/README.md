@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="240"/>
   
-$dialogsVersion = dialogs-1.2.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.2.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -150,7 +150,7 @@ selectionDialog {
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
 
 ## License
-    Copyright 2019 Trendyol.com
+    Copyright 2021 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

@@ -1,204 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    style="@style/Trendyol.UIComponents.Dialogs.PrimaryCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <data>
-
-        <variable
-            name="viewState"
-            type="com.trendyol.uicomponents.dialogs.DialogViewState" />
-    </data>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
-        style="@style/Trendyol.UIComponents.Dialogs.PrimaryCard"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/viewTitleBackground"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:focusableInTouchMode="true"
+            android:paddingStart="@dimen/dialogs_margin_outer"
+            android:paddingEnd="@dimen/dialogs_margin_outer">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textTitle"
+                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                tools:text="Lorem Ipsum" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/dialogs_margin_inner"
+                app:srcCompat="@drawable/ic_close" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+            android:paddingStart="@dimen/dialogs_margin_outer"
+            android:paddingEnd="@dimen/dialogs_margin_outer">
 
-            <LinearLayout
-                android:id="@+id/viewTitleBackground"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@{viewState.getTitleBackground(context)}"
-                android:focusableInTouchMode="true"
-                android:paddingStart="@dimen/dialogs_margin_outer"
-                android:paddingEnd="@dimen/dialogs_margin_outer"
-                app:isVisible="@{viewState.titleVisible}">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textTitle"
-                    style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:textAlignment="@{viewState.getTitleTextPosition}"
-                    android:textColor="@{viewState.getTitleTextColor(context)}"
-                    android:text="@{viewState.title}"
-                    tools:text="Lorem Ipsum" />
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageClose"
+                    android:id="@+id/imageContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="?selectableItemBackgroundBorderless"
+                    android:layout_marginTop="@dimen/dialogs_margin_outer"
+                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    app:layout_constraintBottom_toTopOf="@id/textContent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@android:drawable/btn_star" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textContent"
+                    style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dialogs_margin_inner"
+                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageContent"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
+
+                <WebView
+                    android:id="@+id/webViewContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dialogs_margin_inner"
+                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textContent"
+                    tools:visibility="gone" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrierContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="textContent,webViewContent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editTextSearch"
+                    style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dialogs_margin_outer"
+                    android:layout_marginBottom="@dimen/dialogs_margin_inner"
+                    android:background="@color/dialogs_gray"
+                    android:imeOptions="actionDone"
+                    android:paddingStart="@dimen/dialogs_margin_inner"
+                    android:paddingTop="@dimen/dialogs_margin_inner"
+                    android:paddingEnd="@dimen/dialogs_margin_outer"
+                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    android:singleLine="true"
+                    app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrierContent"
+                    tools:hint="Your search query" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageClearSearchQuery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
                     android:padding="@dimen/dialogs_margin_inner"
-                    app:isVisible="@{viewState.showCloseButton}"
+                    app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
+                    app:layout_constraintEnd_toEndOf="@id/editTextSearch"
+                    app:layout_constraintTop_toTopOf="@id/editTextSearch"
                     app:srcCompat="@drawable/ic_close" />
-            </LinearLayout>
 
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/dialogs_margin_outer"
-                android:paddingEnd="@dimen/dialogs_margin_outer">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewItems"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/buttonLeft"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/editTextSearch"
+                    tools:listitem="@layout/item_list"
+                    tools:visibility="visible" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:descendantFocusability="blocksDescendants">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonLeft"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dialogs_margin_inner"
+                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/buttonRight"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerViewItems"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:strokeColor="?attr/colorAccent"
+                    tools:text="Cancel" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageContent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dialogs_margin_outer"
-                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
-                        app:drawableResource="@{viewState.contentImage}"
-                        app:isVisible="@{viewState.contentImageVisible}"
-                        app:layout_constraintBottom_toTopOf="@id/textContent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@android:drawable/btn_star" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/textContent"
-                        style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/dialogs_margin_inner"
-                        android:paddingBottom="@dimen/dialogs_margin_inner"
-                        android:textAlignment="@{viewState.getContentTextPosition}"
-                        android:text="@{viewState.content}"
-                        app:isVisible="@{viewState.contentVisible}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/imageContent"
-                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" />
-
-                    <WebView
-                        android:id="@+id/webViewContent"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/dialogs_margin_inner"
-                        android:paddingBottom="@dimen/dialogs_margin_inner"
-                        app:isVisible="@{viewState.webViewContentVisible}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textContent"
-                        app:loadWebViewContent="@{viewState.webViewContent}"
-                        tools:visibility="visible" />
-
-                    <androidx.constraintlayout.widget.Barrier
-                        android:id="@+id/barrierContent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:barrierDirection="bottom"
-                        app:constraint_referenced_ids="textContent,webViewContent" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/editTextSearch"
-                        style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dialogs_margin_inner"
-                        android:layout_marginTop="@dimen/dialogs_margin_outer"
-                        android:background="@color/dialogs_gray"
-                        android:hint="@{viewState.searchHint}"
-                        android:imeOptions="actionDone"
-                        android:paddingStart="@dimen/dialogs_margin_inner"
-                        android:paddingTop="@dimen/dialogs_margin_inner"
-                        android:paddingEnd="@dimen/dialogs_margin_outer"
-                        android:paddingBottom="@dimen/dialogs_margin_inner"
-                        android:singleLine="true"
-                        app:isVisible="@{viewState.searchEnabled}"
-                        app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/barrierContent"
-                        tools:hint="Your search query" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageClearSearchQuery"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:adjustViewBounds="true"
-                        android:padding="@dimen/dialogs_margin_inner"
-                        app:isVisible="@{viewState.clearSearchButtonVisible}"
-                        app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
-                        app:layout_constraintEnd_toEndOf="@id/editTextSearch"
-                        app:layout_constraintTop_toTopOf="@id/editTextSearch"
-                        app:srcCompat="@drawable/ic_close" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewItems"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:isVisible="@{viewState.listVisible}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toTopOf="@id/buttonLeft"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editTextSearch"
-                        tools:listitem="@layout/item_list"
-                        tools:visibility="visible" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonLeft"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dialogs_margin_inner"
-                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
-                        android:text="@{viewState.leftButtonText}"
-                        android:textAllCaps="false"
-                        app:isVisible="@{viewState.leftButtonVisible}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/buttonRight"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/recyclerViewItems"
-                        app:layout_constraintWidth_default="percent"
-                        app:layout_constraintWidth_percent="0.4"
-                        app:strokeColor="?attr/colorAccent"
-                        tools:text="Cancel" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonRight"
-                        style="@style/Widget.MaterialComponents.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dialogs_margin_outer"
-                        android:text="@{viewState.rightButtonText}"
-                        android:textAllCaps="false"
-                        app:isVisible="@{viewState.rightButtonVisible}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/buttonLeft"
-                        app:layout_constraintTop_toTopOf="@id/buttonLeft"
-                        app:layout_constraintWidth_default="percent"
-                        app:layout_constraintWidth_percent="0.4"
-                        tools:text="Ok" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.core.widget.NestedScrollView>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-</layout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonRight"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/buttonLeft"
+                    app:layout_constraintTop_toTopOf="@id/buttonLeft"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.4"
+                    tools:text="Ok" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

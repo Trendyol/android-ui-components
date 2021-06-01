@@ -1,11 +1,10 @@
 package com.trendyol.uicomponents.dialogs.list
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.ItemListBinding
-import com.trendyol.uicomponents.dialogs.inflate
 
 internal class DialogListAdapter(
     private val showItemsAsHtml: Boolean,
@@ -13,6 +12,7 @@ internal class DialogListAdapter(
     private val selectedTextColor: Int?,
     private val showRadioButton: Boolean
 ) : ListAdapter<Pair<Boolean, CharSequence>, DialogListAdapter.ItemViewHolder>(ListItemDiffCallback()) {
+
     var onItemSelectedListener: ((Int) -> Unit)? = null
     var onItemReselectedListener: ((Int) -> Unit)? = null
 
@@ -25,7 +25,7 @@ internal class DialogListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
-        ItemViewHolder(parent.inflate(R.layout.item_list, false))
+        ItemViewHolder(ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     inner class ItemViewHolder(
         private val binding: ItemListBinding
@@ -33,7 +33,7 @@ internal class DialogListAdapter(
 
         init {
             binding.root.setOnClickListener {
-                if (binding.viewState?.isChecked == false) {
+                if (!binding.imageViewLeftImageDrawable.isChecked) {
                     onItemSelectedListener?.invoke(adapterPosition)
                 } else {
                     onItemReselectedListener?.invoke(adapterPosition)
@@ -42,7 +42,7 @@ internal class DialogListAdapter(
         }
 
         fun bind(item: Pair<Boolean, CharSequence>) {
-            binding.viewState = DialogListItemViewState(
+            val viewState = DialogListItemViewState(
                 name = item.second,
                 showAsHtml = showItemsAsHtml,
                 selectedItemDrawable = selectedItemDrawable,
@@ -50,7 +50,21 @@ internal class DialogListAdapter(
                 isChecked = item.first,
                 showRadioButton = showRadioButton
             )
-            binding.executePendingBindings()
+
+            with(binding) {
+                with(imageViewLeftImageDrawable) {
+                    isChecked = viewState.getRadioButtonChecked()
+                    visibility = viewState.getRadioButtonVisibility()
+                }
+                with(radioButtonItem) {
+                    text = viewState.getText()
+                    setTextColor(viewState.getSelectedTextColor(context))
+                }
+                with(imageViewCheckedDrawable) {
+                    setImageDrawable(viewState.getSelectedItemDrawable(context))
+                    visibility = viewState.getSelectedItemDrawableVisibility()
+                }
+            }
         }
     }
 }

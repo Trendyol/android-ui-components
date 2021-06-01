@@ -12,7 +12,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.core.os.bundleOf
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 class PhoneNumberTextInputEditText : TextInputEditText {
 

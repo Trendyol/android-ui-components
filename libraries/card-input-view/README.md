@@ -101,7 +101,7 @@ This library is maintained mainly by Trendyol Android Team members but also othe
 We developed this component for our needs, there is lots of improvements need to be implemented.
 
 # License
-    Copyright 2020 Trendyol.com
+    Copyright 2021 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

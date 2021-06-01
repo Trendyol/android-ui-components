@@ -3,10 +3,12 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.trendyol.uicomponents.toolbar.Toolbar
 import com.trendyol.uicomponents.toolbar.ToolbarViewState
-import kotlinx.android.synthetic.main.activity_toolbar.*
 
 class ToolbarActivity : AppCompatActivity() {
+
+    private val toolbar3 by lazy { findViewById<Toolbar>(R.id.toolbar3) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

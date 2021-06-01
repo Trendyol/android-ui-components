@@ -1,64 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:paddingTop="@dimen/dialogs_margin_outer"
+    android:paddingEnd="@dimen/dialogs_margin_outer"
+    android:paddingBottom="@dimen/dialogs_margin_outer">
 
-    <data>
-
-        <variable
-            name="viewState"
-            type="com.trendyol.uicomponents.dialogs.list.DialogListItemViewState" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/imageViewLeftImageDrawable"
+        style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:paddingTop="@dimen/dialogs_margin_outer"
-        android:paddingEnd="@dimen/dialogs_margin_outer"
-        android:paddingBottom="@dimen/dialogs_margin_outer">
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/radioButtonItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
 
-        <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/imageViewLeftImageDrawable"
-            style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="@{viewState.getRadioButtonChecked}"
-            android:clickable="false"
-            android:visibility="@{viewState.getRadioButtonVisibility}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/radioButtonItem"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/radioButtonItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dialogs_margin_inner"
+        android:textAppearance="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewCheckedDrawable"
+        app:layout_constraintStart_toEndOf="@id/imageViewLeftImageDrawable"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Click to select this item" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/radioButtonItem"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dialogs_margin_inner"
-            android:text="@{viewState.text}"
-            android:textAppearance="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageViewLeftImageDrawable"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCheckedDrawable"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textColorResource="@{viewState.getSelectedTextColor()}"
-            tools:text="Click to select this item" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewCheckedDrawable"
-            style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dialogs_margin_inner"
-            android:src="@{viewState.getSelectedItemDrawable(context)}"
-            android:visibility="@{viewState.selectedItemDrawableVisibility}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toEndOf="@id/radioButtonItem"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewCheckedDrawable"
+        style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dialogs_margin_inner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/radioButtonItem"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>

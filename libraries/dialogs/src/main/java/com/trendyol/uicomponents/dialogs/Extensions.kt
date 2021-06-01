@@ -3,35 +3,15 @@ package com.trendyol.uicomponents.dialogs
 import android.animation.ValueAnimator
 import android.app.Dialog
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.webkit.WebView
 import androidx.annotation.DimenRes
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.trendyol.dialog.R
-
-internal fun <T : ViewDataBinding> ViewGroup?.inflate(
-    @LayoutRes layoutId: Int,
-    attachToParent: Boolean = true
-): T {
-    if (this?.isInEditMode == true) {
-        View.inflate(context, layoutId, parent as? ViewGroup?)
-    }
-    return DataBindingUtil.inflate(
-        LayoutInflater.from(this!!.context),
-        layoutId,
-        this,
-        attachToParent
-    )
-}
 
 internal fun Context.pixel(@DimenRes dimenResId: Int): Float =
     resources.getDimensionPixelSize(dimenResId).toFloat()
@@ -47,11 +27,11 @@ internal fun BottomSheetDialogFragment.setBottomSheetState(state: Int) {
 }
 
 internal fun <T> LiveData<T>.observeNonNull(owner: LifecycleOwner, onNotNull: (T) -> Unit) =
-    observe(owner, Observer {
+    observe(owner) {
         if (it != null) {
             onNotNull.invoke(it)
         }
-    })
+    }
 
 internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
     val roundedCardRadius = requireContext().pixel(R.dimen.dialogs_corner_radius)
@@ -67,7 +47,7 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
             }
 
     binding.cardView.clipToOutline = true
-    val outlineProvider = BottomSheetOutlineProvider(radius = roundedCardRadius)
+    val outlineProvider = DialogFragment.BottomSheetOutlineProvider(radius = roundedCardRadius)
 
     val outlineUpdater = ValueAnimator.AnimatorUpdateListener {
         outlineProvider.radius = it.animatedValue as Float
@@ -76,8 +56,7 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
     expandAnimator.addUpdateListener(outlineUpdater)
     collapseAnimator.addUpdateListener(outlineUpdater)
 
-    getBottomSheetBehavior<View>()
-        ?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+    getBottomSheetBehavior<View>()?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             when (newState) {
                 BottomSheetBehavior.STATE_EXPANDED -> {
@@ -94,6 +73,7 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
         }
 
         override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            // do nothing
         }
     })
 }
@@ -101,4 +81,13 @@ internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+internal fun WebView.loadWebViewContent(webViewContent: WebViewContent?) {
+    webViewContent?.also { content ->
+        when (content) {
+            is WebViewContent.UrlContent -> loadUrl(content.url)
+            is WebViewContent.DataContent -> loadDataWithBaseURL("", content.data, "text/html", "UTF-8", null)
+        }
+    }
 }
