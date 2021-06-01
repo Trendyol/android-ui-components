@@ -160,6 +160,12 @@ class QuantityPickerView : ConstraintLayout {
         setQuantityPickerViewState(updatedViewState)
     }
 
+    fun setMaxQuantity(maxQuantity: Int) =
+        setQuantityPickerViewState(binding.viewState?.getWithMaxQuantity(maxQuantity))
+
+    fun setMinQuantity(maxQuantity: Int) =
+        setQuantityPickerViewState(binding.viewState?.getWithMinQuantity(maxQuantity))
+
     fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
 
     fun reset() = setQuantityPickerViewState(binding.viewState?.reset())
