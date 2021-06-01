@@ -18,11 +18,15 @@
             <enum name="italic" value="2" />
         </attr>
         <attr name="qpv_currentQuantity" format="integer" />
+        <attr name="qpv_maxQuantity" format="integer" />
+        <attr name="qpv_minQuantity" format="integer" />
         <attr name="android:background" format="reference" />
         <attr name="android:progressTint" format="color" />
         <attr name="qpv_removeIcon" format="reference" />
         <attr name="qpv_addIcon" format="reference" />
+        <attr name="qpv_disabledAddIcon" format="reference" />
         <attr name="qpv_subtractIcon" format="reference" />
+        <attr name="qpv_disabledSubtractIcon" format="reference" />
         <attr name="qpv_quantityBackground" format="reference" />
         <attr name="qpv_collapsible" format="boolean" />
 

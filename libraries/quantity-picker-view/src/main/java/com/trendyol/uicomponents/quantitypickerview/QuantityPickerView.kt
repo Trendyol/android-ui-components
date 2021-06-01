@@ -18,6 +18,7 @@ class QuantityPickerView : ConstraintLayout {
     var onAddClicked: ((Int) -> Boolean)? = null
     var onSubtractClicked: ((Int) -> Boolean)? = null
     var expansionListener: ((ExpansionState) -> Unit)? = null
+    var onQuantityTextClicked: ((Int) -> Unit)? = null
 
     private lateinit var binding: ViewQuantityPickerBinding
 
@@ -67,8 +68,8 @@ class QuantityPickerView : ConstraintLayout {
     private fun setUpView() {
         with(binding) {
             text.setOnClickListener {
+                onQuantityTextClicked?.invoke(viewState?.currentQuantity ?: 0)
                 if (viewState?.isLoading() == true || viewState?.isInQuantityMode() == true) return@setOnClickListener
-
                 setQuantityPickerViewState(
                     if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
                         viewState?.getWithLoading()
@@ -233,6 +234,8 @@ class QuantityPickerView : ConstraintLayout {
             val quantityTextStyle =
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
             val currentQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_currentQuantity, 0)
+            val maxQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_maxQuantity, -1)
+            val minQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_minQuantity, -1)
             val background = it.getDrawable(R.styleable.QuantityPickerView_android_background)
                 ?: AppCompatResources.getDrawable(
                     context,
@@ -247,7 +250,11 @@ class QuantityPickerView : ConstraintLayout {
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_remove)!!
             val addIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_addIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_add)!!
+            val disabledAddIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_disabledAddIcon)
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_add)!!
             val subtractIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_subtractIcon)
+                ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_subtract)!!
+            val disabledSubtractIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_disabledSubtractIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_subtract)!!
             val quantityBackground =
                 it.getDrawable(R.styleable.QuantityPickerView_qpv_quantityBackground)
@@ -291,7 +298,9 @@ class QuantityPickerView : ConstraintLayout {
                 progressTintColor = progressTintColor,
                 removeIconDrawable = removeIcon,
                 addIconDrawable = addIcon,
+                disabledAddIconDrawable = disabledAddIcon,
                 subtractIconDrawable = subtractIcon,
+                disabledSubtractIconDrawable = disabledSubtractIcon,
                 showLoading = false,
                 quantityBackgroundDrawable = quantityBackground,
                 expansionState = expansionState,
@@ -299,7 +308,9 @@ class QuantityPickerView : ConstraintLayout {
                 buttonHorizontalPadding = buttonHorizontalPadding,
                 buttonVerticalPadding = buttonVerticalPadding,
                 progressVerticalPadding = progressVerticalPadding,
-                quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding
+                quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding,
+                maxQuantity = maxQuantity,
+                minQuantity = minQuantity
             )
         }
     }
