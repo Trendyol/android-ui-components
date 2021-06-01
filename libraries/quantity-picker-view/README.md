@@ -1,6 +1,6 @@
 <img src="../../images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.2.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.2.4 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
@@ -60,6 +60,8 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | ------------- | ------------- | ------------- |
 | setQuantityPickerViewState | viewState :QuantityPickerViewState | To set QuantityPickerViewState programmatically. |
 | setQuantity | quantity: Int | To set quantity immediately. |
+| setMaxQuantity | maxQuantity: Int | To set maxQuantity immediately. |
+| setMinQuantity | minQuantity: Int | To set minQuantity immediately. |
 | stopLoading |  | To stop current loading.|
 | reset |  | To stop loading and set currentQuantity to 0. |
 | incrementQuantityBy | quantity | increments current total quantity by quantity parameter
