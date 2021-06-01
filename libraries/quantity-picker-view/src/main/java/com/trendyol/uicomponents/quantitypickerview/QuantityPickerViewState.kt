@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.annotation.DimenRes
 
 data class QuantityPickerViewState(
     private val text: String,
@@ -17,7 +16,7 @@ data class QuantityPickerViewState(
     val currentQuantity: Int = 0,
     val backgroundDrawable: Drawable,
     @ColorInt val progressTintColor: Int,
-    val addIconDrawable: Drawable,
+    private val addIconDrawable: Drawable,
     private val subtractIconDrawable: Drawable,
     private val removeIconDrawable: Drawable,
     private val showLoading: Boolean = false,
@@ -27,15 +26,20 @@ data class QuantityPickerViewState(
     val buttonHorizontalPadding: Int,
     val buttonVerticalPadding: Int,
     val progressVerticalPadding: Int,
-    val quantityBackgroundVerticalPadding: Int
+    val quantityBackgroundVerticalPadding: Int,
+    val maxQuantity: Int = -1,
+    val minQuantity: Int = -1,
+    val disabledAddIconDrawable: Drawable = addIconDrawable,
+    val disabledSubtractIconDrawable: Drawable = subtractIconDrawable
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
 
     internal fun isLoading(): Boolean = showLoading
 
-    fun getLeftIconDrawable(): Drawable =
-        if (currentQuantity <= 1) removeIconDrawable else subtractIconDrawable
+    fun getLeftIconDrawable(): Drawable {
+        return if (currentQuantity <= 1 && isMinQuantitySet().not()) removeIconDrawable else getSubtractIconDrawable()
+    }
 
     fun getAddButtonVisibility(): Int =
         if (isInQuantityMode() || expansionState is ExpansionState.Collapsible || showLoading) View.VISIBLE else View.GONE
@@ -81,6 +85,38 @@ data class QuantityPickerViewState(
         } else {
             View.GONE
         }
+    }
+
+    fun getAddIconDrawable(): Drawable {
+        return if (isAddButtonEnabled()) {
+            addIconDrawable
+        } else {
+            disabledAddIconDrawable
+        }
+    }
+
+    private fun getSubtractIconDrawable(): Drawable {
+        return if (isSubtractButtonEnabled()) {
+            subtractIconDrawable
+        } else {
+            disabledSubtractIconDrawable
+        }
+    }
+
+    fun isAddButtonEnabled(): Boolean {
+        return (isMaxQuantitySet() && currentQuantity >= maxQuantity).not()
+    }
+
+    fun isSubtractButtonEnabled(): Boolean {
+        return (currentQuantity > minQuantity)
+    }
+
+    private fun isMinQuantitySet(): Boolean {
+        return minQuantity != -1
+    }
+
+    private fun isMaxQuantitySet(): Boolean {
+        return maxQuantity != -1
     }
 
     internal fun getWithLoading(): QuantityPickerViewState {

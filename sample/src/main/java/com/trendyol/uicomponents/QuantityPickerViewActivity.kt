@@ -49,6 +49,10 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 false
             }
 
+            onQuantityTextClicked = { number ->
+                Toast.makeText(context, "Quantity text click: $number", Toast.LENGTH_SHORT).show()
+            }
+
         }
         with(quantityPickerViewCollapsedRight) {
             onAddClicked = { number ->

@@ -37,11 +37,15 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | qpv_quantityTextSize | quantityTextSize | Quantity text size. Should be pixel value if programmatically set.  | `14sp |
 | qpv_quantityTextStyle | quantityTextStyle | Quantity text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | `normal` |
 | qpv_currentQuantity | currentQuantity | Quantity value, optional. | 0 |
+| qpv_maxQuantity | maxQuantity | Maximum quantity value, optional. |  |
+| qpv_minQuantity | minQuantity | Minimum quantity value, optional. |  |
 | android:progressTint | progressTintColor | Tint for loading ProgressBar. | `colorAccent` |
 | android:background | backgroundDrawable | Background to all view. | [qpv_shape_default_background.xml](src/main/res/drawable/qpv_shape_default_background.xml) |
 | qpv_removeIcon | removeIconDrawable | Icon for remove, will be only visible when currentQuantity is 1. | [qpv_ic_default_remove.xml](src/main/res/drawable/qpv_ic_default_remove.xml) |
 | qpv_addIcon | addIconDrawable | Icon for add, will be visible when currentQuantity is 1 or more. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
+| qpv_disabledAddIcon | disabledAddIconDrawable | Icon for add button disabled state, will be visible when maxQuantity is set and currentQuantity is equal to maxQuantity. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
 | qpv_subtractIcon | subtractIconDrawable | Icon for subtract, will be visible when currentQuantity is 2 or more. | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml) |
+| qpv_disabledSubtractIcon | disabledSubtractIconDrawable | Icon for subtract button disabled state, will be visible when minQuantity is set and currentQuantity is equal to minQuantity. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
 | qpv_quantityBackground | quantityBackgroundDrawable | Background for quantity text. | `transparent` |
 | qpv_orientation | orientation | Determines view orientation. | 'horizontal` |
 | qpv_collapsible | collapsible | Determines if view is collapsible. | 'false' |
@@ -67,6 +71,7 @@ To get updates on **QuantityPickerView** you need to set this listeners:
 | ------------- | ------------- | ------------- | ------------- |
 | onAddClicked | quantityAfterAdd: Int | showLoading: Boolean | Will be triggered when user clicks text when currentQuantity 0 or add button when currentQuantity bigger than 0. |
 | onSubtractClicked | quantityAfterSubtract: Int | showLoading: Boolean | Wil be triggered when user clicks remove or subtract icon. |
+| onQuantityTextClicked | quantity: Int |  | Wil be triggered when user clicks text |
 | expansionListener | expansionState: ExpansionState | | Will be triggered after expansion state is changed. |
 
 ## Implementation
@@ -79,6 +84,8 @@ From XML, you can use attributes like below:
     android:layout_width="match_parent"
     android:layout_height="36dp"
     app:qpv_currentQuantity="1"
+    app:qpv_maxQuantity="10"
+    app:qpv_minQuantity="1"
     app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
     app:qpv_quantityTextSize="14sp"
     app:qpv_text="Add to Cart"
