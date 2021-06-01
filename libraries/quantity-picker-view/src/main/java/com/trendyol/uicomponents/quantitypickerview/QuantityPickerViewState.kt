@@ -148,6 +148,14 @@ data class QuantityPickerViewState(
         return copy(currentQuantity = updatedQuantity, showLoading = false, expansionState = nextExpansionState)
     }
 
+    internal fun getWithMaxQuantity(maxQuantity: Int): QuantityPickerViewState {
+        return copy(maxQuantity = maxQuantity, showLoading = false)
+    }
+
+    internal fun getWithMinQuantity(minQuantity: Int): QuantityPickerViewState {
+        return copy(minQuantity = minQuantity, showLoading = false)
+    }
+
     internal fun stopLoading(): QuantityPickerViewState =
         copy(showLoading = false, expansionState = expansionState.expand())
 
