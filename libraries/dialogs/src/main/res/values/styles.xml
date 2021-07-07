@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog">
+    <style name="Trendyol.UIComponents.Dialogs.BottomSheetDialogStyle" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackground">@android:color/transparent</item>
