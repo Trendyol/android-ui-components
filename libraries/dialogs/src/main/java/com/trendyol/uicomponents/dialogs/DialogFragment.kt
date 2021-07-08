@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import android.view.ViewOutlineProvider
+import android.webkit.WebChromeClient
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
@@ -150,7 +151,12 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             }
             with(webViewContent) {
                 visibility = viewState.getWebViewContentVisibility()
-                loadWebViewContent(viewState.webViewContent)
+                if (visibility == View.VISIBLE) {
+                    webChromeClient = WebChromeClient()
+                    dialogArguments.webViewBuilder?.invoke(webViewContent)
+
+                    loadWebViewContent(viewState.webViewContent)
+                }
             }
             with(editTextSearch) {
                 hint = viewState.searchHint
