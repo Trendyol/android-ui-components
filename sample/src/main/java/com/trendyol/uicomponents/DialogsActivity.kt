@@ -16,6 +16,7 @@ class DialogsActivity : AppCompatActivity() {
     private val buttonAgreementDialog by lazy { findViewById<Button>(R.id.button_agreement_dialog) }
     private val buttonSelectionDialog by lazy { findViewById<Button>(R.id.button_selection_dialog) }
     private val buttonSelectionWithSearchDialog by lazy { findViewById<Button>(R.id.button_selection_with_search_dialog) }
+    private val buttonInfoDialogWithWebView by lazy { findViewById<Button>(R.id.button_info_dialog_webview) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class DialogsActivity : AppCompatActivity() {
         buttonAgreementDialog.setOnClickListener { showAgreementDialog() }
         buttonSelectionDialog.setOnClickListener { showSelectionDialog() }
         buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
+        buttonInfoDialogWithWebView.setOnClickListener { showInfoDialogWithWebView() }
     }
 
     private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
@@ -112,6 +114,21 @@ class DialogsActivity : AppCompatActivity() {
             selectedItemDrawable = R.drawable.ic_check
             selectedTextColor = R.color.colorPrimary
         }.showDialog(supportFragmentManager)
+    }
+
+    private fun showInfoDialogWithWebView() {
+        infoDialog {
+            title = "Info Dialog Sample"
+            showCloseButton = true
+            closeButtonListener = infoDialogClosed
+            webViewContent = WebViewContent.UrlContent("https://kargotakip.trendyol.com/")
+            webViewBuilder = {
+                settings.javaScriptEnabled = true
+                settings.domStorageEnabled = true
+            }
+        }.showDialog(supportFragmentManager)
+
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

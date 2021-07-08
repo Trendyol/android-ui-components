@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.webkit.WebView
 import androidx.annotation.DrawableRes
 
 open class Builder internal constructor() {
@@ -23,6 +24,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var titleTextPosition: TextPosition? = null
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
+    var webViewBuilder: (WebView.() -> Unit)? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -38,7 +40,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     titleTextColor = it.titleTextColor,
                     titleTextPosition = it.titleTextPosition,
                     contentTextPosition = it.contentTextPosition,
-                    webViewContent = it.webViewContent
+                    webViewContent = it.webViewContent,
+                    webViewBuilder = it.webViewBuilder,
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
             }
