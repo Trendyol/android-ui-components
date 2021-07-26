@@ -18,7 +18,8 @@ class ImagesPagerAdapter(
     private val itemClickListener: SliderAdapterItemClickListener,
     private val scaleType: ImageView.ScaleType,
     private val imageUrlList: List<String>,
-    @ColorInt private val backgroundColor: Int
+    @ColorInt private val backgroundColor: Int,
+    private val cornerRadiusInDp: Double? = null
 ) : PagerAdapter() {
 
     private var binding: ViewImageBinding? = null
@@ -75,7 +76,7 @@ class ImagesPagerAdapter(
     private fun loadImage(imageView: ImageView, url: String?) {
         if (url == null) return
 
-        imageView.loadImage(url)
+        imageView.loadImage(url, cornerRadiusInDp)
 
         initializeZoomableView(imageView)
     }
