@@ -6,11 +6,14 @@ import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
+import android.view.ViewGroup.FOCUS_DOWN
 import android.view.ViewOutlineProvider
 import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
@@ -27,6 +30,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
+    private var lastScrollPosY : Int = 0
 
     internal lateinit var binding: FragmentDialogBinding
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
@@ -92,11 +96,31 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                     dialogListViewModel.clearSearch()
                 }
 
-                constraintLayout.descendantFocusability = FOCUS_AFTER_DESCENDANTS
-
                 setUpViewModel(items)
             }
         }
+
+    /*    public void setListenerToRootView() {
+            final View activityRootView = getWindow().getDecorView().findViewById(android.R.id.content);
+            activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+
+                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+                    if (heightDiff > 100) { // 99% of the time the height diff will be due to a keyboard.
+                        Toast.makeText(getApplicationContext(), "Gotcha!!! softKeyboardup", 0).show();
+
+                        if (isOpened == false) {
+                            //Do two things, make the view top visible and the editText smaller
+                        }
+                        isOpened = true;
+                    } else if (isOpened == true) {
+                        Toast.makeText(getApplicationContext(), "softkeyborad Down!!!", 0).show();
+                        isOpened = false;
+                    }
+                }
+            });
+        } */
     }
 
     private fun initializeRecyclerView() = with(binding.recyclerViewItems) {
@@ -153,9 +177,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 visibility = viewState.getWebViewContentVisibility()
                 if (visibility == View.VISIBLE) {
                     webChromeClient = WebChromeClient()
+                    webViewClient = WebViewClient()
                     dialogArguments.webViewBuilder?.invoke(webViewContent)
 
                     loadWebViewContent(viewState.webViewContent)
+                    setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY -> lastScrollPosY = scrollY }
                 }
             }
             with(editTextSearch) {

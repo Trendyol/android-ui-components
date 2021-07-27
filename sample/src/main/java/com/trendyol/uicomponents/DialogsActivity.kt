@@ -3,6 +3,7 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -121,10 +122,11 @@ class DialogsActivity : AppCompatActivity() {
             title = "Info Dialog Sample"
             showCloseButton = true
             closeButtonListener = infoDialogClosed
-            webViewContent = WebViewContent.UrlContent("https://kargotakip.trendyol.com/")
+            webViewContent = WebViewContent.UrlContent("https://kargotakip.trendyol.com/?token=ed396950-c70f-48b8-8902-931f19b440d4")
             webViewBuilder = {
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
+                webViewClient = WebViewClient()
             }
         }.showDialog(supportFragmentManager)
 

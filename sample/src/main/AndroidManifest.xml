@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RatingBarActivity" />
-        <activity android:name=".DialogsActivity" />
+        <activity android:name=".DialogsActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".ImageSliderActivity" />
         <activity android:name=".PhoneNumberActivity" />
         <activity android:name=".ToolbarActivity" />
