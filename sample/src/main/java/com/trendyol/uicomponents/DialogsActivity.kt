@@ -122,7 +122,7 @@ class DialogsActivity : AppCompatActivity() {
             title = "Info Dialog Sample"
             showCloseButton = true
             closeButtonListener = infoDialogClosed
-            webViewContent = WebViewContent.UrlContent("https://kargotakip.trendyol.com/?token=ed396950-c70f-48b8-8902-931f19b440d4")
+            webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol/android-ui-components")
             webViewBuilder = {
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
