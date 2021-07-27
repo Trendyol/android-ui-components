@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.imageslider
 
 import android.animation.ObjectAnimator
+import android.content.res.Resources
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.view.*
@@ -10,6 +11,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -30,8 +35,13 @@ internal fun <T : ViewDataBinding> ViewGroup?.inflate(
     )
 }
 
-fun ImageView.loadImage(imageUrl: String) {
-    Glide.with(context).load(imageUrl).into(this)
+fun ImageView.loadImage(imageUrl: String, cornerRadiusInDp: Double?) {
+    val requestBuilder = Glide.with(context).load(imageUrl)
+    if (cornerRadiusInDp == null || cornerRadiusInDp == 0.0) {
+        requestBuilder
+    } else {
+        requestBuilder.transform(RoundedCorners(dpToPx(cornerRadiusInDp)))
+    }.into(this)
 }
 
 internal val RETURN_ANIM_DURATION = 350
@@ -97,3 +107,5 @@ internal fun ColorDrawable.createFadeOut(): ObjectAnimator {
         0
     )
 }
+
+internal fun dpToPx(dp: Double): Int = (dp * Resources.getSystem().displayMetrics.density).toInt()

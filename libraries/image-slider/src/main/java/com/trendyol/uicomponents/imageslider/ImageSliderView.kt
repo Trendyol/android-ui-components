@@ -47,7 +47,8 @@ class ImageSliderView @JvmOverloads constructor(
             itemClickListener = this,
             scaleType = viewState.scaleType,
             imageUrlList = viewState.imageList,
-            backgroundColor = viewState.backgroundColor
+            backgroundColor = viewState.backgroundColor,
+            cornerRadiusInDp = viewState.cornerRadiusInDp
         )
         binding.viewPagerImageSlider.adapter = pagerAdapter
         binding.indicatorImageSlider.setViewPager(binding.viewPagerImageSlider)

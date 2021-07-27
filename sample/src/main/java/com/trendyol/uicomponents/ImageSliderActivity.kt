@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.databinding.ActivityImageSliderBinding
@@ -23,7 +24,9 @@ class ImageSliderActivity : AppCompatActivity() {
                     "https://picsum.photos/id/1027/1920/1280",
                     "https://picsum.photos/id/1028/1920/1280",
                     "https://picsum.photos/id/1029/1920/1280"
-                )
+                ),
+                cornerRadiusInDp = 8.0,
+                scaleType = ImageView.ScaleType.FIT_CENTER
             )
         )
     }

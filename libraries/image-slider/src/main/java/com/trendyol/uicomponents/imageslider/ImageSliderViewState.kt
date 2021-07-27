@@ -11,6 +11,7 @@ data class ImageSliderViewState(
     var imageHeight: Int? = null,
     var isIndicatorAlwaysVisible: Boolean = false,
     val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP,
+    val cornerRadiusInDp: Double? = null,
     @ColorInt val backgroundColor: Int = Color.WHITE
 ) {
 
