@@ -6,11 +6,14 @@ import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
+import android.view.ViewGroup.FOCUS_DOWN
 import android.view.ViewOutlineProvider
 import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
@@ -92,8 +95,6 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                     dialogListViewModel.clearSearch()
                 }
 
-                constraintLayout.descendantFocusability = FOCUS_AFTER_DESCENDANTS
-
                 setUpViewModel(items)
             }
         }
@@ -153,6 +154,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 visibility = viewState.getWebViewContentVisibility()
                 if (visibility == View.VISIBLE) {
                     webChromeClient = WebChromeClient()
+                    webViewClient = WebViewClient()
                     dialogArguments.webViewBuilder?.invoke(webViewContent)
 
                     loadWebViewContent(viewState.webViewContent)
