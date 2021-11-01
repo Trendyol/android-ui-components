@@ -1,5 +1,5 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
   
 $dialogsVersion = dialogs-1.2.4 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
@@ -134,6 +134,30 @@ selectionDialog {
     selectedItemDrawable = R.drawable.ic_check
     selectedTextColor = R.color.colorPrimary
 
+}
+```
+
+* Info List Dialog:
+
+Dialog with the list. There are two textViews that are showing key-value pairs.
+All **Info Dialog** arguments plus these arguments will be applicable to show info list dialogs.
+
+| Field | Type | Description | Default Value |
+| ------------- |-------------|-------------| ------------- |
+| `infoListItems` | List<Pair<CharSequence, CharSequence>> | Item list that will be listed on dialog. | null |
+| `itemDividers` | List<ItemDivider> | Wrapper that will decorate recyclerView | emptyList |
+
+Sample usage:
+```kotlin
+infoListDialog {
+    title = "Info List Dialog Sample"
+    showCloseButton = true
+    closeButtonListener = infoDialogClosed
+    infoListItems = getInfoListItems()
+    itemDividers =  listOf(
+        ItemDivider.MarginDivider(56, listOf(ItemDivider.MarginDivider.MarginDirection.TOP, ItemDivider.MarginDivider.MarginDirection.BOTTOM)),
+        ItemDivider.DrawableDivider(R.drawable.shape_info_list_dialog_divider)
+    )
 }
 ```
 
