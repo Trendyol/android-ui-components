@@ -7,6 +7,7 @@ import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.color
 import com.trendyol.uicomponents.dialogs.*
@@ -18,6 +19,7 @@ class DialogsActivity : AppCompatActivity() {
     private val buttonSelectionDialog by lazy { findViewById<Button>(R.id.button_selection_dialog) }
     private val buttonSelectionWithSearchDialog by lazy { findViewById<Button>(R.id.button_selection_with_search_dialog) }
     private val buttonInfoDialogWithWebView by lazy { findViewById<Button>(R.id.button_info_dialog_webview) }
+    private val buttonInfoListDialog by lazy { findViewById<Button>(R.id.button_info_list_dialog) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class DialogsActivity : AppCompatActivity() {
         buttonSelectionDialog.setOnClickListener { showSelectionDialog() }
         buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
         buttonInfoDialogWithWebView.setOnClickListener { showInfoDialogWithWebView() }
+        buttonInfoListDialog.setOnClickListener { showInfoListDialog() }
     }
 
     private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
@@ -129,8 +132,21 @@ class DialogsActivity : AppCompatActivity() {
                 webViewClient = WebViewClient()
             }
         }.showDialog(supportFragmentManager)
+    }
 
-
+    private fun showInfoListDialog() {
+        infoListDialog {
+            title = "Info List Dialog Sample"
+            showCloseButton = true
+            closeButtonListener = infoDialogClosed
+            infoListItems = getInfoListItems()
+            itemDividers =  listOf(
+                ItemDivider.MarginDivider(56, listOf(ItemDivider.MarginDivider.MarginDirection.TOP, ItemDivider.MarginDivider.MarginDirection.BOTTOM)),
+                ItemDivider.DrawableDivider(
+                    R.drawable.shape_info_list_dialog_divider
+                )
+            )
+        }.showDialog(supportFragmentManager)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -155,7 +171,7 @@ class DialogsActivity : AppCompatActivity() {
             .bold {
                 append(" consectetur adipiscing elit,")
             }
-            .color(R.color.colorPrimary) {
+            .color(ContextCompat.getColor(this, R.color.colorPrimary)) {
                 append(" sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
             }
             .append(" Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
@@ -173,8 +189,6 @@ class DialogsActivity : AppCompatActivity() {
             .append("+905066979797")
 
 
-
-
     private fun getHtmlString(): String =
         "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
             "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
@@ -188,6 +202,13 @@ class DialogsActivity : AppCompatActivity() {
         mutableListOf<Pair<Boolean, String>>().apply {
             for (i in 1..15) {
                 add((i == 6) to "${i}th option")
+            }
+        }.toList()
+
+    private fun getInfoListItems(): List<Pair<String, String>> =
+        mutableListOf<Pair<String, String>>().apply {
+            for (i in 1..15) {
+                add("Item Info" to "${i}th info")
             }
         }.toList()
 

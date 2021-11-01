@@ -16,8 +16,8 @@
             android:id="@+id/viewTitleBackground"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:paddingStart="@dimen/dialogs_margin_outer"
-            android:paddingEnd="@dimen/dialogs_margin_outer">
+            android:paddingStart="@dimen/ui_components_dialogs_margin_outer"
+            android:paddingEnd="@dimen/ui_components_dialogs_margin_outer">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textTitle"
@@ -34,15 +34,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="?selectableItemBackgroundBorderless"
-                android:padding="@dimen/dialogs_margin_inner"
+                android:padding="@dimen/ui_components_dialogs_margin_inner"
                 app:srcCompat="@drawable/ic_close" />
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dialogs_margin_outer"
-            android:paddingEnd="@dimen/dialogs_margin_outer">
+            android:paddingStart="@dimen/ui_components_dialogs_margin_outer"
+            android:paddingEnd="@dimen/ui_components_dialogs_margin_outer">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
@@ -53,8 +53,8 @@
                     android:id="@+id/imageContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dialogs_margin_outer"
-                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    android:layout_marginTop="@dimen/ui_components_dialogs_margin_outer"
+                    android:layout_marginBottom="@dimen/ui_components_dialogs_margin_outer"
                     app:layout_constraintBottom_toTopOf="@id/textContent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +66,8 @@
                     style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/dialogs_margin_inner"
-                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
+                    android:paddingBottom="@dimen/ui_components_dialogs_margin_inner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageContent"
@@ -77,8 +77,8 @@
                     android:id="@+id/webViewContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/dialogs_margin_inner"
-                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
+                    android:paddingBottom="@dimen/ui_components_dialogs_margin_inner"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -98,14 +98,14 @@
                     style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dialogs_margin_outer"
-                    android:layout_marginBottom="@dimen/dialogs_margin_inner"
+                    android:layout_marginTop="@dimen/ui_components_dialogs_margin_outer"
+                    android:layout_marginBottom="@dimen/ui_components_dialogs_margin_inner"
                     android:background="@color/dialogs_gray"
                     android:imeOptions="actionDone"
-                    android:paddingStart="@dimen/dialogs_margin_inner"
-                    android:paddingTop="@dimen/dialogs_margin_inner"
-                    android:paddingEnd="@dimen/dialogs_margin_outer"
-                    android:paddingBottom="@dimen/dialogs_margin_inner"
+                    android:paddingStart="@dimen/ui_components_dialogs_margin_inner"
+                    android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
+                    android:paddingEnd="@dimen/ui_components_dialogs_margin_outer"
+                    android:paddingBottom="@dimen/ui_components_dialogs_margin_inner"
                     android:singleLine="true"
                     app:layout_constraintBottom_toTopOf="@id/recyclerViewItems"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
-                    android:padding="@dimen/dialogs_margin_inner"
+                    android:padding="@dimen/ui_components_dialogs_margin_inner"
                     app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
                     app:layout_constraintEnd_toEndOf="@id/editTextSearch"
                     app:layout_constraintTop_toTopOf="@id/editTextSearch"
@@ -133,7 +133,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/editTextSearch"
-                    tools:listitem="@layout/item_list"
+                    tools:listitem="@layout/item_ui_components_selection_dialog"
                     tools:visibility="visible" />
 
                 <com.google.android.material.button.MaterialButton
@@ -141,8 +141,8 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dialogs_margin_inner"
-                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    android:layout_marginTop="@dimen/ui_components_dialogs_margin_inner"
+                    android:layout_marginBottom="@dimen/ui_components_dialogs_margin_outer"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/buttonRight"
@@ -158,7 +158,7 @@
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dialogs_margin_outer"
+                    android:layout_marginBottom="@dimen/ui_components_dialogs_margin_outer"
                     android:textAllCaps="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/buttonLeft"

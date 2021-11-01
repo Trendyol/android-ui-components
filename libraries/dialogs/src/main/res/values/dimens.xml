@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="dialogs_margin_outer">16dp</dimen>
-    <dimen name="dialogs_margin_inner">8dp</dimen>
+    <dimen name="ui_components_dialogs_margin_outer">16dp</dimen>
+    <dimen name="ui_components_dialogs_margin_inner">8dp</dimen>
 
-    <dimen name="dialogs_corner_radius">16dp</dimen>
+    <dimen name="ui_components_dialogs_corner_radius">16dp</dimen>
 
-    <dimen name="dialogs_duration_animation">250</dimen>
+    <dimen name="ui_components_dialogs_duration_animation">250</dimen>
 </resources>

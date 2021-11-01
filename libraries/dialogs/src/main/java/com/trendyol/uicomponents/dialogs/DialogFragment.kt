@@ -6,11 +6,8 @@ import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
-import android.view.ViewGroup.FOCUS_DOWN
 import android.view.ViewOutlineProvider
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
@@ -20,8 +17,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
+import com.trendyol.uicomponents.dialogs.list.ItemDecorator
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
+import com.trendyol.uicomponents.dialogs.list.info.DialogInfoListAdapter
 
 class DialogFragment internal constructor() : BaseBottomSheetDialog() {
 
@@ -43,6 +42,9 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             dialogArguments.showRadioButton
         )
     }
+
+    private val infoListAdapter by lazy(LazyThreadSafetyMode.NONE) { DialogInfoListAdapter() }
+
     private val dialogListViewModel by lazy {
         ViewModelProviders.of(this)[DialogListViewModel::class.java]
     }
@@ -57,7 +59,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             animateCornerRadiusWithStateChanged()
         } else {
             binding.cardView.outlineProvider =
-                BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.dialogs_corner_radius))
+                BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius))
         }
 
         with(binding) {
@@ -77,37 +79,57 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             textContent.movementMethod = LinkMovementMethod.getInstance()
 
             dialogArguments.items?.let { items ->
-                initializeRecyclerView()
-                editTextSearch.setOnFocusChangeListener { _, hasFocus ->
-                    if (hasFocus) {
-                        setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
-                    } else {
-                        editTextSearch.hideKeyboard()
-                    }
-                }
-
-                editTextSearch.doAfterTextChanged {
-                    dialogListViewModel.search(it.toString())
-                }
-
-                imageClearSearchQuery.setOnClickListener {
-                    editTextSearch.text?.clear()
-                    dialogListViewModel.clearSearch()
-                }
-
-                setUpViewModel(items)
+                initializeSelectionDialog(items)
+            }
+            dialogArguments.infoListItems?.let { items ->
+                initializeInfoListDialog(items, dialogArguments.itemDividers)
             }
         }
     }
 
-    private fun initializeRecyclerView() = with(binding.recyclerViewItems) {
-        adapter = itemsAdapter.apply {
-            onItemSelectedListener =
-                { position -> dialogListViewModel.onSelectionChanged(position) }
-            onItemReselectedListener =
-                { position -> dialogListViewModel.onReselection(position) }
+    private fun initializeSelectionDialog(items: List<Pair<Boolean, CharSequence>>) {
+        with(binding) {
+            with(recyclerViewItems) {
+                adapter = itemsAdapter.apply {
+                    onItemSelectedListener =
+                        { position -> dialogListViewModel.onSelectionChanged(position) }
+                    onItemReselectedListener =
+                        { position -> dialogListViewModel.onReselection(position) }
+                }
+                isNestedScrollingEnabled = false
+            }
+            editTextSearch.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED)
+                } else {
+                    editTextSearch.hideKeyboard()
+                }
+            }
+
+            editTextSearch.doAfterTextChanged {
+                dialogListViewModel.search(it.toString())
+            }
+
+            imageClearSearchQuery.setOnClickListener {
+                editTextSearch.text?.clear()
+                dialogListViewModel.clearSearch()
+            }
         }
-        isNestedScrollingEnabled = false
+        setUpViewModel(items)
+    }
+
+    private fun initializeInfoListDialog(
+        items: List<Pair<CharSequence, CharSequence>>,
+        itemDividers: List<ItemDivider>
+    ) {
+        with(binding.recyclerViewItems) {
+            infoListAdapter.setItems(items)
+            itemDividers.forEach {
+                addItemDecoration(ItemDecorator(it))
+            }
+            adapter = infoListAdapter
+            isNestedScrollingEnabled = false
+        }
     }
 
     override fun setViewState() {
@@ -119,7 +141,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             contentImage = dialogArguments.contentImage,
             leftButtonText = dialogArguments.leftButtonText,
             rightButtonText = dialogArguments.rightButtonText,
-            isListVisible = dialogArguments.items?.isNotEmpty() == true,
+            isListVisible = dialogArguments.items?.isNotEmpty() == true || dialogArguments.infoListItems?.isNotEmpty() == true,
             isSearchEnabled = dialogArguments.enableSearch,
             isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
             searchHint = dialogArguments.searchHint,

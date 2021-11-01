@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
-    android:paddingTop="@dimen/dialogs_margin_outer"
-    android:paddingEnd="@dimen/dialogs_margin_outer"
-    android:paddingBottom="@dimen/dialogs_margin_outer">
+    android:paddingTop="@dimen/ui_components_dialogs_margin_outer"
+    android:paddingEnd="@dimen/ui_components_dialogs_margin_outer"
+    android:paddingBottom="@dimen/ui_components_dialogs_margin_outer">
 
     <androidx.appcompat.widget.AppCompatRadioButton
         android:id="@+id/imageViewLeftImageDrawable"
@@ -25,7 +25,7 @@
         android:id="@+id/radioButtonItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dialogs_margin_inner"
+        android:paddingStart="@dimen/ui_components_dialogs_margin_inner"
         android:textAppearance="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Body"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageViewCheckedDrawable"
@@ -38,7 +38,7 @@
         style="@style/Trendyol.UIComponents.Dialogs.RadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dialogs_margin_inner"
+        android:layout_marginStart="@dimen/ui_components_dialogs_margin_inner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"

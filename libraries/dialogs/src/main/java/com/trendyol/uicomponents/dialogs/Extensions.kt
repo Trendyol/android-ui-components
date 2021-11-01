@@ -34,7 +34,7 @@ internal fun <T> LiveData<T>.observeNonNull(owner: LifecycleOwner, onNotNull: (T
     }
 
 internal fun DialogFragment.animateCornerRadiusWithStateChanged() {
-    val roundedCardRadius = requireContext().pixel(R.dimen.dialogs_corner_radius)
+    val roundedCardRadius = requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius)
     val expandAnimator =
         ValueAnimator.ofFloat(roundedCardRadius, 0.0f)
             .apply {
