@@ -7,13 +7,13 @@ class InfoListItemDiffCallback : DiffUtil.ItemCallback<Pair<CharSequence, CharSe
         oldItem: Pair<CharSequence, CharSequence>,
         newItem: Pair<CharSequence, CharSequence>
     ): Boolean {
-        return oldItem.first == newItem.first && oldItem.second.toString() == newItem.second.toString()
+        return oldItem == newItem
     }
 
     override fun areItemsTheSame(
         oldItem: Pair<CharSequence, CharSequence>,
         newItem: Pair<CharSequence, CharSequence>
     ): Boolean {
-        return oldItem.second == newItem.second
+        return oldItem == newItem
     }
 }
