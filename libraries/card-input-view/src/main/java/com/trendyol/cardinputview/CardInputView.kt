@@ -79,7 +79,8 @@ class CardInputView : ConstraintLayout {
             cardNumberValid = isCardNumberValid,
             expiryMonthValid = isExpiryMonthValid,
             expiryYearValid = isExpiryYearValid,
-            cvvValid = isCvvValid
+            cvvValid = isCvvValid,
+            shouldShowErrors = true
         )
         binding.executePendingBindings()
 
@@ -105,6 +106,16 @@ class CardInputView : ConstraintLayout {
      */
     fun reset() {
         binding.viewState = binding.viewState?.reset()
+        binding.executePendingBindings()
+    }
+
+    /**
+     *
+     * Clears all input fields' error states
+     * it will immediately sets all fields backgrounds with [CardInputViewState.inputBackgroundDrawable].
+     */
+    fun clearErrors() {
+        binding.viewState = binding.viewState?.copy(shouldShowErrors = false)
         binding.executePendingBindings()
     }
 

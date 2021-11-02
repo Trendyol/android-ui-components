@@ -24,6 +24,7 @@ data class CardInputViewState(
     private val expiryMonthValid: Boolean = true,
     private val expiryYearValid: Boolean = true,
     private val cvvValid: Boolean = true,
+    private val shouldShowErrors: Boolean = true,
     var cardInformation: CardInformation = CardInformation()
 ) {
 
@@ -52,25 +53,25 @@ data class CardInputViewState(
     val dividerVisibility: Int = if (cardBankLogoDrawable != null) View.VISIBLE else View.GONE
     val cvvInfoButtonVisibility: Int = if (showCvvInfoButton) View.VISIBLE else View.GONE
     val cardNumberBackground: Drawable? =
-        if (cardNumberValid) {
+        if (!shouldShowErrors || cardNumberValid) {
             inputBackgroundDrawable
         } else {
             inputErrorBackgroundDrawable
         }?.constantState?.newDrawable()
     val expiryMonthBackground: Drawable? =
-        if (expiryMonthValid) {
+        if (!shouldShowErrors || expiryMonthValid) {
             inputBackgroundDrawable
         } else {
             inputErrorBackgroundDrawable
         }?.constantState?.newDrawable()
     val expiryYearBackground: Drawable? =
-        if (expiryYearValid) {
+        if (!shouldShowErrors || expiryYearValid) {
             inputBackgroundDrawable
         } else {
             inputErrorBackgroundDrawable
         }?.constantState?.newDrawable()
     val cvvBackground: Drawable? =
-        if (cvvValid) {
+        if (!shouldShowErrors || cvvValid) {
             inputBackgroundDrawable
         } else {
             inputErrorBackgroundDrawable
@@ -83,6 +84,7 @@ data class CardInputViewState(
         cardNumberValid = true,
         expiryMonthValid = true,
         expiryYearValid = true,
-        cvvValid = true
+        cvvValid = true,
+        shouldShowErrors = true
     )
 }

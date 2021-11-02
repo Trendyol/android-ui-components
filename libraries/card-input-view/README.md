@@ -43,6 +43,8 @@ To validate inputs, call `CardInputView.validate()`. If you want to get created 
 
 To reset all inputs, call `CardInputView.reset()`.
 
+To clear all inputs' errors, call `CardInputView.clearErrors()`.
+
 To focus and show soft keyboard on card number field call `CardInputView.focusToCardNumberField()`, to focus CVV field call `CardInputView.focusToCvvField()`.
 
 For expire month and year selection, you need to open custom dialog or input field, we suggest you to use **Dialogs**, to more information about **Dialogs**, [click here](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs).
