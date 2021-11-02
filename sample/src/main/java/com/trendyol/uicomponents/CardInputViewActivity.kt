@@ -22,6 +22,7 @@ class CardInputViewActivity : AppCompatActivity() {
     private val buttonValidate by lazy { findViewById<Button>(R.id.button_validate) }
     private val buttonValidateAndGet by lazy { findViewById<Button>(R.id.button_validate_and_get) }
     private val buttonReset by lazy { findViewById<Button>(R.id.button_reset) }
+    private val buttonClearErrors by lazy { findViewById<Button>(R.id.button_clear_errors) }
 
     private val months =
         listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
@@ -81,6 +82,7 @@ class CardInputViewActivity : AppCompatActivity() {
             if (result != null) showCardInformationDialog(result)
         }
         buttonReset.setOnClickListener { cardInputView.reset() }
+        buttonClearErrors.setOnClickListener { cardInputView.clearErrors() }
     }
 
     private fun showCardInformationDialog(cardInformation: CardInformation) {
