@@ -115,3 +115,28 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
 
         }
 }
+
+class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
+
+    var infoListItems: List<Pair<CharSequence, CharSequence>> = emptyList()
+    var itemDividers: List<ItemDivider> = emptyList()
+
+    internal fun buildInfoListDialog(block: InfoListDialogBuilder.() -> Unit): DialogFragment =
+        InfoListDialogBuilder().apply(block).let {
+            DialogFragment().apply {
+                arguments = DialogFragmentArguments(
+                    title = it.title,
+                    showCloseButton = it.showCloseButton,
+                    content = SpannableString(it.content),
+                    animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
+                    showContentAsHtml = it.showContentAsHtml,
+                    contentImage = it.contentImage,
+                    webViewContent = it.webViewContent,
+                    infoListItems = it.infoListItems,
+                    itemDividers = it.itemDividers
+                ).toBundle()
+                closeButtonListener = it.closeButtonListener
+            }
+
+        }
+}

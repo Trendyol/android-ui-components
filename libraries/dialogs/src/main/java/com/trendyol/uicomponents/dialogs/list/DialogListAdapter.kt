@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.trendyol.dialog.databinding.ItemListBinding
+import com.trendyol.dialog.databinding.ItemUiComponentsSelectionDialogBinding
 
 internal class DialogListAdapter(
     private val showItemsAsHtml: Boolean,
@@ -25,10 +25,10 @@ internal class DialogListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
-        ItemViewHolder(ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ItemViewHolder(ItemUiComponentsSelectionDialogBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     inner class ItemViewHolder(
-        private val binding: ItemListBinding
+        private val binding: ItemUiComponentsSelectionDialogBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
