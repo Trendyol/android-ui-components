@@ -17,9 +17,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
-import com.trendyol.uicomponents.dialogs.list.ItemDecorator
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
+import com.trendyol.uicomponents.dialogs.list.ItemDecorator
 import com.trendyol.uicomponents.dialogs.list.info.DialogInfoListAdapter
 
 class DialogFragment internal constructor() : BaseBottomSheetDialog() {
@@ -58,8 +58,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
         if (dialogArguments.animateCornerRadiusWhenExpand) {
             animateCornerRadiusWithStateChanged()
         } else {
-            binding.cardView.outlineProvider =
-                BottomSheetOutlineProvider(radius = requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius))
+            val cornerRadius = dialogArguments.cornerRadius ?: requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius)
+            binding.cardView.outlineProvider = BottomSheetOutlineProvider(radius = cornerRadius)
         }
 
         with(binding) {
@@ -145,8 +145,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             isSearchEnabled = dialogArguments.enableSearch,
             isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
             searchHint = dialogArguments.searchHint,
-            titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.dialogs_gray,
-            titleTextColor = dialogArguments.titleTextColor ?: R.color.primary_text_color,
+            titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.ui_components_dialogs_gray,
+            titleTextColor = dialogArguments.titleTextColor ?: R.color.ui_components_dialogs_primary_text_color,
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
             contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START,
             webViewContent = dialogArguments.webViewContent
