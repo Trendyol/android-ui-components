@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 
 data class DialogViewState(
-    val title: String?,
+    val title: CharSequence?,
     private val showCloseButton: Boolean?,
     private val content: CharSequence,
     val showContentAsHtml: Boolean,

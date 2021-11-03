@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class DialogFragmentArguments(
-    val title: String? = null,
+    val title: CharSequence? = null,
     val showCloseButton: Boolean? = null,
     val animateCornerRadiusWhenExpand: Boolean = true,
     val cornerRadius: Float? = null,

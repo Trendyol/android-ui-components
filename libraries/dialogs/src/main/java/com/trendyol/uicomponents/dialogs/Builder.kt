@@ -6,7 +6,7 @@ import androidx.annotation.DrawableRes
 
 open class Builder internal constructor() {
 
-    var title: String = ""
+    var title: CharSequence = ""
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false

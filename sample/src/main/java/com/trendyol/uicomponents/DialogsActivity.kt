@@ -1,5 +1,6 @@
 package com.trendyol.uicomponents
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -136,7 +137,7 @@ class DialogsActivity : AppCompatActivity() {
 
     private fun showInfoListDialog() {
         infoListDialog {
-            title = "Info List Dialog Sample"
+            title = SpannableStringBuilder().color(Color.RED) { append("Info List Dialog Sample") }
             showCloseButton = true
             closeButtonListener = infoDialogClosed
             cornerRadius = 0F
