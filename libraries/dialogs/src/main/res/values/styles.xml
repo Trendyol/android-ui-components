@@ -13,7 +13,6 @@
         <item name="state_collapsed">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>
-
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryCard" parent="Widget.MaterialComponents.CardView">
@@ -51,7 +50,7 @@
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="buttonCompat">@drawable/selector_radio_button</item>
+        <item name="buttonCompat">@drawable/selector_ui_components_dialogs_radio_button</item>
     </style>
 
 

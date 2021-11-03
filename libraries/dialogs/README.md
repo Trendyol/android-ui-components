@@ -36,6 +36,7 @@ Simple dialog to show information, error or text.
 | `title` | String |Title of the dialog | "" |
 | `showCloseButton` | Boolean | Close button visibility | false |
 | `animateCornerRadiusWhenExpand` | Boolean | Corner radius will be removed with an animation when set true. | false |  
+| `cornerRadius` | Float | Corner radius will be applied. | 16dp |
 | `closeButtonListener` | (DialogFragment) -> Unit | Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
@@ -152,6 +153,7 @@ Sample usage:
 infoListDialog {
     title = "Info List Dialog Sample"
     showCloseButton = true
+    cornerRadius = 0F
     closeButtonListener = infoDialogClosed
     infoListItems = getInfoListItems()
     itemDividers =  listOf(

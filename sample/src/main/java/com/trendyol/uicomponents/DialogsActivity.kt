@@ -139,6 +139,7 @@ class DialogsActivity : AppCompatActivity() {
             title = "Info List Dialog Sample"
             showCloseButton = true
             closeButtonListener = infoDialogClosed
+            cornerRadius = 0F
             infoListItems = getInfoListItems()
             itemDividers =  listOf(
                 ItemDivider.MarginDivider(56, listOf(ItemDivider.MarginDivider.MarginDirection.TOP, ItemDivider.MarginDivider.MarginDirection.BOTTOM)),

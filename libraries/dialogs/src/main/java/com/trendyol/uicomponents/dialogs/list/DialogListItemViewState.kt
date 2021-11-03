@@ -31,7 +31,7 @@ data class DialogListItemViewState(
 
     fun getSelectedTextColor(context: Context) =
         if (selectedTextColor == null || isChecked.not()) {
-            ContextCompat.getColor(context, R.color.primary_text_color)
+            ContextCompat.getColor(context, R.color.ui_components_dialogs_primary_text_color)
         } else {
             ContextCompat.getColor(context, selectedTextColor)
         }

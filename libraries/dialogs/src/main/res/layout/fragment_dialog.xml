@@ -35,7 +35,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="?selectableItemBackgroundBorderless"
                 android:padding="@dimen/ui_components_dialogs_margin_inner"
-                app:srcCompat="@drawable/ic_close" />
+                app:srcCompat="@drawable/ic_ui_components_dialogs_close" />
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ui_components_dialogs_margin_outer"
                     android:layout_marginBottom="@dimen/ui_components_dialogs_margin_inner"
-                    android:background="@color/dialogs_gray"
+                    android:background="@color/ui_components_dialogs_gray"
                     android:imeOptions="actionDone"
                     android:paddingStart="@dimen/ui_components_dialogs_margin_inner"
                     android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
@@ -122,7 +122,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
                     app:layout_constraintEnd_toEndOf="@id/editTextSearch"
                     app:layout_constraintTop_toTopOf="@id/editTextSearch"
-                    app:srcCompat="@drawable/ic_close" />
+                    app:srcCompat="@drawable/ic_ui_components_dialogs_close" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewItems"

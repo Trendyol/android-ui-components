@@ -10,6 +10,7 @@ open class Builder internal constructor() {
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
+    var cornerRadius: Float? = null
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -33,6 +34,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     title = it.title,
                     showCloseButton = it.showCloseButton,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
+                    cornerRadius = it.cornerRadius,
                     content = SpannableString(it.content),
                     contentImage = it.contentImage,
                     showContentAsHtml = it.showContentAsHtml,
@@ -63,6 +65,7 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                     title = it.title,
                     showCloseButton = it.showCloseButton,
                     content = SpannableString(it.content),
+                    cornerRadius = it.cornerRadius,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     rightButtonText = it.rightButtonText,
@@ -98,6 +101,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     content = SpannableString(it.content),
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
+                    cornerRadius = it.cornerRadius,
                     items = it.items,
                     showItemsAsHtml = it.showItemsAsHtml,
                     enableSearch = it.enableSearch,
@@ -129,6 +133,7 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showCloseButton = it.showCloseButton,
                     content = SpannableString(it.content),
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
+                    cornerRadius = it.cornerRadius,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     webViewContent = it.webViewContent,
