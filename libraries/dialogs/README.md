@@ -33,7 +33,7 @@ Simple dialog to show information, error or text.
   
 | Field | Type | Description | Default Value |
 | ------------- | ------------- | ------------- | ------------- |
-| `title` | String |Title of the dialog | "" |
+| `title` | CharSequence | Title of the dialog | "" |
 | `showCloseButton` | Boolean | Close button visibility | false |
 | `animateCornerRadiusWhenExpand` | Boolean | Corner radius will be removed with an animation when set true. | false |  
 | `cornerRadius` | Float | Corner radius will be applied. | 16dp |
@@ -151,7 +151,7 @@ All **Info Dialog** arguments plus these arguments will be applicable to show in
 Sample usage:
 ```kotlin
 infoListDialog {
-    title = "Info List Dialog Sample"
+    title = SpannableStringBuilder().color(Color.RED) { append("Info List Dialog Sample") }
     showCloseButton = true
     cornerRadius = 0F
     closeButtonListener = infoDialogClosed
