@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="ui_components_dialog_font_title" format="reference" />
+    <attr name="ui_components_dialog_font_body" format="reference" />
+    <attr name="ui_components_dialog_font_key" format="reference" />
+    <attr name="ui_components_dialog_font_value" format="reference" />
+
+</resources>

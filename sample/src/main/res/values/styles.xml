@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="android:buttonStyle">@style/Sample.ButtonStyle</item>
+        <item name="ui_components_dialog_font_title">@font/opensans_bold</item>
+        <item name="ui_components_dialog_font_body">@font/opensans_regular</item>
+        <item name="ui_components_dialog_font_key">@font/opensans_regular</item>
+        <item name="ui_components_dialog_font_value">@font/opensans_bold</item>
     </style>
 
     <style name="Sample" />

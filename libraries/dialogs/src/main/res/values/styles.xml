@@ -28,23 +28,24 @@
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryText.Title">
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">?attr/ui_components_dialog_font_title</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.PrimaryText.Body">
+        <item name="android:fontFamily">?attr/ui_components_dialog_font_body</item>
         <item name="android:textColor">#666666</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.InfoList.Key" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">?attr/ui_components_dialog_font_key</item>
         <item name="android:textColor">#333333</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Trendyol.UIComponents.Dialogs.InfoList.Value" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">?attr/ui_components_dialog_font_value</item>
         <item name="android:textColor">#333333</item>
         <item name="android:textSize">14sp</item>
     </style>

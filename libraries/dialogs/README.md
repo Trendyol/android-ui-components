@@ -163,6 +163,29 @@ infoListDialog {
 }
 ```
 
+You can set your custom fonts with theme attributes.
+
+| Attribute | Description |
+| ------------- |-------------|
+| `ui_components_dialog_font_title` | Dialog title |
+| `ui_components_dialog_font_body` | Dialog body |
+| `ui_components_dialog_font_key` | InfoListDialog key |
+| `ui_components_dialog_font_value` | InfoListDialog value |
+
+Sample usage:
+```xml
+<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        ....
+        <item name="ui_components_dialog_font_title">@font/opensans_bold</item>
+        <item name="ui_components_dialog_font_body">@font/opensans_regular</item>
+        <item name="ui_components_dialog_font_key">@font/opensans_regular</item>
+        <item name="ui_components_dialog_font_value">@font/opensans_bold</item>
+</style>
+```
+
 ## TODOs
 * Implement ListDialog. 
 * ~~Implement SelectionDialog~~
