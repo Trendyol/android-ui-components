@@ -16,6 +16,7 @@ class ToolbarActivity : AppCompatActivity() {
 
         toolbar3.viewState = ToolbarViewState(
             rightImageDrawableResId = android.R.drawable.ic_menu_add,
+            rightImageContentDescription = "Add",
             middleText = getString(android.R.string.unknownName),
             upperLeftText = "<h1>HTML text</h1>",
             upperLeftTextMarginStartInPixel = 20

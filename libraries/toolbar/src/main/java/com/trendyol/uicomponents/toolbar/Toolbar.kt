@@ -103,6 +103,8 @@ class Toolbar : ConstraintLayout {
             val leftImageDrawableMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
             val hideLeftImage = getBoolean(R.styleable.Toolbar_hideLeftImage, false)
+            val leftImageContentDescription = getString(R.styleable.Toolbar_leftImageContentDescription) ?: ""
+            val rightImageContentDescription = getString(R.styleable.Toolbar_rightImageContentDescription) ?: ""
 
             viewState = ToolbarViewState(
                 upperLeftText = upperLeftText,
@@ -120,7 +122,9 @@ class Toolbar : ConstraintLayout {
                 lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
                 rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
                 leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
-                hideLeftImage = hideLeftImage
+                hideLeftImage = hideLeftImage,
+                leftImageContentDescription = leftImageContentDescription,
+                rightImageContentDescription = rightImageContentDescription
             )
         }
     }
@@ -132,11 +136,13 @@ class Toolbar : ConstraintLayout {
             imageLeft.setDrawableResource(leftImageDrawableResId)
             imageLeft.setStartMargin(leftImageDrawableMarginStartInPixel)
             imageLeft.visibility = if (hideLeftImage) View.GONE else View.VISIBLE
+            imageLeft.contentDescription = leftImageContentDescription
 
             imageMiddle.setDrawableResource(middleImageDrawableResId)
 
             imageRight.setDrawableResource(rightImageDrawableResId)
             imageRight.setEndMargin(rightImageDrawableMarginEndInPixel)
+            imageRight.contentDescription = rightImageContentDescription
 
             textLeftUp.text = upperLeftTextValue
             textLeftUp.visibility = upperLeftTextVisibility
