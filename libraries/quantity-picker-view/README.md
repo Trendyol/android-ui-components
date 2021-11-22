@@ -1,6 +1,6 @@
 <img src="../../images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.2.4 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.2.5 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
@@ -53,6 +53,8 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | qpv_buttonHorizontalPadding | buttonHorizontalPadding | padding for buttons horizontally. | `8dp` |
 | qpv_progressVerticalPadding | progressVerticalPadding | padding for progress bar vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
 | qpv_quantityBackgroundVerticalPadding | quantityBackgroundVerticalPadding | padding for quantity background vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
+| qpv_add_contentDescription | text | Text for Add Image of Talkback | "" |
+| qpv_remove_contentDescription | text | Text for Remove Image of Talkback | "" |
 
 # Public methods
 

@@ -41,14 +41,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:animateLayoutChanges="true"
+                app:qpv_add_contentDescription="Add"
                 app:qpv_currentQuantity="1"
-                app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
-                app:qpv_quantityTextSize="14sp"
-                app:qpv_text="Add to Cart"
-                app:qpv_maxQuantity="10"
                 app:qpv_disabledAddIcon="@drawable/qpv_ic_default_add_disabled"
                 app:qpv_disabledSubtractIcon="@drawable/qpv_ic_default_subtract_disabled"
+                app:qpv_maxQuantity="10"
                 app:qpv_minQuantity="1"
+                app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
+                app:qpv_quantityTextSize="14sp"
+                app:qpv_remove_contentDescription="Remove"
+                app:qpv_text="Add to Cart"
                 app:qpv_textSize="12sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -131,6 +133,7 @@
                 android:animateLayoutChanges="true"
                 android:clipChildren="false"
                 android:elevation="4dp"
+                app:qpv_add_contentDescription="Add"
                 app:qpv_buttonHorizontalPadding="8dp"
                 app:qpv_buttonVerticalPadding="8dp"
                 app:qpv_collapsible="true"
@@ -139,6 +142,7 @@
                 app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityBackgroundVerticalPadding="4dp"
                 app:qpv_quantityTextSize="14sp"
+                app:qpv_remove_contentDescription="Remove"
                 app:qpv_text="Add to Cart"
                 app:qpv_textSize="12sp" />
 
@@ -186,6 +190,7 @@
                 android:animateLayoutChanges="true"
                 android:clipChildren="false"
                 android:elevation="4dp"
+                app:qpv_add_contentDescription="Add"
                 app:qpv_buttonHorizontalPadding="8dp"
                 app:qpv_buttonVerticalPadding="8dp"
                 app:qpv_collapsible="true"
@@ -195,6 +200,7 @@
                 app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
                 app:qpv_quantityBackgroundVerticalPadding="4dp"
                 app:qpv_quantityTextSize="14sp"
+                app:qpv_remove_contentDescription="Remove"
                 app:qpv_text="Add to Cart"
                 app:qpv_textSize="12sp" />
 

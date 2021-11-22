@@ -30,7 +30,9 @@ data class QuantityPickerViewState(
     val maxQuantity: Int = -1,
     val minQuantity: Int = -1,
     val disabledAddIconDrawable: Drawable = addIconDrawable,
-    val disabledSubtractIconDrawable: Drawable = subtractIconDrawable
+    val disabledSubtractIconDrawable: Drawable = subtractIconDrawable,
+    val addContentDescription: String,
+    val removeContentDescription: String
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0

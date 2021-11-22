@@ -33,7 +33,9 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             buttonHorizontalPadding = asDP(8),
             buttonVerticalPadding = asDP(8),
             progressVerticalPadding = asDP(6),
-            quantityBackgroundVerticalPadding = asDP(6)
+            quantityBackgroundVerticalPadding = asDP(6),
+            addContentDescription = "Add",
+            removeContentDescription = "Remove"
         )
 
         quantityPickerView2.setQuantityPickerViewState(viewState)
