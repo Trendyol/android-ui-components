@@ -290,6 +290,12 @@ class QuantityPickerView : ConstraintLayout {
                 R.styleable.QuantityPickerView_qpv_quantityBackgroundVerticalPadding,
                 context.asDP(2)
             )
+            val addContentDescription = it.getString(
+                R.styleable.QuantityPickerView_qpv_add_contentDescription
+            ) ?: ""
+            val removeContentDescription = it.getString(
+                R.styleable.QuantityPickerView_qpv_remove_contentDescription
+            ) ?: ""
 
             return QuantityPickerViewState(
                 text = text,
@@ -316,7 +322,9 @@ class QuantityPickerView : ConstraintLayout {
                 progressVerticalPadding = progressVerticalPadding,
                 quantityBackgroundVerticalPadding = quantityBackgroundVerticalPadding,
                 maxQuantity = maxQuantity,
-                minQuantity = minQuantity
+                minQuantity = minQuantity,
+                addContentDescription = addContentDescription,
+                removeContentDescription = removeContentDescription
             )
         }
     }

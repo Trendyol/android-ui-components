@@ -38,5 +38,8 @@
         <attr name="qpv_buttonHorizontalPadding" format="dimension" />
         <attr name="qpv_progressVerticalPadding" format="dimension" />
         <attr name="qpv_quantityBackgroundVerticalPadding" format="dimension" />
+
+        <attr name="qpv_add_contentDescription" format="string" />
+        <attr name="qpv_remove_contentDescription" format="string" />
     </declare-styleable>
 </resources>
