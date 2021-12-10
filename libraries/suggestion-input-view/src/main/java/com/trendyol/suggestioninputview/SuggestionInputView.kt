@@ -182,7 +182,7 @@ class SuggestionInputView @JvmOverloads constructor(
                             resetSelection()
                         }
                         else -> {
-
+                            setSelection(false)
                         }
                     }
                 }
