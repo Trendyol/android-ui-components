@@ -102,6 +102,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     cornerRadius = it.cornerRadius,
+                    animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
+                    titleTextColor = it.titleTextColor,
                     items = it.items,
                     showItemsAsHtml = it.showItemsAsHtml,
                     enableSearch = it.enableSearch,

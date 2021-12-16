@@ -110,6 +110,7 @@ class DialogsActivity : AppCompatActivity() {
             showContentAsHtml = true
             showCloseButton = false
             contentImage = android.R.drawable.ic_dialog_email
+            animateCornerRadiusWhenExpand = true
             items = getListItems()
             onItemSelectedListener = this@DialogsActivity.onItemSelectedListener
             onItemReselectedListener = this@DialogsActivity.onItemReselectedListener
