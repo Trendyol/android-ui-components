@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
   
-$dialogsVersion = dialogs-1.2.4 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.2.8 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -101,6 +101,8 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `selectedItemDrawable` | Int | Drawable resource for selected item icon.  | null |
 | `selectedTextColor` | Int | Color resource for selected item text color.  | null |
 | `showRadioButton` | Boolean | Radio button visibility  | false |
+| `titleTextColor` | Int | Color resource for title text color.  | null |
+| `animateCornerRadiusWhenExpand` | Boolean | Corner radius will be removed with an animation when set true. | false |
 
 Sample usage:
 ```kotlin
@@ -109,6 +111,8 @@ selectionDialog {
     content = getContent()
     items = getItemsAsHtml()
     showItemsAsHtml = true
+    titleTextColor = R.color.colorPrimary
+    animateCornerRadiusWhenExpand = true
     selectedItemDrawable = R.drawable.ic_check
     selectedTextColor = R.color.colorPrimary
     showRadioButton = true
