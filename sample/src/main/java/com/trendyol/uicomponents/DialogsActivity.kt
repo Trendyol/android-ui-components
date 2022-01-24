@@ -21,6 +21,7 @@ class DialogsActivity : AppCompatActivity() {
     private val buttonSelectionWithSearchDialog by lazy { findViewById<Button>(R.id.button_selection_with_search_dialog) }
     private val buttonInfoDialogWithWebView by lazy { findViewById<Button>(R.id.button_info_dialog_webview) }
     private val buttonInfoListDialog by lazy { findViewById<Button>(R.id.button_info_list_dialog) }
+    private val buttonCustomDialog by lazy { findViewById<Button>(R.id.button_custom_dialog) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class DialogsActivity : AppCompatActivity() {
         buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
         buttonInfoDialogWithWebView.setOnClickListener { showInfoDialogWithWebView() }
         buttonInfoListDialog.setOnClickListener { showInfoListDialog() }
+        buttonCustomDialog.setOnClickListener { showCustomDialog() }
     }
 
     private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
@@ -150,6 +152,19 @@ class DialogsActivity : AppCompatActivity() {
                 )
             )
         }.showDialog(supportFragmentManager)
+    }
+
+    private fun showCustomDialog() {
+        val customView = ExampleCustomView(this@DialogsActivity)
+        val customDialog = customDialog {
+            title = "Custom View Dialog"
+            showCloseButton = true
+            view = customView
+        }
+
+        customView.setButtonCancelClickListener { customDialog.dismiss() }
+        customView.setButtonOkClickListener { Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show() }
+        customDialog.showDialog(supportFragmentManager)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

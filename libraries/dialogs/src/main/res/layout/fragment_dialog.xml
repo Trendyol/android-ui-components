@@ -12,31 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/viewTitleBackground"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:paddingStart="@dimen/ui_components_dialogs_margin_outer"
-            android:paddingEnd="@dimen/ui_components_dialogs_margin_outer">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textTitle"
-                style="@style/Trendyol.UIComponents.Dialogs.PrimaryText.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                tools:text="Lorem Ipsum" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="?selectableItemBackgroundBorderless"
-                android:padding="@dimen/ui_components_dialogs_margin_inner"
-                app:srcCompat="@drawable/ic_ui_components_dialogs_close" />
-        </LinearLayout>
+        <include
+            android:id="@+id/viewDialogHeader"
+            layout="@layout/layout_dialog_header"/>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -77,10 +55,10 @@
                     android:id="@+id/webViewContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
-                    android:paddingBottom="@dimen/ui_components_dialogs_margin_inner"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
+                    android:paddingTop="@dimen/ui_components_dialogs_margin_inner"
+                    android:paddingBottom="@dimen/ui_components_dialogs_margin_inner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textContent"
@@ -111,7 +89,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/barrierContent"
-                    tools:hint="Your search query" />
+                    tools:hint="Your search query"
+                    tools:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageClearSearchQuery"
@@ -134,7 +113,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/editTextSearch"
                     tools:listitem="@layout/item_ui_components_selection_dialog"
-                    tools:visibility="visible" />
+                    tools:visibility="gone" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonLeft"
@@ -151,7 +130,8 @@
                     app:layout_constraintWidth_default="percent"
                     app:layout_constraintWidth_percent="0.4"
                     app:strokeColor="?attr/colorAccent"
-                    tools:text="Cancel" />
+                    tools:text="Cancel"
+                    tools:visibility="gone" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonRight"
@@ -165,7 +145,17 @@
                     app:layout_constraintTop_toTopOf="@id/buttonLeft"
                     app:layout_constraintWidth_default="percent"
                     app:layout_constraintWidth_percent="0.4"
-                    tools:text="Ok" />
+                    tools:text="Ok"
+                    tools:visibility="gone" />
+
+                <FrameLayout
+                    android:id="@+id/frameLayoutCustom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
