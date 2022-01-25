@@ -8,6 +8,9 @@ import androidx.annotation.DrawableRes
 open class Builder internal constructor() {
 
     var title: CharSequence = ""
+    var titleBackgroundColor: Int? = null
+    var titleTextColor: Int? = null
+    var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
@@ -21,9 +24,6 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     @DrawableRes
     var contentImage: Int? = null
     var showContentAsHtml: Boolean = false
-    var titleBackgroundColor: Int? = null
-    var titleTextColor: Int? = null
-    var titleTextPosition: TextPosition? = null
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
     var webViewBuilder: (WebView.() -> Unit)? = null
@@ -149,7 +149,7 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
         }
 }
 
-class CustomDialogBuilder internal constructor() : InfoDialogBuilder() {
+class CustomDialogBuilder internal constructor() : Builder() {
 
     var view: View? = null
 

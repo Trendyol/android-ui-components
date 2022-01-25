@@ -1,7 +1,7 @@
 
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-6.png" width="280"/>
   
-$dialogsVersion = dialogs-1.2.8 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.2.9 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -164,6 +164,30 @@ infoListDialog {
         ItemDivider.MarginDivider(56, listOf(ItemDivider.MarginDivider.MarginDirection.TOP, ItemDivider.MarginDivider.MarginDirection.BOTTOM)),
         ItemDivider.DrawableDivider(R.drawable.shape_info_list_dialog_divider)
     )
+}
+```
+
+* Custom Dialog
+
+CustomDialog is a dialog that has a fixed header and its content can take a custom view.
+
+| Field | Type | Description | Default Value |
+| ------------- |-------------|-------------| ------------- |
+| `view` | View | The custom view that will create the body of the dialog. | null |
+
+Sample usage:
+```kotlin
+val customView = ExampleCustomView(context)
+customDialog {
+    title = SpannableStringBuilder().color(Color.RED) { append("Custom Dialog Sample") }
+    showCloseButton = true
+    animateCornerRadiusWhenExpand = false
+    cornerRadius = 0F
+    closeButtonListener = infoDialogClosed
+    titleBackgroundColor = R.color.colorAccent
+    titleTextColor = R.color.colorPrimary
+    titleTextPosition = TextPosition.CENTER
+    view = customView
 }
 ```
 
