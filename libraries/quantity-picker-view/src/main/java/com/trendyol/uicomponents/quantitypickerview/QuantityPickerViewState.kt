@@ -158,6 +158,14 @@ data class QuantityPickerViewState(
         return copy(minQuantity = minQuantity, showLoading = false)
     }
 
+    internal fun getIconAddDrawable(icon: Drawable): QuantityPickerViewState {
+        return copy(addIconDrawable = icon)
+    }
+
+    internal fun getBackgroundDrawable(background: Drawable): QuantityPickerViewState {
+        return copy(backgroundDrawable = background)
+    }
+
     internal fun stopLoading(): QuantityPickerViewState =
         copy(showLoading = false, expansionState = expansionState.expand())
 

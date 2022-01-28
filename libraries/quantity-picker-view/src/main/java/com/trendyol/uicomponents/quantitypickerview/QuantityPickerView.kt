@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.quantitypickerview
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -165,6 +166,14 @@ class QuantityPickerView : ConstraintLayout {
 
     fun setMinQuantity(minQuantity: Int) =
         setQuantityPickerViewState(binding.viewState?.getWithMinQuantity(minQuantity))
+
+    fun setAddIconDrawable(icon: Drawable) {
+        setQuantityPickerViewState(binding.viewState?.getIconAddDrawable(icon))
+    }
+
+    fun setBackgroundImageDrawable(background: Drawable){
+        setQuantityPickerViewState(binding.viewState?.getBackgroundDrawable(background))
+    }
 
     fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
 
