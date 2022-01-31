@@ -17,6 +17,7 @@
             <enum name="bold" value="1" />
             <enum name="italic" value="2" />
         </attr>
+        <attr name="qpv_addButtonEnabled" format="boolean" />
         <attr name="qpv_currentQuantity" format="integer" />
         <attr name="qpv_maxQuantity" format="integer" />
         <attr name="qpv_minQuantity" format="integer" />

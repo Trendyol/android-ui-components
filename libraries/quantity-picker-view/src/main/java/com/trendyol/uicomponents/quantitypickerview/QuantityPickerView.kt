@@ -103,13 +103,15 @@ class QuantityPickerView : ConstraintLayout {
             imageAdd.setOnClickListener {
                 if (viewState?.isLoading() == true) return@setOnClickListener
 
-                setQuantityPickerViewState(
-                    if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading()
-                    } else {
-                        viewState?.getWithAddValue()
-                    }
-                )
+                if (viewState?.addButtonEnabled == true) {
+                    setQuantityPickerViewState(
+                        if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
+                            viewState?.getWithLoading()
+                        } else {
+                            viewState?.getWithAddValue()
+                        }
+                    )
+                }
             }
         }
 
@@ -248,6 +250,7 @@ class QuantityPickerView : ConstraintLayout {
                 )
             val quantityTextStyle =
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
+            val addButtonEnabled = it.getBoolean(R.styleable.QuantityPickerView_qpv_addButtonEnabled, true)
             val currentQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_currentQuantity, 0)
             val maxQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_maxQuantity, -1)
             val minQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_minQuantity, -1)
@@ -314,6 +317,7 @@ class QuantityPickerView : ConstraintLayout {
                 quantityTextColor = quantityTextColor,
                 quantityTextSize = quantityTextSize,
                 quantityTextStyle = quantityTextStyle,
+                addButtonEnabled = addButtonEnabled,
                 currentQuantity = currentQuantity,
                 backgroundDrawable = background,
                 progressTintColor = progressTintColor,

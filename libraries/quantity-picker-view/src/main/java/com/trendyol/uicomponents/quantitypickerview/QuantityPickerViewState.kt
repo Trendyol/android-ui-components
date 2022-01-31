@@ -13,6 +13,7 @@ data class QuantityPickerViewState(
     @ColorInt private val quantityTextColor: Int,
     private val quantityTextSize: Int,
     private val quantityTextStyle: Int = 0,
+    val addButtonEnabled: Boolean = true,
     val currentQuantity: Int = 0,
     val backgroundDrawable: Drawable,
     @ColorInt val progressTintColor: Int,
