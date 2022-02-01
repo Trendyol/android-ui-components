@@ -13,7 +13,6 @@ data class QuantityPickerViewState(
     @ColorInt private val quantityTextColor: Int,
     private val quantityTextSize: Int,
     private val quantityTextStyle: Int = 0,
-    val addButtonEnabled: Boolean = true,
     val currentQuantity: Int = 0,
     val backgroundDrawable: Drawable,
     @ColorInt val progressTintColor: Int,
@@ -159,16 +158,8 @@ data class QuantityPickerViewState(
         return copy(minQuantity = minQuantity, showLoading = false)
     }
 
-    internal fun getIconAddDrawable(icon: Drawable): QuantityPickerViewState {
-        return copy(addIconDrawable = icon)
-    }
-
-    internal fun getBackgroundDrawable(background: Drawable): QuantityPickerViewState {
+    internal fun getWithBackgroundDrawable(background: Drawable): QuantityPickerViewState {
         return copy(backgroundDrawable = background)
-    }
-
-    internal fun getAddButtonEnabled(enable: Boolean): QuantityPickerViewState {
-        return copy(addButtonEnabled = enable)
     }
 
     internal fun stopLoading(): QuantityPickerViewState =

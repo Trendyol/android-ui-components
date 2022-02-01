@@ -103,15 +103,13 @@ class QuantityPickerView : ConstraintLayout {
             imageAdd.setOnClickListener {
                 if (viewState?.isLoading() == true) return@setOnClickListener
 
-                if (viewState?.addButtonEnabled == true) {
-                    setQuantityPickerViewState(
-                        if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                            viewState?.getWithLoading()
-                        } else {
-                            viewState?.getWithAddValue()
-                        }
-                    )
-                }
+                setQuantityPickerViewState(
+                    if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
+                        viewState?.getWithLoading()
+                    } else {
+                        viewState?.getWithAddValue()
+                    }
+                )
             }
         }
 
@@ -169,16 +167,8 @@ class QuantityPickerView : ConstraintLayout {
     fun setMinQuantity(minQuantity: Int) =
         setQuantityPickerViewState(binding.viewState?.getWithMinQuantity(minQuantity))
 
-    fun setAddIconDrawable(icon: Drawable) {
-        setQuantityPickerViewState(binding.viewState?.getIconAddDrawable(icon))
-    }
-
     fun setBackgroundImageDrawable(background: Drawable){
-        setQuantityPickerViewState(binding.viewState?.getBackgroundDrawable(background))
-    }
-
-    fun setAddButtonEnabled(enable: Boolean) {
-        setQuantityPickerViewState(binding.viewState?.getAddButtonEnabled(enable))
+        setQuantityPickerViewState(binding.viewState?.getWithBackgroundDrawable(background))
     }
 
     fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
