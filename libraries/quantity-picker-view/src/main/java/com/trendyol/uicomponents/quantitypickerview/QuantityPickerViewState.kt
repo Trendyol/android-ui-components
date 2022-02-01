@@ -167,6 +167,10 @@ data class QuantityPickerViewState(
         return copy(backgroundDrawable = background)
     }
 
+    internal fun getAddButtonEnabled(enable: Boolean): QuantityPickerViewState {
+        return copy(addButtonEnabled = enable)
+    }
+
     internal fun stopLoading(): QuantityPickerViewState =
         copy(showLoading = false, expansionState = expansionState.expand())
 

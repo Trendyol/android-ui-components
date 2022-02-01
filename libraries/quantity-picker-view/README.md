@@ -66,6 +66,7 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | setMinQuantity | minQuantity: Int | To set minQuantity immediately. |
 | setAddIconDrawable | icon: Drawable | To set addIconDrawable immediately. |
 | setBackgroundImageDrawable | background: Drawable | To set backgroundImageDrawable immediately. |
+| setAddButtonEnabled | enable: Boolean | To set enable to addButton immediately |
 | stopLoading |  | To stop current loading.|
 | reset |  | To stop loading and set currentQuantity to 0. |
 | incrementQuantityBy | quantity | increments current total quantity by quantity parameter

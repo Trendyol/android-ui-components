@@ -177,6 +177,10 @@ class QuantityPickerView : ConstraintLayout {
         setQuantityPickerViewState(binding.viewState?.getBackgroundDrawable(background))
     }
 
+    fun setAddButtonEnabled(enable: Boolean) {
+        setQuantityPickerViewState(binding.viewState?.getAddButtonEnabled(enable))
+    }
+
     fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
 
     fun reset() = setQuantityPickerViewState(binding.viewState?.reset())
@@ -250,7 +254,6 @@ class QuantityPickerView : ConstraintLayout {
                 )
             val quantityTextStyle =
                 it.getInt(R.styleable.QuantityPickerView_qpv_quantityTextStyle, 0)
-            val addButtonEnabled = it.getBoolean(R.styleable.QuantityPickerView_qpv_addButtonEnabled, true)
             val currentQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_currentQuantity, 0)
             val maxQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_maxQuantity, -1)
             val minQuantity = it.getInt(R.styleable.QuantityPickerView_qpv_minQuantity, -1)
@@ -317,7 +320,6 @@ class QuantityPickerView : ConstraintLayout {
                 quantityTextColor = quantityTextColor,
                 quantityTextSize = quantityTextSize,
                 quantityTextStyle = quantityTextStyle,
-                addButtonEnabled = addButtonEnabled,
                 currentQuantity = currentQuantity,
                 backgroundDrawable = background,
                 progressTintColor = progressTintColor,
