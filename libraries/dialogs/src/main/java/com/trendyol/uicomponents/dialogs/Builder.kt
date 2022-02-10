@@ -1,12 +1,16 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.view.View
 import android.webkit.WebView
 import androidx.annotation.DrawableRes
 
 open class Builder internal constructor() {
 
     var title: CharSequence = ""
+    var titleBackgroundColor: Int? = null
+    var titleTextColor: Int? = null
+    var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
@@ -20,9 +24,6 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     @DrawableRes
     var contentImage: Int? = null
     var showContentAsHtml: Boolean = false
-    var titleBackgroundColor: Int? = null
-    var titleTextColor: Int? = null
-    var titleTextPosition: TextPosition? = null
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
     var webViewBuilder: (WebView.() -> Unit)? = null
@@ -146,4 +147,27 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
             }
 
         }
+}
+
+class CustomDialogBuilder internal constructor() : Builder() {
+
+    var view: View? = null
+
+    internal fun buildCustomDialog(block: CustomDialogBuilder.() -> Unit): DialogFragment {
+        return CustomDialogBuilder().apply(block).let {
+            DialogFragment().apply {
+                arguments = DialogFragmentArguments(
+                    title = it.title,
+                    showCloseButton = it.showCloseButton,
+                    animateCornerRadiusWhenExpand = animateCornerRadiusWhenExpand,
+                    cornerRadius = it.cornerRadius,
+                    titleBackgroundColor = it.titleBackgroundColor,
+                    titleTextColor = it.titleTextColor,
+                    titleTextPosition = it.titleTextPosition,
+                    view = { it.view }
+                ).toBundle()
+                this.closeButtonListener = it.closeButtonListener
+            }
+        }
+    }
 }

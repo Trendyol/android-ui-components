@@ -11,3 +11,6 @@ fun agreementDialog(block: AgreementDialogBuilder.() -> Unit): DialogFragment =
 
 fun selectionDialog(block: SelectionDialogBuilder.() -> Unit): DialogFragment =
     SelectionDialogBuilder().buildSelectionDialog(block)
+
+fun customDialog(block: CustomDialogBuilder.() -> Unit): DialogFragment =
+    CustomDialogBuilder().buildCustomDialog(block)
