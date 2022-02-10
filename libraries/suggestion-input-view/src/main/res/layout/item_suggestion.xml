@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,21 +10,48 @@
             type="com.trendyol.suggestioninputview.SuggestionInputItemViewState" />
     </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:foreground="?android:attr/selectableItemBackground"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@{viewState.getBackground()}"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
-        android:minWidth="@{viewState.minimumWidth}"
-        android:paddingStart="@{viewState.getHorizontalPadding()}"
-        android:paddingTop="@{viewState.getVerticalPadding()}"
-        android:paddingEnd="@{viewState.getHorizontalPadding()}"
-        android:paddingBottom="@{viewState.getVerticalPadding()}"
-        android:text="@{viewState.getText()}"
-        android:textColor="@{viewState.getTextColor()}"
-        android:textSize="@{viewState.getTextSize()}"
-        tools:text="50 TL" />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/suggestionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_suggestion_item"
+            android:background="@{viewState.getBackground()}"
+            android:fontFamily="sans-serif-medium"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
+            android:minWidth="@{viewState.minimumWidth}"
+            android:paddingStart="@{viewState.getHorizontalPadding()}"
+            android:paddingTop="@{viewState.getVerticalPadding()}"
+            android:paddingEnd="@{viewState.getHorizontalPadding()}"
+            android:paddingBottom="@{viewState.getVerticalPadding()}"
+            android:text="@{viewState.getText()}"
+            android:textColor="@{viewState.getTextColor()}"
+            android:textSize="@{viewState.getTextSize()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="50 TL" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_suggestion_item_badge"
+            android:background="@{viewState.badgeBackground}"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="@{viewState.badgeHorizontalPadding}"
+            android:paddingTop="@{viewState.badgeVerticalPadding}"
+            android:paddingEnd="@{viewState.badgeHorizontalPadding}"
+            android:paddingBottom="@{viewState.badgeVerticalPadding}"
+            android:text="@{viewState.badgeText}"
+            android:textColor="@{viewState.badgeTextColor}"
+            android:textSize="@{viewState.badgeTextSize}"
+            android:visibility="@{viewState.badgeVisibility}"
+            app:layout_constraintStart_toStartOf="@id/suggestionText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

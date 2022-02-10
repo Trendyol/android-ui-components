@@ -62,7 +62,8 @@ class SuggestionInputViewActivity : AppCompatActivity() {
             type = SuggestionItemType.SELECTABLE,
             isSelected = false,
             text = "20 ₺",
-            value = "20"
+            value = "20",
+            badgeText = "Popüler"
         )
 
         val item3 = SuggestionInputItem(

@@ -76,6 +76,20 @@ class SuggestionInputView @JvmOverloads constructor(
 
     private var canDeselectItem: Boolean = false
 
+    private var badgeBackground: Drawable? = null
+
+    @ColorInt
+    private var badgeTextColor: Int = 0
+
+    @Dimension
+    private var badgeTextSize: Float = 0F
+
+    @Dimension
+    private var badgeHorizontalPadding: Float = 0F
+
+    @Dimension
+    private var badgeVerticalPadding: Float = 0F
+
     private val bindingSelectables: ViewSuggestionSelectablesBinding =
         inflate(R.layout.view_suggestion_selectables)
     private val bindingInput: ViewSuggestionInputBinding =
@@ -154,6 +168,29 @@ class SuggestionInputView @JvmOverloads constructor(
                 showKeyboardByDefault =
                     getBoolean(R.styleable.SuggestionInputView_showKeyboardByDefault, true)
                 canDeselectItem = getBoolean(R.styleable.SuggestionInputView_canDeselectItem, false)
+
+                badgeBackground = getDrawable(R.styleable.SuggestionInputView_badgeBackground)
+                    ?: context.drawable(R.drawable.shape_background_suggestion_item_badge)
+
+                badgeTextSize = getDimension(
+                    R.styleable.SuggestionInputView_badgeTextSize,
+                    context.resources.getDimension(R.dimen.text_size_suggestion_input_badge)
+                )
+
+                badgeTextColor = getColor(
+                    R.styleable.SuggestionInputView_suggestionBadgeTextColor,
+                    context.color(R.color.text_color_suggestion_item_badge)
+                )
+
+                badgeHorizontalPadding = getDimension(
+                    R.styleable.SuggestionInputView_badgeHorizontalPadding,
+                    context.resources.getDimension(R.dimen.horizontal_padding_suggestion_item_badge)
+                )
+                badgeVerticalPadding = getDimension(
+                    R.styleable.SuggestionInputView_badgeVerticalPadding,
+                    context.resources.getDimension(R.dimen.vertical_padding_suggestion_item_badge)
+                )
+
             } finally {
                 recycle()
             }
@@ -259,6 +296,31 @@ class SuggestionInputView @JvmOverloads constructor(
     fun setInputHint(hint: String?) {
         this.hint = hint ?: ""
         setViewState(createViewState())
+    }
+
+    fun setBadgeBackground(badgeBackground: Drawable) {
+        this.badgeBackground = badgeBackground
+        updateBadgeView()
+    }
+
+    fun setBadgeHorizontalPadding(@Dimension badgeHorizontalPadding: Float) {
+        this.horizontalPadding = badgeHorizontalPadding
+        updateBadgeView()
+    }
+
+    fun setBadgeVerticalPadding(@Dimension badgeVerticalPadding: Float) {
+        this.verticalPadding = badgeVerticalPadding
+        updateBadgeView()
+    }
+
+    fun setBadgeTextColor(@ColorInt badgeTextColor: Int) {
+        this.badgeTextColor = badgeTextColor
+        updateBadgeView()
+    }
+
+    fun setBadgeTextSize(@Dimension badgeTextSize: Float) {
+        this.badgeTextSize = badgeTextSize
+        updateBadgeView()
     }
 
     fun setItems(items: List<SuggestionInputItem>) {
@@ -518,6 +580,21 @@ class SuggestionInputView @JvmOverloads constructor(
         }
     }
 
+    private fun updateBadgeView() {
+        this.items = items.map {
+            it.copy(
+                badge = it.badge.copy(
+                    background = badgeBackground,
+                    textColor = badgeTextColor,
+                    textSize = badgeTextSize,
+                    horizontalPadding = badgeHorizontalPadding,
+                    verticalPadding = badgeVerticalPadding
+                )
+            )
+        }
+        notifyAdapter()
+    }
+
     private fun applyConstraintSet(constraintSet: ConstraintSet) {
         constraintSet.applyTo(bindingSelectables.constraintLayoutSelectables)
     }
@@ -556,9 +633,21 @@ class SuggestionInputView @JvmOverloads constructor(
                 minWidth = minWidth,
                 suffix = inputSuffix,
                 errorBackground = errorBackground,
-                shouldShowSelectableItemError = shouldShowSelectableItemError
+                shouldShowSelectableItemError = shouldShowSelectableItemError,
+                badge = mapSuggestionInputBadge(suggestionInputItem.badgeText)
             )
         }
+    }
+
+    private fun mapSuggestionInputBadge(badgeText: String): SuggestionInputBadge {
+        return SuggestionInputBadge(
+            text = badgeText,
+            background = badgeBackground,
+            textColor = badgeTextColor,
+            textSize = badgeTextSize,
+            horizontalPadding = badgeHorizontalPadding,
+            verticalPadding = badgeVerticalPadding
+        )
     }
 
     private fun mapItemViewStateToInputItem(itemViewState: SuggestionInputItemViewState): SuggestionInputItem {

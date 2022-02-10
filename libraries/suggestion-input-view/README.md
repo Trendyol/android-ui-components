@@ -45,6 +45,11 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | `app:inputHint` | `setInputHint(String)` | Hint of input view's edit text | Empty String | app:inputHint="Hint of input edit text"|
 | `app:showKeyboardByDefault` |  | show keyboard or not by default for input view | true | app:showKeyboardByDefault="false"|
 | `app:canDeselectedItem` |  | for can deselected item | false | app:canDeselectedItem="false"|
+| `app:badgeBackground` | `setBadgeBackground(Drawable)` | Drawable resource of item badge | shape_background_suggestion_item_badge | app:badgeBackground="@drawable/shape_background_suggestion_item_badge"|
+| `app:badgeHorizontalPadding` | `setBadgeHorizontalPadding(Float)` | Start and end padding of badge | 8dp | app:badgeHorizontalPadding="@dimen/horizontal_padding_suggestion_item_badge"|
+| `app:badgeVerticalPadding` | `setBadgeVerticalPadding(Float)` | Top and bottom padding of badge | 2dp | app:badgeVerticalPadding="@dimen/vertical_padding_suggestion_item_badge"|
+| `app:suggestionBadgeTextColor` | `setBadgeTextColor(Color)` |Color of badge text | #F27A1A | app:suggestionBadgeTextColor="@color/text_color_suggestion_item_badge"|
+| `app:badgeTextSize` | `setBadgeTextSize(Float)` |Text size of badge | 10sp | app:badgeTextSize="@dimen/text_size_suggestion_input_badge"|
 
 # Contributors
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
