@@ -3,4 +3,6 @@
     <color name="primary_text_color">#333333</color>
     <color name="text_color_selected_suggestion_item">#ffffff</color>
     <color name="text_color_unselected_suggestion_item">#333333</color>
+    <color name="text_color_suggestion_item_badge">#f27a1a</color>
+    <color name="background_color_suggestion_item_badge">#fef1e8</color>
 </resources>

@@ -6,5 +6,6 @@ data class SuggestionInputItem(
     val value: String,
     val isSelected: Boolean,
     val type: SuggestionItemType,
-    val suffix: String = ""
+    val suffix: String = "",
+    val badgeText: String = ""
 )
