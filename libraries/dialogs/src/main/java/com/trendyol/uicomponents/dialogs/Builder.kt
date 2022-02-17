@@ -15,8 +15,6 @@ open class Builder internal constructor() {
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
     var cornerRadius: Float? = null
-    var horizontalPadding: Float? = null
-    var verticalPadding: Float? = null
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -29,6 +27,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
     var webViewBuilder: (WebView.() -> Unit)? = null
+    var horizontalPadding: Float? = null
+    var verticalPadding: Float? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -171,8 +171,8 @@ class CustomDialogBuilder internal constructor() : Builder() {
                     showCloseButton = it.showCloseButton,
                     animateCornerRadiusWhenExpand = animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
-                    horizontalPadding = it.horizontalPadding ?: 0.0F,
-                    verticalPadding = it.verticalPadding,
+                    horizontalPadding = 0.0F,
+                    verticalPadding = 0.0F,
                     titleBackgroundColor = it.titleBackgroundColor,
                     titleTextColor = it.titleTextColor,
                     titleTextPosition = it.titleTextPosition,
