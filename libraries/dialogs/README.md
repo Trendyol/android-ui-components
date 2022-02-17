@@ -37,6 +37,8 @@ Simple dialog to show information, error or text.
 | `showCloseButton` | Boolean | Close button visibility | false |
 | `animateCornerRadiusWhenExpand` | Boolean | Corner radius will be removed with an animation when set true. | false |  
 | `cornerRadius` | Float | Corner radius will be applied. | 16dp |
+| `horizontalPadding` | Float | Horizontal padding will be applied. | 16dp |
+| `verticalPadding` | Float | Vertical padding will be applied. | 0dp |
 | `closeButtonListener` | (DialogFragment) -> Unit | Listener for close button. When clicked, dialog will dismiss and listener will be invoked with dialog. | { } |
 | `content` | CharSequence | Content of a dialog | "" |
 | `showContentAsHtml` | Boolean | If you provided `content` as Html and set this flag as true, content will be parsed as HTML. | false |
@@ -174,6 +176,8 @@ CustomDialog is a dialog that has a fixed header and its content can take a cust
 | Field | Type | Description | Default Value |
 | ------------- |-------------|-------------| ------------- |
 | `view` | View | The custom view that will create the body of the dialog. | null |
+| `horizontalPadding` | Float | Horizontal padding will be applied. | 0dp |
+| `verticalPadding` | Float | Vertical padding will be applied. | 0dp |
 
 Sample usage:
 ```kotlin

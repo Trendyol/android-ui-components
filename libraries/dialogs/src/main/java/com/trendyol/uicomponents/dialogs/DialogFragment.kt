@@ -84,6 +84,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             dialogArguments.infoListItems?.let { items ->
                 initializeInfoListDialog(items, dialogArguments.itemDividers)
             }
+
+            val horizontalPadding = dialogArguments.horizontalPadding?.toInt()
+                ?: requireContext().pixel(R.dimen.ui_components_dialogs_margin_outer).toInt()
+            val verticalPadding = dialogArguments.verticalPadding?.toInt() ?: 0
+            nestedScrollView.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
         }
     }
 

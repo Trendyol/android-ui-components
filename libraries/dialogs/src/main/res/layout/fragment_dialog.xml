@@ -17,10 +17,9 @@
             layout="@layout/layout_dialog_header"/>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/ui_components_dialogs_margin_outer"
-            android:paddingEnd="@dimen/ui_components_dialogs_margin_outer">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
