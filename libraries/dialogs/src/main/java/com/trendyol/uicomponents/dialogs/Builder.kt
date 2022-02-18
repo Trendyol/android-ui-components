@@ -27,6 +27,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
     var webViewBuilder: (WebView.() -> Unit)? = null
+    var horizontalPadding: Float? = null
+    var verticalPadding: Float? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -36,6 +38,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     showCloseButton = it.showCloseButton,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     content = SpannableString(it.content),
                     contentImage = it.contentImage,
                     showContentAsHtml = it.showContentAsHtml,
@@ -67,6 +71,8 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showCloseButton = it.showCloseButton,
                     content = SpannableString(it.content),
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     rightButtonText = it.rightButtonText,
@@ -103,6 +109,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     titleTextColor = it.titleTextColor,
                     items = it.items,
@@ -137,6 +145,8 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                     content = SpannableString(it.content),
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     webViewContent = it.webViewContent,
@@ -161,6 +171,8 @@ class CustomDialogBuilder internal constructor() : Builder() {
                     showCloseButton = it.showCloseButton,
                     animateCornerRadiusWhenExpand = animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = 0.0F,
+                    verticalPadding = 0.0F,
                     titleBackgroundColor = it.titleBackgroundColor,
                     titleTextColor = it.titleTextColor,
                     titleTextPosition = it.titleTextPosition,

@@ -15,6 +15,8 @@ class DialogFragmentArguments(
     val showCloseButton: Boolean? = null,
     val animateCornerRadiusWhenExpand: Boolean = true,
     val cornerRadius: Float? = null,
+    val horizontalPadding: Float? = null,
+    val verticalPadding: Float? = null,
     val content: CharSequence? = null,
     val showContentAsHtml: Boolean = false,
     @DrawableRes val contentImage: Int? = null,
