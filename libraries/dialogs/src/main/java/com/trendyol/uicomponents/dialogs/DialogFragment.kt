@@ -157,7 +157,6 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
             contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START,
             webViewContent = dialogArguments.webViewContent,
-            customView = dialogArguments.view?.invoke(),
         )
 
         with(binding) {
@@ -203,11 +202,6 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             with(buttonRight) {
                 text = viewState.rightButtonText
                 visibility = viewState.getRightButtonVisibility()
-            }
-            with(frameLayoutCustom) {
-                visibility = viewState.getCustomViewVisibility()
-                if (viewState.getCustomViewVisibility() == View.VISIBLE)
-                    addView(viewState.customView)
             }
         }
     }

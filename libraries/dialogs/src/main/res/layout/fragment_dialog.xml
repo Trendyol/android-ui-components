@@ -148,15 +148,6 @@
                     app:layout_constraintWidth_percent="0.4"
                     tools:text="Ok"
                     tools:visibility="gone" />
-
-                <FrameLayout
-                    android:id="@+id/frameLayoutCustom"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
