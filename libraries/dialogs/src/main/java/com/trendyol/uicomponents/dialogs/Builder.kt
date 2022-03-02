@@ -1,7 +1,6 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
-import android.view.View
 import android.webkit.WebView
 import androidx.annotation.DrawableRes
 
@@ -157,29 +156,4 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
             }
 
         }
-}
-
-class CustomDialogBuilder internal constructor() : Builder() {
-
-    var view: View? = null
-
-    internal fun buildCustomDialog(block: CustomDialogBuilder.() -> Unit): DialogFragment {
-        return CustomDialogBuilder().apply(block).let {
-            DialogFragment().apply {
-                arguments = DialogFragmentArguments(
-                    title = it.title,
-                    showCloseButton = it.showCloseButton,
-                    animateCornerRadiusWhenExpand = animateCornerRadiusWhenExpand,
-                    cornerRadius = it.cornerRadius,
-                    horizontalPadding = 0.0F,
-                    verticalPadding = 0.0F,
-                    titleBackgroundColor = it.titleBackgroundColor,
-                    titleTextColor = it.titleTextColor,
-                    titleTextPosition = it.titleTextPosition,
-                    view = { it.view }
-                ).toBundle()
-                this.closeButtonListener = it.closeButtonListener
-            }
-        }
-    }
 }

@@ -26,7 +26,6 @@ data class DialogViewState(
     val titleTextPosition: TextPosition,
     val contentTextPosition: TextPosition,
     val webViewContent: WebViewContent?,
-    val customView: View?,
 ) {
 
     fun getTitleVisibility(): Int = if (title.isNullOrEmpty().not()) View.VISIBLE else View.GONE
@@ -82,6 +81,4 @@ data class DialogViewState(
     fun getLeftButtonVisibility(): Int = if (leftButtonText != null) View.VISIBLE else View.GONE
 
     fun getRightButtonVisibility(): Int = if (rightButtonText != null) View.VISIBLE else View.GONE
-
-    fun getCustomViewVisibility(): Int = if (customView != null) View.VISIBLE else View.GONE
 }
