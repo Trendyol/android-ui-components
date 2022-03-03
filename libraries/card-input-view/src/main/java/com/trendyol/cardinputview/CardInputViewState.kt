@@ -25,7 +25,11 @@ data class CardInputViewState(
     private val expiryYearValid: Boolean = true,
     private val cvvValid: Boolean = true,
     private val shouldShowErrors: Boolean = true,
-    var cardInformation: CardInformation = CardInformation()
+    var cardInformation: CardInformation = CardInformation(),
+    val supportedCardTypes: List<CreditCardType> = listOf(
+        CreditCardType.VISA,
+        CreditCardType.MASTER_CARD
+    ),
 ) {
 
     var cardNumber: String = cardInformation.cardNumber
