@@ -47,6 +47,8 @@ To clear all inputs' errors, call `CardInputView.clearErrors()`.
 
 To focus and show soft keyboard on card number field call `CardInputView.focusToCardNumberField()`, to focus CVV field call `CardInputView.focusToCvvField()`.
 
+To set supported credit card types call `CardInputView.setSupportedCardTypes()` by default it supports and formats as `CreditCardType.MASTER_CARD, CreditCardType.VISA`.
+
 For expire month and year selection, you need to open custom dialog or input field, we suggest you to use **Dialogs**, to more information about **Dialogs**, [click here](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs).
 
 ## Listeners
