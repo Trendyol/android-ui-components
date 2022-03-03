@@ -25,7 +25,7 @@ data class DialogViewState(
     val titleTextColor: Int,
     val titleTextPosition: TextPosition,
     val contentTextPosition: TextPosition,
-    val webViewContent: WebViewContent?
+    val webViewContent: WebViewContent?,
 ) {
 
     fun getTitleVisibility(): Int = if (title.isNullOrEmpty().not()) View.VISIBLE else View.GONE

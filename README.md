@@ -10,7 +10,7 @@ UI Components includes several custom views for Android platform to make develop
 <img src="images/uic3.png" width="240"/> <img src="images/uic4.png" width="240"/>
 <img src="images/uic5.png" width="240"/> <img src="images/timeline-view.png" width="240"/>
 <img src="images/suggestion-input-view-1.gif" width="240"/> <img src="images/quantity-picker-view-1.gif" width="240"/>
-<img src="images/fitoptionmessageview.png" width="240"/> <img src="images/fitoptionmessageview.png" width="240"/>
+<img src="images/fitoptionmessageview.png" width="240"/> 
 
 ## Why? ##
 [Trendyol](https://play.google.com/store/apps/details?id=trendyol.com) Android application, we are using several custom view implementations that can be useful for other apps.

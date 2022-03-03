@@ -36,5 +36,14 @@
         <attr name="errorBackground" format="reference" />
         <!-- can deselected item -->
         <attr name="canDeselectItem" format="boolean" />
+        <!-- badge background -->
+        <attr name="badgeBackground" format="reference"/>
+        <!-- badge padding -->
+        <attr name="badgeHorizontalPadding" format="dimension"/>
+        <attr name="badgeVerticalPadding" format="dimension"/>
+        <!-- badge text color -->
+        <attr name="suggestionBadgeTextColor" format="reference"/>
+        <!-- badge text size -->
+        <attr name="badgeTextSize" format="dimension" />
     </declare-styleable>
 </resources>

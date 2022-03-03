@@ -14,6 +14,8 @@ class DialogFragmentArguments(
     val showCloseButton: Boolean? = null,
     val animateCornerRadiusWhenExpand: Boolean = true,
     val cornerRadius: Float? = null,
+    val horizontalPadding: Float? = null,
+    val verticalPadding: Float? = null,
     val content: CharSequence? = null,
     val showContentAsHtml: Boolean = false,
     @DrawableRes val contentImage: Int? = null,
@@ -34,7 +36,7 @@ class DialogFragmentArguments(
     val webViewContent: WebViewContent? = null,
     val webViewBuilder: (WebView.() -> Unit)? = null,
     val infoListItems: List<Pair<CharSequence, CharSequence>>? = null,
-    val itemDividers: List<ItemDivider> = emptyList()
+    val itemDividers: List<ItemDivider> = emptyList(),
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)
