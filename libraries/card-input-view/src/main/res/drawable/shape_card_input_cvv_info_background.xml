@@ -6,5 +6,5 @@
 
     <stroke
         android:width="@dimen/civ_stroke_width"
-        android:color="@android:color/darker_gray" />
+        android:color="@color/civ_cvv_info_border_color" />
 </shape>
