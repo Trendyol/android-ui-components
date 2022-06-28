@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
   
-$dialogsVersion = dialogs-1.3.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.4.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -97,6 +97,7 @@ All **Info Dialog** arguments plus these arguments will be applicable to show se
 | `items` | List<Pair<Boolean, String>> | Item list that will be listed on dialog. | null | 
 | `showItemsAsHtml` | Boolean | Item texts will be parsed as Html if this flag setted as true. | false |
 | `onItemSelectedListener` | (DialogFragment, Int) -> Unit | Listener to notify selected index.  | null |
+| `onDismissListener` | (DialogFragment) -> Unit | Listener to notify when dialog is dismiss.  | null |
 | `enableSearch` | Boolean | Enables search function in given `items`  | false |
 | `showClearSearchButton` | Boolean | Shows clean button on the right of the search input line.  | false |
 | `searchHint` | String | Hint to show on search input line.  | "" |

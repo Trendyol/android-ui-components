@@ -1,5 +1,6 @@
 package com.trendyol.uicomponents.dialogs
 
+import android.content.DialogInterface
 import android.graphics.Outline
 import android.os.Bundle
 import android.text.SpannableString
@@ -29,6 +30,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onDismissListener: ((DialogFragment) -> Unit)? = null
 
     internal lateinit var binding: FragmentDialogBinding
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
@@ -230,6 +232,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             if (view == null) return
             outline?.setRoundRect(0, 0, view.width, (view.height + radius).toInt(), radius)
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        onDismissListener?.invoke(this@DialogFragment)
+        super.onDismiss(dialog)
     }
 
     companion object {
