@@ -34,3 +34,19 @@ internal fun View.setEndMargin(endMargin: Int?) {
         it.marginEnd = endMargin
     }
 }
+
+/**
+ * Set debounce time(millis) to onClickListener for prevent multiple clicks.
+ * @param debounceMillis: Millis time that gives delay between clicks.
+ * @param onClickListener: Lambda function that invokes click listener.
+ */
+fun View.setDebouncedOnClickListener(debounceMillis: Long = 500L, onClickListener: View.OnClickListener) {
+    var lastClickTime: Long = 0
+    setOnClickListener { view ->
+        val shouldAcceptClick = (System.currentTimeMillis() - lastClickTime) > debounceMillis
+        if (shouldAcceptClick) {
+            lastClickTime = System.currentTimeMillis()
+            onClickListener.onClick(view)
+        }
+    }
+}
