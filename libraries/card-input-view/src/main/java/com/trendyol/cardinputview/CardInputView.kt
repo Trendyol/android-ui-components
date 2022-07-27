@@ -279,10 +279,10 @@ class CardInputView : ConstraintLayout {
                 addTextChangedListener(CvvTextWatcher())
             }
 
-            textViewCardExpiryMonth.setOnClickListener {
+            textViewCardExpiryMonth.setDebouncedOnClickListener {
                 openMonthSelectionListener?.invoke()
             }
-            textViewCardExpiryYear.setOnClickListener {
+            textViewCardExpiryYear.setDebouncedOnClickListener {
                 openYearSelectionListener?.invoke()
             }
             textViewCvvInfo.setOnClickListener {
