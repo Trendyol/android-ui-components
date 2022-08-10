@@ -100,7 +100,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="@{itemViewState.getItemMaxLineCount()}"
             android:text="@{itemViewState.getText()}"
             android:textColor="@{itemViewState.getTextColor()}"
             android:textSize="@{itemViewState.textSize}"

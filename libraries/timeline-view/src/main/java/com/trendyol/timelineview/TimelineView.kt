@@ -41,6 +41,8 @@ class TimelineView : ConstraintLayout {
 
     private var fontFamily: String = ""
 
+    private var maxLineCount: Int = 2
+
     private val binding: ViewTimelineBinding = inflate(R.layout.view_timeline)
 
     private var timelineOrientation: TimelineOrientation = TimelineOrientation.HORIZONTAL
@@ -119,6 +121,10 @@ class TimelineView : ConstraintLayout {
         this.timelineOrientation = timelineOrientation
     }
 
+    fun setMaxLineCount(maxLineCount: Int?) {
+        this.maxLineCount = maxLineCount ?: 2
+    }
+
     fun setItems(items: List<TimelineItem>?) {
         binding.viewState = TimelineViewState(
             timelineOrientation = timelineOrientation,
@@ -163,7 +169,8 @@ class TimelineView : ConstraintLayout {
                 borderWidth = borderWidth,
                 textSize = textSize,
                 lineWidth = lineWidth,
-                fontFamily = fontFamily
+                fontFamily = fontFamily,
+                maxLineCount = maxLineCount
             )
         } ?: emptyList()
     }
