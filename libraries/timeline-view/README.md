@@ -42,6 +42,7 @@ To set width you can use `android:layout_width` attribute. To customize more you
 | setBorderWidth | borderWidth: Float | To set borderWidth programmatically |
 | setTextSize | textSize: Float | To set setTextSize programmatically |
 | setLineWidth | lineWidth: Float | To set setLineWidth programmatically |
+| setMaxLineCount | maxLineCount: Int | To set setMaxLineCount programmatically |
 
 
 # Contributors
