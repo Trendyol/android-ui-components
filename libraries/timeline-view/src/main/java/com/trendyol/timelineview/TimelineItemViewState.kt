@@ -9,7 +9,8 @@ class TimelineItemViewState(
     val borderWidth: Float,
     val textSize: Float,
     val lineWidth: Float,
-    val fontFamily: String
+    val fontFamily: String,
+    val maxLineCount: Int
 ) {
 
     fun getOutsideColor(): Int = Color.parseColor(timelineItem.outsideColor)
@@ -39,6 +40,8 @@ class TimelineItemViewState(
 
     fun getItemWidth(): Float =
         dotSize + borderWidth + lineWidth
+
+    fun getItemMaxLineCount(): Int = maxLineCount
 
     companion object {
         private const val hexColorWhite = "#000000"
