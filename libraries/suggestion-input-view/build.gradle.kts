@@ -9,12 +9,12 @@ group = Configs.group
 version = ComponentVersions.suggestionInputViewVersion
 
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
-    buildToolsVersion(Configs.buildToolsVersion)
+    compileSdk = Configs.compileSdkVersion
+    buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Configs.minSdkVersion)
-        targetSdkVersion(Configs.targetSdkVersion)
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles("consumer-rules.pro")
