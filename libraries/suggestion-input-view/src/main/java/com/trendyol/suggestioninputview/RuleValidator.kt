@@ -10,28 +10,31 @@ object RuleValidator {
         rules?.forEach { rule ->
             when (rule.type) {
                 RuleTypes.MUST_BIGGER -> {
-                    if (rule.value?.toDoubleOrNull() ?: 0.0 > value.toDoubleOrNull() ?: 0.0) {
+                    if ((rule.value?.toDoubleOrNull() ?: 0.0) > (value.toDoubleOrNull() ?: 0.0)) {
                         invalidRule = rule
                         valid = false
                     }
                 }
                 RuleTypes.MUST_SMALL -> {
-                    if (rule.value?.toDoubleOrNull() ?: 0.0 < value.toDoubleOrNull() ?: 0.0) {
+                    if ((rule.value?.toDoubleOrNull() ?: 0.0) < (value.toDoubleOrNull() ?: 0.0)) {
                         invalidRule = rule
                         valid = false
                     }
                 }
                 RuleTypes.MUST_EQUALS -> {
-                    if (rule.value?.toDoubleOrNull() ?: 0.0 != value.toDoubleOrNull() ?: 0.0) {
+                    if ((rule.value?.toDoubleOrNull() ?: 0.0) != (value.toDoubleOrNull() ?: 0.0)) {
                         invalidRule = rule
                         valid = false
                     }
                 }
                 RuleTypes.MUST_NOT_EQUALS -> {
-                    if (rule.value?.toDoubleOrNull() ?: 0.0 == value.toDoubleOrNull() ?: 0.0) {
+                    if ((rule.value?.toDoubleOrNull() ?: 0.0) == (value.toDoubleOrNull() ?: 0.0)) {
                         invalidRule = rule
                         valid = false
                     }
+                }
+                null -> {
+                    // do nothing
                 }
             }
         }

@@ -5,6 +5,7 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
     id(Plugins.kotlinKapt)
+    id(Plugins.mavenPublish)
 }
 
 group = Configs.group

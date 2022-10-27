@@ -47,12 +47,12 @@ class DialogsActivity : AppCompatActivity() {
     }
 
     private val onItemSelectedListener: (DialogFragment, Int) -> Unit =
-        { dialogFragment, position ->
+        { _, position ->
             showToast("Selection changed to ${position + 1}th ")
         }
 
     private val onItemReselectedListener: (DialogFragment, Int) -> Unit =
-        { dialogFragment, position ->
+        { _, position ->
             showToast("Reselection ${position + 1}th ")
         }
 

@@ -37,16 +37,6 @@ class CardInputViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_input)
 
-        val cardInputViewState = CardInputViewState(
-            cardNumberTitle = "Card Number",
-            expiryTitle = "Expiry Date",
-            expiryMonthTitle = "MM",
-            expiryYearTitle = "YY",
-            cvvTitle = "CVV",
-            validationEnabled = true,
-            inputTextColor = Color.BLACK
-        )
-
         with(cardInputView) {
             setSupportedCardTypes(
                 CreditCardType.MASTER_CARD,
@@ -56,6 +46,9 @@ class CardInputViewActivity : AppCompatActivity() {
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
                     cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
+                }
+                if (cardNumber.length >= 6) {
+                    cardInputView.setCardBankLogoDrawable(getCardTypeLogoUrl(cardNumber)) // dummy setting
                 }
                 textCardNumber.text = cardNumber
             }

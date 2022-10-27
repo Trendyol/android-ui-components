@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
+    id(Plugins.mavenPublish)
 }
 
 group = Configs.group
