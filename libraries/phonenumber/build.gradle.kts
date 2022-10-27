@@ -3,7 +3,6 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
     id(Plugins.kotlinKapt)
-    id(Plugins.androidMaven)
 }
 
 group = Configs.group

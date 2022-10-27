@@ -1,215 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <data>
-
-        <variable
-            name="viewState"
-            type="com.trendyol.cardinputview.CardInputViewState" />
-    </data>
-
-    <merge
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewCardNumberTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+        android:singleLine="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCardNumberTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewState.cardNumberTitle}"
-            android:textColor="@{viewState.titleTextColor}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/viewCardNumberBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/editTextCardNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editTextCardNumber" />
 
-        <View
-            android:id="@+id/viewCardNumberBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@{viewState.cardNumberBackground}"
-            app:layout_constraintBottom_toBottomOf="@id/editTextCardNumber"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/editTextCardNumber" />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextCardNumber"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/civ_height_input_field"
+        android:layout_marginTop="@dimen/civ_medium"
+        android:autofillHints="{View.AUTOFILL_HINT_CREDIT_CARD_NUMBER}"
+        android:background="@android:color/transparent"
+        android:digits="01234 56789"
+        android:gravity="center_vertical"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLength="19"
+        android:padding="@dimen/civ_medium"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/imageViewBankIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewCardNumberTitle" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextCardNumber"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/civ_height_input_field"
-            android:layout_marginTop="@dimen/civ_medium"
-            android:autofillHints="{View.AUTOFILL_HINT_CREDIT_CARD_NUMBER}"
-            android:background="@android:color/transparent"
-            android:digits="01234 56789"
-            android:gravity="center_vertical"
-            android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
-            android:maxLength="19"
-            android:padding="@dimen/civ_medium"
-            android:singleLine="true"
-            android:text="@={viewState.cardNumber}"
-            android:textColor="@{viewState.inputTextColor}"
-            app:layout_constraintEnd_toStartOf="@id/imageViewBankIcon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewCardNumberTitle" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewBankIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:paddingTop="@dimen/civ_small"
+        android:paddingBottom="@dimen/civ_small"
+        app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
+        app:layout_constraintEnd_toStartOf="@id/viewBankIconCardIconDivider"
+        app:layout_constraintStart_toEndOf="@id/editTextCardNumber"
+        app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewBankIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:paddingTop="@dimen/civ_small"
-            android:paddingBottom="@dimen/civ_small"
-            app:civ_cardInfoLogoDrawable="@{viewState.cardBankLogoDrawable}"
-            app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
-            app:layout_constraintEnd_toStartOf="@id/viewBankIconCardIconDivider"
-            app:layout_constraintStart_toEndOf="@id/editTextCardNumber"
-            app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
+    <View
+        android:id="@+id/viewBankIconCardIconDivider"
+        android:layout_width="@dimen/civ_divider_width"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/civ_small"
+        android:layout_marginTop="@dimen/civ_medium"
+        android:layout_marginEnd="@dimen/civ_small"
+        android:layout_marginBottom="@dimen/civ_medium"
+        android:background="@color/civ_divider"
+        app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
+        app:layout_constraintEnd_toStartOf="@id/imageViewCardIcon"
+        app:layout_constraintStart_toEndOf="@id/imageViewBankIcon"
+        app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
 
-        <View
-            android:id="@+id/viewBankIconCardIconDivider"
-            android:layout_width="@dimen/civ_divider_width"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/civ_small"
-            android:layout_marginTop="@dimen/civ_medium"
-            android:layout_marginEnd="@dimen/civ_small"
-            android:layout_marginBottom="@dimen/civ_medium"
-            android:background="@color/civ_divider"
-            android:visibility="@{viewState.dividerVisibility}"
-            app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
-            app:layout_constraintEnd_toStartOf="@id/imageViewCardIcon"
-            app:layout_constraintStart_toEndOf="@id/imageViewBankIcon"
-            app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewCardIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:paddingTop="@dimen/civ_small"
+        android:paddingBottom="@dimen/civ_small"
+        app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
+        app:layout_constraintEnd_toEndOf="@id/viewCardNumberBackground"
+        app:layout_constraintStart_toEndOf="@id/viewBankIconCardIconDivider"
+        app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewCardIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:paddingTop="@dimen/civ_small"
-            android:paddingBottom="@dimen/civ_small"
-            app:civ_cardInfoLogoDrawable="@{viewState.cardTypeLogoDrawable}"
-            app:layout_constraintBottom_toBottomOf="@id/viewCardNumberBackground"
-            app:layout_constraintEnd_toEndOf="@id/viewCardNumberBackground"
-            app:layout_constraintStart_toEndOf="@id/viewBankIconCardIconDivider"
-            app:layout_constraintTop_toTopOf="@id/viewCardNumberBackground" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewExpiryTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/civ_big"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/textViewCvvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextCardNumber" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewExpiryTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/civ_big"
-            android:singleLine="true"
-            android:text="@{viewState.expiryTitle}"
-            android:textColor="@{viewState.titleTextColor}"
-            app:layout_constraintEnd_toStartOf="@id/textViewCvvTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editTextCardNumber" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewCardExpiryMonth"
+        android:layout_width="@dimen/civ_width_expiry_cvv_field"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/civ_medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/civ_big"
+        app:layout_constraintDimensionRatio="1.7:1"
+        app:layout_constraintEnd_toStartOf="@id/textViewCardExpiryYear"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewExpiryTitle" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCardExpiryMonth"
-            android:layout_width="@dimen/civ_width_expiry_cvv_field"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/civ_medium"
-            android:background="@{viewState.expiryMonthBackground}"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/civ_big"
-            android:text="@{viewState.expiryMonth}"
-            android:textColor="@{viewState.inputTextColor}"
-            app:layout_constraintDimensionRatio="1.7:1"
-            app:layout_constraintEnd_toStartOf="@id/textViewCardExpiryYear"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewExpiryTitle" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewExpiryMonthArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/civ_medium"
+        app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryMonth"
+        app:layout_constraintEnd_toEndOf="@id/textViewCardExpiryMonth"
+        app:layout_constraintTop_toTopOf="@id/textViewCardExpiryMonth"
+        app:srcCompat="@drawable/ic_card_input_down_arrow" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewExpiryMonthArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/civ_medium"
-            app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryMonth"
-            app:layout_constraintEnd_toEndOf="@id/textViewCardExpiryMonth"
-            app:layout_constraintTop_toTopOf="@id/textViewCardExpiryMonth"
-            app:srcCompat="@drawable/ic_card_input_down_arrow" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewCardExpiryYear"
+        android:layout_width="@dimen/civ_width_expiry_cvv_field"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/civ_big"
+        android:layout_marginTop="@dimen/civ_medium"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/civ_big"
+        app:layout_constraintBaseline_toBaselineOf="@id/textViewCardExpiryMonth"
+        app:layout_constraintDimensionRatio="1.7:1"
+        app:layout_constraintHorizontal_weight="0"
+        app:layout_constraintStart_toEndOf="@id/textViewCardExpiryMonth"
+        app:layout_constraintTop_toTopOf="@id/textViewCardExpiryMonth" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCardExpiryYear"
-            android:layout_width="@dimen/civ_width_expiry_cvv_field"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/civ_big"
-            android:layout_marginTop="@dimen/civ_medium"
-            android:background="@{viewState.expiryYearBackground}"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/civ_big"
-            android:text="@{viewState.expiryYear}"
-            android:textColor="@{viewState.inputTextColor}"
-            app:layout_constraintBaseline_toBaselineOf="@id/textViewCardExpiryMonth"
-            app:layout_constraintDimensionRatio="1.7:1"
-            app:layout_constraintHorizontal_weight="0"
-            app:layout_constraintStart_toEndOf="@id/textViewCardExpiryMonth"
-            app:layout_constraintTop_toTopOf="@id/textViewCardExpiryMonth" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewExpiryYearArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/civ_medium"
+        app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
+        app:layout_constraintEnd_toEndOf="@id/textViewCardExpiryYear"
+        app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear"
+        app:srcCompat="@drawable/ic_card_input_down_arrow" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewExpiryYearArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/civ_medium"
-            app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
-            app:layout_constraintEnd_toEndOf="@id/textViewCardExpiryYear"
-            app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear"
-            app:srcCompat="@drawable/ic_card_input_down_arrow" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewCvvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/civ_big"
+        app:layout_constraintBaseline_toBaselineOf="@id/textViewExpiryTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editTextCvv"
+        app:layout_constraintTop_toBottomOf="@id/editTextCardNumber" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCvvTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/civ_big"
-            android:text="@{viewState.cvvTitle}"
-            android:textColor="@{viewState.titleTextColor}"
-            app:layout_constraintBaseline_toBaselineOf="@id/textViewExpiryTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/editTextCvv"
-            app:layout_constraintTop_toBottomOf="@id/editTextCardNumber" />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextCvv"
+        android:layout_width="@dimen/civ_width_expiry_cvv_field"
+        android:layout_height="0dp"
+        android:ems="3"
+        android:gravity="center_vertical"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="4"
+        android:paddingStart="@dimen/civ_big"
+        android:paddingEnd="@dimen/civ_big"
+        android:saveEnabled="false"
+        app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
+        app:layout_constraintEnd_toStartOf="@id/textViewCvvInfo"
+        app:layout_constraintHorizontal_bias="0.9999"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/textViewCardExpiryYear"
+        app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/editTextCvv"
-            android:layout_width="@dimen/civ_width_expiry_cvv_field"
-            android:layout_height="0dp"
-            android:background="@{viewState.cvvBackground}"
-            android:ems="3"
-            android:gravity="center_vertical"
-            android:imeOptions="actionDone"
-            android:inputType="phone"
-            android:maxLength="4"
-            android:paddingStart="@dimen/civ_big"
-            android:paddingEnd="@dimen/civ_big"
-            android:saveEnabled="false"
-            android:text="@={viewState.cvv}"
-            android:textColor="@{viewState.inputTextColor}"
-            app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
-            app:layout_constraintEnd_toStartOf="@id/textViewCvvInfo"
-            app:layout_constraintHorizontal_bias="0.9999"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/textViewCardExpiryYear"
-            app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCvvInfo"
-            android:layout_width="@dimen/civ_size_cvv_info"
-            android:layout_height="@dimen/civ_size_cvv_info"
-            android:layout_marginStart="@dimen/civ_medium"
-            android:background="@drawable/shape_card_input_cvv_info_background"
-            android:ems="1"
-            android:gravity="center"
-            android:text="@string/card_input_cvv_info"
-            android:textColor="@{viewState.cvvInfoColor}"
-            android:visibility="@{viewState.cvvInfoButtonVisibility}"
-            app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/editTextCvv"
-            app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear"
-            app:layout_goneMarginStart="@dimen/civ_medium" />
-    </merge>
-</layout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewCvvInfo"
+        android:layout_width="@dimen/civ_size_cvv_info"
+        android:layout_height="@dimen/civ_size_cvv_info"
+        android:layout_marginStart="@dimen/civ_medium"
+        android:background="@drawable/shape_card_input_cvv_info_background"
+        android:ems="1"
+        android:gravity="center"
+        android:text="@string/card_input_cvv_info"
+        app:layout_constraintBottom_toBottomOf="@id/textViewCardExpiryYear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/editTextCvv"
+        app:layout_constraintTop_toTopOf="@id/textViewCardExpiryYear"
+        app:layout_goneMarginStart="@dimen/civ_medium" />
+</merge>

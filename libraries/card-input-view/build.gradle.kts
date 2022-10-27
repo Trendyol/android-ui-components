@@ -2,7 +2,6 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
-    id(Plugins.androidMaven)
 }
 
 group = Configs.group
@@ -31,7 +30,7 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures.viewBinding = true
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +25,12 @@ class CardInputView : ConstraintLayout {
     var openMonthSelectionListener: (() -> Unit)? = null
     var openYearSelectionListener: (() -> Unit)? = null
 
-    private val binding: ViewCardInputBinding = inflate(R.layout.view_card_input)
+    private val binding: ViewCardInputBinding = ViewCardInputBinding.inflate(LayoutInflater.from(context), this)
+    var viewState: CardInputViewState = CardInputViewState.empty()
+        set(value) {
+            field = value
+            bind()
+        }
 
     private val validator by lazy { CreditCardValidator() }
     private lateinit var cardNumberFormatterTextWatcher: CardNumberFormatterTextWatcher
@@ -50,44 +56,30 @@ class CardInputView : ConstraintLayout {
 
     /**
      *
-     * Sets the view fields with given [CardInputViewState].
-     *
-     * @param viewState is [CardInputViewState].
-     */
-    fun setViewState(viewState: CardInputViewState?) {
-        viewState?.run {
-            binding.viewState = this
-            binding.executePendingBindings()
-        }
-    }
-
-    /**
-     *
      * Validates all card fields and if fields are not valid,
      * it will immediately sets invalid field backgrounds with [CardInputViewState.inputErrorBackgroundDrawable].
      *
      * @return [Boolean.true] if all fields are valid, [Boolean.false] if one or more field is invalid.
      */
     fun validate(): Boolean {
-        val cardInformation = binding.viewState?.cardInformation ?: CardInformation()
+        val cardInformation = viewState.cardInformation
 
         val isCardNumberValid = validator.isCardNumberValid(
-            cardInformation.cardNumber, binding.viewState?.supportedCardTypes.orEmpty()
+            cardInformation.cardNumber, viewState.supportedCardTypes
         )
         val isExpiryMonthValid = validator.isExpiryMonthValid(cardInformation.expiryMonth)
         val isExpiryYearValid = validator.isExpiryYearValid(cardInformation.expiryYear)
         val isCvvValid = validator.isCvvValid(
-            cardInformation.cvv, cardInformation.cardNumber, binding.viewState?.supportedCardTypes.orEmpty()
+            cardInformation.cvv, cardInformation.cardNumber, viewState.supportedCardTypes
         )
 
-        binding.viewState = binding.viewState?.copy(
+        viewState = viewState.copy(
             cardNumberValid = isCardNumberValid,
             expiryMonthValid = isExpiryMonthValid,
             expiryYearValid = isExpiryYearValid,
             cvvValid = isCvvValid,
             shouldShowErrors = true
         )
-        binding.executePendingBindings()
 
         return isCardNumberValid && isExpiryMonthValid && isExpiryYearValid && isCvvValid
     }
@@ -102,7 +94,11 @@ class CardInputView : ConstraintLayout {
      * @return [CardInformation] if all fields are valid, if not returns null.
      */
     fun validateAndGet(): CardInformation? =
-        if (validate()) binding.viewState?.cardInformation else null
+        if (validate()) {
+            viewState.cardInformation
+        } else {
+            null
+        }
 
     /**
      *
@@ -110,8 +106,9 @@ class CardInputView : ConstraintLayout {
      * validity data.
      */
     fun reset() {
-        binding.viewState = binding.viewState?.reset()
-        binding.executePendingBindings()
+        viewState = viewState.reset()
+        viewState.cardNumber = ""
+        viewState.cvv = ""
     }
 
     /**
@@ -120,8 +117,7 @@ class CardInputView : ConstraintLayout {
      * it will immediately sets all fields backgrounds with [CardInputViewState.inputBackgroundDrawable].
      */
     fun clearErrors() {
-        binding.viewState = binding.viewState?.copy(shouldShowErrors = false)
-        binding.executePendingBindings()
+        viewState = viewState.copy(shouldShowErrors = false)
     }
 
     /**
@@ -147,8 +143,8 @@ class CardInputView : ConstraintLayout {
      * Setter for card's expiry month.
      */
     fun setSelectedMonth(selectedMonth: String) {
-        binding.viewState?.expiryMonth = selectedMonth
-        binding.textViewCardExpiryMonth.text = selectedMonth
+        viewState.expiryMonth = selectedMonth
+        bind()
     }
 
     /**
@@ -156,8 +152,8 @@ class CardInputView : ConstraintLayout {
      * Setter for card's expiry year.
      */
     fun setSelectedYear(selectedYear: String) {
-        binding.viewState?.expiryYear = selectedYear
-        binding.textViewCardExpiryYear.text = selectedYear
+        viewState.expiryYear = selectedYear
+        bind()
     }
 
     /**
@@ -167,10 +163,7 @@ class CardInputView : ConstraintLayout {
      * @param cardTypeLogoDrawable, [android.graphics.drawable.Drawable] for logo. If null, will be removed.
      */
     fun setCardTypeLogoDrawable(cardTypeLogoDrawable: Drawable?) {
-        binding.viewState = binding.viewState?.copy(
-            cardTypeLogoDrawable = cardTypeLogoDrawable
-        )
-        binding.executePendingBindings()
+        viewState = viewState.copy(cardTypeLogoDrawable = cardTypeLogoDrawable)
     }
 
     /**
@@ -180,17 +173,11 @@ class CardInputView : ConstraintLayout {
      * @param cardBankLogoDrawable, [android.graphics.drawable.Drawable] for logo. If null, will be removed.
      */
     fun setCardBankLogoDrawable(cardBankLogoDrawable: Drawable?) {
-        binding.viewState = binding.viewState?.copy(
-            cardBankLogoDrawable = cardBankLogoDrawable
-        )
-        binding.executePendingBindings()
+        viewState = viewState.copy(cardBankLogoDrawable = cardBankLogoDrawable)
     }
 
     fun setSupportedCardTypes(vararg cardType: CreditCardType) {
-        binding.viewState = binding.viewState?.copy(
-            supportedCardTypes = cardType.asList()
-        )
-        binding.executePendingBindings()
+        viewState = viewState.copy(supportedCardTypes = cardType.asList())
 
         binding.editTextCardNumber.removeTextChangedListener(cardNumberFormatterTextWatcher)
         cardNumberFormatterTextWatcher = CardNumberFormatterTextWatcher(cardType.asList())
@@ -241,8 +228,7 @@ class CardInputView : ConstraintLayout {
                 inputBackgroundDrawable = inputBackground?.constantState?.newDrawable(),
                 inputErrorBackgroundDrawable = inputErrorBackground?.constantState?.newDrawable()
             )
-            binding.viewState = viewState
-            binding.executePendingBindings()
+            this.viewState = viewState
             cardNumberFormatterTextWatcher = CardNumberFormatterTextWatcher(viewState.supportedCardTypes)
                 .also { watcher -> binding.editTextCardNumber.addTextChangedListener(watcher) }
         }
@@ -252,9 +238,9 @@ class CardInputView : ConstraintLayout {
         with(binding) {
             with(editTextCardNumber) {
                 setOnEditorActionListener { _, actionId, _ ->
-                    if (actionId == EditorInfo.IME_ACTION_NEXT && viewState?.validationEnabled == true) {
+                    if (actionId == EditorInfo.IME_ACTION_NEXT && viewState.validationEnabled) {
                         val isValid =
-                            validator.isCardNumberValid(text?.toString(), viewState?.supportedCardTypes.orEmpty())
+                            validator.isCardNumberValid(text?.toString(), viewState.supportedCardTypes)
                         setCardNumberValidity(isValid)
                         onCardNumberComplete?.invoke(isValid)
                     }
@@ -264,11 +250,11 @@ class CardInputView : ConstraintLayout {
             }
             with(editTextCvv) {
                 setOnEditorActionListener { _, actionId, _ ->
-                    if (actionId == EditorInfo.IME_ACTION_DONE && viewState?.validationEnabled == true) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE && viewState.validationEnabled) {
                         val isValid = validator.isCvvValid(
                             text?.toString(),
                             editTextCardNumber.text?.toString(),
-                            viewState?.supportedCardTypes.orEmpty()
+                            viewState.supportedCardTypes
                         )
                         setCardCvvValidity(isValid)
                         onCvvComplete?.invoke(isValid)
@@ -287,7 +273,7 @@ class CardInputView : ConstraintLayout {
             }
             textViewCvvInfo.setOnClickListener {
                 val cvvLength = CreditCardType
-                    .getCreditCardType(viewState?.supportedCardTypes.orEmpty(), editTextCardNumber.text?.toString())
+                    .getCreditCardType(viewState.supportedCardTypes, editTextCardNumber.text?.toString())
                     .cvvLength
                 onCvvInfoClicked?.invoke(cvvLength)
             }
@@ -295,18 +281,66 @@ class CardInputView : ConstraintLayout {
     }
 
     private fun setCardNumberValidity(isValid: Boolean) {
-        val viewState = binding.viewState
-        binding.viewState = viewState?.copy(cardNumberValid = isValid)
+        viewState = viewState.copy(cardNumberValid = isValid)
     }
 
     private fun setCardCvvValidity(isValid: Boolean) {
-        val viewState = binding.viewState
-        binding.viewState = viewState?.copy(cvvValid = isValid)
+        viewState = viewState.copy(cvvValid = isValid)
+    }
+
+    private fun bind() {
+        with(binding) {
+            with(textViewCardNumberTitle) {
+                text = viewState.cardNumberTitle
+                setTextColor(viewState.titleTextColor)
+            }
+            viewCardNumberBackground.background = viewState.cardNumberBackground
+            with(editTextCardNumber) {
+                if (text.toString() != viewState.cardNumber) {
+                    setText(viewState.cardNumber)
+                }
+                setTextColor(viewState.inputTextColor)
+            }
+            imageViewBankIcon.setImageDrawable(viewState.cardBankLogoDrawable)
+            viewBankIconCardIconDivider.visibility = viewState.dividerVisibility
+            imageViewCardIcon.setImageDrawable(viewState.cardTypeLogoDrawable)
+            with(textViewExpiryTitle) {
+                text = viewState.expiryTitle
+                setTextColor(viewState.titleTextColor)
+            }
+            with(textViewCardExpiryMonth) {
+                background = viewState.expiryMonthBackground
+                text = viewState.expiryMonth
+                setTextColor(viewState.inputTextColor)
+            }
+            with(textViewCardExpiryYear) {
+                background = viewState.expiryYearBackground
+                text = viewState.expiryYear
+                setTextColor(viewState.inputTextColor)
+            }
+            with(textViewCvvTitle) {
+                text = viewState.cvvTitle
+                setTextColor(viewState.titleTextColor)
+            }
+            with(editTextCvv) {
+                if (text.toString() != viewState.cvv) {
+                    setText(viewState.cvv)
+                }
+                background = viewState.cvvBackground
+                setTextColor(viewState.inputTextColor)
+            }
+            with(textViewCvvInfo) {
+                setTextColor(viewState.cvvInfoColor)
+                visibility = viewState.cvvInfoButtonVisibility
+            }
+        }
     }
 
     internal inner class CardNumberTextWatcher : TextWatcher {
+
         override fun afterTextChanged(s: Editable?) {
-            onCardNumberChanged?.invoke(s?.toString() ?: "")
+            viewState.cardNumber = s?.toString() ?: ""
+            onCardNumberChanged?.invoke(viewState.cardNumber)
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -317,8 +351,10 @@ class CardInputView : ConstraintLayout {
     }
 
     internal inner class CvvTextWatcher : TextWatcher {
+
         override fun afterTextChanged(s: Editable?) {
-            onCvvChanged?.invoke(s?.toString() ?: "")
+            viewState.cvv = s?.toString() ?: ""
+            onCvvChanged?.invoke(viewState.cvv)
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

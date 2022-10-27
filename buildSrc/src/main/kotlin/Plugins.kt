@@ -9,5 +9,4 @@ object Plugins {
     const val kotlinAndroid = "kotlin-android"
     const val kotlinKapt = "kotlin-kapt"
     const val kotlinParcelize = "kotlin-parcelize"
-    const val androidMaven = "com.github.dcendents.android-maven"
 }

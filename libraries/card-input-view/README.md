@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-2.png" width="240"/>
   
-$cardInputViewVersion = card-input-view-1.2.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$cardInputViewVersion = card-input-view-1.2.3 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## CardInputView  
 CardInputView is custom view for Master or Visa debit/credit card inputs. It can verify card number, expire date and CVV for you.
@@ -16,28 +16,27 @@ allprojects {
 ```gradle
 dependencies {  
  implementation "com.github.Trendyol.android-ui-components:card-input-view:$cardInputViewVersion"}
-```  
-:warning: To use **CardInputView**, you have to enable dataBinding from your project's `build.gradle`.
+```
 
 ## Usage
 You can inflate **CardInputView** via XML or programmatically. View can be configurable either in XML or setting a ViewState.
 
 To set programmatically, you can call `CardInputView.setViewState(CardInputViewState)`.
 
-| Attribute |  Method | Description | Default Value |
-| ------------- | ------------- | ------------- | ------------- |
-| civ_cardNumberTitle | cardNumberTitle | Title to show above card number input field. | "" |
-| civ_expiryTitle | expiryTitle |  Title to show above expire date fields. | "" |
-| civ_expiryMonthTitle | expiryMonthTitle | Title to show on expire month field. | "" |
-| civ_expiryYearTitle | expiryYearTitle | Title to show on expire year field. | "" |
-| civ_cvvTitle | cvvTitle | Title to show above CVV input field. | "" |
-| civ_titleTextColor | titleTextColor | cardNumberTitle text color. | Color.BLACK |
-| civ_inputTextColor | inputTextColor | input field text color. | Color.DKGRAY |
-| civ_inputBackground | inputBackgroundDrawable | input field background drawableResource/drawable. | shape_card_input_field_background |
-| civ_inputErrorBackground | inputErrorBackgroundDrawable | input field background drawableResource/drawable on error. | shape_card_input_field_error_background |
-| civ_cvvInfoColor | cvvInfoColor | Button on the right side of the CVV field, tint for this field. | Color.RED |
-| civ_showCvvInfoButton | showCvvInfoButton | Show or hide cvvInfo. | true |
-| civ_validationEnabled | validationEnabled | Enable or disable input validations. | false |
+| Attribute                | Method                       | Description                                                     | Default Value                           |
+|--------------------------|------------------------------|-----------------------------------------------------------------|-----------------------------------------|
+| civ_cardNumberTitle      | cardNumberTitle              | Title to show above card number input field.                    | ""                                      |
+| civ_expiryTitle          | expiryTitle                  | Title to show above expire date fields.                         | ""                                      |
+| civ_expiryMonthTitle     | expiryMonthTitle             | Title to show on expire month field.                            | ""                                      |
+| civ_expiryYearTitle      | expiryYearTitle              | Title to show on expire year field.                             | ""                                      |
+| civ_cvvTitle             | cvvTitle                     | Title to show above CVV input field.                            | ""                                      |
+| civ_titleTextColor       | titleTextColor               | cardNumberTitle text color.                                     | Color.BLACK                             |
+| civ_inputTextColor       | inputTextColor               | input field text color.                                         | Color.DKGRAY                            |
+| civ_inputBackground      | inputBackgroundDrawable      | input field background drawableResource/drawable.               | shape_card_input_field_background       |
+| civ_inputErrorBackground | inputErrorBackgroundDrawable | input field background drawableResource/drawable on error.      | shape_card_input_field_error_background |
+| civ_cvvInfoColor         | cvvInfoColor                 | Button on the right side of the CVV field, tint for this field. | Color.RED                               |
+| civ_showCvvInfoButton    | showCvvInfoButton            | Show or hide cvvInfo.                                           | true                                    |
+| civ_validationEnabled    | validationEnabled            | Enable or disable input validations.                            | false                                   |
 
 To validate inputs, call `CardInputView.validate()`. If you want to get created cardInformation, call `CardInputView.validateAndGet()` this will validate and return `CardInformation` if all fields are valid.
 
@@ -54,15 +53,15 @@ For expire month and year selection, you need to open custom dialog or input fie
 ## Listeners
 To get updates on **CardInputView** you need to set this listeners:
 
-| Listener | Data | What to use for? |
-| ------------- | ------------- | ------------- |
-| onCardNumberChanged | cardNumber: String | To get latest input, you can set `CardInputView.setCardTypeLogoDrawable(Drawable)` or `CardInputView.setCardBankLogoDrawable(Drawable)`. |
-| onCvvChanged | cvv: String | To get latest cvv, to focus next field on your activity/fragment. |
-| onCvvInfoClicked |  | To open information dialog about CVV. |
-| onCardNumberComplete | isValid: Boolean | If valid, open dialog for expire month dialog. |
-| onCvvComplete | isValid: Boolean | To focus next field on your activity/fragment. |
-| openMonthSelectionListener |  | To open dialog or input field for expire month. |
-| openYearSelectionListener |  | To open dialog or input field for expire year. |
+| Listener                   | Data               | What to use for?                                                                                                                         |
+|----------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| onCardNumberChanged        | cardNumber: String | To get latest input, you can set `CardInputView.setCardTypeLogoDrawable(Drawable)` or `CardInputView.setCardBankLogoDrawable(Drawable)`. |
+| onCvvChanged               | cvv: String        | To get latest cvv, to focus next field on your activity/fragment.                                                                        |
+| onCvvInfoClicked           |                    | To open information dialog about CVV.                                                                                                    |
+| onCardNumberComplete       | isValid: Boolean   | If valid, open dialog for expire month dialog.                                                                                           |
+| onCvvComplete              | isValid: Boolean   | To focus next field on your activity/fragment.                                                                                           |
+| openMonthSelectionListener |                    | To open dialog or input field for expire month.                                                                                          |
+| openYearSelectionListener  |                    | To open dialog or input field for expire year.                                                                                           |
 
 ## Implementation
 
@@ -105,7 +104,7 @@ This library is maintained mainly by Trendyol Android Team members but also othe
 We developed this component for our needs, there is lots of improvements need to be implemented.
 
 # License
-    Copyright 2021 Trendyol.com
+    Copyright 2022 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -118,4 +117,3 @@ We developed this component for our needs, there is lots of improvements need to
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
