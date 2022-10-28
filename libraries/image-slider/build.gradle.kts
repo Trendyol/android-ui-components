@@ -5,9 +5,6 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.imageSliderVersion
-
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
@@ -31,7 +28,7 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures.dataBinding = true
 }
 
 dependencies {
@@ -41,7 +38,7 @@ dependencies {
     implementation(Dependencies.circleIndicator)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.glide)
-    implementation(project(Components.touchDelegator))
+    implementation(projects.libraries.touchDelegator)
 
     kapt(Dependencies.glideCompiler)
 }

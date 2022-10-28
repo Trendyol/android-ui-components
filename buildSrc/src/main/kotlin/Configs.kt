@@ -6,5 +6,4 @@ object Configs {
     const val buildToolsVersion = "33.0.0"
 
     const val applicationId = "com.trendyol.uicomponents"
-    const val group = "com.trendyol.ui-components"
 }

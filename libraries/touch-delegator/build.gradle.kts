@@ -5,9 +5,6 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.touchDelegatorVersion
-
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
@@ -26,5 +23,5 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures.dataBinding = true
 }

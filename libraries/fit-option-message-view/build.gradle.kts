@@ -4,9 +4,6 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.fitOptionMessageView
-
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion

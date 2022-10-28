@@ -5,9 +5,6 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.toolbarVersion
-
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion

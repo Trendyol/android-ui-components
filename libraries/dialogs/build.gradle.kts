@@ -8,9 +8,6 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.dialogsVersion
-
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
