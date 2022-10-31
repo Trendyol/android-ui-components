@@ -57,19 +57,6 @@ class CardInputView : ConstraintLayout {
 
     /**
      *
-     * Sets the view fields with given [CardInputViewState].
-     *
-     * @param viewState is [CardInputViewState].
-     */
-    fun setViewState(viewState: CardInputViewState?) {
-        viewState?.run {
-            binding.viewState = this
-            binding.executePendingBindings()
-        }
-    }
-
-    /**
-     *
      * Validates all card fields and if fields are not valid,
      * it will immediately sets invalid field backgrounds with [CardInputViewState.inputErrorBackgroundDrawable].
      *
