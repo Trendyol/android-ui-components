@@ -3,6 +3,7 @@ package com.trendyol.uicomponents
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -71,6 +72,12 @@ class CardInputViewActivity : AppCompatActivity() {
                 val color = if (isValid) Color.BLUE else Color.RED
                 textCvv.setTextColor(color)
                 if (isValid) buttonValidate.performClick()
+            }
+
+            cardNumberInputErrorListener = {
+                Handler().postDelayed({
+                    cardInputView.clearErrors()
+                }, 5000)
             }
 
             openMonthSelectionListener = { showMonthSelectionDialog() }

@@ -24,6 +24,7 @@ class CardInputView : ConstraintLayout {
     var onCvvComplete: ((Boolean) -> Unit)? = null
     var openMonthSelectionListener: (() -> Unit)? = null
     var openYearSelectionListener: (() -> Unit)? = null
+    var cardNumberInputErrorListener: (() -> Unit)? = null
 
     private val binding: ViewCardInputBinding = ViewCardInputBinding.inflate(LayoutInflater.from(context), this)
     var viewState: CardInputViewState = CardInputViewState.empty()
@@ -56,6 +57,19 @@ class CardInputView : ConstraintLayout {
 
     /**
      *
+     * Sets the view fields with given [CardInputViewState].
+     *
+     * @param viewState is [CardInputViewState].
+     */
+    fun setViewState(viewState: CardInputViewState?) {
+        viewState?.run {
+            binding.viewState = this
+            binding.executePendingBindings()
+        }
+    }
+
+    /**
+     *
      * Validates all card fields and if fields are not valid,
      * it will immediately sets invalid field backgrounds with [CardInputViewState.inputErrorBackgroundDrawable].
      *
@@ -80,8 +94,15 @@ class CardInputView : ConstraintLayout {
             cvvValid = isCvvValid,
             shouldShowErrors = true
         )
+        cardNumberInputErrorListener(cardNumberValid = isCardNumberValid)
 
         return isCardNumberValid && isExpiryMonthValid && isExpiryYearValid && isCvvValid
+    }
+
+    private fun cardNumberInputErrorListener(cardNumberValid: Boolean) {
+        if (!cardNumberValid) {
+            cardNumberInputErrorListener?.invoke()
+        }
     }
 
     /**
@@ -282,6 +303,7 @@ class CardInputView : ConstraintLayout {
 
     private fun setCardNumberValidity(isValid: Boolean) {
         viewState = viewState.copy(cardNumberValid = isValid)
+        cardNumberInputErrorListener(cardNumberValid = isValid)
     }
 
     private fun setCardCvvValidity(isValid: Boolean) {

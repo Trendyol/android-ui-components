@@ -55,13 +55,14 @@ To get updates on **CardInputView** you need to set this listeners:
 
 | Listener                   | Data               | What to use for?                                                                                                                         |
 |----------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| onCardNumberChanged        | cardNumber: String | To get latest input, you can set `CardInputView.setCardTypeLogoDrawable(Drawable)` or `CardInputView.setCardBankLogoDrawable(Drawable)`. |
-| onCvvChanged               | cvv: String        | To get latest cvv, to focus next field on your activity/fragment.                                                                        |
-| onCvvInfoClicked           |                    | To open information dialog about CVV.                                                                                                    |
-| onCardNumberComplete       | isValid: Boolean   | If valid, open dialog for expire month dialog.                                                                                           |
-| onCvvComplete              | isValid: Boolean   | To focus next field on your activity/fragment.                                                                                           |
-| openMonthSelectionListener |                    | To open dialog or input field for expire month.                                                                                          |
-| openYearSelectionListener  |                    | To open dialog or input field for expire year.                                                                                           |
+| onCardNumberChanged          | cardNumber: String | To get latest input, you can set `CardInputView.setCardTypeLogoDrawable(Drawable)` or `CardInputView.setCardBankLogoDrawable(Drawable)`. |
+| onCvvChanged                 | cvv: String        | To get latest cvv, to focus next field on your activity/fragment.                                                                        |
+| onCvvInfoClicked             |                    | To open information dialog about CVV.                                                                                                    |
+| onCardNumberComplete         | isValid: Boolean   | If valid, open dialog for expire month dialog.                                                                                           |
+| onCvvComplete                | isValid: Boolean   | To focus next field on your activity/fragment.                                                                                           |
+| openMonthSelectionListener   |                    | To open dialog or input field for expire month.                                                                                          |
+| openYearSelectionListener    |                    | To open dialog or input field for expire year.                                                                                           |
+| cardNumberInputErrorListener |                    | If the card number is invalid, it is triggered.                                                                                          |
 
 ## Implementation
 
