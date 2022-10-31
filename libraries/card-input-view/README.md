@@ -63,6 +63,7 @@ To get updates on **CardInputView** you need to set this listeners:
 | onCvvComplete | isValid: Boolean | To focus next field on your activity/fragment. |
 | openMonthSelectionListener |  | To open dialog or input field for expire month. |
 | openYearSelectionListener |  | To open dialog or input field for expire year. |
+| cardNumberInputErrorListener |  | If the card number is invalid, it is triggered. |
 
 ## Implementation
 
