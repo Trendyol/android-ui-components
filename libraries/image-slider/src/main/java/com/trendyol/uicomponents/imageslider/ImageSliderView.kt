@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.imageslider
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.trendyol.uicomponents.imageslider.databinding.ViewImageSliderBinding
 import java.lang.ref.WeakReference
@@ -15,7 +16,7 @@ class ImageSliderView @JvmOverloads constructor(
     ImagesPagerAdapter.SliderAdapterItemClickListener,
     ImageSlider {
 
-    private var binding: ViewImageSliderBinding = inflate(R.layout.view_image_slider)
+    private var binding: ViewImageSliderBinding = ViewImageSliderBinding.inflate(LayoutInflater.from(context), this)
     private var hostActivityWeakReference: WeakReference<Activity> = WeakReference<Activity>(null)
     private var imageSliderViewListener: ImageSliderViewListener? = null
 
@@ -33,11 +34,10 @@ class ImageSliderView @JvmOverloads constructor(
     }
 
     fun setViewState(imageSliderViewState: ImageSliderViewState?) {
-        imageSliderViewState?.let {
-            binding.viewState = it
-            binding.executePendingBindings()
+        imageSliderViewState?.let { viewState ->
+            binding.indicatorImageSlider.visibility = viewState.getIndicatorVisibility()
 
-            setImages(imageSliderViewState)
+            setImages(viewState)
         }
     }
 

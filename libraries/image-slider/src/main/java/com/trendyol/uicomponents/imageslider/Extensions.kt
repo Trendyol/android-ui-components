@@ -4,36 +4,17 @@ import android.animation.ObjectAnimator
 import android.content.res.Resources
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.view.*
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewPropertyAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 internal fun Int.greaterThan(number: Int): Boolean = this > number
-
-internal fun <T : ViewDataBinding> ViewGroup?.inflate(
-    @LayoutRes layoutId: Int,
-    attachToParent: Boolean = true
-): T {
-    if (this?.isInEditMode == true) {
-        View.inflate(context, layoutId, parent as? ViewGroup?)
-    }
-    return DataBindingUtil.inflate(
-        LayoutInflater.from(this!!.context),
-        layoutId,
-        this,
-        attachToParent
-    )
-}
 
 fun ImageView.loadImage(imageUrl: String, cornerRadiusInDp: Double?) {
     val requestBuilder = Glide.with(context).load(imageUrl)
@@ -44,7 +25,7 @@ fun ImageView.loadImage(imageUrl: String, cornerRadiusInDp: Double?) {
     }.into(this)
 }
 
-internal val RETURN_ANIM_DURATION = 350
+internal const val RETURN_ANIM_DURATION = 350
 
 internal fun Point.getDifferenceVector(b: Point): Point {
     return Point(b.x - x, b.y - y)
