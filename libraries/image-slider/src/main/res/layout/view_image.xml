@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutSliderImageWrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/linearLayoutSliderImageWrapper"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewSlider"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewSlider"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:focusable="true" />
-    </RelativeLayout>
-</layout>
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true" />
+</RelativeLayout>

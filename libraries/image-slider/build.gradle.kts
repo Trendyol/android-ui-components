@@ -28,7 +28,8 @@ android {
         }
     }
 
-    buildFeatures.dataBinding = true
+    buildFeatures.viewBinding = true
+    namespace = "com.trendyol.uicomponents.imageslider"
 }
 
 dependencies {
