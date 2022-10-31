@@ -15,6 +15,7 @@ import com.trendyol.cardinputview.CardInputViewState
 import com.trendyol.cardinputview.CreditCardType
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
+import java.util.Calendar
 
 class CardInputViewActivity : AppCompatActivity() {
 
@@ -28,21 +29,14 @@ class CardInputViewActivity : AppCompatActivity() {
 
     private val months =
         listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
-    private val years = listOf("20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30")
+    private val years by lazy {
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR).mod(100)
+        currentYear.rangeTo(currentYear + 10).toList().map { it.toString() }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_input)
-
-        val cardInputViewState = CardInputViewState(
-            cardNumberTitle = "Card Number",
-            expiryTitle = "Expiry Date",
-            expiryMonthTitle = "MM",
-            expiryYearTitle = "YY",
-            cvvTitle = "CVV",
-            validationEnabled = true,
-            inputTextColor = Color.BLACK
-        )
 
         with(cardInputView) {
             setSupportedCardTypes(
@@ -53,6 +47,9 @@ class CardInputViewActivity : AppCompatActivity() {
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
                     cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
+                }
+                if (cardNumber.length >= 6) {
+                    cardInputView.setCardBankLogoDrawable(getCardTypeLogoUrl(cardNumber)) // dummy setting
                 }
                 textCardNumber.text = cardNumber
             }
@@ -102,8 +99,8 @@ class CardInputViewActivity : AppCompatActivity() {
         infoDialog {
             title = "CardInformation"
             content = "CardNumber: ${cardInformation.cardNumber}\n\n" +
-                    "Expiry: ${cardInformation.expiryMonth}/${cardInformation.expiryYear}\n\n" +
-                    "Cvv: ${cardInformation.cvv}"
+                "Expiry: ${cardInformation.expiryMonth}/${cardInformation.expiryYear}\n\n" +
+                "Cvv: ${cardInformation.cvv}"
             showCloseButton = true
             closeButtonListener = { cardInputView.reset() }
         }.showDialog(supportFragmentManager)

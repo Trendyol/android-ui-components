@@ -11,4 +11,6 @@ include(":libraries:timeline-view")
 include(":libraries:touch-delegator")
 include(":libraries:fit-option-message-view")
 
-rootProject.name = "UI Components"
+rootProject.name = "trendyol-android-ui-components"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

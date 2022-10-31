@@ -1,20 +1,16 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
-    id(Plugins.androidMaven)
+    id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.cardInputViewVersion
-
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
-    buildToolsVersion(Configs.buildToolsVersion)
+    compileSdk = Configs.compileSdkVersion
+    buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Configs.minSdkVersion)
-        targetSdkVersion(Configs.targetSdkVersion)
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -31,7 +27,9 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    namespace = "com.trendyol.cardinputview"
+
+    buildFeatures.viewBinding = true
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
