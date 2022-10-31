@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.core.os.bundleOf
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.parcelize.Parcelize
 
 class PhoneNumberTextInputEditText : TextInputEditText {
 
@@ -71,21 +70,28 @@ class PhoneNumberTextInputEditText : TextInputEditText {
                         when {
                             phone.length >= LENGTH_NINE -> {
                                 editedFlag = true
-                                val ans = phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(4, 7) + " " + phone.substring(7, 9) + " " + phone.substring(9)
+                                val ans = phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(
+                                    4,
+                                    7
+                                ) + " " + phone.substring(7, 9) + " " + phone.substring(9)
                                 setText(ans)
                                 text?.let { setSelection(it.length - cursorComplement) }
                                 changeListeners.forEach { it?.afterTextChanged(s) }
                             }
                             phone.length >= LENGTH_SEVEN -> {
                                 editedFlag = true
-                                val ans = phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(4, 7) + " " + phone.substring(7)
+                                val ans = phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(
+                                    4,
+                                    7
+                                ) + " " + phone.substring(7)
                                 setText(ans)
                                 text?.let { setSelection(it.length - cursorComplement) }
                                 changeListeners.forEach { it?.afterTextChanged(s) }
                             }
                             phone.length >= LENGTH_FOUR -> {
                                 editedFlag = true
-                                val ans = phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(4)
+                                val ans =
+                                    phone.substring(0, 1) + " (" + phone.substring(1, 4) + ") " + phone.substring(4)
                                 setText(ans)
                                 text?.let { setSelection(it.length - cursorComplement) }
                                 changeListeners.forEach { it?.afterTextChanged(s) }
@@ -120,7 +126,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
 
                     it.primaryClip?.let { clipData ->
                         val text = clipData.getItemAt(0)?.text.toString()
-                        val clearedText = readPhoneNumberFromClipboardAsDigitAndTurkishStandart(text)
+                        val clearedText = readPhoneNumberFromClipboardAsDigitAndTurkishStandards(text)
                         it.setPrimaryClip(ClipData.newPlainText(EMPTY, clearedText))
                     }
                 }
@@ -129,7 +135,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         return super.onTextContextMenuItem(id)
     }
 
-    private fun readPhoneNumberFromClipboardAsDigitAndTurkishStandart(text: String): String {
+    private fun readPhoneNumberFromClipboardAsDigitAndTurkishStandards(text: String): String {
         val digitsText = text.digitsOnly()
         val digitsTextWithoutZeros = digitsText.replaceLeadingZeros()
         val clipboardText = if (digitsTextWithoutZeros.length >= EXPECTED_TURKISH_PHONE_NUMBER_LENGTH) {
@@ -191,8 +197,8 @@ class PhoneNumberTextInputEditText : TextInputEditText {
     }
 
     companion object {
-        val SUPER_STATE_KEY = "SUPER_STATE_KEY"
-        val STATE_KEY = "STATE_KEY"
+        const val SUPER_STATE_KEY = "SUPER_STATE_KEY"
+        const val STATE_KEY = "STATE_KEY"
 
         private const val FIRST_CHARACTER_ZERO = "0"
         private const val CLEAR_SELECTION_INDEX = 0
@@ -216,9 +222,3 @@ class PhoneNumberTextInputEditText : TextInputEditText {
         }
     }
 }
-
-@Parcelize
-data class PhoneNumberTextInputEditTextViewState(
-    val maskable: Boolean,
-    val maskCharacter: Char
-) : Parcelable
