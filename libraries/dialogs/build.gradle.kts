@@ -35,6 +35,8 @@ android {
         viewBinding = true
         buildConfig = false
     }
+
+    namespace = "com.trendyol.dialog"
 }
 
 dependencies {

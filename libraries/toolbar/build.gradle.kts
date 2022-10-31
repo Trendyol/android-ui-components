@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
     id(Plugins.mavenPublish)
 }
 
@@ -22,6 +21,8 @@ android {
             setProguardFiles(mutableListOf(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"))
         }
     }
+
+    namespace = "com.trendyol.uicomponents.toolbar"
 }
 
 dependencies {
