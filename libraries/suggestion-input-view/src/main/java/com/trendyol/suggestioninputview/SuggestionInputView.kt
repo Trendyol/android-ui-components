@@ -5,18 +5,22 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.os.VibratorManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.util.AttributeSet
+import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.animation.AnticipateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import com.trendyol.suggestioninputview.databinding.ViewSuggestionInputBinding
+import androidx.core.transition.doOnEnd
 import com.trendyol.suggestioninputview.databinding.ViewSuggestionSelectablesBinding
 
 class SuggestionInputView @JvmOverloads constructor(
@@ -90,40 +94,34 @@ class SuggestionInputView @JvmOverloads constructor(
     @Dimension
     private var badgeVerticalPadding: Float = 0F
 
-    private val bindingSelectables: ViewSuggestionSelectablesBinding =
-        inflate(R.layout.view_suggestion_selectables)
-    private val bindingInput: ViewSuggestionInputBinding =
-        inflate(R.layout.view_suggestion_input, false)
+    private val binding: ViewSuggestionSelectablesBinding =
+        ViewSuggestionSelectablesBinding.inflate(LayoutInflater.from(context), this, true)
 
     private var onSuggestionItemClickListener: ((SuggestionInputItem) -> Unit)? = null
 
     private var currentSelectedItem: SuggestionInputItem? = null
 
-    private val itemsAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        SuggestionItemAdapter()
-    }
-
+    private val itemsAdapter = SuggestionItemAdapter()
     private val vibrator: Vibrator by lazy(LazyThreadSafetyMode.NONE) {
-        context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            (context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager).defaultVibrator
+        } else {
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
     }
 
     init {
-        bindingSelectables.recyclerViewSuggestionItems.adapter = itemsAdapter
+        binding.recyclerViewSuggestionItems.adapter = itemsAdapter
         context.theme?.obtainStyledAttributes(
-            attrs,
-            R.styleable.SuggestionInputView,
-            defStyleAttr,
-            0
+            attrs, R.styleable.SuggestionInputView, defStyleAttr, 0
         )?.apply {
             try {
                 selectedBackground = getDrawable(R.styleable.SuggestionInputView_selectedBackground)
                     ?: context.drawable(R.drawable.shape_selected_background_suggestion_item)
-                unselectedBackground =
-                    getDrawable(R.styleable.SuggestionInputView_unselectedBackground)
-                        ?: context.drawable(R.drawable.shape_unselected_background_suggestion_item)
-                errorBackground =
-                    getDrawable(R.styleable.SuggestionInputView_errorBackground)
-                        ?: context.drawable(R.drawable.shape_error_background_suggestion_item)
+                unselectedBackground = getDrawable(R.styleable.SuggestionInputView_unselectedBackground)
+                    ?: context.drawable(R.drawable.shape_unselected_background_suggestion_item)
+                errorBackground = getDrawable(R.styleable.SuggestionInputView_errorBackground)
+                    ?: context.drawable(R.drawable.shape_error_background_suggestion_item)
                 selectedTextColor = getColor(
                     R.styleable.SuggestionInputView_selectedTextColor,
                     context.color(R.color.text_color_selected_suggestion_item)
@@ -149,24 +147,20 @@ class SuggestionInputView @JvmOverloads constructor(
                     context.resources.getDimension(R.dimen.minWidth_suggestion_item)
                 )
                 inputButtonText = getString(R.styleable.SuggestionInputView_inputButtonText) ?: ""
-                inputButtonBackground =
-                    getDrawable(R.styleable.SuggestionInputView_inputButtonBackground)
-                        ?: context.drawable(R.drawable.shape_selected_background_suggestion_item)
+                inputButtonBackground = getDrawable(R.styleable.SuggestionInputView_inputButtonBackground)
+                    ?: context.drawable(R.drawable.shape_selected_background_suggestion_item)
                 inputButtonTextColor = getColor(
                     R.styleable.SuggestionInputView_inputButtonTextColor,
                     context.color(R.color.text_color_selected_suggestion_item)
                 )
-                inputEditTextBackground =
-                    getDrawable(R.styleable.SuggestionInputView_inputEditTextBackground)
-                        ?: context.drawable(R.drawable.shape_unselected_background_suggestion_item)
+                inputEditTextBackground = getDrawable(R.styleable.SuggestionInputView_inputEditTextBackground)
+                    ?: context.drawable(R.drawable.shape_unselected_background_suggestion_item)
                 inputSuffix = getString(R.styleable.SuggestionInputView_inputSuffix) ?: ""
                 inputType = getInt(
-                    R.styleable.SuggestionInputView_android_inputType,
-                    EditorInfo.TYPE_TEXT_VARIATION_NORMAL
+                    R.styleable.SuggestionInputView_android_inputType, EditorInfo.TYPE_TEXT_VARIATION_NORMAL
                 )
                 hint = getString(R.styleable.SuggestionInputView_inputHint) ?: ""
-                showKeyboardByDefault =
-                    getBoolean(R.styleable.SuggestionInputView_showKeyboardByDefault, true)
+                showKeyboardByDefault = getBoolean(R.styleable.SuggestionInputView_showKeyboardByDefault, true)
                 canDeselectItem = getBoolean(R.styleable.SuggestionInputView_canDeselectItem, false)
 
                 badgeBackground = getDrawable(R.styleable.SuggestionInputView_badgeBackground)
@@ -190,18 +184,17 @@ class SuggestionInputView @JvmOverloads constructor(
                     R.styleable.SuggestionInputView_badgeVerticalPadding,
                     context.resources.getDimension(R.dimen.vertical_padding_suggestion_item_badge)
                 )
-
             } finally {
                 recycle()
             }
 
             itemsAdapter.setSuggestionItemClickListener { onSuggestionItemClicked(it) }
-            bindingSelectables.buttonDone.setOnClickListener { onDoneClicked() }
-            bindingSelectables.imageViewBack.setOnClickListener {
-                setSelectionToCurrentSelection(true)
+            binding.buttonDone.setOnClickListener { onDoneClicked() }
+            binding.imageViewBack.setOnClickListener {
+                setSelectionToCurrentSelection()
                 showSelectableView()
             }
-            bindingSelectables.editText.addTextChangedListener(object : TextWatcher {
+            binding.editText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
 
@@ -210,7 +203,7 @@ class SuggestionInputView @JvmOverloads constructor(
 
                 override fun afterTextChanged(editable: Editable?) {
                     clearInputError()
-                    val selectedValue = bindingSelectables.editText.text.toString()
+                    val selectedValue = binding.editText.text.toString()
                     val validation = RuleValidator.validate(rules, selectedValue)
                     when {
                         validation.first -> setSelection(false)
@@ -348,15 +341,14 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun setSelectionToSelectableItem(
-        selectableItem: SuggestionInputItemViewState,
-        fromBack: Boolean = false
+        selectableItem: SuggestionInputItemViewState, fromBack: Boolean = false
     ) {
         setSelectionToSuggestionItem(selectableItem, fromBack)
-       // onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
+        // onSuggestionItemClickListener?.invoke(mapItemViewStateToInputItem(selectableItem))
     }
 
     private fun onDoneClicked() {
-        val selectedValue = bindingSelectables.editText.text.toString()
+        val selectedValue = binding.editText.text.toString()
         val validation = RuleValidator.validate(rules, selectedValue)
         if (validation.first) {
             currentSelectedItem = mapFreeTextToInputItem()
@@ -368,8 +360,8 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun setSelection(shouldSelect: Boolean) {
-        if (isSelectableItemsContainsTo(bindingSelectables.editText.text.toString())) {
-            setSelectionToSelectableItem(getSelectableItem(bindingSelectables.editText.text.toString()), shouldSelect)
+        if (isSelectableItemsContainsTo(binding.editText.text.toString())) {
+            setSelectionToSelectableItem(getSelectableItem(binding.editText.text.toString()), shouldSelect)
         } else {
             val inputItem = mapFreeTextToInputItem()
             if (shouldSelect) setSelectionToInput(inputItem)
@@ -386,20 +378,15 @@ class SuggestionInputView @JvmOverloads constructor(
         notifyAdapter()
         onSuggestionItemClickListener?.invoke(
             SuggestionInputItem(
-                0,
-                "",
-                "",
-                false,
-                SuggestionItemType.INPUT,
-                ""
+                0, "", "", false, SuggestionItemType.INPUT, ""
             )
         )
     }
 
-    private fun setSelectionToCurrentSelection(fromBack: Boolean = false) {
+    private fun setSelectionToCurrentSelection() {
         val currentItemValue = currentSelectedItem?.value
         if (isSelectableItemsContainsTo(currentItemValue)) {
-            setSelectionToSelectableItem(getSelectableItem(currentItemValue ?: ""), fromBack)
+            setSelectionToSelectableItem(getSelectableItem(currentItemValue ?: ""), true)
         } else {
             if (currentSelectedItem == null) {
                 resetSelection()
@@ -446,17 +433,14 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun setSelectionToSuggestionItem(
-        suggestionInputItemViewState: SuggestionInputItemViewState,
-        fromBack: Boolean
+        suggestionInputItemViewState: SuggestionInputItemViewState, fromBack: Boolean
     ) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
             updatedItems.add(
                 item.copy(
                     isSelected = getSelectedStatus(
-                        suggestionInputItemViewState,
-                        item,
-                        fromBack
+                        suggestionInputItemViewState, item, fromBack
                     )
                 )
             )
@@ -489,21 +473,16 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun setSelectionToInput(suggestionInputItem: SuggestionInputItem) {
         val updatedItems = mutableListOf<SuggestionInputItemViewState>()
         items.forEach { item ->
-            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim()
-                    .isNotEmpty()
-            ) {
+            if (item.type == SuggestionItemType.INPUT && suggestionInputItem.value.trim().isNotEmpty()) {
                 updatedItems.add(
                     item.copy(
-                        isSelected = true,
-                        text = suggestionInputItem.text,
-                        value = suggestionInputItem.value
+                        isSelected = true, text = suggestionInputItem.text, value = suggestionInputItem.value
                     )
                 )
             } else {
                 updatedItems.add(
                     item.copy(
-                        isSelected = isSelectableItemSelected(item, suggestionInputItem),
-                        text = item.text
+                        isSelected = isSelectableItemSelected(item, suggestionInputItem), text = item.text
                     )
                 )
             }
@@ -514,25 +493,24 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun isSelectableItemSelected(
-        suggestionInputItemViewState: SuggestionInputItemViewState,
-        suggestionInputItem: SuggestionInputItem
-    ): Boolean =
-        suggestionInputItemViewState.isSelected && suggestionInputItem.value.trim().isEmpty()
+        suggestionInputItemViewState: SuggestionInputItemViewState, suggestionInputItem: SuggestionInputItem
+    ): Boolean = suggestionInputItemViewState.isSelected && suggestionInputItem.value.trim().isEmpty()
 
     private fun showInputView(showKeyboard: Boolean) {
         val constraintSet = ConstraintSet()
-        constraintSet.clone(bindingInput.constraintLayoutInput)
-        setTransition()
-        applyConstraintSet(constraintSet)
-        postDelayed({
+        constraintSet.clone(
+            LayoutInflater.from(context).inflate(R.layout.view_suggestion_input, this, false) as ConstraintLayout
+        )
+        setTransition {
             val inputText = getInputText()
-            bindingSelectables.editText.setText(inputText)
-            bindingSelectables.editText.setSelection(inputText.length)
+            binding.editText.setText(inputText)
+            binding.editText.setSelection(inputText.length)
             if (showKeyboard) {
-                bindingSelectables.editText.requestFocus()
+                binding.editText.requestFocus()
                 showKeyboard()
             }
-        }, 500)
+        }
+        applyConstraintSet(constraintSet)
     }
 
     private fun getInputText(): String {
@@ -546,8 +524,7 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun renderSelection(
-        suggestionInputItemViewState: SuggestionInputItemViewState,
-        showKeyboard: Boolean = true
+        suggestionInputItemViewState: SuggestionInputItemViewState, showKeyboard: Boolean = true
     ) {
         shouldShowSelectableItemError(false)
         val itemType = suggestionInputItemViewState.type
@@ -562,22 +539,22 @@ class SuggestionInputView @JvmOverloads constructor(
     private fun showSelectableView() {
         clearInputError()
         val constraintSet = ConstraintSet()
-        constraintSet.clone(context, R.layout.view_suggestion_selectables)
+        constraintSet.clone(
+            LayoutInflater.from(context).inflate(R.layout.view_suggestion_selectables, this, false) as ConstraintLayout
+        )
         setTransition()
         applyConstraintSet(constraintSet)
         hideKeyboard()
     }
 
-    private fun setTransition() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val transition = ChangeBounds()
-            transition.interpolator = AnticipateInterpolator(2.0f)
-            transition.duration = 400
-            TransitionManager.beginDelayedTransition(
-                bindingSelectables.constraintLayoutSelectables,
-                transition
-            )
+    private fun setTransition(onTransitionEnd: (() -> Unit)? = null) {
+        val transition = ChangeBounds()
+        transition.interpolator = AnticipateInterpolator(2.0f)
+        transition.duration = 400
+        transition.doOnEnd {
+            onTransitionEnd?.invoke()
         }
+        TransitionManager.beginDelayedTransition(binding.constraintLayoutSelectables, transition)
     }
 
     private fun updateBadgeView() {
@@ -596,15 +573,15 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun applyConstraintSet(constraintSet: ConstraintSet) {
-        constraintSet.applyTo(bindingSelectables.constraintLayoutSelectables)
+        constraintSet.applyTo(binding.constraintLayoutSelectables)
     }
 
     private fun showKeyboard() {
-        bindingSelectables.editText.showKeyboard()
+        binding.editText.showKeyboard()
     }
 
     private fun hideKeyboard() {
-        bindingSelectables.editText.hideKeyboard()
+        binding.editText.hideKeyboard()
     }
 
     private fun vibrate() {
@@ -662,8 +639,8 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun mapFreeTextToInputItem(): SuggestionInputItem {
-        val text: String = bindingSelectables.editText.text.toString() + " " + inputSuffix
-        val value = bindingSelectables.editText.text.toString()
+        val text: String = binding.editText.text.toString() + " " + inputSuffix
+        val value = binding.editText.text.toString()
         return SuggestionInputItem(
             id = ID_FREE_TEXT,
             text = text,
@@ -675,8 +652,31 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun setViewState(viewState: SuggestionInputViewState) {
-        bindingSelectables.viewState = viewState
-        bindingSelectables.executePendingBindings()
+        with(binding) {
+            (recyclerViewSuggestionItems.adapter as? SuggestionItemAdapter)?.submitList(viewState.items)
+            with(editText) {
+                background = viewState.getInputBackground()
+                hint = viewState.hint
+                inputType = viewState.inputType
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, viewState.textSize)
+                setSuffix(viewState.suffix)
+                setSuffixVisible(viewState.isSuffixVisible())
+            }
+            with(buttonDone) {
+                background = viewState.buttonBackground
+                minWidth = viewState.getMinWidth()
+                setPadding(
+                    paddingLeft, viewState.getVerticalPadding(), paddingRight, viewState.getVerticalPadding()
+                )
+                text = viewState.buttonText
+                setTextColor(viewState.buttonTextColor)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, viewState.textSize)
+            }
+            with(textViewError) {
+                text = viewState.getErrorText()
+                visibility = viewState.getErrorTextVisibility()
+            }
+        }
     }
 
     private fun createViewState(): SuggestionInputViewState = SuggestionInputViewState(
@@ -702,12 +702,12 @@ class SuggestionInputView @JvmOverloads constructor(
     }
 
     private fun notifyAdapter() {
-        bindingSelectables.recyclerViewSuggestionItems.adapter = itemsAdapter
+        binding.recyclerViewSuggestionItems.adapter = itemsAdapter
         itemsAdapter.submitList(items)
     }
 
     companion object {
 
-        const val ID_FREE_TEXT = 192
+        private const val ID_FREE_TEXT = 192
     }
 }
