@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.ratingbar
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import com.trendyol.uicomponents.ratingbar.databinding.ViewRatingBarBinding
@@ -12,12 +13,20 @@ class RatingBarView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var starCount: Int = 0
+
     @ColorInt
     private var starHighlightColor: Int = Color.YELLOW
+
     @ColorInt
     private var starDefaultColor: Int = Color.GRAY
 
-    private val binding: ViewRatingBarBinding = inflate(R.layout.view_rating_bar)
+    private var viewState: RatingBarViewState = createViewState()
+        set(value) {
+            field = value
+            bind()
+        }
+
+    private val binding: ViewRatingBarBinding = ViewRatingBarBinding.inflate(LayoutInflater.from(context), this)
 
     init {
         context.theme?.obtainStyledAttributes(
@@ -38,7 +47,7 @@ class RatingBarView @JvmOverloads constructor(
                     context.color(R.color.star_default)
                 )
 
-                setViewState(createViewState())
+                viewState = createViewState()
             } finally {
                 recycle()
             }
@@ -53,7 +62,7 @@ class RatingBarView @JvmOverloads constructor(
      */
     fun setStarCount(starCount: Int) {
         this.starCount = starCount
-        setViewState(createViewState())
+        viewState = createViewState()
     }
 
     /**
@@ -63,7 +72,7 @@ class RatingBarView @JvmOverloads constructor(
      */
     fun setHighlightColor(@ColorInt color: Int) {
         this.starHighlightColor = color
-        setViewState(createViewState())
+        viewState = createViewState()
     }
 
     /**
@@ -74,7 +83,7 @@ class RatingBarView @JvmOverloads constructor(
      */
     fun setDefaultStarColor(@ColorInt color: Int) {
         this.starDefaultColor = color
-        setViewState(createViewState())
+        viewState = createViewState()
     }
 
     private fun createViewState(): RatingBarViewState = RatingBarViewState(
@@ -83,8 +92,13 @@ class RatingBarView @JvmOverloads constructor(
         starHighlightColor = starHighlightColor
     )
 
-    private fun setViewState(viewState: RatingBarViewState?) {
-        binding.viewState = viewState
-        binding.executePendingBindings()
+    private fun bind() {
+        with(binding) {
+            star1.setTintCompat(viewState.getTint1())
+            star2.setTintCompat(viewState.getTint2())
+            star3.setTintCompat(viewState.getTint3())
+            star4.setTintCompat(viewState.getTint4())
+            star5.setTintCompat(viewState.getTint5())
+        }
     }
 }

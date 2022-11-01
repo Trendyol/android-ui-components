@@ -1,68 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:parentTag="android.widget.LinearLayout">
 
-    <data>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_stars"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_star" />
 
-        <variable
-            name="viewState"
-            type="com.trendyol.uicomponents.ratingbar.RatingBarViewState" />
-    </data>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_stars"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_star" />
 
-    <merge
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:parentTag="android.widget.LinearLayout">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_stars"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_star" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/star_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_stars"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_star"
-            app:tintCompat="@{viewState.tint1}" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/margin_stars"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_star" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/star_2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_stars"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_star"
-            app:tintCompat="@{viewState.tint2}" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/star_3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_stars"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_star"
-            app:tintCompat="@{viewState.tint3}" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/star_4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin_stars"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_star"
-            app:tintCompat="@{viewState.tint4}" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/star_5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/ic_star"
-            app:tintCompat="@{viewState.tint5}" />
-    </merge>
-</layout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/star_5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/ic_star" />
+</merge>

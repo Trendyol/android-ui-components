@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
     id(Plugins.mavenPublish)
 }
 
@@ -28,11 +27,10 @@ android {
         }
     }
 
-    buildFeatures.dataBinding = true
+    namespace = "com.trendyol.uicomponents.ratingbar"
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
-    implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
-    implementation(Dependencies.coreKtx)
 }
