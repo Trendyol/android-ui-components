@@ -3,6 +3,7 @@ package com.trendyol.uicomponents
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.trendyol.cardinputview.CardInformation
 import com.trendyol.cardinputview.CardInputView
 import com.trendyol.cardinputview.CardInputViewState
+import com.trendyol.cardinputview.CreditCardType
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
 
@@ -43,6 +45,11 @@ class CardInputViewActivity : AppCompatActivity() {
         )
 
         with(cardInputView) {
+            setSupportedCardTypes(
+                CreditCardType.MASTER_CARD,
+                CreditCardType.VISA,
+                CreditCardType.AMERICAN_EXPRESS
+            )
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
                     cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
@@ -55,7 +62,7 @@ class CardInputViewActivity : AppCompatActivity() {
             onCvvInfoClicked = {
                 Toast.makeText(
                     this@CardInputViewActivity,
-                    "CVV number is on the back of your card.",
+                    "Enter $it digit cvv number",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -68,6 +75,12 @@ class CardInputViewActivity : AppCompatActivity() {
                 val color = if (isValid) Color.BLUE else Color.RED
                 textCvv.setTextColor(color)
                 if (isValid) buttonValidate.performClick()
+            }
+
+            cardNumberInputErrorListener = {
+                Handler().postDelayed({
+                    cardInputView.clearErrors()
+                }, 5000)
             }
 
             openMonthSelectionListener = { showMonthSelectionDialog() }

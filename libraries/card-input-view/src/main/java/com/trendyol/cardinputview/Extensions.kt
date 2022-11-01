@@ -2,6 +2,8 @@ package com.trendyol.cardinputview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.text.Editable
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,4 +44,29 @@ internal fun View.showKeyboard() {
 internal fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+internal fun String.removeNonDigitCharacters() = replace("[^\\d]".toRegex(), "")
+
+internal fun Editable.updateText(currentText: String) {
+    val currentFilters = filters
+    filters = arrayOf<InputFilter>()
+    replace(0, length, currentText, 0, currentText.length)
+    filters = currentFilters
+}
+
+/**
+ * Set debounce time(millis) to onClickListener for prevent multiple clicks.
+ * @param debounceMillis: Millis time that gives delay between clicks.
+ * @param onClickListener: Lambda function that invokes click listener.
+ */
+fun View.setDebouncedOnClickListener(debounceMillis: Long = 500L, onClickListener: View.OnClickListener) {
+    var lastClickTime: Long = 0
+    setOnClickListener { view ->
+        val shouldAcceptClick = (System.currentTimeMillis() - lastClickTime) > debounceMillis
+        if (shouldAcceptClick) {
+            lastClickTime = System.currentTimeMillis()
+            onClickListener.onClick(view)
+        }
+    }
 }

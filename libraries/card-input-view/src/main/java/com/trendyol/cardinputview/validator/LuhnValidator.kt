@@ -1,11 +1,16 @@
 package com.trendyol.cardinputview.validator
 
+import com.trendyol.cardinputview.CreditCardType
+
 internal class LuhnValidator {
 
-    fun isValid(input: String?): Boolean {
-        if (input?.replace(" ", "")?.length != LENGTH_CARD_NUMBER) return false
+    fun isValid(input: String?, supportedCardTypes: List<CreditCardType>): Boolean {
+        val creditCardNumber = input ?: return false
+        val creditCardType = CreditCardType.getCreditCardType(supportedCardTypes, creditCardNumber)
+        val sanitizedInput = creditCardNumber.replace(" ", "")
+        val sanitizedCardTypePattern = creditCardType.digitPattern.replace(" ", "")
 
-        val sanitizedInput = input.replace(" ", "")
+        if (sanitizedInput.length < sanitizedCardTypePattern.length) return false
 
         return when {
             valid(sanitizedInput) -> checksum(sanitizedInput) % 10 == 0
@@ -26,8 +31,4 @@ internal class LuhnValidator {
     }
 
     private fun String.digits() = this.map(Character::getNumericValue)
-
-    companion object {
-        private const val LENGTH_CARD_NUMBER = 16
-    }
 }

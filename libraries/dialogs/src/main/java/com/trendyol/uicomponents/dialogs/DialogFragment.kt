@@ -1,5 +1,6 @@
 package com.trendyol.uicomponents.dialogs
 
+import android.content.DialogInterface
 import android.graphics.Outline
 import android.os.Bundle
 import android.text.SpannableString
@@ -29,6 +30,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     var rightButtonClickListener: ((DialogFragment) -> Unit)? = null
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
+    var onDismissListener: ((DialogFragment) -> Unit)? = null
 
     internal lateinit var binding: FragmentDialogBinding
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
@@ -64,7 +66,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
 
         with(binding) {
             binding.cardView.clipToOutline = true
-            imageClose.setOnClickListener {
+            viewDialogHeader.imageClose.setOnClickListener {
                 dismiss()
                 closeButtonListener?.invoke(this@DialogFragment)
             }
@@ -83,6 +85,13 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             }
             dialogArguments.infoListItems?.let { items ->
                 initializeInfoListDialog(items, dialogArguments.itemDividers)
+            }
+            if (dialogArguments.horizontalPadding != null || dialogArguments.verticalPadding != null) {
+                val topPadding = dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingTop
+                val bottomPadding = dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingBottom
+                val startPadding = dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingStart
+                val endPadding = dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingEnd
+                nestedScrollView.setPadding(startPadding, topPadding, endPadding, bottomPadding)
             }
         }
     }
@@ -149,20 +158,20 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             titleTextColor = dialogArguments.titleTextColor ?: R.color.ui_components_dialogs_primary_text_color,
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
             contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START,
-            webViewContent = dialogArguments.webViewContent
+            webViewContent = dialogArguments.webViewContent,
         )
 
         with(binding) {
-            with(viewTitleBackground) {
+            with(viewDialogHeader.viewTitleBackground) {
                 setBackgroundColor(viewState.getTitleBackgroundColor(context))
                 visibility = viewState.getTitleVisibility()
             }
-            with(textTitle) {
+            with(viewDialogHeader.textTitle) {
                 text = viewState.title
                 textAlignment = viewState.getTitleTextPosition()
                 setTextColor(viewState.getTitleTextColor(context))
             }
-            imageClose.visibility = viewState.getCloseButtonVisibility()
+            viewDialogHeader.imageClose.visibility = viewState.getCloseButtonVisibility()
             with(imageContent) {
                 setImageDrawable(viewState.getContentImageDrawable(context))
                 visibility = viewState.getContentImageVisibility()
@@ -223,6 +232,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             if (view == null) return
             outline?.setRoundRect(0, 0, view.width, (view.height + radius).toInt(), radius)
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        onDismissListener?.invoke(this@DialogFragment)
+        super.onDismiss(dialog)
     }
 
     companion object {

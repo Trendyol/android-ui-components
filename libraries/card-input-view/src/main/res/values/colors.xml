@@ -6,4 +6,5 @@
     <color name="civ_error_background">#f6dde1</color>
     <color name="civ_error_stroke">#d0021b</color>
     <color name="civ_cvv_info_background">#ffffff</color>
+    <color name="civ_cvv_info_border_color">#e5e5e5</color>
 </resources>

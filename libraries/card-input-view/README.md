@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-1.png" width="240"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/card-input-view-2.png" width="240"/>
   
-$cardInputViewVersion = card-input-view-1.1.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$cardInputViewVersion = card-input-view-1.2.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## CardInputView  
 CardInputView is custom view for Master or Visa debit/credit card inputs. It can verify card number, expire date and CVV for you.
@@ -47,6 +47,8 @@ To clear all inputs' errors, call `CardInputView.clearErrors()`.
 
 To focus and show soft keyboard on card number field call `CardInputView.focusToCardNumberField()`, to focus CVV field call `CardInputView.focusToCvvField()`.
 
+To set supported credit card types call `CardInputView.setSupportedCardTypes()` by default it supports and formats as `CreditCardType.MASTER_CARD, CreditCardType.VISA`.
+
 For expire month and year selection, you need to open custom dialog or input field, we suggest you to use **Dialogs**, to more information about **Dialogs**, [click here](https://github.com/Trendyol/android-ui-components/tree/master/libraries/dialogs).
 
 ## Listeners
@@ -61,6 +63,7 @@ To get updates on **CardInputView** you need to set this listeners:
 | onCvvComplete | isValid: Boolean | To focus next field on your activity/fragment. |
 | openMonthSelectionListener |  | To open dialog or input field for expire month. |
 | openYearSelectionListener |  | To open dialog or input field for expire year. |
+| cardNumberInputErrorListener |  | If the card number is invalid, it is triggered. |
 
 ## Implementation
 

@@ -18,15 +18,17 @@ class CardInputView : ConstraintLayout {
 
     var onCardNumberChanged: ((String) -> Unit)? = null
     var onCvvChanged: ((String) -> Unit)? = null
-    var onCvvInfoClicked: (() -> Unit)? = null
+    var onCvvInfoClicked: ((Int) -> Unit)? = null
     var onCardNumberComplete: ((Boolean) -> Unit)? = null
     var onCvvComplete: ((Boolean) -> Unit)? = null
     var openMonthSelectionListener: (() -> Unit)? = null
     var openYearSelectionListener: (() -> Unit)? = null
+    var cardNumberInputErrorListener: (() -> Unit)? = null
 
     private val binding: ViewCardInputBinding = inflate(R.layout.view_card_input)
 
     private val validator by lazy { CreditCardValidator() }
+    private lateinit var cardNumberFormatterTextWatcher: CardNumberFormatterTextWatcher
 
     constructor(context: Context) : super(context)
 
@@ -70,10 +72,14 @@ class CardInputView : ConstraintLayout {
     fun validate(): Boolean {
         val cardInformation = binding.viewState?.cardInformation ?: CardInformation()
 
-        val isCardNumberValid = validator.isCardNumberValid(cardInformation.cardNumber)
+        val isCardNumberValid = validator.isCardNumberValid(
+            cardInformation.cardNumber, binding.viewState?.supportedCardTypes.orEmpty()
+        )
         val isExpiryMonthValid = validator.isExpiryMonthValid(cardInformation.expiryMonth)
         val isExpiryYearValid = validator.isExpiryYearValid(cardInformation.expiryYear)
-        val isCvvValid = validator.isCvvValid(cardInformation.cvv)
+        val isCvvValid = validator.isCvvValid(
+            cardInformation.cvv, cardInformation.cardNumber, binding.viewState?.supportedCardTypes.orEmpty()
+        )
 
         binding.viewState = binding.viewState?.copy(
             cardNumberValid = isCardNumberValid,
@@ -82,9 +88,16 @@ class CardInputView : ConstraintLayout {
             cvvValid = isCvvValid,
             shouldShowErrors = true
         )
+        cardNumberInputErrorListener(cardNumberValid = isCardNumberValid)
         binding.executePendingBindings()
 
         return isCardNumberValid && isExpiryMonthValid && isExpiryYearValid && isCvvValid
+    }
+
+    private fun cardNumberInputErrorListener(cardNumberValid: Boolean) {
+        if (!cardNumberValid) {
+            cardNumberInputErrorListener?.invoke()
+        }
     }
 
     /**
@@ -181,6 +194,17 @@ class CardInputView : ConstraintLayout {
         binding.executePendingBindings()
     }
 
+    fun setSupportedCardTypes(vararg cardType: CreditCardType) {
+        binding.viewState = binding.viewState?.copy(
+            supportedCardTypes = cardType.asList()
+        )
+        binding.executePendingBindings()
+
+        binding.editTextCardNumber.removeTextChangedListener(cardNumberFormatterTextWatcher)
+        cardNumberFormatterTextWatcher = CardNumberFormatterTextWatcher(cardType.asList())
+            .also { watcher -> binding.editTextCardNumber.addTextChangedListener(watcher) }
+    }
+
     private fun readAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         context.theme.obtainStyledAttributes(
             attrs,
@@ -211,7 +235,7 @@ class CardInputView : ConstraintLayout {
                 it.getDrawable(R.styleable.CardInputView_civ_inputErrorBackground)
                     ?: context.drawable(R.drawable.shape_card_input_field_error_background)
 
-            binding.viewState = CardInputViewState(
+            val viewState = CardInputViewState(
                 cardNumberTitle = cardNumberTitleText,
                 expiryTitle = expiryTitle,
                 expiryMonthTitle = expiryMonthTitle,
@@ -225,7 +249,10 @@ class CardInputView : ConstraintLayout {
                 inputBackgroundDrawable = inputBackground?.constantState?.newDrawable(),
                 inputErrorBackgroundDrawable = inputErrorBackground?.constantState?.newDrawable()
             )
+            binding.viewState = viewState
             binding.executePendingBindings()
+            cardNumberFormatterTextWatcher = CardNumberFormatterTextWatcher(viewState.supportedCardTypes)
+                .also { watcher -> binding.editTextCardNumber.addTextChangedListener(watcher) }
         }
     }
 
@@ -234,19 +261,23 @@ class CardInputView : ConstraintLayout {
             with(editTextCardNumber) {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_NEXT && viewState?.validationEnabled == true) {
-                        val isValid = validator.isCardNumberValid(text?.toString())
+                        val isValid =
+                            validator.isCardNumberValid(text?.toString(), viewState?.supportedCardTypes.orEmpty())
                         setCardNumberValidity(isValid)
                         onCardNumberComplete?.invoke(isValid)
                     }
                     actionId == EditorInfo.IME_ACTION_NEXT
                 }
                 addTextChangedListener(CardNumberTextWatcher())
-                addTextChangedListener(CardNumberFormatterTextWatcher())
             }
             with(editTextCvv) {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE && viewState?.validationEnabled == true) {
-                        val isValid = validator.isCvvValid(text?.toString())
+                        val isValid = validator.isCvvValid(
+                            text?.toString(),
+                            editTextCardNumber.text?.toString(),
+                            viewState?.supportedCardTypes.orEmpty()
+                        )
                         setCardCvvValidity(isValid)
                         onCvvComplete?.invoke(isValid)
                         if (isValid) editTextCvv.hideKeyboard()
@@ -256,19 +287,25 @@ class CardInputView : ConstraintLayout {
                 addTextChangedListener(CvvTextWatcher())
             }
 
-            textViewCardExpiryMonth.setOnClickListener {
+            textViewCardExpiryMonth.setDebouncedOnClickListener {
                 openMonthSelectionListener?.invoke()
             }
-            textViewCardExpiryYear.setOnClickListener {
+            textViewCardExpiryYear.setDebouncedOnClickListener {
                 openYearSelectionListener?.invoke()
             }
-            textViewCvvInfo.setOnClickListener { onCvvInfoClicked?.invoke() }
+            textViewCvvInfo.setOnClickListener {
+                val cvvLength = CreditCardType
+                    .getCreditCardType(viewState?.supportedCardTypes.orEmpty(), editTextCardNumber.text?.toString())
+                    .cvvLength
+                onCvvInfoClicked?.invoke(cvvLength)
+            }
         }
     }
 
     private fun setCardNumberValidity(isValid: Boolean) {
         val viewState = binding.viewState
         binding.viewState = viewState?.copy(cardNumberValid = isValid)
+        cardNumberInputErrorListener(cardNumberValid = isValid)
     }
 
     private fun setCardCvvValidity(isValid: Boolean) {

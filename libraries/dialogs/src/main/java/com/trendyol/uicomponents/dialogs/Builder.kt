@@ -7,9 +7,13 @@ import androidx.annotation.DrawableRes
 open class Builder internal constructor() {
 
     var title: CharSequence = ""
+    var titleBackgroundColor: Int? = null
+    var titleTextColor: Int? = null
+    var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
+    var onDialogDismissListener: ((DialogFragment) -> Unit)? = null
     var cornerRadius: Float? = null
 }
 
@@ -20,12 +24,11 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     @DrawableRes
     var contentImage: Int? = null
     var showContentAsHtml: Boolean = false
-    var titleBackgroundColor: Int? = null
-    var titleTextColor: Int? = null
-    var titleTextPosition: TextPosition? = null
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
     var webViewBuilder: (WebView.() -> Unit)? = null
+    var horizontalPadding: Float? = null
+    var verticalPadding: Float? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -35,6 +38,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     showCloseButton = it.showCloseButton,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     content = SpannableString(it.content),
                     contentImage = it.contentImage,
                     showContentAsHtml = it.showContentAsHtml,
@@ -46,6 +51,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     webViewBuilder = it.webViewBuilder,
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
+                this.onDismissListener = it.onDialogDismissListener ?: {}
             }
         }
     }
@@ -66,6 +72,8 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showCloseButton = it.showCloseButton,
                     content = SpannableString(it.content),
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     rightButtonText = it.rightButtonText,
@@ -75,6 +83,7 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                 closeButtonListener = it.closeButtonListener
                 rightButtonClickListener = it.rightButtonClickListener
                 leftButtonClickListener = it.leftButtonClickListener
+                this.onDismissListener = it.onDialogDismissListener ?: {}
             }
         }
 }
@@ -102,6 +111,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     titleTextColor = it.titleTextColor,
                     items = it.items,
@@ -117,6 +128,7 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
                 onItemReselectedListener = it.onItemReselectedListener
+                this.onDismissListener = it.onDialogDismissListener ?: {}
             }
 
         }
@@ -136,6 +148,8 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                     content = SpannableString(it.content),
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
+                    horizontalPadding = it.horizontalPadding,
+                    verticalPadding = it.verticalPadding,
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
                     webViewContent = it.webViewContent,
@@ -143,6 +157,7 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                     itemDividers = it.itemDividers
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
+                this.onDismissListener = it.onDialogDismissListener ?: {}
             }
 
         }

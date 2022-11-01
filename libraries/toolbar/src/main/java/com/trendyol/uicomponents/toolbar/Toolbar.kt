@@ -54,7 +54,7 @@ class Toolbar : ConstraintLayout {
 
         imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
         imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
-        imageRight.setOnClickListener { rightImageClickListener?.invoke() }
+        imageRight.setDebouncedOnClickListener { rightImageClickListener?.invoke() }
         textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
         textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
         textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
