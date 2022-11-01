@@ -1,22 +1,19 @@
 package com.trendyol.uicomponents
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.trendyol.uicomponents.databinding.ActivityQuantityPickerViewBinding
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerView
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerViewState
 
 class QuantityPickerViewActivity : AppCompatActivity() {
 
-    private val quantityPickerView2 by lazy { findViewById<QuantityPickerView>(R.id.quantity_picker_view_2) }
-    private val quantityPickerView by lazy { findViewById<QuantityPickerView>(R.id.quantity_picker_view) }
-    private val quantityPickerViewCollapsedRight by lazy { findViewById<QuantityPickerView>(R.id.quantity_picker_view_collapsed_right) }
-    private val buttonReset by lazy { findViewById<Button>(R.id.button_reset) }
+    private lateinit var binding: ActivityQuantityPickerViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quantity_picker_view)
+        setContentView(ActivityQuantityPickerViewBinding.inflate(layoutInflater).also { binding = it }.root)
 
         val viewState = QuantityPickerViewState(
             text = "Fresh Money",
@@ -38,9 +35,9 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             removeContentDescription = "Remove"
         )
 
-        quantityPickerView2.setQuantityPickerViewState(viewState)
+        binding.quantityPickerView2.setQuantityPickerViewState(viewState)
 
-        with(quantityPickerView) {
+        with(binding.quantityPickerView) {
             onAddClicked = { number ->
                 Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
                 completeLoading(this, increment = +1)
@@ -56,7 +53,7 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             }
 
         }
-        with(quantityPickerViewCollapsedRight) {
+        with(binding.quantityPickerViewCollapsedRight) {
             onAddClicked = { number ->
                 Toast.makeText(context, "Add click: $number", Toast.LENGTH_SHORT).show()
                 completeLoading(this, increment = +1)
@@ -71,10 +68,11 @@ class QuantityPickerViewActivity : AppCompatActivity() {
                 Toast.makeText(context, "$it ${it.expanded}", Toast.LENGTH_LONG).show()
             }
         }
-        buttonReset.setOnClickListener {
-            quantityPickerView.reset()
-            quantityPickerView2.reset()
-            quantityPickerViewCollapsedRight.reset()
+        binding.buttonReset.setOnClickListener {
+            binding.quantityPickerView.reset()
+            binding.quantityPickerView2.reset()
+            binding.quantityPickerViewCollapsed.reset()
+            binding.quantityPickerViewCollapsedRight.reset()
         }
     }
 
