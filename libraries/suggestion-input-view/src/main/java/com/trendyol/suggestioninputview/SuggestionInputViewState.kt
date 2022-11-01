@@ -27,11 +27,13 @@ data class SuggestionInputViewState(
             editTextBackground
         }
 
-    fun getMinWidth() = items.firstOrNull()?.getMinimumWidth()
+    fun getMinWidth(): Int = items.firstOrNull()?.getMinimumWidth() ?: 0
 
-    fun getErrorTextVisiblity(): Int = if(shouldShowInputItemError) View.VISIBLE else View.GONE
+    fun getErrorTextVisibility(): Int = if(shouldShowInputItemError) View.VISIBLE else View.GONE
 
     fun getErrorText(): String = inputErrorMessage
 
     fun isSuffixVisible(): Boolean = hint.isEmpty() && suffix.isNotEmpty()
+
+    fun getVerticalPadding(): Int = verticalPadding.toInt()
 }

@@ -28,7 +28,8 @@ android {
         }
     }
 
-    buildFeatures.dataBinding = true
+    namespace = "com.trendyol.suggestioninputview"
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
