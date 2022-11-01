@@ -289,7 +289,7 @@ class CardInputView : ConstraintLayout {
     }
 
     private fun setCardNumberValidity(isValid: Boolean) {
-        viewState = viewState.copy(cardNumberValid = isValid)
+        viewState = viewState.copy(cardNumberValid = isValid, shouldShowErrors = isValid.not())
         cardNumberInputErrorListener(cardNumberValid = isValid)
     }
 
