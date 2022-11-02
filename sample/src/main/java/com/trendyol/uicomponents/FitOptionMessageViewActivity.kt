@@ -2,7 +2,6 @@ package com.trendyol.uicomponents
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.databinding.ActivityFitOptionMessageBinding
 
 class FitOptionMessageViewActivity : AppCompatActivity() {
@@ -11,10 +10,8 @@ class FitOptionMessageViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_fit_option_message
-        )
+        binding = ActivityFitOptionMessageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // setting a custom animation
         /*binding.fitOptionMessage.revealAnimationProvider = { imageView, textView ->

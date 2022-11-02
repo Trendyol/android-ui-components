@@ -5,33 +5,38 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.webkit.WebViewClient
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.color
-import com.trendyol.uicomponents.dialogs.*
+import com.trendyol.uicomponents.databinding.ActivityDialogsBinding
+import com.trendyol.uicomponents.dialogs.DialogFragment
+import com.trendyol.uicomponents.dialogs.ItemDivider
+import com.trendyol.uicomponents.dialogs.TextPosition
+import com.trendyol.uicomponents.dialogs.WebViewContent
+import com.trendyol.uicomponents.dialogs.agreementDialog
+import com.trendyol.uicomponents.dialogs.infoDialog
+import com.trendyol.uicomponents.dialogs.infoListDialog
+import com.trendyol.uicomponents.dialogs.selectionDialog
 
 class DialogsActivity : AppCompatActivity() {
 
-    private val buttonInfoDialog by lazy { findViewById<Button>(R.id.button_info_dialog) }
-    private val buttonAgreementDialog by lazy { findViewById<Button>(R.id.button_agreement_dialog) }
-    private val buttonSelectionDialog by lazy { findViewById<Button>(R.id.button_selection_dialog) }
-    private val buttonSelectionWithSearchDialog by lazy { findViewById<Button>(R.id.button_selection_with_search_dialog) }
-    private val buttonInfoDialogWithWebView by lazy { findViewById<Button>(R.id.button_info_dialog_webview) }
-    private val buttonInfoListDialog by lazy { findViewById<Button>(R.id.button_info_list_dialog) }
+    private lateinit var binding: ActivityDialogsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dialogs)
+        binding = ActivityDialogsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        buttonInfoDialog.setOnClickListener { showInfoDialog() }
-        buttonAgreementDialog.setOnClickListener { showAgreementDialog() }
-        buttonSelectionDialog.setOnClickListener { showSelectionDialog() }
-        buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
-        buttonInfoDialogWithWebView.setOnClickListener { showInfoDialogWithWebView() }
-        buttonInfoListDialog.setOnClickListener { showInfoListDialog() }
+        with(binding) {
+            buttonInfoDialog.setOnClickListener { showInfoDialog() }
+            buttonAgreementDialog.setOnClickListener { showAgreementDialog() }
+            buttonSelectionDialog.setOnClickListener { showSelectionDialog() }
+            buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
+            buttonInfoDialogWebview.setOnClickListener { showInfoDialogWithWebView() }
+            buttonInfoListDialog.setOnClickListener { showInfoListDialog() }
+        }
     }
 
     private val infoDialogClosed: (DialogFragment) -> Unit = { showToast("Info dialog closed.") }
@@ -143,8 +148,14 @@ class DialogsActivity : AppCompatActivity() {
             closeButtonListener = infoDialogClosed
             cornerRadius = 0F
             infoListItems = getInfoListItems()
-            itemDividers =  listOf(
-                ItemDivider.MarginDivider(56, listOf(ItemDivider.MarginDivider.MarginDirection.TOP, ItemDivider.MarginDivider.MarginDirection.BOTTOM)),
+            itemDividers = listOf(
+                ItemDivider.MarginDivider(
+                    56,
+                    listOf(
+                        ItemDivider.MarginDivider.MarginDirection.TOP,
+                        ItemDivider.MarginDivider.MarginDirection.BOTTOM
+                    )
+                ),
                 ItemDivider.DrawableDivider(
                     R.drawable.shape_info_list_dialog_divider
                 )

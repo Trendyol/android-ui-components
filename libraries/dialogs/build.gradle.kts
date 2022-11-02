@@ -4,7 +4,6 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
-    id(Plugins.kotlinKapt)
     id(Plugins.mavenPublish)
 }
 
@@ -46,5 +45,4 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.lifecycleExtensions)
-    kapt(Dependencies.lifecycleCompiler)
 }

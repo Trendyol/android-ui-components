@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
 }
 
 android {
@@ -27,7 +26,6 @@ android {
         }
     }
 
-    buildFeatures.dataBinding = true
     buildFeatures.viewBinding = true
 }
 

@@ -3,30 +3,19 @@ package com.trendyol.uicomponents
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.trendyol.cardinputview.CardInformation
-import com.trendyol.cardinputview.CardInputView
-import com.trendyol.cardinputview.CardInputViewState
 import com.trendyol.cardinputview.CreditCardType
+import com.trendyol.uicomponents.databinding.ActivityCardInputBinding
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
 import java.util.Calendar
 
 class CardInputViewActivity : AppCompatActivity() {
 
-    private val cardInputView by lazy { findViewById<CardInputView>(R.id.card_input_view) }
-    private val textCardNumber by lazy { findViewById<TextView>(R.id.text_card_number) }
-    private val textCvv by lazy { findViewById<TextView>(R.id.text_cvv) }
-    private val buttonValidate by lazy { findViewById<Button>(R.id.button_validate) }
-    private val buttonValidateAndGet by lazy { findViewById<Button>(R.id.button_validate_and_get) }
-    private val buttonReset by lazy { findViewById<Button>(R.id.button_reset) }
-    private val buttonClearErrors by lazy { findViewById<Button>(R.id.button_clear_errors) }
-
+    private lateinit var binding: ActivityCardInputBinding
     private val months =
         listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
     private val years by lazy {
@@ -36,9 +25,10 @@ class CardInputViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_card_input)
+        binding = ActivityCardInputBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        with(cardInputView) {
+        with(binding.cardInputView) {
             setSupportedCardTypes(
                 CreditCardType.MASTER_CARD,
                 CreditCardType.VISA,
@@ -46,15 +36,15 @@ class CardInputViewActivity : AppCompatActivity() {
             )
             onCardNumberChanged = { cardNumber ->
                 if (cardNumber.length <= 1) {
-                    cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
+                    binding.cardInputView.setCardTypeLogoDrawable(getCardTypeLogoUrl(cardNumber))
                 }
                 if (cardNumber.length >= 6) {
-                    cardInputView.setCardBankLogoDrawable(getCardTypeLogoUrl(cardNumber)) // dummy setting
+                    binding.cardInputView.setCardBankLogoDrawable(getCardTypeLogoUrl(cardNumber)) // dummy setting
                 }
-                textCardNumber.text = cardNumber
+                binding.textCardNumber.text = cardNumber
             }
             onCvvChanged = { cvv ->
-                textCvv.text = cvv
+                binding.textCvv.text = cvv
             }
             onCvvInfoClicked = {
                 Toast.makeText(
@@ -65,18 +55,18 @@ class CardInputViewActivity : AppCompatActivity() {
             }
             onCardNumberComplete = { isValid ->
                 val color = if (isValid) Color.BLUE else Color.RED
-                textCardNumber.setTextColor(color)
+                binding.textCardNumber.setTextColor(color)
                 showMonthSelectionDialog()
             }
             onCvvComplete = { isValid ->
                 val color = if (isValid) Color.BLUE else Color.RED
-                textCvv.setTextColor(color)
-                if (isValid) buttonValidate.performClick()
+                binding.textCvv.setTextColor(color)
+                if (isValid) binding.buttonValidate.performClick()
             }
 
             cardNumberInputErrorListener = {
-                Handler().postDelayed({
-                    cardInputView.clearErrors()
+                binding.cardInputView.postDelayed({
+                    binding.cardInputView.clearErrors()
                 }, 5000)
             }
 
@@ -86,13 +76,13 @@ class CardInputViewActivity : AppCompatActivity() {
             focusToCardNumberField()
         }
 
-        buttonValidate.setOnClickListener { cardInputView.validate() }
-        buttonValidateAndGet.setOnClickListener {
-            val result = cardInputView.validateAndGet()
+        binding.buttonValidate.setOnClickListener { binding.cardInputView.validate() }
+        binding.buttonValidateAndGet.setOnClickListener {
+            val result = binding.cardInputView.validateAndGet()
             if (result != null) showCardInformationDialog(result)
         }
-        buttonReset.setOnClickListener { cardInputView.reset() }
-        buttonClearErrors.setOnClickListener { cardInputView.clearErrors() }
+        binding.buttonReset.setOnClickListener { binding.cardInputView.reset() }
+        binding.buttonClearErrors.setOnClickListener { binding.cardInputView.clearErrors() }
     }
 
     private fun showCardInformationDialog(cardInformation: CardInformation) {
@@ -102,7 +92,7 @@ class CardInputViewActivity : AppCompatActivity() {
                 "Expiry: ${cardInformation.expiryMonth}/${cardInformation.expiryYear}\n\n" +
                 "Cvv: ${cardInformation.cvv}"
             showCloseButton = true
-            closeButtonListener = { cardInputView.reset() }
+            closeButtonListener = { binding.cardInputView.reset() }
         }.showDialog(supportFragmentManager)
     }
 
@@ -112,7 +102,7 @@ class CardInputViewActivity : AppCompatActivity() {
             items = months.map { false to it }
             onItemSelectedListener = { dialog, position ->
                 dialog.dismiss()
-                cardInputView.setSelectedMonth(months[position])
+                binding.cardInputView.setSelectedMonth(months[position])
                 showYearSelectionDialog()
             }
         }.showDialog(supportFragmentManager)
@@ -124,8 +114,8 @@ class CardInputViewActivity : AppCompatActivity() {
             items = years.map { false to it }
             onItemSelectedListener = { dialog, position ->
                 dialog.dismiss()
-                cardInputView.setSelectedYear(years[position])
-                cardInputView.focusToCvvField()
+                binding.cardInputView.setSelectedYear(years[position])
+                binding.cardInputView.focusToCvvField()
             }
         }.showDialog(supportFragmentManager)
     }

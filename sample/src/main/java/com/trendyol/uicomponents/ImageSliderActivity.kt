@@ -3,7 +3,6 @@ package com.trendyol.uicomponents
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.databinding.ActivityImageSliderBinding
 import com.trendyol.uicomponents.imageslider.ImageSliderViewState
 
@@ -14,7 +13,8 @@ class ImageSliderActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_image_slider)
+        binding = ActivityImageSliderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         binding.imageSliderView.setActivityInstance(this)
         binding.imageSliderView.setViewState(
             ImageSliderViewState(

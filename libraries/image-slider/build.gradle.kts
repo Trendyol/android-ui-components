@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
     id(Plugins.mavenPublish)
 }
 
@@ -40,6 +39,4 @@ dependencies {
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.glide)
     implementation(projects.libraries.touchDelegator)
-
-    kapt(Dependencies.glideCompiler)
 }
