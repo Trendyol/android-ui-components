@@ -3,7 +3,7 @@ package com.trendyol.uicomponents.touchdelegator
 import android.view.MotionEvent
 import android.view.Window
 
-class ActivityWindowTouchDelegator constructor(): WindowTouchListener {
+class ActivityWindowTouchDelegator : WindowTouchListener {
 
     private val touchListeners = mutableSetOf<WindowTouchListener>()
 

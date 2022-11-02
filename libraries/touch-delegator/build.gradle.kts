@@ -23,5 +23,5 @@ android {
         }
     }
 
-    buildFeatures.dataBinding = true
+    namespace = "com.trendyol.uicomponents.touchdelegator"
 }
