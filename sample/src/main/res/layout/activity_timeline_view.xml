@@ -1,41 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TimelineViewActivity">
 
-    <data>
-
-    </data>
-
-    <LinearLayout
+    <com.trendyol.timelineview.TimelineView
+        android:id="@+id/timelineViewClaim"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".TimelineViewActivity">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="sans-serif"
+        app:tlv_borderWidth="3dp"
+        app:tlv_dotSize="20dp"
+        app:tlv_lineWidth="50dp"
+        app:tlv_textSize="12sp" />
 
-        <com.trendyol.timelineview.TimelineView
-            android:id="@+id/timelineViewClaim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:fontFamily="sans-serif"
-            app:tlv_borderWidth="3dp"
-            app:tlv_dotSize="20dp"
-            app:tlv_lineWidth="50dp"
-            app:tlv_textSize="12sp" />
-
-        <com.trendyol.timelineview.TimelineView
-            android:id="@+id/timelineViewShipment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:fontFamily="monospace"
-            app:tlv_borderWidth="3dp"
-            app:tlv_dotSize="20dp"
-            app:tlv_lineWidth="25dp"
-            app:tlv_textSize="10sp"
-            app:tlv_orientation="vertical"
-            />
-
-    </LinearLayout>
-</layout>
+    <com.trendyol.timelineview.TimelineView
+        android:id="@+id/timelineViewShipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="monospace"
+        app:tlv_borderWidth="3dp"
+        app:tlv_dotSize="20dp"
+        app:tlv_lineWidth="25dp"
+        app:tlv_orientation="vertical"
+        app:tlv_textSize="10sp" />
+</LinearLayout>

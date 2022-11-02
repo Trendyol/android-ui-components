@@ -1,8 +1,7 @@
 package com.trendyol.uicomponents
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import com.trendyol.timelineview.TimelineItem
 import com.trendyol.uicomponents.databinding.ActivityTimelineViewBinding
 
@@ -12,10 +11,8 @@ class TimelineViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_timeline_view
-        )
+        binding = ActivityTimelineViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.timelineViewClaim.setItems(createClaimTimelineItems())
         binding.timelineViewShipment.setItems(createShipmentTimelineItems())
