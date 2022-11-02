@@ -1,31 +1,20 @@
 package com.trendyol.timelineview
 
 import android.content.Context
-import android.os.Handler
 import android.util.AttributeSet
-import android.view.View
+import android.view.LayoutInflater
+import android.widget.FrameLayout
 import androidx.annotation.Dimension
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
-import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trendyol.timelineview.databinding.ViewTimelineBinding
 
-class TimelineView : ConstraintLayout {
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        readAttributes(attrs, 0)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        readAttributes(attrs, defStyleAttr)
-    }
+class TimelineView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     @Dimension
     private var dotSize: Float = 0F
@@ -43,7 +32,7 @@ class TimelineView : ConstraintLayout {
 
     private var maxLineCount: Int = 2
 
-    private val binding: ViewTimelineBinding = inflate(R.layout.view_timeline)
+    private val binding: ViewTimelineBinding = ViewTimelineBinding.inflate(LayoutInflater.from(context), this)
 
     private var timelineOrientation: TimelineOrientation = TimelineOrientation.HORIZONTAL
 
@@ -52,47 +41,31 @@ class TimelineView : ConstraintLayout {
     }
 
     init {
-        if (isInEditMode) View.inflate(context, R.layout.view_timeline, this)
         binding.recyclerViewTimelineItems.adapter = timelineItemAdapter
-    }
-
-    private fun readAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.TimelineView,
-            defStyleAttr,
-            0
+            attrs, R.styleable.TimelineView, defStyleAttr, 0
         ).use { typedArray ->
-            dotSize =
-                typedArray.getDimension(
-                    R.styleable.TimelineView_tlv_dotSize,
-                    context.resources.getDimension(R.dimen.tlv_default_dot_size)
-                )
-            borderWidth =
-                typedArray.getDimension(
-                    R.styleable.TimelineView_tlv_borderWidth,
-                    context.resources.getDimension(R.dimen.tlv_default_border_width)
-                )
-            textSize =
-                typedArray.getDimension(
-                    R.styleable.TimelineView_tlv_textSize,
-                    context.resources.getDimension(R.dimen.tlv_default_text_size)
-                )
-            lineWidth =
-                typedArray.getDimension(
-                    R.styleable.TimelineView_tlv_lineWidth,
-                    context.resources.getDimension(R.dimen.tlv_width_lines)
-                )
-            fontFamily =
-                typedArray.getString(
-                    R.styleable.TimelineView_android_fontFamily
-                ) ?: context.resources.getString(R.string.tlv_default_font)
-            timelineOrientation =
-                if (typedArray.getInt(R.styleable.TimelineView_tlv_orientation, 0) == 0) {
-                    TimelineOrientation.HORIZONTAL
-                } else {
-                    TimelineOrientation.VERTICAL
-                }
+            dotSize = typedArray.getDimension(
+                R.styleable.TimelineView_tlv_dotSize, context.resources.getDimension(R.dimen.tlv_default_dot_size)
+            )
+            borderWidth = typedArray.getDimension(
+                R.styleable.TimelineView_tlv_borderWidth,
+                context.resources.getDimension(R.dimen.tlv_default_border_width)
+            )
+            textSize = typedArray.getDimension(
+                R.styleable.TimelineView_tlv_textSize, context.resources.getDimension(R.dimen.tlv_default_text_size)
+            )
+            lineWidth = typedArray.getDimension(
+                R.styleable.TimelineView_tlv_lineWidth, context.resources.getDimension(R.dimen.tlv_width_lines)
+            )
+            fontFamily = typedArray.getString(
+                R.styleable.TimelineView_android_fontFamily
+            ) ?: context.resources.getString(R.string.tlv_default_font)
+            timelineOrientation = if (typedArray.getInt(R.styleable.TimelineView_tlv_orientation, 0) == 0) {
+                TimelineOrientation.HORIZONTAL
+            } else {
+                TimelineOrientation.VERTICAL
+            }
         }
     }
 
@@ -101,8 +74,7 @@ class TimelineView : ConstraintLayout {
     }
 
     fun setBorderWidth(@Dimension borderWidth: Float?) {
-        this.borderWidth =
-            borderWidth ?: context.resources.getDimension(R.dimen.tlv_default_border_width)
+        this.borderWidth = borderWidth ?: context.resources.getDimension(R.dimen.tlv_default_border_width)
     }
 
     fun setTextSize(@Dimension textSize: Float?) {
@@ -126,20 +98,29 @@ class TimelineView : ConstraintLayout {
     }
 
     fun setItems(items: List<TimelineItem>?) {
-        binding.viewState = TimelineViewState(
-            timelineOrientation = timelineOrientation,
-            timelineItems = mapTimelineItemsToTimelineItemViewState(items)
-        )
-        binding.executePendingBindings()
+        with(binding.recyclerViewTimelineItems) {
+            val viewState = TimelineViewState(
+                timelineOrientation = timelineOrientation,
+                timelineItems = mapTimelineItemsToTimelineItemViewState(items)
+            )
+            (adapter as? TimelineItemAdapter)?.apply {
+                submitList(viewState.timelineItems)
+                (layoutManager as? LinearLayoutManager)?.orientation =
+                    if (viewState.timelineOrientation == TimelineOrientation.VERTICAL) {
+                        RecyclerView.VERTICAL
+                    } else {
+                        RecyclerView.HORIZONTAL
+                    }
+                this.timelineOrientation = viewState.timelineOrientation
+            }
+        }
     }
 
     fun startTooltipAnimation(delay: Long, milliSecondsPerInch: Float) {
-        Handler().postDelayed({
-            binding.recyclerViewTimelineItems.addOnScrollListener(object :
-                RecyclerView.OnScrollListener() {
+        postDelayed({
+            binding.recyclerViewTimelineItems.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(
-                    recyclerView: RecyclerView,
-                    newState: Int
+                    recyclerView: RecyclerView, newState: Int
                 ) {
                     super.onScrollStateChanged(recyclerView, newState)
                     if (newState == RecyclerView.SCROLL_STATE_IDLE) {
@@ -160,8 +141,7 @@ class TimelineView : ConstraintLayout {
         }, delay)
     }
 
-    private fun mapTimelineItemsToTimelineItemViewState(items: List<TimelineItem>?)
-            : List<TimelineItemViewState> {
+    private fun mapTimelineItemsToTimelineItemViewState(items: List<TimelineItem>?): List<TimelineItemViewState> {
         return items?.map { timelineItem ->
             TimelineItemViewState(
                 timelineItem = timelineItem,

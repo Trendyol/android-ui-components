@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
     id(Plugins.mavenPublish)
 }
 
@@ -20,19 +19,19 @@ android {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
             isMinifyEnabled = false
             setProguardFiles(
-                    mutableListOf(
-                            getDefaultProguardFile("proguard-android.txt"),
-                            "proguard-rules.pro"
-                    )
+                mutableListOf(
+                    getDefaultProguardFile("proguard-android.txt"),
+                    "proguard-rules.pro"
+                )
             )
         }
     }
 
-    buildFeatures.dataBinding = true
+    namespace = "com.trendyol.timelineview"
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
-    implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.recyclerView)
