@@ -27,7 +27,7 @@ UI Components includes several custom views for Android platform to make develop
 
 License
 --------
-    Copyright 2021 Trendyol.com
+    Copyright 2022 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

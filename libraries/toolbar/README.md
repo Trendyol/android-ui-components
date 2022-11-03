@@ -94,7 +94,7 @@ Sample usage with `ToolbarViewState`:
 This library is maintained mainly by Trendyol Android Team members. Everybody can contribute **Toolbar** or other UI Components with opening new PR's.
 
 # License
-    Copyright 2021 Trendyol.com
+    Copyright 2022 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

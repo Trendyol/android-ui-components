@@ -16,7 +16,6 @@ allprojects {
 dependencies {  
  implementation "com.github.Trendyol.android-ui-components:quantity-picker-view:$quantityPickerViewVersion"}
 ```
-:warning: To use **QuantityPickerView**, you have to enable dataBinding from your project's `build.gradle`.
 
 ## Usage
 You can inflate **QuantityPickerView** via XML or programmatically. View can be configurable either in XML or setting a *QuantityPickerViewState*.
