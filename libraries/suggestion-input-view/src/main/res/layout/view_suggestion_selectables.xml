@@ -1,109 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutSelectables"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <data>
-
-        <variable
-            name="viewState"
-            type="com.trendyol.suggestioninputview.SuggestionInputViewState" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutSelectables"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSuggestionItems"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingEnd="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_suggestion" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSuggestionItems"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clipToPadding="false"
-            android:paddingEnd="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:suggestionItems="@{viewState.getItems()}" />
+    <LinearLayout
+        android:id="@+id/linearLayoutInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewSuggestionItems"
+        app:layout_constraintStart_toEndOf="@+id/recyclerViewSuggestionItems"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayoutInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingBottom="2dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewSuggestionItems"
-            app:layout_constraintStart_toEndOf="@+id/recyclerViewSuggestionItems"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:srcCompat="@drawable/ic_arrow_back" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageViewBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/itemSpacing_suggestion_item"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:srcCompat="@drawable/ic_arrow_back" />
+            <com.trendyol.suggestioninputview.SuggestionInputEditText
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="@dimen/margin_input_items"
+                android:layout_marginEnd="@dimen/margin_input_items"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLength="5"
+                android:paddingStart="8dp"
+                tools:background="@drawable/shape_error_background_suggestion_item" />
 
-                <com.trendyol.suggestioninputview.SuggestionInputEditText
-                    android:id="@+id/editText"
-                    android:layout_width="0dp"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="@dimen/margin_input_items"
-                    android:layout_marginEnd="@dimen/margin_input_items"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLength="5"
-                    android:textSize="@{viewState.textSize}"
-                    android:background="@{viewState.getInputBackground()}"
-                    android:inputType="@{viewState.inputType}"
-                    android:paddingStart="8dp"
-                    app:suffix="@{viewState.suffix}"
-                    app:suffixVisible="@{viewState.isSuffixVisible()}"
-                    android:hint="@{viewState.hint}"
-                    tools:background="@drawable/shape_error_background_suggestion_item" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/buttonDone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/itemSpacing_suggestion_item"
-                    android:background="@{viewState.buttonBackground}"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:minWidth="@{viewState.getMinWidth()}"
-                    android:paddingTop="@{viewState.verticalPadding}"
-                    android:paddingBottom="@{viewState.verticalPadding}"
-                    android:text="@{viewState.buttonText}"
-                    android:textColor="@{viewState.buttonTextColor}"
-                    android:textSize="@{viewState.textSize}"
-                    tools:background="#b0b000"
-                    tools:text="TAMAM" />
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/textViewError"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="4dp"
-                tools:text="@string/app_name"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="#BB0000"
-                android:textSize="12sp"
-                android:text="@{viewState.getErrorText()}"
-                android:visibility="@{viewState.getErrorTextVisiblity()}"
-                app:layout_constraintEnd_toEndOf="@+id/editText"
-                app:layout_constraintStart_toStartOf="@+id/editText"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
-
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/itemSpacing_suggestion_item"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                tools:background="#b0b000"
+                tools:text="DONE" />
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="4dp"
+            android:lines="1"
+            android:textColor="#BB0000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/editText"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
+            tools:text="Error" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.trendyol.uicomponents
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.trendyol.suggestioninputview.Rule
 import com.trendyol.suggestioninputview.SuggestionInputItem
 import com.trendyol.suggestioninputview.SuggestionItemType
@@ -14,10 +13,8 @@ class SuggestionInputViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_suggestion_input
-        )
+        binding = ActivitySuggestionInputBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val rule1 = Rule.Builder()
             .smallerThan("50")
@@ -34,8 +31,7 @@ class SuggestionInputViewActivity : AppCompatActivity() {
     }
 
     private fun onLoadClicked() {
-        binding.shouldShowError = true
-        binding.executePendingBindings()
+        binding.suggestionInputView.shouldShowSelectableItemError(true)
     }
 
     private fun onSuggestionItemClicked(suggestionInputItem: SuggestionInputItem) {

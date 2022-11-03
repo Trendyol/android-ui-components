@@ -1,46 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <data>
-
-        <variable
-            name="viewState"
-            type="com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditTextViewState" />
-    </data>
-
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
-
-        <com.google.android.material.textfield.TextInputLayout
+        <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
+            android:id="@+id/editTextPhoneDot"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:maxLength="17" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
-                android:id="@+id/editTextPhoneDot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="17"
-                app:maskCharacter="@{'●'}"
-                app:maskable="@{true}" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
+            android:id="@+id/editTextPhoneStar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.trendyol.uicomponents.phonenumber.PhoneNumberTextInputEditText
-                android:id="@+id/editTextPhoneStar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="17"
-                app:viewState="@{viewState}" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-    </LinearLayout>
-</layout>
+            android:layout_height="wrap_content"
+            android:maxLength="17" />
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

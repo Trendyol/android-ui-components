@@ -4,27 +4,12 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.InputFilter
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-
-internal fun <T : ViewDataBinding> ViewGroup?.inflate(
-    @LayoutRes layoutId: Int,
-    attachToParent: Boolean = true
-): T = DataBindingUtil.inflate(
-    LayoutInflater.from(this!!.context),
-    layoutId,
-    this,
-    attachToParent
-)
 
 @ColorInt
 internal fun Context.color(@ColorRes colorResId: Int): Int =

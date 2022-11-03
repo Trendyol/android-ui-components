@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.ColorInt
-import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.PagerAdapter
 import com.trendyol.uicomponents.imageslider.databinding.ViewImageBinding
-import com.trendyol.uicomponents.touchdelegator.WindowTouchDelegator
 import com.trendyol.uicomponents.imageslider.touchdelegator.ZoomWindowTouchListener
+import com.trendyol.uicomponents.touchdelegator.WindowTouchDelegator
 import java.lang.ref.WeakReference
 
 class ImagesPagerAdapter(
@@ -46,12 +45,7 @@ class ImagesPagerAdapter(
     }
 
     override fun instantiateItem(collection: ViewGroup, position: Int): Any =
-        DataBindingUtil.inflate<ViewImageBinding>(
-            LayoutInflater.from(collection.context),
-            R.layout.view_image,
-            collection,
-            false
-        ).apply {
+        ViewImageBinding.inflate(LayoutInflater.from(collection.context), null, false).apply {
             binding = this
             collection.addView(linearLayoutSliderImageWrapper)
             imageViewSlider.scaleType = scaleType

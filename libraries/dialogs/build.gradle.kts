@@ -4,20 +4,16 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
-    id(Plugins.kotlinKapt)
-    id(Plugins.androidMaven)
+    id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.dialogsVersion
-
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
-    buildToolsVersion(Configs.buildToolsVersion)
+    compileSdk = Configs.compileSdkVersion
+    buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Configs.minSdkVersion)
-        targetSdkVersion(Configs.targetSdkVersion)
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles("consumer-rules.pro")
@@ -38,6 +34,8 @@ android {
         viewBinding = true
         buildConfig = false
     }
+
+    namespace = "com.trendyol.dialog"
 }
 
 dependencies {
@@ -47,5 +45,4 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.lifecycleExtensions)
-    kapt(Dependencies.lifecycleCompiler)
 }

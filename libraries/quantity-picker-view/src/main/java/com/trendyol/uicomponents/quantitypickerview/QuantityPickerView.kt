@@ -2,7 +2,7 @@ package com.trendyol.uicomponents.quantitypickerview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Build
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,6 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.use
-import androidx.databinding.DataBindingUtil
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerBinding
 import com.trendyol.uicomponents.quantitypickerview.databinding.ViewQuantityPickerVerticalBinding
 
@@ -22,6 +21,12 @@ class QuantityPickerView : ConstraintLayout {
     var onQuantityTextClicked: ((Int) -> Unit)? = null
 
     private lateinit var binding: ViewQuantityPickerBinding
+
+    private var viewState: QuantityPickerViewState = QuantityPickerViewState.empty()
+        set(value) {
+            field = value
+            bind()
+        }
 
     constructor(context: Context) : super(context) {
         initializeView()
@@ -52,78 +57,72 @@ class QuantityPickerView : ConstraintLayout {
     }
 
     private fun inflateView() {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.view_quantity_picker,
-            this,
-            true
-        )
+        binding = ViewQuantityPickerBinding.inflate(LayoutInflater.from(context), this)
     }
 
     private fun inflateViewForPreview(viewState: QuantityPickerViewState) {
-        val layoutId =
-            if (viewState.orientation == VERTICAL_ORIENTATION) R.layout.view_quantity_picker_vertical else R.layout.view_quantity_picker
+        val layoutId = if (viewState.orientation == VERTICAL_ORIENTATION) {
+            R.layout.view_quantity_picker_vertical
+        } else {
+            R.layout.view_quantity_picker
+        }
         View.inflate(context, layoutId, this)
     }
 
     private fun setUpView() {
         with(binding) {
             text.setOnClickListener {
-                onQuantityTextClicked?.invoke(viewState?.currentQuantity ?: 0)
-                if (viewState?.isLoading() == true || viewState?.isInQuantityMode() == true) return@setOnClickListener
+                onQuantityTextClicked?.invoke(viewState.currentQuantity)
+                if (viewState.isLoading() || viewState.isInQuantityMode()) return@setOnClickListener
                 setQuantityPickerViewState(
-                    if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading()
+                    if (onAddClicked?.invoke(viewState.currentQuantity) == true) {
+                        viewState.getWithLoading()
                     } else {
-                        viewState?.getWithAddValue()
+                        viewState.getWithAddValue()
                     }
                 )
             }
             quantityText.setOnClickListener {
-                val showLoading = onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true
+                val showLoading = onAddClicked?.invoke(viewState.currentQuantity) == true
                 val updatedViewState = if (showLoading) {
-                    viewState?.getWithLoading()
+                    viewState.getWithLoading()
                 } else {
-                    viewState?.getWithAddValue()
+                    viewState.getWithAddValue()
                 }
                 setQuantityPickerViewState(updatedViewState)
 
             }
             imageSubtract.setOnClickListener {
-                if (viewState?.isLoading() == true) return@setOnClickListener
+                if (viewState.isLoading()) return@setOnClickListener
 
                 setQuantityPickerViewState(
-                    if (onSubtractClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading()
+                    if (onSubtractClicked?.invoke(viewState.currentQuantity) == true) {
+                        viewState.getWithLoading()
                     } else {
-                        viewState?.getWithSubtractValue()
+                        viewState.getWithSubtractValue()
                     }
                 )
             }
             imageAdd.setOnClickListener {
-                if (viewState?.isLoading() == true) return@setOnClickListener
+                if (viewState.isLoading()) return@setOnClickListener
 
                 setQuantityPickerViewState(
-                    if (onAddClicked?.invoke(viewState?.currentQuantity ?: 0) == true) {
-                        viewState?.getWithLoading()
+                    if (onAddClicked?.invoke(viewState.currentQuantity) == true) {
+                        viewState.getWithLoading()
                     } else {
-                        viewState?.getWithAddValue()
+                        viewState.getWithAddValue()
                     }
                 )
             }
         }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            clipToOutline = true
-        }
+        clipToOutline = true
     }
 
     fun setQuantityPickerViewState(quantityPickerViewState: QuantityPickerViewState?) {
         if (quantityPickerViewState == null) return
         bindRootViewProperties(quantityPickerViewState)
-        val previousViewState = binding.viewState
-        binding.viewState = quantityPickerViewState
-        binding.executePendingBindings()
+        val previousViewState = viewState
+        viewState = quantityPickerViewState
         onViewStateChanged(previousViewState, quantityPickerViewState)
     }
 
@@ -137,57 +136,40 @@ class QuantityPickerView : ConstraintLayout {
     }
 
     private fun bindRootViewProperties(quantityPickerViewState: QuantityPickerViewState) {
-        setBackground(quantityPickerViewState.backgroundDrawable)
-        //applyHorizontalPaddingToRootViewIfNeeded(quantityPickerViewState)
-    }
-
-    private fun applyHorizontalPaddingToRootViewIfNeeded(viewState: QuantityPickerViewState) {
-        if (viewState.orientation != HORIZONTAL_ORIENTATION) return
-        val horizontalPadding = viewState.getRootViewHorizontalPadding(context)
-        setPadding(
-            horizontalPadding,
-            paddingTop,
-            horizontalPadding,
-            paddingBottom
-        )
+        background = quantityPickerViewState.backgroundDrawable
     }
 
     fun setQuantity(quantity: Int) =
-        setQuantityPickerViewState(binding.viewState?.getWithQuantity(quantity))
+        setQuantityPickerViewState(viewState.getWithQuantity(quantity))
 
     fun incrementQuantityBy(quantity: Int) {
-        val viewState = binding.viewState ?: return
         val updatedViewState = viewState.getWithIncrementQuantity(quantity)
         setQuantityPickerViewState(updatedViewState)
     }
 
     fun setMaxQuantity(maxQuantity: Int) =
-        setQuantityPickerViewState(binding.viewState?.getWithMaxQuantity(maxQuantity))
+        setQuantityPickerViewState(viewState.getWithMaxQuantity(maxQuantity))
 
     fun setMinQuantity(minQuantity: Int) =
-        setQuantityPickerViewState(binding.viewState?.getWithMinQuantity(minQuantity))
+        setQuantityPickerViewState(viewState.getWithMinQuantity(minQuantity))
 
     fun setBackgroundImageDrawable(background: Drawable){
-        setQuantityPickerViewState(binding.viewState?.getWithBackgroundDrawable(background))
+        setQuantityPickerViewState(viewState.getWithBackgroundDrawable(background))
     }
 
-    fun stopLoading() = setQuantityPickerViewState(binding.viewState?.stopLoading())
+    fun stopLoading() = setQuantityPickerViewState(viewState.stopLoading())
 
-    fun reset() = setQuantityPickerViewState(binding.viewState?.reset())
+    fun reset() = setQuantityPickerViewState(viewState.reset())
 
     // region vertical constraints
     private fun applyVerticalConstraintsIfNeeded() {
-        if (binding.viewState?.orientation != VERTICAL_ORIENTATION) return
+        if (viewState.orientation != VERTICAL_ORIENTATION) return
 
         val verticalConstraintLayout = ConstraintLayout(context)
-        val bindingVertical = DataBindingUtil.inflate<ViewQuantityPickerVerticalBinding>(
+        ViewQuantityPickerVerticalBinding.inflate(
             LayoutInflater.from(context),
-            R.layout.view_quantity_picker_vertical,
             verticalConstraintLayout,
-            true
         )
-        bindingVertical.viewState = this.binding.viewState
-        bindingVertical.executePendingBindings()
         ConstraintSet().apply {
             clone(verticalConstraintLayout)
             applyTo(this@QuantityPickerView)
@@ -198,6 +180,7 @@ class QuantityPickerView : ConstraintLayout {
 
     private fun applyVerticalProperties() {
         binding.text.minEms = 0
+        bind()
         rotateQuantityBackgroundPadding()
     }
 
@@ -273,11 +256,13 @@ class QuantityPickerView : ConstraintLayout {
 
             val collapsible = it.getBoolean(R.styleable.QuantityPickerView_qpv_collapsible, false)
 
-            val expansionState =
-                if (collapsible) ExpansionState.Collapsible(expanded = currentQuantity > 0) else ExpansionState.NonCollapsible
+            val expansionState = if (collapsible) {
+                ExpansionState.Collapsible(expanded = currentQuantity > 0)
+            } else {
+                ExpansionState.NonCollapsible
+            }
 
-            val orientation =
-                it.getInt(R.styleable.QuantityPickerView_qpv_orientation, HORIZONTAL_ORIENTATION)
+            val orientation = it.getInt(R.styleable.QuantityPickerView_qpv_orientation, HORIZONTAL_ORIENTATION)
 
             val buttonHorizontalPadding = it.getDimensionPixelSize(
                 R.styleable.QuantityPickerView_qpv_buttonHorizontalPadding,
@@ -331,6 +316,64 @@ class QuantityPickerView : ConstraintLayout {
                 addContentDescription = addContentDescription,
                 removeContentDescription = removeContentDescription
             )
+        }
+    }
+
+    private fun bind() {
+        with(binding) {
+            val buttonHorizontalPadding = viewState.buttonHorizontalPadding
+            val buttonVerticalPadding = viewState.buttonVerticalPadding
+            with(imageSubtract) {
+                contentDescription = viewState.removeContentDescription
+                isEnabled = viewState.isSubtractButtonEnabled()
+                visibility = viewState.getSubtractButtonVisibility()
+                setImageDrawable(viewState.getLeftIconDrawable())
+                setPadding(
+                    buttonHorizontalPadding,
+                    buttonVerticalPadding,
+                    buttonHorizontalPadding,
+                    buttonVerticalPadding
+                )
+            }
+            with(imageQuantityBackground) {
+                visibility = viewState.getQuantityBackgroundVisibility()
+                setImageDrawable(viewState.getQuantityBackgroundDrawable())
+                val quantityBackgroundVerticalPadding = viewState.quantityBackgroundVerticalPadding
+                setPadding(
+                    paddingLeft,
+                    quantityBackgroundVerticalPadding,
+                    paddingRight,
+                    quantityBackgroundVerticalPadding
+                )
+            }
+            with(text) {
+                text = viewState.getQuantity()
+                visibility = viewState.getQuantityVisibility()
+                setTextAppearance(viewState.getQuantityTextAppearance())
+            }
+            with(quantityText) {
+                text = viewState.getQuantityPickerText()
+                visibility = viewState.getQuantityPickerTextVisibility()
+                setTextAppearance(viewState.getQuantityPickerTextAppearance())
+            }
+            with(progressBar) {
+                visibility = viewState.getProgressBarVisibility()
+                indeterminateTintList = ColorStateList.valueOf(viewState.progressTintColor)
+                val progressVerticalPadding = viewState.progressVerticalPadding
+                setPadding(paddingLeft, progressVerticalPadding, paddingRight, progressVerticalPadding)
+            }
+            with(imageAdd) {
+                contentDescription = viewState.addContentDescription
+                isEnabled = viewState.isAddButtonEnabled()
+                visibility = viewState.getAddButtonVisibility()
+                setImageDrawable(viewState.getAddIconDrawable())
+                setPadding(
+                    buttonHorizontalPadding,
+                    buttonVerticalPadding,
+                    buttonHorizontalPadding,
+                    buttonVerticalPadding
+                )
+            }
         }
     }
 

@@ -1,96 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".SuggestionInputViewActivity">
 
-    <data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
 
-        <variable
-            name="shouldShowError"
-            type="Boolean" />
+        <com.trendyol.suggestioninputview.SuggestionInputView
+            android:id="@+id/suggestionInputView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="false"
+            android:inputType="number"
+            app:canDeselectItem="true"
+            app:errorBackground="@drawable/shape_error_background_suggestion_item"
+            app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
+            app:inputButtonBackground="@drawable/shape_selected_background_suggestion_item"
+            app:inputButtonText="TAMAM"
+            app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
+            app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
+            app:inputHint="En fazla 334534534534557.88 TL yükleyebilirsin"
+            app:inputSuffix="TL"
+            app:minWidth="@dimen/minWidth_suggestion_item"
+            app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
+            app:selectedTextColor="@color/text_color_selected_suggestion_item"
+            app:textSize="@dimen/text_size_suggestion_input"
+            app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
+            app:unselectedTextColor="@color/text_color_unselected_suggestion_item"
+            app:verticalPadding="@dimen/vertical_padding_suggestion_item" />
+    </androidx.cardview.widget.CardView>
 
-    </data>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLoad"
+        style="@style/Sample.ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="LOAD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:context=".SuggestionInputViewActivity">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
+            android:text="Selected Text: " />
 
-            <com.trendyol.suggestioninputview.SuggestionInputView
-                android:id="@+id/suggestionInputView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:clickable="false"
-                android:inputType="number"
-                app:canDeselectItem="true"
-                app:errorBackground="@drawable/shape_error_background_suggestion_item"
-                app:horizontalPadding="@dimen/horizontal_padding_suggestion_item"
-                app:inputButtonBackground="@drawable/shape_selected_background_suggestion_item"
-                app:inputButtonText="TAMAM"
-                app:inputButtonTextColor="@color/text_color_selected_suggestion_item"
-                app:inputEditTextBackground="@drawable/shape_unselected_background_suggestion_item"
-                app:inputHint="En fazla 334534534534557.88 TL yükleyebilirsin"
-                app:inputSuffix="TL"
-                app:minWidth="@dimen/minWidth_suggestion_item"
-                app:selectedBackground="@drawable/shape_selected_background_suggestion_item"
-                app:selectedTextColor="@color/text_color_selected_suggestion_item"
-                app:shouldShowSelectableItemError="@{shouldShowError}"
-                app:textSize="@dimen/text_size_suggestion_input"
-                app:unselectedBackground="@drawable/shape_unselected_background_suggestion_item"
-                app:unselectedTextColor="@color/text_color_unselected_suggestion_item"
-                app:verticalPadding="@dimen/vertical_padding_suggestion_item" />
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonLoad"
-            style="@style/Sample.ButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:text="LOAD" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected Text: " />
-
-            <TextView
-                android:id="@+id/selectedText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected Value: " />
-
-            <TextView
-                android:id="@+id/selectedValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
+        <TextView
+            android:id="@+id/selectedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-</layout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Value: " />
+
+        <TextView
+            android:id="@+id/selectedValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

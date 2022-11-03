@@ -1,17 +1,16 @@
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
 }
 
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
-    buildToolsVersion(Configs.buildToolsVersion)
+    compileSdk = Configs.compileSdkVersion
+    buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
         applicationId = Configs.applicationId
-        minSdkVersion(Configs.minSdkVersion)
-        targetSdkVersion(Configs.targetSdkVersion)
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
     }
@@ -27,20 +26,20 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
-    implementation(project(Components.ratingBar))
-    implementation(project(Components.dialogs))
-    implementation(project(Components.imageSlider))
-    implementation(project(Components.phoneNumber))
-    implementation(project(Components.toolbar))
-    implementation(project(Components.suggestionInputView))
-    implementation(project(Components.cardInputView))
-    implementation(project(Components.quantityPickerView))
-    implementation(project(Components.timelineView))
-    implementation(project(Components.fitOptionMessageView))
+    implementation(projects.libraries.ratingBar)
+    implementation(projects.libraries.dialogs)
+    implementation(projects.libraries.imageSlider)
+    implementation(projects.libraries.phonenumber)
+    implementation(projects.libraries.toolbar)
+    implementation(projects.libraries.suggestionInputView)
+    implementation(projects.libraries.cardInputView)
+    implementation(projects.libraries.quantityPickerView)
+    implementation(projects.libraries.timelineView)
+    implementation(projects.libraries.fitOptionMessageView)
 
     implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)

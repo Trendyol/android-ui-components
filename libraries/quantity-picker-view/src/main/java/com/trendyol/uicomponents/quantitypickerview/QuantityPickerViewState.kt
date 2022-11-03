@@ -14,13 +14,13 @@ data class QuantityPickerViewState(
     private val quantityTextSize: Int,
     private val quantityTextStyle: Int = 0,
     val currentQuantity: Int = 0,
-    val backgroundDrawable: Drawable,
+    val backgroundDrawable: Drawable?,
     @ColorInt val progressTintColor: Int,
-    private val addIconDrawable: Drawable,
-    private val subtractIconDrawable: Drawable,
-    private val removeIconDrawable: Drawable,
+    private val addIconDrawable: Drawable?,
+    private val subtractIconDrawable: Drawable?,
+    private val removeIconDrawable: Drawable?,
     private val showLoading: Boolean = false,
-    private val quantityBackgroundDrawable: Drawable,
+    private val quantityBackgroundDrawable: Drawable?,
     val expansionState: ExpansionState = ExpansionState.NonCollapsible,
     val orientation: Int = QuantityPickerView.HORIZONTAL_ORIENTATION,
     val buttonHorizontalPadding: Int,
@@ -29,8 +29,8 @@ data class QuantityPickerViewState(
     val quantityBackgroundVerticalPadding: Int,
     val maxQuantity: Int = -1,
     val minQuantity: Int = -1,
-    val disabledAddIconDrawable: Drawable = addIconDrawable,
-    val disabledSubtractIconDrawable: Drawable = subtractIconDrawable,
+    val disabledAddIconDrawable: Drawable? = addIconDrawable,
+    val disabledSubtractIconDrawable: Drawable? = subtractIconDrawable,
     val addContentDescription: String,
     val removeContentDescription: String
 ) {
@@ -39,7 +39,7 @@ data class QuantityPickerViewState(
 
     internal fun isLoading(): Boolean = showLoading
 
-    fun getLeftIconDrawable(): Drawable {
+    fun getLeftIconDrawable(): Drawable? {
         return if (currentQuantity <= 1 && isMinQuantitySet().not()) removeIconDrawable else getSubtractIconDrawable()
     }
 
@@ -57,17 +57,28 @@ data class QuantityPickerViewState(
         else context.resources.getDimensionPixelSize(R.dimen.qpv_default_small_padding)
     }
 
-    fun getQuantityPickerTextAppearance(): QuantityPickerTextAppearance = QuantityPickerTextAppearance(textColor, textSize, textStyle)
+    fun getQuantityPickerTextAppearance(): QuantityPickerTextAppearance =
+        QuantityPickerTextAppearance(textColor, textSize, textStyle)
 
-    fun getQuantityTextAppearance() = QuantityPickerTextAppearance(quantityTextColor, quantityTextSize, quantityTextStyle)
+    fun getQuantityTextAppearance() =
+        QuantityPickerTextAppearance(quantityTextColor, quantityTextSize, quantityTextStyle)
 
     fun getQuantity() = currentQuantity.takeIf { it != 0 }?.toString()
 
     fun getQuantityPickerText() = text
 
-    fun getQuantityBackgroundDrawable(): Drawable = quantityBackgroundDrawable
+    fun getQuantityBackgroundDrawable(): Drawable? = quantityBackgroundDrawable
 
-    fun getQuantityPickerTextVisibility(): Int = if (showLoading.not() && expansionState is ExpansionState.NonCollapsible && expansionState.isExpanded() && currentQuantity == 0) View.VISIBLE else View.GONE
+    fun getQuantityPickerTextVisibility(): Int =
+        if (showLoading.not() &&
+            expansionState is ExpansionState.NonCollapsible &&
+            expansionState.isExpanded() &&
+            currentQuantity == 0
+        ) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
 
     fun getQuantityVisibility(): Int {
         return if (showLoading.not() && expansionState.isExpanded() && currentQuantity > 0) {
@@ -79,7 +90,7 @@ data class QuantityPickerViewState(
         }
     }
 
-    fun getQuantityBackgroundVisibility(): Int  {
+    fun getQuantityBackgroundVisibility(): Int {
         return if (showLoading.not() && isInQuantityMode() && expansionState.isExpanded()) {
             View.VISIBLE
         } else if (showLoading) {
@@ -89,7 +100,7 @@ data class QuantityPickerViewState(
         }
     }
 
-    fun getAddIconDrawable(): Drawable {
+    fun getAddIconDrawable(): Drawable? {
         return if (isAddButtonEnabled()) {
             addIconDrawable
         } else {
@@ -97,7 +108,7 @@ data class QuantityPickerViewState(
         }
     }
 
-    private fun getSubtractIconDrawable(): Drawable {
+    private fun getSubtractIconDrawable(): Drawable? {
         return if (isSubtractButtonEnabled()) {
             subtractIconDrawable
         } else {
@@ -168,6 +179,37 @@ data class QuantityPickerViewState(
     internal fun reset(): QuantityPickerViewState = copy(currentQuantity = 0, showLoading = false)
     fun isCollapsed(): Boolean {
         return expansionState.isCollapsed()
+    }
+
+    companion object {
+
+        fun empty(): QuantityPickerViewState = QuantityPickerViewState(
+            text = "",
+            textColor = 0,
+            textSize = 0,
+            textStyle = 0,
+            quantityTextColor = 0,
+            quantityTextSize = 0,
+            quantityTextStyle = 0,
+            currentQuantity = 0,
+            backgroundDrawable = null,
+            progressTintColor = 0,
+            addIconDrawable = null,
+            subtractIconDrawable = null,
+            removeIconDrawable = null,
+            showLoading = false,
+            quantityBackgroundDrawable = null,
+            expansionState = ExpansionState.Collapsible(false),
+            orientation = 0,
+            buttonHorizontalPadding = 0,
+            buttonVerticalPadding = 0,
+            progressVerticalPadding = 0,
+            quantityBackgroundVerticalPadding = 0,
+            maxQuantity = 0,
+            minQuantity = 0,
+            addContentDescription = "",
+            removeContentDescription = ""
+        )
     }
 }
 

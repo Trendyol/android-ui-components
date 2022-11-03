@@ -91,4 +91,37 @@ data class CardInputViewState(
         cvvValid = true,
         shouldShowErrors = true
     )
+
+    companion object {
+
+        fun empty(): CardInputViewState = CardInputViewState(
+            cardNumberTitle = "",
+            expiryTitle = "",
+            cvvTitle = "",
+            expiryMonthTitle = "",
+            expiryYearTitle = "",
+            validationEnabled = false,
+            showCvvInfoButton = false,
+            inputBackgroundDrawable = null,
+            inputErrorBackgroundDrawable = null,
+            inputTextColor = 0,
+            titleTextColor = 0,
+            cvvInfoColor = 0,
+            cardTypeLogoDrawable = null,
+            cardBankLogoDrawable = null,
+            cardNumberValid = false,
+            expiryMonthValid = false,
+            expiryYearValid = false,
+            cvvValid = false,
+            shouldShowErrors = false,
+            cardInformation = CardInformation(
+                cardNumber = "",
+                cvv = "",
+                expiryMonth = "",
+                expiryYear = ""
+            ),
+            supportedCardTypes = listOf()
+
+        )
+    }
 }

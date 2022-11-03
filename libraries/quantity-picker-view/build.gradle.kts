@@ -1,20 +1,16 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
-    id(Plugins.androidMaven)
+    id(Plugins.mavenPublish)
 }
 
-group = Configs.group
-version = ComponentVersions.quantityPickerViewVersion
-
 android {
-    compileSdkVersion(Configs.compileSdkVersion)
-    buildToolsVersion(Configs.buildToolsVersion)
+    compileSdk = Configs.compileSdkVersion
+    buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion(Configs.minSdkVersion)
-        targetSdkVersion(Configs.targetSdkVersion)
+        minSdk = Configs.minSdkVersion
+        targetSdk = Configs.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles("consumer-rules.pro")
@@ -31,7 +27,8 @@ android {
         }
     }
 
-    dataBinding.isEnabled = true
+    buildFeatures.viewBinding = true
+    namespace = "com.trendyol.uicomponents.quantitypickerview"
 }
 
 dependencies {
@@ -41,5 +38,4 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.lifecycleExtensions)
-    kapt(Dependencies.lifecycleCompiler)
 }

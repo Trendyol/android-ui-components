@@ -35,17 +35,51 @@ data class SuggestionInputItemViewState(
 
     fun getMinimumWidth(): Int = minWidth.toInt()
 
+    fun getHorizontalPadding(): Int = horizontalPadding.toInt()
+
+    fun getVerticalPadding(): Int = verticalPadding.toInt()
+
     fun getBadgeVisibility(): Int = if (badge.text.isNotEmpty()) View.VISIBLE else View.GONE
 
     fun getBadgeBackground(): Drawable? = badge.background
 
-    fun getBadgeVerticalPadding(): Float = badge.verticalPadding
+    fun getBadgeVerticalPadding(): Int = badge.verticalPadding.toInt()
 
-    fun getBadgeHorizontalPadding(): Float = badge.horizontalPadding
+    fun getBadgeHorizontalPadding(): Int = badge.horizontalPadding.toInt()
 
     fun getBadgeText(): String = badge.text
 
     fun getBadgeTextColor(): Int = badge.textColor
 
     fun getBadgeTextSize(): Float = badge.textSize
+
+    companion object {
+
+        fun empty(): SuggestionInputItemViewState = SuggestionInputItemViewState(
+            id = 0,
+            type = SuggestionItemType.SELECTABLE,
+            isSelected = false,
+            text = "",
+            value = "",
+            selectedBackground = null,
+            unselectedBackground = null,
+            errorBackground = null,
+            suffix = "",
+            shouldShowSelectableItemError = false,
+            badge = SuggestionInputBadge(
+                text = "",
+                background = null,
+                textColor = 0,
+                textSize = 0.0f,
+                horizontalPadding = 0.0f,
+                verticalPadding = 0.0f
+            ),
+            selectedTextColor = 0,
+            unselectedTextColor = 0,
+            textSize = 0.0f,
+            horizontalPadding = 0.0f,
+            verticalPadding = 0.0f,
+            minWidth = 0.0f
+        )
+    }
 }

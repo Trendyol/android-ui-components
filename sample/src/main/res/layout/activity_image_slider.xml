@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ImageSliderActivity">
 
-    <LinearLayout
+    <com.trendyol.uicomponents.imageslider.ImageSliderView
+        android:id="@+id/imageSliderView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.trendyol.uicomponents.imageslider.ImageSliderView
-            android:id="@+id/imageSliderView"
-            android:layout_width="match_parent"
-            android:layout_height="400dp" />
-
-    </LinearLayout>
-</layout>
+        android:layout_height="400dp" />
+</LinearLayout>

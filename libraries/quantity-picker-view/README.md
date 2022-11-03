@@ -1,6 +1,6 @@
 <img src="../../images/quantity-picker-view-1.gif" />
 
-$quantityPickerViewVersion = quantity-picker-view-1.2.5 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$quantityPickerViewVersion = quantity-picker-view-1.3.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## QuantityPickerView
 QuantityPickerView is component for add/remove
@@ -27,57 +27,57 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 
 :warning: You need to provide all properties if you wish to set programmatically via providing QuantityPickerViewState.
 
-| Attribute |  ViewState Field | Description | Default Value |
-| ------------- | ------------- | ------------- | ------------- |
-| qpv_text | text | Text to show when currentQuantity is 0. | "" |
-| qpv_textColor | textColor |  Text color. | `colorAccent` |
-| qpv_textSize | textSize | Text size. Should be pixel value if programmatically set. | `12sp` |
-| qpv_textStyle | textStyle | Text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | `normal` |
-| qpv_quantityTextColor | quantityTextColor | Quantity text color. | `colorPrimary` |
-| qpv_quantityTextSize | quantityTextSize | Quantity text size. Should be pixel value if programmatically set.  | `14sp |
-| qpv_quantityTextStyle | quantityTextStyle | Quantity text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium. | `normal` |
-| qpv_currentQuantity | currentQuantity | Quantity value, optional. | 0 |
-| qpv_maxQuantity | maxQuantity | Maximum quantity value, optional. |  |
-| qpv_minQuantity | minQuantity | Minimum quantity value, optional. |  |
-| android:progressTint | progressTintColor | Tint for loading ProgressBar. | `colorAccent` |
-| android:background | backgroundDrawable | Background to all view. | [qpv_shape_default_background.xml](src/main/res/drawable/qpv_shape_default_background.xml) |
-| qpv_removeIcon | removeIconDrawable | Icon for remove, will be only visible when currentQuantity is 1. | [qpv_ic_default_remove.xml](src/main/res/drawable/qpv_ic_default_remove.xml) |
-| qpv_addIcon | addIconDrawable | Icon for add, will be visible when currentQuantity is 1 or more. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
-| qpv_disabledAddIcon | disabledAddIconDrawable | Icon for add button disabled state, will be visible when maxQuantity is set and currentQuantity is equal to maxQuantity. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
-| qpv_subtractIcon | subtractIconDrawable | Icon for subtract, will be visible when currentQuantity is 2 or more. | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml) |
-| qpv_disabledSubtractIcon | disabledSubtractIconDrawable | Icon for subtract button disabled state, will be visible when minQuantity is set and currentQuantity is equal to minQuantity. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml) |
-| qpv_quantityBackground | quantityBackgroundDrawable | Background for quantity text. | `transparent` |
-| qpv_orientation | orientation | Determines view orientation. | 'horizontal` |
-| qpv_collapsible | collapsible | Determines if view is collapsible. | 'false' |
-| qpv_buttonVerticalPadding | buttonVerticalPadding | padding for buttons vertically. | `8dp` |
-| qpv_buttonHorizontalPadding | buttonHorizontalPadding | padding for buttons horizontally. | `8dp` |
-| qpv_progressVerticalPadding | progressVerticalPadding | padding for progress bar vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
-| qpv_quantityBackgroundVerticalPadding | quantityBackgroundVerticalPadding | padding for quantity background vertically if `orientation` is `horizontal`, else horizontal padding. | `2dp` |
-| qpv_add_contentDescription | text | Text for Add Image of Talkback | "" |
-| qpv_remove_contentDescription | text | Text for Remove Image of Talkback | "" |
+| Attribute                             | ViewState Field                   | Description                                                                                                                   | Default Value                                                                              |
+|---------------------------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| qpv_text                              | text                              | Text to show when currentQuantity is 0.                                                                                       | ""                                                                                         |
+| qpv_textColor                         | textColor                         | Text color.                                                                                                                   | `colorAccent`                                                                              |
+| qpv_textSize                          | textSize                          | Text size. Should be pixel value if programmatically set.                                                                     | `12sp`                                                                                     |
+| qpv_textStyle                         | textStyle                         | Text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium.                                         | `normal`                                                                                   |
+| qpv_quantityTextColor                 | quantityTextColor                 | Quantity text color.                                                                                                          | `colorPrimary`                                                                             |
+| qpv_quantityTextSize                  | quantityTextSize                  | Quantity text size. Should be pixel value if programmatically set.                                                            | `14sp                                                                                      |
+| qpv_quantityTextStyle                 | quantityTextStyle                 | Quantity text style: normal(0), bold(1) or italic(2) Note: Default text font is Roboto Medium.                                | `normal`                                                                                   |
+| qpv_currentQuantity                   | currentQuantity                   | Quantity value, optional.                                                                                                     | 0                                                                                          |
+| qpv_maxQuantity                       | maxQuantity                       | Maximum quantity value, optional.                                                                                             |                                                                                            |
+| qpv_minQuantity                       | minQuantity                       | Minimum quantity value, optional.                                                                                             |                                                                                            |
+| android:progressTint                  | progressTintColor                 | Tint for loading ProgressBar.                                                                                                 | `colorAccent`                                                                              |
+| android:background                    | backgroundDrawable                | Background to all view.                                                                                                       | [qpv_shape_default_background.xml](src/main/res/drawable/qpv_shape_default_background.xml) |
+| qpv_removeIcon                        | removeIconDrawable                | Icon for remove, will be only visible when currentQuantity is 1.                                                              | [qpv_ic_default_remove.xml](src/main/res/drawable/qpv_ic_default_remove.xml)               |
+| qpv_addIcon                           | addIconDrawable                   | Icon for add, will be visible when currentQuantity is 1 or more.                                                              | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml)                     |
+| qpv_disabledAddIcon                   | disabledAddIconDrawable           | Icon for add button disabled state, will be visible when maxQuantity is set and currentQuantity is equal to maxQuantity.      | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml)                     |
+| qpv_subtractIcon                      | subtractIconDrawable              | Icon for subtract, will be visible when currentQuantity is 2 or more.                                                         | [qpv_ic_default_subtract.xml](src/main/res/drawable/qpv_ic_default_subtract.xml)           |
+| qpv_disabledSubtractIcon              | disabledSubtractIconDrawable      | Icon for subtract button disabled state, will be visible when minQuantity is set and currentQuantity is equal to minQuantity. | [qpv_ic_default_add.xml](src/main/res/drawable/qpv_ic_default_add.xml)                     |
+| qpv_quantityBackground                | quantityBackgroundDrawable        | Background for quantity text.                                                                                                 | `transparent`                                                                              |
+| qpv_orientation                       | orientation                       | Determines view orientation.                                                                                                  | 'horizontal`                                                                               |
+| qpv_collapsible                       | collapsible                       | Determines if view is collapsible.                                                                                            | 'false'                                                                                    |
+| qpv_buttonVerticalPadding             | buttonVerticalPadding             | padding for buttons vertically.                                                                                               | `8dp`                                                                                      |
+| qpv_buttonHorizontalPadding           | buttonHorizontalPadding           | padding for buttons horizontally.                                                                                             | `8dp`                                                                                      |
+| qpv_progressVerticalPadding           | progressVerticalPadding           | padding for progress bar vertically if `orientation` is `horizontal`, else horizontal padding.                                | `2dp`                                                                                      |
+| qpv_quantityBackgroundVerticalPadding | quantityBackgroundVerticalPadding | padding for quantity background vertically if `orientation` is `horizontal`, else horizontal padding.                         | `2dp`                                                                                      |
+| qpv_add_contentDescription            | text                              | Text for Add Image of Talkback                                                                                                | ""                                                                                         |
+| qpv_remove_contentDescription         | text                              | Text for Remove Image of Talkback                                                                                             | ""                                                                                         |
 
 # Public methods
 
-| Method Name |  Parameter | Description |
-| ------------- | ------------- | ------------- |
-| setQuantityPickerViewState | viewState :QuantityPickerViewState | To set QuantityPickerViewState programmatically. |
-| setQuantity | quantity: Int | To set quantity immediately. |
-| setMaxQuantity | maxQuantity: Int | To set maxQuantity immediately. |
-| setMinQuantity | minQuantity: Int | To set minQuantity immediately. |
+| Method Name                | Parameter                          | Description                                             |
+|----------------------------|------------------------------------|---------------------------------------------------------|
+| setQuantityPickerViewState | viewState :QuantityPickerViewState | To set QuantityPickerViewState programmatically.        |
+| setQuantity                | quantity: Int                      | To set quantity immediately.                            |
+| setMaxQuantity             | maxQuantity: Int                   | To set maxQuantity immediately.                         |
+| setMinQuantity             | minQuantity: Int                   | To set minQuantity immediately.                         |
 | setBackgroundImageDrawable | background: Drawable | To set backgroundImageDrawable immediately. |
-| stopLoading |  | To stop current loading.|
-| reset |  | To stop loading and set currentQuantity to 0. |
-| incrementQuantityBy | quantity | increments current total quantity by quantity parameter
+| stopLoading                |                                    | To stop current loading.                                |
+| reset                      |                                    | To stop loading and set currentQuantity to 0.           |
+| incrementQuantityBy        | quantity                           | increments current total quantity by quantity parameter |
 
 ## Listeners
 To get updates on **QuantityPickerView** you need to set this listeners:
 
-| Listener | Data | Return | Information |
-| ------------- | ------------- | ------------- | ------------- |
-| onAddClicked | quantityAfterAdd: Int | showLoading: Boolean | Will be triggered when user clicks text when currentQuantity 0 or add button when currentQuantity bigger than 0. |
-| onSubtractClicked | quantityAfterSubtract: Int | showLoading: Boolean | Wil be triggered when user clicks remove or subtract icon. |
-| onQuantityTextClicked | quantity: Int |  | Wil be triggered when user clicks text |
-| expansionListener | expansionState: ExpansionState | | Will be triggered after expansion state is changed. |
+| Listener              | Data                           | Return               | Information                                                                                                      |
+|-----------------------|--------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------|
+| onAddClicked          | quantityAfterAdd: Int          | showLoading: Boolean | Will be triggered when user clicks text when currentQuantity 0 or add button when currentQuantity bigger than 0. |
+| onSubtractClicked     | quantityAfterSubtract: Int     | showLoading: Boolean | Wil be triggered when user clicks remove or subtract icon.                                                       |
+| onQuantityTextClicked | quantity: Int                  |                      | Wil be triggered when user clicks text                                                                           |
+| expansionListener     | expansionState: ExpansionState |                      | Will be triggered after expansion state is changed.                                                              |
 
 ## Implementation
 
@@ -123,7 +123,7 @@ This library is maintained mainly by Trendyol Android Team members but also othe
 We developed this component for our needs, there is lots of improvements need to be implemented.
 
 # License
-    Copyright 2021 Trendyol.com
+    Copyright 2022 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
