@@ -64,7 +64,7 @@ class TimelineItemAdapter(var timelineOrientation: TimelineOrientation = HORIZON
 
         fun bind(itemViewState: TimelineItemViewState) {
             with(binding) {
-                root.layoutParams = root.layoutParams.apply { width = itemViewState.lineWidth.toInt() }
+                root.layoutParams = root.layoutParams.apply { width = itemViewState.getItemWidth().toInt() }
                 with(viewStartLine) {
                     setBackgroundColor(itemViewState.getStartLineColor())
                     visibility = itemViewState.getStartLineVisibility()
