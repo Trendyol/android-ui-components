@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/timeline-view.png" width="240"/>
 
-timelineViewVersion = timeline-view-1.1.0 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+timelineViewVersion = timeline-view-1.1.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## TimelineView
 TimelineView creates a timeline and shows actions over time
