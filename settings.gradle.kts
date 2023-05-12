@@ -1,4 +1,5 @@
 include(":sample")
+include(":sample-compose")
 include(":libraries:rating-bar")
 include(":libraries:dialogs")
 include(":libraries:image-slider")
@@ -10,6 +11,7 @@ include(":libraries:quantity-picker-view")
 include(":libraries:timeline-view")
 include(":libraries:touch-delegator")
 include(":libraries:fit-option-message-view")
+include(":libraries:timeline-view-compose")
 
 rootProject.name = "trendyol-android-ui-components"
 

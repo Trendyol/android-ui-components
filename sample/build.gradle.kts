@@ -18,10 +18,10 @@ android {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
             isMinifyEnabled = false
             setProguardFiles(
-                    mutableListOf(
-                            getDefaultProguardFile("proguard-android.txt"),
-                            "proguard-rules.pro"
-                    )
+                mutableListOf(
+                    getDefaultProguardFile("proguard-android.txt"),
+                    "proguard-rules.pro"
+                )
             )
         }
     }
