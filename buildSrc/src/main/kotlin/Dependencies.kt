@@ -12,7 +12,7 @@ object Dependencies {
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.1.0"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:2.1.0"
 
-    const val composeBom = "androidx.compose:compose-bom:2023.01.00"
+    const val composeBom = "androidx.compose:compose-bom:2023.05.01"
     const val composeActivity = "androidx.activity:activity-compose:1.3.0-alpha07"
     const val composeMaterial = "androidx.compose.material:material"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
