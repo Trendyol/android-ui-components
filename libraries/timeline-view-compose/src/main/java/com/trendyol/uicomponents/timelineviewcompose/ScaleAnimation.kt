@@ -16,9 +16,12 @@ import kotlinx.coroutines.delay
 
 @Stable
 internal fun Modifier.scaleAnimation(pointAnimation: PointAnimation?) = composed {
+
+    if (pointAnimation == null) return@composed this
+
     var shouldStartAnimation by remember { mutableStateOf(false) }
     val infiniteTransition = rememberInfiniteTransition()
-    val pointScale = if (pointAnimation != null && shouldStartAnimation) {
+    val pointScale = if (shouldStartAnimation) {
         infiniteTransition.animateFloat(
             initialValue = pointAnimation.initialValue,
             targetValue = pointAnimation.targetValue,
@@ -27,7 +30,7 @@ internal fun Modifier.scaleAnimation(pointAnimation: PointAnimation?) = composed
     } else null
 
     LaunchedEffect(Unit) {
-        delay((pointAnimation?.startDelay ?: 0).toLong())
+        delay(pointAnimation.startDelay.toLong())
         shouldStartAnimation = true
     }
 
