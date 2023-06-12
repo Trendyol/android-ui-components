@@ -83,7 +83,7 @@ internal fun HorizontalTimelineImageItem(
 
 @Preview(showBackground = true)
 @Composable
-fun NewHorizontalTimelineImageItemPreview() {
+private fun HorizontalTimelineImageItemPreview() {
     HorizontalTimelineImageItem(
         isLastItem = false,
         isFirstItem = false,

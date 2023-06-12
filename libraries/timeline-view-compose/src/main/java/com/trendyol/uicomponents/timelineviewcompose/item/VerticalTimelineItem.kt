@@ -55,7 +55,7 @@ fun VerticalTimelineItem(
 
 @Preview
 @Composable
-fun NewVerticalTimelineItemPreview() {
+private fun VerticalTimelineItemPreview() {
     VerticalTimelineItem(
         item = FakeTimelineItemProvider.provideTimelineItem(
             borderWidth = 2.dp,

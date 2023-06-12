@@ -73,7 +73,7 @@ internal fun HorizontalTimelineItem(
 
 @Composable
 @Preview(showBackground = true)
-fun NewHorizontalTimelineItemPreview() {
+private fun HorizontalTimelineItemPreview() {
     HorizontalTimelineItem(
         item = FakeTimelineItemProvider.provideTimelineItem(text = "Siparişiniz hazırlanıyor."),
         isLastItem = false,
