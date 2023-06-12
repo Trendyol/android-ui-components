@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-object FakeTimelineItemProvider {
+internal object FakeTimelineItemProvider {
 
     internal fun provideTimelineItem(
         text: String = "Step Name",
