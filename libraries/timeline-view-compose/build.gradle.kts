@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             setProguardFiles(
                 mutableListOf(
                     getDefaultProguardFile("proguard-android.txt"),
