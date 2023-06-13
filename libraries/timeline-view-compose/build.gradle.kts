@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.trendyol.uicomponents.timelineviewcompose"
+    namespace = "com.trendyol.timelineviewcompose"
     compileSdk = 33
 
     defaultConfig {

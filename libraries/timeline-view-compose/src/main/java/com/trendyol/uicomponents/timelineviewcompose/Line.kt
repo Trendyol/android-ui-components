@@ -23,10 +23,10 @@ import com.trendyol.uicomponents.timelineviewcompose.model.TimelineOrientation
 
 @Composable
 internal fun Line(
-    modifier: Modifier = Modifier,
     config: LineConfig,
-    orientation: TimelineOrientation,
     itemIndex: Int,
+    modifier: Modifier = Modifier,
+    orientation: TimelineOrientation = TimelineOrientation.HORIZONTAL,
 ) {
     val pathEffect = when (config.lineType) {
         is LineType.Dashed -> PathEffect.dashPathEffect(
