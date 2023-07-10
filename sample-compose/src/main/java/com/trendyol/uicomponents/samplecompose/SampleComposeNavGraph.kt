@@ -28,5 +28,9 @@ fun SampleComposeNavGraph(
         composable(Route.TimelineView.destination) {
             TimelineViewScreen()
         }
+
+        composable(Route.RatingBar.destination) {
+            RatingBarScreen()
+        }
     }
 }

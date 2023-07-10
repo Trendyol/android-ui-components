@@ -31,6 +31,10 @@ fun ComponentsScreen(
         ComponentItem(title = "TimelineView") {
             onItemClick(Route.TimelineView)
         }
+
+        ComponentItem(title = "RatingBar") {
+            onItemClick(Route.RatingBar)
+        }
     }
 }
 

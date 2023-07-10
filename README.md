@@ -17,6 +17,7 @@ UI Components includes several custom views for Android platform to make develop
 
 ## Components ## 
 * [Rating Bar](libraries/rating-bar): **RatingBarView**, easy to use and customizable rating view.
+* [Rating Bar Compose](libraries/rating-bar-compose): **RatingBar**, easy to use and customizable ratingBar for compose.
 * [Dialogs](libraries/dialogs): **Dialogs** is collection of BottomSheetDialogs to present user an info, agreement or list.
 * [Toolbar](libraries/toolbar): **Toolbar** is customizable and easy to use component.
 * [SuggestionInputView](libraries/suggestion-input-view): **SuggestionInputView** allows selecting pre-selected options or entering a custom option.
