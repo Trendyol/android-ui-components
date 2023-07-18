@@ -1,4 +1,4 @@
-package com.trendyol.ratingbarcompose
+package com.trendyol.uicomponents.ratingbarcompose
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Canvas
@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
+import com.trendyol.ratingbarcompose.R
 import kotlin.math.floor
 
 /**
