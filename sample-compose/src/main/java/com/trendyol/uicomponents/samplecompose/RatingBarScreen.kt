@@ -16,7 +16,6 @@ fun RatingBarScreen(
     Column(modifier = modifier.fillMaxSize()) {
         RatingBar(
             rating = 3.7f,
-            painterRes = R.drawable.ic_star,
             filledColor = Color.Green,
             spaceBetween = 6.dp,
             itemCount = 8,

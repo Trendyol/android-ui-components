@@ -34,7 +34,7 @@ import kotlin.math.floor
 fun RatingBar(
     modifier: Modifier = Modifier,
     rating: Float,
-    @DrawableRes painterRes: Int,
+    @DrawableRes painterRes: Int = R.drawable.ic_star,
     emptyColor: Color? = null,
     filledColor: Color,
     spaceBetween: Dp,
