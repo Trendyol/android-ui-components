@@ -57,7 +57,7 @@ fun ShimmerScreen(viewModel: ShimmerViewModel = viewModel()) = with(viewModel) {
             contentPadding = PaddingValues(16.dp)
         ) {
             items(20) {
-                ListItem(uiState.headerItem, uiState.isLoading)
+                ListItem(uiState.item, uiState.isLoading)
             }
         }
     }
@@ -92,7 +92,7 @@ fun ListItem(item: Item, isLoading: Boolean) {
 
 @Stable
 interface ShimmerUiState {
-    val headerItem: Item
+    val item: Item
     val isLoading: Boolean
 }
 
@@ -103,7 +103,7 @@ data class Item(
 )
 
 class MutableShimmerUiState : ShimmerUiState {
-    override var headerItem: Item by mutableStateOf(Item("", ""))
+    override var item: Item by mutableStateOf(Item("", ""))
     override var isLoading: Boolean by mutableStateOf(true)
 }
 
@@ -118,7 +118,7 @@ class ShimmerViewModel : ViewModel() {
     private fun fetchItem() = viewModelScope.launch {
         delay(1_500)
         _uiState.isLoading = false
-        _uiState.headerItem = Item(
+        _uiState.item = Item(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             "https://via.placeholder.com/600/92c952"
         )
