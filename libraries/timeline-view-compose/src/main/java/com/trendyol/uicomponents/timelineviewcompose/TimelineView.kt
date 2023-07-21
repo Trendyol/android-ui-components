@@ -63,6 +63,7 @@ private fun VerticalTimelineView(
                         onClick = { onClick(items[index]) },
                     )
                 }
+                else -> {}
             }
         }
     }
@@ -97,6 +98,7 @@ private fun HorizontalTimelineView(
                         onClick = { onClick(items[index]) },
                     )
                 }
+                else -> {}
             }
         }
     }

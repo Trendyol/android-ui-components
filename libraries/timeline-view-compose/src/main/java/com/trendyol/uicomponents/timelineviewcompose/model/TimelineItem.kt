@@ -13,6 +13,7 @@ sealed class TimelineItem {
         val lineConfig: LineConfig,
         val pointConfig: PointConfig,
         val textStyle: TextStyle = TimelineViewDefaults.TextStyle,
+        val pointShadowConfig: PointShadowConfig? = null,
     ) : TimelineItem()
 
     @Stable
@@ -23,5 +24,16 @@ sealed class TimelineItem {
         val imageConfig: ImageConfig,
         val lineConfig: LineConfig,
         val textStyle: TextStyle = TimelineViewDefaults.TextStyle,
+    ) : TimelineItem()
+
+    @Stable
+    data class PointWithIndex(
+        val text: String,
+        val contentMargin: Dp = TimelineViewDefaults.ContentMargin,
+        val lineConfig: LineConfig,
+        val pointConfig: PointConfig,
+        val textStyle: TextStyle = TimelineViewDefaults.TextStyle,
+        val pointShadowConfig: PointShadowConfig? = null,
+        val indexTextStyle: TextStyle = TimelineViewDefaults.TextStyle,
     ) : TimelineItem()
 }

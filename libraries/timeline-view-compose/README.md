@@ -8,6 +8,11 @@ timelineViewComposeVersion = **timeline-view-compose-1.0** [![License](https://i
 
 TimelineView creates a timeline and shows actions over time. 
 
+# HorizontalTimelineWithIndexText
+
+HorizontalTimelineWithIndexText pointlerin orta noktalarında indexlerinin yazdığı bir timeline oluşturur. 
+Line widhti otomatik hesaplanır ve ekrana horizontal olarak sığacak şekilde ortalanır. n sayıda step içerebilir.
+
 # Installation
 
 - To implement **TimelineView** to your Android project via Gradle, you need to add JitPack repository to your root build.gradle.  
@@ -30,7 +35,7 @@ dependencies {
 
 # Usage
 
-To start using TimelineView, `TimelineView` composable can be used like this
+➡️ To start using TimelineView, `TimelineView` composable can be used like this
 
 *To customize each item, you can modify pointConfig and lineConfig.*
 
@@ -97,6 +102,15 @@ val timelineItems = listOf(
     )
 ```
 
+➡️ To start using HorizontalTimelineWithIndexText, `HorizontalTimelineWithIndexText` composable can be used like this
+
+```kotlin
+    HorizontalTimelineWithIndexTextView(
+        modifier = Modifier.padding(horizontal = 16.dp),
+        items = createHorizontalWithIndexTimelineItems(),
+    )
+```
+
 # Paremeters
 
 #### Models
@@ -151,19 +165,29 @@ val timelineItems = listOf(
 | size           | Dp             | To set size                 |
 | animation      | PointAnimation | To set animation            |
 
+###### PointShadowConfig
+
+| Parameter Name | Type  | Description                 |
+|----------------|-------|-----------------------------|
+| elevation      | Int   | To set imageUrl             |
+| color          | Color | To set placeholder          |
+| alpha          | Float | To set borderWidth of image |
+| radius         | Float | To set size                 |
+
 #### Item Types
 
 ---
 
 ###### TimelineItem.Point
 
-| Parameter Name | Type        | Description          |
-|----------------|-------------|----------------------|
-| text           | String      | To set text          |
-| textStyle      | TextStyle   | To set textStyle     |
-| pointConfig    | PointConfig | To set pointConfig   |
-| contentMargin  | Dp          | To set contentMargin |
-| lineConfig     | LineConfig  | To set lineConfig    |
+| Parameter Name    | Type              | Description          |
+|-------------------|-------------------|----------------------|
+| text              | String            | To set text          |
+| textStyle         | TextStyle         | To set textStyle     |
+| pointConfig       | PointConfig       | To set pointConfig   |
+| contentMargin     | Dp                | To set contentMargin |
+| lineConfig        | LineConfig        | To set lineConfig    |
+| pointShadowConfig | PointShadowConfig | To set shadow        |
 
 ###### TimelineItem.Image
 
@@ -174,6 +198,18 @@ val timelineItems = listOf(
 | imageContentDescription | String      | To set imageContentDescription |
 | imageConfig             | ImageConfig | To set imageConfig             |
 | lineConfig              | LineConfig  | To set lineConfig              |
+
+###### TimelineItem.PointWithIndex
+
+| Parameter Name    | Type              | Description          |
+|-------------------|-------------------|----------------------|
+| text              | String            | To set text          |
+| textStyle         | TextStyle         | To set textStyle     |
+| pointConfig       | PointConfig       | To set pointConfig   |
+| contentMargin     | Dp                | To set contentMargin |
+| lineConfig        | LineConfig        | To set lineConfig    |
+| pointShadowConfig | PointShadowConfig | To set shadow        |
+| indexTextStyle    | TextStyle         | To set index style   |
 
 # Contributors
 
