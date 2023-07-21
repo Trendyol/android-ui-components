@@ -139,7 +139,7 @@ private fun HorizontalItems(modifier: Modifier = Modifier, animationEnabled: Boo
                 modifier = Modifier.padding(horizontal = 16.dp),
                 items = createHorizontalWithIndexTimelineItems(),
             )
-            ItemDescription("items with intex text")
+            ItemDescription("items with index text")
         }
     }
 }
