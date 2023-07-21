@@ -10,8 +10,8 @@ TimelineView creates a timeline and shows actions over time.
 
 # HorizontalTimelineWithIndexText
 
-HorizontalTimelineWithIndexText pointlerin orta noktalarında indexlerinin yazdığı bir timeline oluşturur. 
-Line widhti otomatik hesaplanır ve ekrana horizontal olarak sığacak şekilde ortalanır. n sayıda step içerebilir.
+HorizontalTimelineWithIndexText creates a timeline with points at their midpoints displaying their respective indexes. 
+The line width is automatically calculated and centered horizontally to fit the screen. It can contain any number of steps.
 
 # Installation
 
