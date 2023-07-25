@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -26,7 +25,7 @@ import com.trendyol.uicomponents.timelineviewcompose.model.TimelineOrientation
 import com.trendyol.uicomponents.timelineviewcompose.model.getHorizontalConstraintSet
 
 @Composable
-internal fun HorizontalTimelineWithIndexTextItemItem(
+internal fun HorizontalTimelineWithIndexTextItem(
     modifier: Modifier = Modifier,
     item: TimelineItem.PointWithIndex,
     isLastItem: Boolean = false,
@@ -79,7 +78,7 @@ internal fun HorizontalTimelineWithIndexTextItemItem(
 @Composable
 @Preview(showBackground = true)
 private fun HorizontalWithIndexTimelineItemPreview() {
-    HorizontalTimelineWithIndexTextItemItem(
+    HorizontalTimelineWithIndexTextItem(
         item = FakeTimelineItemProvider.provideTimelineItemWithText(text = "Siparişiniz hazırlanıyor"),
         isLastItem = false,
         itemIndex = 0,

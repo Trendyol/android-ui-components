@@ -14,7 +14,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.trendyol.uicomponents.timelineviewcompose.item.HorizontalTimelineWithIndexTextItemItem
+import com.trendyol.uicomponents.timelineviewcompose.item.HorizontalTimelineWithIndexTextItem
 import com.trendyol.uicomponents.timelineviewcompose.model.FakeTimelineItemProvider
 import com.trendyol.uicomponents.timelineviewcompose.model.TimelineItem
 
@@ -42,7 +42,7 @@ fun HorizontalTimelineWithIndexTextView(
                 ((availableWidthPx - (item.pointConfig.getSizeWithBorder() * items.size)) / (items.size - 1))
             val itemWidth = item.pointConfig.getSizeWithBorder() + lineWidthDp
 
-            HorizontalTimelineWithIndexTextItemItem(
+            HorizontalTimelineWithIndexTextItem(
                 item = item,
                 itemIndex = index,
                 isLastItem = items.isLastItem(index),

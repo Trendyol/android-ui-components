@@ -167,12 +167,12 @@ val timelineItems = listOf(
 
 ###### PointShadowConfig
 
-| Parameter Name | Type  | Description                 |
-|----------------|-------|-----------------------------|
-| elevation      | Int   | To set imageUrl             |
-| color          | Color | To set placeholder          |
-| alpha          | Float | To set borderWidth of image |
-| radius         | Float | To set size                 |
+| Parameter Name | Type  | Description            |
+|----------------|-------|------------------------|
+| elevation      | Int   | To set elevation       |
+| color          | Color | To set color           |
+| alpha          | Float | To set alpha of shadow |
+| radius         | Float | To set radius          |
 
 #### Item Types
 
