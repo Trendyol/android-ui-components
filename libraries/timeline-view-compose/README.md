@@ -172,7 +172,6 @@ val timelineItems = listOf(
 | elevation      | Int   | To set elevation       |
 | color          | Color | To set color           |
 | alpha          | Float | To set alpha of shadow |
-| radius         | Float | To set radius          |
 
 #### Item Types
 

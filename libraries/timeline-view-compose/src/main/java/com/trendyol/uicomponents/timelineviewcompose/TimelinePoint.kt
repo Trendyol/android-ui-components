@@ -2,7 +2,6 @@ package com.trendyol.uicomponents.timelineviewcompose
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
@@ -32,7 +31,6 @@ internal fun TimelinePoint(
                 shape = CircleShape,
                 ambientColor = pointShadowConfig.color.copy(alpha = pointShadowConfig.alpha),
             )
-            .padding(horizontal = pointShadowConfig.radius.dp)
     } else {
         Modifier
     }
@@ -88,7 +86,6 @@ private fun TimelinePointPreview() {
             elevation = 7,
             color = Color.Black,
             alpha = 0.6f,
-            radius = 1.5f
         )
     )
 }

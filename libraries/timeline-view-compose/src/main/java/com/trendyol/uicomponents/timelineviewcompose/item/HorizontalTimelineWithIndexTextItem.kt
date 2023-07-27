@@ -22,7 +22,7 @@ import com.trendyol.uicomponents.timelineviewcompose.model.PointLayoutId
 import com.trendyol.uicomponents.timelineviewcompose.model.TextLayoutId
 import com.trendyol.uicomponents.timelineviewcompose.model.TimelineItem
 import com.trendyol.uicomponents.timelineviewcompose.model.TimelineOrientation
-import com.trendyol.uicomponents.timelineviewcompose.model.getHorizontalConstraintSet
+import com.trendyol.uicomponents.timelineviewcompose.model.getHorizontalWithIndexConstraintSet
 
 @Composable
 internal fun HorizontalTimelineWithIndexTextItem(
@@ -38,7 +38,7 @@ internal fun HorizontalTimelineWithIndexTextItem(
     val itemWidth  =item.pointConfig.getSizeWithBorder() + customLineWidth
 
     ConstraintLayout(
-        constraintSet = getHorizontalConstraintSet(item.contentMargin),
+        constraintSet = getHorizontalWithIndexConstraintSet(item.contentMargin, itemWidth),
         modifier = modifier
             .width(customLineWidth)
     ) {
@@ -69,7 +69,7 @@ internal fun HorizontalTimelineWithIndexTextItem(
                 config = item.lineConfig,
                 orientation = TimelineOrientation.HORIZONTAL,
                 modifier = Modifier.layoutId(LineLayoutId),
-                customLineWidth = customLineWidth
+                customLineWidth = customLineWidth - item.pointConfig.borderWidth
             )
         }
     }

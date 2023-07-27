@@ -149,7 +149,11 @@ internal object TimelineViewItemProvider {
                 insideColor = colorWhite
             ),
             text = "Kredi ile Öde",
-            textStyle = TextStyle(color = Color.Gray, fontSize = 10.sp),
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
             indexTextStyle = TextStyle(color = Color.Gray),
             lineConfig = LineConfig(color = colorGray),
         )
@@ -161,7 +165,11 @@ internal object TimelineViewItemProvider {
                 insideColor = colorWhite
             ),
             text = "Sms Onayı",
-            textStyle = TextStyle(color = Color.Gray, fontSize = 10.sp),
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
             indexTextStyle = TextStyle(color = Color.Gray),
             lineConfig = LineConfig(color = colorGray),
         )
@@ -174,14 +182,17 @@ internal object TimelineViewItemProvider {
                 animation = if (pointAnimationEnabled) PointAnimation(startDelay = 2000) else null
             ),
             text = "Kredi Teklifleri",
-            textStyle = TextStyle(color = colorGreen, fontSize = 10.sp),
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = colorGreen
+            ),
             lineConfig = LineConfig(color = colorGray),
             indexTextStyle = TextStyle(color = Color.White),
             pointShadowConfig = PointShadowConfig(
                 elevation = 7,
                 color = Color.Black,
                 alpha = 0.6f,
-                radius = 1.5f
             )
         )
 
@@ -191,8 +202,12 @@ internal object TimelineViewItemProvider {
                 outSideColor = colorGray,
                 insideColor = colorWhite
             ),
-            text = "Banka Onayı Onayı",
-            textStyle = TextStyle(color = Color.Gray, fontSize = 10.sp),
+            text = "Banka Onayı",
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
             indexTextStyle = TextStyle(color = Color.Gray),
             lineConfig = getLineConfig(colorGray)
         )

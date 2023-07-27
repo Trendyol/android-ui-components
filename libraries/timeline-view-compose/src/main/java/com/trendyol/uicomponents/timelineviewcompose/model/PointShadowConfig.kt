@@ -8,5 +8,4 @@ data class PointShadowConfig(
     val elevation: Int,
     val color: Color,
     val alpha: Float,
-    val radius: Float,
 )
