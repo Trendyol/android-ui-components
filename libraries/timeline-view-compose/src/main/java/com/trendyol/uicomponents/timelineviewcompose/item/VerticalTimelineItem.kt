@@ -10,6 +10,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.trendyol.uicomponents.timelineviewcompose.Line
 import com.trendyol.uicomponents.timelineviewcompose.TimelinePoint
 import com.trendyol.uicomponents.timelineviewcompose.model.FakeTimelineItemProvider
+import com.trendyol.uicomponents.timelineviewcompose.model.IndexTextLayoutId
 import com.trendyol.uicomponents.timelineviewcompose.model.LineLayoutId
 import com.trendyol.uicomponents.timelineviewcompose.model.PointLayoutId
 import com.trendyol.uicomponents.timelineviewcompose.model.TextLayoutId
@@ -35,7 +36,8 @@ fun VerticalTimelineItem(
             config = item.pointConfig,
             modifier = Modifier
                 .scaleAnimation(item.pointConfig.animation)
-                .layoutId(PointLayoutId)
+                .layoutId(PointLayoutId),
+            pointShadowConfig = item.pointShadowConfig
         )
         Text(
             text = item.text,

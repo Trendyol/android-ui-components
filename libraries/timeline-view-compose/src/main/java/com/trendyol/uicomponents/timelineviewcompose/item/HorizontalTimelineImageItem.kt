@@ -76,6 +76,7 @@ internal fun HorizontalTimelineImageItem(
                 itemIndex = itemIndex,
                 orientation = TimelineOrientation.HORIZONTAL,
                 modifier = Modifier.layoutId(LineLayoutId),
+                customLineWidth = item.lineConfig.size
             )
         }
     }

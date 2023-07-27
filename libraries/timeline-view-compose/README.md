@@ -2,11 +2,16 @@
 |:-----------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------:|
 |                                                     **Horizontal Simple**                                                     |                                      **Horizontal Animated**                                       |                                   **Vertical Simple**                                   |                                      **Vertical Animated**                                       |
 
-timelineViewComposeVersion = **timeline-view-compose-1.0** [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+timelineViewComposeVersion = **timeline-view-compose-1.2.0** [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # TimelineView
 
 TimelineView creates a timeline and shows actions over time. 
+
+# HorizontalTimelineWithIndexText
+
+HorizontalTimelineWithIndexText creates a timeline with points at their midpoints displaying their respective indexes. 
+The line width is automatically calculated and centered horizontally to fit the screen. It can contain any number of steps.
 
 # Installation
 
@@ -30,7 +35,7 @@ dependencies {
 
 # Usage
 
-To start using TimelineView, `TimelineView` composable can be used like this
+➡️ To start using TimelineView, `TimelineView` composable can be used like this
 
 *To customize each item, you can modify pointConfig and lineConfig.*
 
@@ -97,6 +102,15 @@ val timelineItems = listOf(
     )
 ```
 
+➡️ To start using HorizontalTimelineWithIndexText, `HorizontalTimelineWithIndexText` composable can be used like this
+
+```kotlin
+    HorizontalTimelineWithIndexTextView(
+        modifier = Modifier.padding(horizontal = 16.dp),
+        items = createHorizontalWithIndexTimelineItems(),
+    )
+```
+
 # Paremeters
 
 #### Models
@@ -151,19 +165,28 @@ val timelineItems = listOf(
 | size           | Dp             | To set size                 |
 | animation      | PointAnimation | To set animation            |
 
+###### PointShadowConfig
+
+| Parameter Name | Type  | Description            |
+|----------------|-------|------------------------|
+| elevation      | Int   | To set elevation       |
+| color          | Color | To set color           |
+| alpha          | Float | To set alpha of shadow |
+
 #### Item Types
 
 ---
 
 ###### TimelineItem.Point
 
-| Parameter Name | Type        | Description          |
-|----------------|-------------|----------------------|
-| text           | String      | To set text          |
-| textStyle      | TextStyle   | To set textStyle     |
-| pointConfig    | PointConfig | To set pointConfig   |
-| contentMargin  | Dp          | To set contentMargin |
-| lineConfig     | LineConfig  | To set lineConfig    |
+| Parameter Name    | Type              | Description          |
+|-------------------|-------------------|----------------------|
+| text              | String            | To set text          |
+| textStyle         | TextStyle         | To set textStyle     |
+| pointConfig       | PointConfig       | To set pointConfig   |
+| contentMargin     | Dp                | To set contentMargin |
+| lineConfig        | LineConfig        | To set lineConfig    |
+| pointShadowConfig | PointShadowConfig | To set shadow        |
 
 ###### TimelineItem.Image
 
@@ -174,6 +197,18 @@ val timelineItems = listOf(
 | imageContentDescription | String      | To set imageContentDescription |
 | imageConfig             | ImageConfig | To set imageConfig             |
 | lineConfig              | LineConfig  | To set lineConfig              |
+
+###### TimelineItem.PointWithIndex
+
+| Parameter Name    | Type              | Description          |
+|-------------------|-------------------|----------------------|
+| text              | String            | To set text          |
+| textStyle         | TextStyle         | To set textStyle     |
+| pointConfig       | PointConfig       | To set pointConfig   |
+| contentMargin     | Dp                | To set contentMargin |
+| lineConfig        | LineConfig        | To set lineConfig    |
+| pointShadowConfig | PointShadowConfig | To set shadow        |
+| indexTextStyle    | TextStyle         | To set index style   |
 
 # Contributors
 

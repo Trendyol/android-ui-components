@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.trendyol.uicomponents.timelineviewcompose.model.LineConfig
@@ -27,6 +28,7 @@ internal fun Line(
     itemIndex: Int,
     modifier: Modifier = Modifier,
     orientation: TimelineOrientation = TimelineOrientation.HORIZONTAL,
+    customLineWidth: Dp? = null
 ) {
     val pathEffect = when (config.lineType) {
         is LineType.Dashed -> PathEffect.dashPathEffect(
@@ -39,7 +41,7 @@ internal fun Line(
 
     val itemSize = when (orientation) {
         TimelineOrientation.HORIZONTAL -> DpSize(
-            width = config.size,
+            width = customLineWidth ?: config.size,
             height = config.thickness
         )
 

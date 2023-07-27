@@ -12,6 +12,7 @@ import com.trendyol.uicomponents.timelineviewcompose.model.LineConfig
 import com.trendyol.uicomponents.timelineviewcompose.model.LineType
 import com.trendyol.uicomponents.timelineviewcompose.model.PointAnimation
 import com.trendyol.uicomponents.timelineviewcompose.model.PointConfig
+import com.trendyol.uicomponents.timelineviewcompose.model.PointShadowConfig
 import com.trendyol.uicomponents.timelineviewcompose.model.TimelineItem
 
 internal object TimelineViewItemProvider {
@@ -135,6 +136,82 @@ internal object TimelineViewItemProvider {
             imageConfig = getImageConfig(false),
         )
         return listOf(item1, item2, item3, item4, item5, item6, item7)
+    }
+
+    internal fun createHorizontalWithIndexTimelineItems(
+        lineAnimationEnabled: Boolean = false,
+        pointAnimationEnabled: Boolean = false,
+    ): List<TimelineItem.PointWithIndex> {
+        //passive
+        val item1 = TimelineItem.PointWithIndex(
+            pointConfig = PointConfig(
+                outSideColor = colorGray,
+                insideColor = colorWhite
+            ),
+            text = "Kredi ile Öde",
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
+            indexTextStyle = TextStyle(color = Color.Gray),
+            lineConfig = LineConfig(color = colorGray),
+        )
+
+        //passive
+        val item2 = TimelineItem.PointWithIndex(
+            pointConfig = PointConfig(
+                outSideColor = colorGray,
+                insideColor = colorWhite
+            ),
+            text = "Sms Onayı",
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
+            indexTextStyle = TextStyle(color = Color.Gray),
+            lineConfig = LineConfig(color = colorGray),
+        )
+
+        //active
+        val item3 = TimelineItem.PointWithIndex(
+            pointConfig = PointConfig(
+                outSideColor = colorWhite,
+                insideColor = colorGreen,
+                animation = if (pointAnimationEnabled) PointAnimation(startDelay = 2000) else null
+            ),
+            text = "Kredi Teklifleri",
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = colorGreen
+            ),
+            lineConfig = LineConfig(color = colorGray),
+            indexTextStyle = TextStyle(color = Color.White),
+            pointShadowConfig = PointShadowConfig(
+                elevation = 7,
+                color = Color.Black,
+                alpha = 0.6f,
+            )
+        )
+
+        //passive
+        val item4 = TimelineItem.PointWithIndex(
+            pointConfig = PointConfig(
+                outSideColor = colorGray,
+                insideColor = colorWhite
+            ),
+            text = "Banka Onayı",
+            textStyle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp,
+                color = Color.Gray
+            ),
+            indexTextStyle = TextStyle(color = Color.Gray),
+            lineConfig = getLineConfig(colorGray)
+        )
+        return listOf(item1, item2, item3, item4)
     }
 }
 

@@ -2,10 +2,12 @@ package com.trendyol.uicomponents.timelineviewcompose.model
 
 import androidx.compose.ui.unit.Dp
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.constraintlayout.compose.Dimension
 
 internal const val PointLayoutId = "point"
 internal const val LineLayoutId = "line"
 internal const val TextLayoutId = "text"
+internal const val IndexTextLayoutId = "indexText"
 
 internal fun getHorizontalConstraintSet(marginFromPoint: Dp): ConstraintSet {
     return ConstraintSet {
@@ -35,6 +37,7 @@ internal fun getVerticalConstraintSet(marginFromPoint: Dp): ConstraintSet {
         val point = createRefFor(PointLayoutId)
         val text = createRefFor(TextLayoutId)
         val line = createRefFor(LineLayoutId)
+        val indexText = createRefFor(IndexTextLayoutId)
 
         constrain(point) {
             top.linkTo(parent.top)
@@ -52,6 +55,44 @@ internal fun getVerticalConstraintSet(marginFromPoint: Dp): ConstraintSet {
             top.linkTo(point.bottom)
             start.linkTo(point.start)
             end.linkTo(point.end)
+        }
+
+        constrain(indexText) {
+            centerHorizontallyTo(point)
+            centerVerticallyTo(point)
+        }
+    }
+}
+
+internal fun getHorizontalWithIndexConstraintSet(
+    marginFromPoint: Dp,
+    itemWidth: Dp
+): ConstraintSet {
+    return ConstraintSet {
+        val point = createRefFor(PointLayoutId)
+        val text = createRefFor(TextLayoutId)
+        val line = createRefFor(LineLayoutId)
+        val indexText = createRefFor(IndexTextLayoutId)
+
+        constrain(point) {
+            start.linkTo(parent.start)
+            top.linkTo(parent.top)
+        }
+
+        constrain(text) {
+            centerHorizontallyTo(point)
+            top.linkTo(point.bottom, marginFromPoint)
+            width = Dimension.value(itemWidth)
+        }
+
+        constrain(line) {
+            centerVerticallyTo(point)
+            start.linkTo(point.end)
+        }
+
+        constrain(indexText) {
+            centerHorizontallyTo(point)
+            centerVerticallyTo(point)
         }
     }
 }

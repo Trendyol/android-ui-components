@@ -30,10 +30,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trendyol.uicomponents.samplecompose.TimelineViewItemProvider.createHorizontalWithIndexTimelineItems
 import com.trendyol.uicomponents.samplecompose.TimelineViewItemProvider.createTimelineImageItems
 import com.trendyol.uicomponents.samplecompose.TimelineViewItemProvider.createTimelineItems
 import com.trendyol.uicomponents.samplecompose.ui.theme.ColorBackground
 import com.trendyol.uicomponents.samplecompose.ui.theme.ColorPrimary
+import com.trendyol.uicomponents.timelineviewcompose.HorizontalTimelineWithIndexTextView
 import com.trendyol.uicomponents.timelineviewcompose.TimelineView
 import com.trendyol.uicomponents.timelineviewcompose.model.TimelineOrientation
 
@@ -131,6 +133,13 @@ private fun HorizontalItems(modifier: Modifier = Modifier, animationEnabled: Boo
             )
 
             ItemDescription("image items")
+        }
+        ContentWithBorder {
+            HorizontalTimelineWithIndexTextView(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                items = createHorizontalWithIndexTimelineItems(),
+            )
+            ItemDescription("items with index text")
         }
     }
 }
