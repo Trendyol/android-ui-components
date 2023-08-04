@@ -55,9 +55,22 @@ dependencies {
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
 
 # License
+--------
+    Copyright 2023 Trendyol.com
 
-```
-Copyright 2023 Trendyol.com    Licensed under the Apache License, Version 2.0 (the "License");    you may not use this file except in compliance with the License.    You may obtain a copy of the License at    
-   http://www.apache.org/licenses/LICENSE-2.0    
-Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an "AS IS" BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License.
-```
+    Copyright 2022 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    Placeholder.kt file in androidx project has been renamed to Shimmer.kt and modified to fit our needs
+    https://github.com/androidx/androidx/blob/8da8b8938ee44b72bd258b15eb623680b3fcbb29/wear/compose/compose-material/src/main/java/androidx/wear/compose/material/Placeholder.kt
