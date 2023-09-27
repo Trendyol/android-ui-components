@@ -1,9 +1,14 @@
 package com.trendyol.uicomponents
 
+import android.app.DownloadManager
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.webkit.DownloadListener
+import android.webkit.URLUtil
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +29,10 @@ class DialogsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDialogsBinding
 
+    private val downloadManager: DownloadManager? by lazy(LazyThreadSafetyMode.NONE) {
+        getSystemService(DOWNLOAD_SERVICE) as? DownloadManager
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDialogsBinding.inflate(layoutInflater)
@@ -36,6 +45,9 @@ class DialogsActivity : AppCompatActivity() {
             buttonSelectionWithSearchDialog.setOnClickListener { showSelectionWithSearchDialog() }
             buttonInfoDialogWebview.setOnClickListener { showInfoDialogWithWebView() }
             buttonInfoListDialog.setOnClickListener { showInfoListDialog() }
+            buttonInfoDialogWithWebviewDownloadListener.setOnClickListener {
+                showInfoDialogWithWebViewDownloadListener()
+            }
         }
     }
 
@@ -160,6 +172,30 @@ class DialogsActivity : AppCompatActivity() {
                     R.drawable.shape_info_list_dialog_divider
                 )
             )
+        }.showDialog(supportFragmentManager)
+    }
+
+    private fun showInfoDialogWithWebViewDownloadListener() {
+        infoDialog {
+            title = "Info Dialog with WebView Download Listener"
+            webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol")
+            showContentAsHtml = true
+            titleTextColor = R.color.civ_error_stroke
+            showCloseButton = true
+            webViewBuilder = {
+                settings.javaScriptEnabled = true
+            }
+            webViewDownloadListener = DownloadListener { url, _, contentDisposition, mimetype, _ ->
+                val downloadRequest = DownloadManager.Request(Uri.parse(url))
+                    .setTitle(title)
+                    .setMimeType(mimetype)
+                    .setDestinationInExternalPublicDir(
+                        Environment.DIRECTORY_DOWNLOADS,
+                        URLUtil.guessFileName(url, contentDisposition, mimetype)
+                    )
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                downloadManager?.enqueue(downloadRequest)
+            }
         }.showDialog(supportFragmentManager)
     }
 

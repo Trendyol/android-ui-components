@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
+import android.webkit.DownloadListener
 import android.webkit.WebView
 import androidx.annotation.DrawableRes
 
@@ -29,6 +30,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var webViewBuilder: (WebView.() -> Unit)? = null
     var horizontalPadding: Float? = null
     var verticalPadding: Float? = null
+    var webViewDownloadListener: DownloadListener? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -52,6 +54,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
                 this.onDismissListener = it.onDialogDismissListener ?: {}
+                this.webViewDownloadListener = it.webViewDownloadListener
             }
         }
     }

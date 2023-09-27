@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
   
-$dialogsVersion = dialogs-1.4.1 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.4.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -44,6 +44,7 @@ Simple dialog to show information, error or text.
 | `contentImage`                  | Int                      | Drawable resource id of an visual, will be shown on top of `content`                                                      | 0             |
 | `webViewContent`                | WebViewContent           | If you provide a webview content such as Html data content or url , that will be shown in the webview.                    | null          |
 | `webViewBuilder`                | WebViewBuilder           | If you provide a webview content such as Html data content or url , necessary settings should we given via webViewBuilder | null          |
+| `webViewDownloadListener`       | DownloadListener         | If you need to handle download action in webview, you need to provide webViewDownloadListener to handle events            | null          |
   
 Sample usage:
  ```kotlin 
