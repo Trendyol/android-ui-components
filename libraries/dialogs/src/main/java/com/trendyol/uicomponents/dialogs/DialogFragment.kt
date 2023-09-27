@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
+import android.webkit.DownloadListener
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import androidx.core.widget.doAfterTextChanged
@@ -31,6 +32,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     var onItemSelectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onItemReselectedListener: ((DialogFragment, Int) -> Unit)? = null
     var onDismissListener: ((DialogFragment) -> Unit)? = null
+    var webViewDownloadListener: DownloadListener? = null
 
     internal lateinit var binding: FragmentDialogBinding
     private val dialogArguments by lazy(LazyThreadSafetyMode.NONE) {
@@ -237,6 +239,16 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     override fun onDismiss(dialog: DialogInterface) {
         onDismissListener?.invoke(this@DialogFragment)
         super.onDismiss(dialog)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.webViewContent.setDownloadListener(webViewDownloadListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.webViewContent.setDownloadListener(null)
     }
 
     companion object {
