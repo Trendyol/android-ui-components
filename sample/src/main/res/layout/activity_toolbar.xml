@@ -6,73 +6,187 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar height: actionBarSize"
-        tools:ignore="HardcodedText" />
-
-    <com.trendyol.uicomponents.toolbar.Toolbar
-        android:id="@+id/toolbar1"
-        app:leftImageContentDescription="Back"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar height: 100dp, custom background with upper left text"
-        tools:ignore="HardcodedText" />
+        <com.trendyol.uicomponents.toolbar.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:middleText="Toolbar Samples" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <com.trendyol.uicomponents.toolbar.Toolbar
-        android:id="@+id/toolbar2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:middleText="@string/app_name"
-        app:toolbarBackground="@android:drawable/editbox_background_normal" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar height: wrap_content, programmatically set"
-        tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.trendyol.uicomponents.toolbar.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar1"
+                android:textAlignment="center" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar height: actionBarSize, set with attributes"
-        tools:ignore="HardcodedText" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: actionBarSize"
+                tools:ignore="HardcodedText" />
 
-    <com.trendyol.uicomponents.toolbar.Toolbar
-        android:id="@+id/toolbar4"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="8dp"
-        app:lowerLeftText="lowerLeftText"
-        app:lowerRightText="lowerRightText"
-        app:rightImageDrawable="@drawable/trendyol_uicomponents_toolbar_arrow_back"
-        app:rightImageContentDescription="Right Arrow"
-        app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
-        app:toolbarBackground="?attr/colorPrimary"
-        app:upperLeftText="upperLeftText"
-        app:upperRightText="upperRightText" />
+            <com.trendyol.uicomponents.toolbar.Toolbar
+                android:id="@+id/toolbar1"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:leftImageContentDescription="Back" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar height: actionBarSize, hideLeftImage: true, upperLeftTextMarginStart: 8dp"
-        tools:ignore="HardcodedText" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blackSuperAlpha" />
 
-    <com.trendyol.uicomponents.toolbar.Toolbar
-        android:id="@+id/toolbar5"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:upperLeftText="upperLeftText"
-        app:upperLeftTextMarginStart="8dp"
-        app:hideLeftImage="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar2"
+                android:textAlignment="center" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: 100dp, custom background with upper left text"
+                tools:ignore="HardcodedText" />
+
+            <com.trendyol.uicomponents.toolbar.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:middleText="@string/app_name"
+                app:toolbarBackground="@android:drawable/editbox_background_normal" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blackSuperAlpha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar3"
+                android:textAlignment="center" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: wrap_content, programmatically set"
+                tools:ignore="HardcodedText" />
+
+            <com.trendyol.uicomponents.toolbar.Toolbar
+                android:id="@+id/toolbar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blackSuperAlpha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar4"
+                android:textAlignment="center" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: actionBarSize, set with attributes"
+                tools:ignore="HardcodedText" />
+
+            <com.trendyol.uicomponents.toolbar.Toolbar
+                android:id="@+id/toolbar4"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="8dp"
+                app:lowerLeftText="lowerLeftText"
+                app:lowerRightText="lowerRightText"
+                app:rightImageContentDescription="Right Arrow"
+                app:rightImageDrawable="@drawable/trendyol_uicomponents_toolbar_arrow_back"
+                app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+                app:toolbarBackground="?attr/colorPrimary"
+                app:upperLeftText="upperLeftText"
+                app:upperRightText="upperRightText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blackSuperAlpha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar5"
+                android:textAlignment="center" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: actionBarSize, upperLeftTextMarginStart: 8dp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.trendyol.uicomponents.toolbar.Toolbar
+                    android:id="@+id/toolbar5"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:upperLeftText="upperLeftText"
+                    app:upperLeftTextMarginStart="8dp" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blackSuperAlpha" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="toolbar6"
+                android:textAlignment="center" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar height: actionBarSize, hideLeftImage: true, upperLeftTextMarginStart: 8dp, upperRightTextMarginEnd: 8dp"
+                tools:ignore="HardcodedText" />
+
+            <com.trendyol.uicomponents.toolbar.Toolbar
+                android:id="@+id/toolbar6"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:hideLeftImage="true"
+                app:upperLeftText="upperLeftText"
+                app:upperRightText="upperRightText"
+                app:upperRightTextMarginEnd="8dp"
+                app:upperLeftTextMarginStart="8dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
