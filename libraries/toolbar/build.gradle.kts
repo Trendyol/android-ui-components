@@ -15,6 +15,7 @@ android {
 
         consumerProguardFiles("consumer-rules.pro")
     }
+    buildFeatures.viewBinding = true
     buildTypes {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
             isMinifyEnabled = false
