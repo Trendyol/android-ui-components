@@ -46,6 +46,8 @@ To customize **Toolbar** you can set [ToolbarViewState](src/main/java/com/trendy
 | `app:hideLeftImage` | Hide flag for left image. | false | `app:hideLeftImage="true"` |
 | `app:leftImageContentDescription` | Text for Left Image of Talkback | "" | `app:hideLeftImage="Back"` |
 | `app:rightImageContentDescription` | Text for Right Image of Talkback | "" | `app:hideLeftImage="Add"` |
+| `app:rightImageDrawableVerticalMargin` | Vertical margin for right drawable | 0 | `app:rightImageDrawableVerticalMargin="12dp"`|
+| `app:enableDotPoint` | Right drawable's dots point enabled status | false | `app:enableDotPoint="true"` |
 
 Sample usage with attributes:
 

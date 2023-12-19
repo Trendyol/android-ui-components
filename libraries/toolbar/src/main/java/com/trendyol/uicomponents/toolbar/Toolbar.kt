@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
+import androidx.core.view.isVisible
 
 class Toolbar : ConstraintLayout {
 
@@ -103,6 +104,10 @@ class Toolbar : ConstraintLayout {
                 )
             val rightImageDrawableMarginEnd =
                 getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
+            val rightImageDrawableVerticalMargin =
+                getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableVerticalMargin, 0)
+            val enableDotPoint =
+                getBoolean(R.styleable.Toolbar_enableDotPoint, false)
             val leftImageDrawableMarginStart =
                 getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
             val hideLeftImage = getBoolean(R.styleable.Toolbar_hideLeftImage, false)
@@ -127,6 +132,8 @@ class Toolbar : ConstraintLayout {
                 lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
                 rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
                 leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
+                rightImageDrawableVerticalMarginInPixel = rightImageDrawableVerticalMargin,
+                enableDotPoint = enableDotPoint,
                 hideLeftImage = hideLeftImage,
                 leftImageContentDescription = leftImageContentDescription,
                 rightImageContentDescription = rightImageContentDescription
@@ -148,6 +155,9 @@ class Toolbar : ConstraintLayout {
             binding.imageRight.setDrawableResource(rightImageDrawableResId)
             binding.imageRight.setEndMargin(rightImageDrawableMarginEndInPixel)
             binding.imageRight.contentDescription = rightImageContentDescription
+            binding.imageRight.setVerticalPadding(rightImageDrawableVerticalMarginInPixel)
+
+            binding.imageViewDot.isVisible = enableDotPoint
 
             binding.textLeftUp.text = upperLeftTextValue
             binding.textLeftUp.visibility = upperLeftTextVisibility
