@@ -30,6 +30,8 @@ data class ToolbarViewState(
     @Px val lowerRightTextMarginEndInPixel: Int? = null,
     @Px val rightImageDrawableMarginEndInPixel: Int? = null,
     @Px val leftImageDrawableMarginStartInPixel: Int? = null,
+    @Px val rightImageDrawableVerticalMarginInPixel: Int? = null,
+    val enableDotPoint: Boolean = false,
     val isUpperRightTextEnabled: Boolean = true,
     val hideLeftImage: Boolean = false,
     val leftImageContentDescription: String = "",

@@ -35,6 +35,11 @@ internal fun View.setEndMargin(endMargin: Int?) {
     }
 }
 
+internal fun AppCompatImageView.setVerticalPadding(padding: Int?) {
+    if (padding == null) return
+    this.setPadding(0, padding, 0, padding)
+}
+
 /**
  * Set debounce time(millis) to onClickListener for prevent multiple clicks.
  * @param debounceMillis: Millis time that gives delay between clicks.

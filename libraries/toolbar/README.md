@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240"/>
 
-$toolbarVersion = toolbar-2.1.0  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$toolbarVersion = toolbar-2.1.2  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Toolbar
 Toolbar is alternative implementation of Toolbar component on Android.
@@ -46,6 +46,8 @@ To customize **Toolbar** you can set [ToolbarViewState](src/main/java/com/trendy
 | `app:hideLeftImage` | Hide flag for left image. | false | `app:hideLeftImage="true"` |
 | `app:leftImageContentDescription` | Text for Left Image of Talkback | "" | `app:hideLeftImage="Back"` |
 | `app:rightImageContentDescription` | Text for Right Image of Talkback | "" | `app:hideLeftImage="Add"` |
+| `app:rightImageDrawableVerticalMargin` | Vertical margin for right drawable | 0 | `app:rightImageDrawableVerticalMargin="12dp"`|
+| `app:enableDotPoint` | Right drawable's dots point enabled status | false | `app:enableDotPoint="true"` |
 
 Sample usage with attributes:
 

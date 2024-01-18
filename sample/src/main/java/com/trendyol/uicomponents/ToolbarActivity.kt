@@ -25,10 +25,13 @@ class ToolbarActivity : AppCompatActivity() {
     private fun setUpToolbar3() {
         with(binding.toolbar3) {
             viewState = ToolbarViewState(
-                rightImageDrawableResId = android.R.drawable.ic_menu_add,
+                rightImageDrawableResId = R.drawable.ic_info,
                 rightImageContentDescription = "Add",
                 middleText = "<h1>HTML text</h1>",
-                upperLeftTextMarginStartInPixel = 20
+                upperLeftTextMarginStartInPixel = 20,
+                rightImageDrawableMarginEndInPixel = 0,
+                rightImageDrawableVerticalMarginInPixel = 0,
+                enableDotPoint = true
             )
 
             lowerLeftTextClickListener = { showToast("toolbar3.lowerLeftTextClickListener") }
