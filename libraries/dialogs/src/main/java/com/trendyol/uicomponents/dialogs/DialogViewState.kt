@@ -8,10 +8,13 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
+import com.trendyol.dialog.R
 
 data class DialogViewState(
     val title: CharSequence?,
     private val showCloseButton: Boolean?,
+    @ColorRes val closeButtonColor: Int?,
+    @DrawableRes val closeButtonDrawable: Int?,
     private val content: CharSequence,
     val showContentAsHtml: Boolean,
     @DrawableRes val contentImage: Int?,
@@ -58,6 +61,17 @@ data class DialogViewState(
     }
 
     fun getCloseButtonVisibility(): Int = if (showCloseButton == true) View.VISIBLE else View.GONE
+
+    fun getCloseButtonDrawable(
+        context: Context
+    ): Drawable? {
+        val drawableId = closeButtonDrawable ?: R.drawable.ic_ui_components_dialogs_close
+        return ContextCompat.getDrawable(context, drawableId)?.apply {
+            closeButtonColor?.let { color ->
+                setTint(ContextCompat.getColor(context, color))
+            }
+        }
+    }
 
     fun getContentImageVisibility(): Int = if (contentImage?.takeIf { it != 0 } != null) View.VISIBLE else View.GONE
 
