@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.dialogs
 import android.text.SpannableString
 import android.webkit.DownloadListener
 import android.webkit.WebView
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 
 open class Builder internal constructor() {
@@ -12,8 +13,8 @@ open class Builder internal constructor() {
     var titleTextColor: Int? = null
     var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
-    var closeButtonColor: Int? = null
-    var closeButtonDrawable: Int? = null
+    @ColorInt var closeButtonColor: Int? = null
+    @DrawableRes var closeButtonDrawable: Int? = null
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
     var onDialogDismissListener: ((DialogFragment) -> Unit)? = null
