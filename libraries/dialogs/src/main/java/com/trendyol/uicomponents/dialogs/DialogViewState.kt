@@ -13,7 +13,7 @@ import com.trendyol.dialog.R
 data class DialogViewState(
     val title: CharSequence?,
     private val showCloseButton: Boolean?,
-    @ColorRes val closeButtonColor: Int?,
+    @ColorInt val closeButtonColor: Int?,
     @DrawableRes val closeButtonDrawable: Int?,
     private val content: CharSequence,
     val showContentAsHtml: Boolean,
@@ -67,9 +67,7 @@ data class DialogViewState(
     ): Drawable? {
         val drawableId = closeButtonDrawable ?: R.drawable.ic_ui_components_dialogs_close
         return ContextCompat.getDrawable(context, drawableId)?.apply {
-            closeButtonColor?.let { color ->
-                setTint(ContextCompat.getColor(context, color))
-            }
+            closeButtonColor?.let { color -> setTint(color) }
         }
     }
 
