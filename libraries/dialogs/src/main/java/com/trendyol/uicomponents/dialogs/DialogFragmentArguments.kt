@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.dialogs
 import android.os.Bundle
 import android.os.Parcelable
 import android.webkit.WebView
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.os.bundleOf
@@ -12,6 +13,8 @@ import kotlinx.parcelize.Parcelize
 class DialogFragmentArguments(
     val title: CharSequence? = null,
     val showCloseButton: Boolean? = null,
+    @ColorInt val closeButtonColor: Int? = null,
+    @DrawableRes val closeButtonDrawable: Int? = null,
     val animateCornerRadiusWhenExpand: Boolean = true,
     val cornerRadius: Float? = null,
     val horizontalPadding: Float? = null,

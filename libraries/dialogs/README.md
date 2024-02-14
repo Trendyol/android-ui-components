@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-1.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-2.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-3.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-4.png" width="280"/> <img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/dialogs-5.png" width="280"/>
   
-$dialogsVersion = dialogs-1.4.2 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$dialogsVersion = dialogs-1.4.3 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
   
 ## Dialogs  
 Dialogs is a bunch of BottomSheetDialogs to use in app to show user an information, agreement or list.  
@@ -34,6 +34,8 @@ Simple dialog to show information, error or text.
 |---------------------------------|--------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------|
 | `title`                         | CharSequence             | Title of the dialog                                                                                                       | ""            |
 | `showCloseButton`               | Boolean                  | Close button visibility                                                                                                   | false         |
+| `closeButtonColor`              | Int                      | Close button color                                                                                                        | false         |
+| `closeButtonDrawable`           | Int                      | Close button drawable                                                                                                     | false         |
 | `animateCornerRadiusWhenExpand` | Boolean                  | Corner radius will be removed with an animation when set true.                                                            | false         |  
 | `cornerRadius`                  | Float                    | Corner radius will be applied.                                                                                            | 16dp          |
 | `horizontalPadding`             | Float                    | Horizontal padding will be applied.                                                                                       | 16dp          |
@@ -48,12 +50,14 @@ Simple dialog to show information, error or text.
   
 Sample usage:
  ```kotlin 
- infoDialog { 
+ infoDialog {
     title = "Info Title"
-	showCloseButton = true	
-	closeButtonListener = { onInfoDialogClosed(it) }
-	content = SpannableString.valueOf(getSpannableString())  
-	contentImage = android.R.drawable.btn_plus 
+    showCloseButton = true
+    closeButtonColor = R.color.sample_color
+    closeButtonDrawable = R.drawable.sample_drawable
+    closeButtonListener = { onInfoDialogClosed(it) }
+    content = SpannableString.valueOf(getSpannableString())
+    contentImage = android.R.drawable.btn_plus
 }.show(supportFragmentManager)
 ```
 

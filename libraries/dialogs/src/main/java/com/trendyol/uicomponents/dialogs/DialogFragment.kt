@@ -147,6 +147,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
         val viewState = DialogViewState(
             title = dialogArguments.title,
             showCloseButton = dialogArguments.showCloseButton,
+            closeButtonColor = dialogArguments.closeButtonColor,
+            closeButtonDrawable = dialogArguments.closeButtonDrawable,
             content = dialogArguments.content ?: SpannableString(""),
             showContentAsHtml = dialogArguments.showContentAsHtml,
             contentImage = dialogArguments.contentImage,
@@ -173,7 +175,10 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 textAlignment = viewState.getTitleTextPosition()
                 setTextColor(viewState.getTitleTextColor(context))
             }
-            viewDialogHeader.imageClose.visibility = viewState.getCloseButtonVisibility()
+            with(viewDialogHeader.imageClose) {
+                visibility = viewState.getCloseButtonVisibility()
+                setImageDrawable(viewState.getCloseButtonDrawable(context))
+            }
             with(imageContent) {
                 setImageDrawable(viewState.getContentImageDrawable(context))
                 visibility = viewState.getContentImageVisibility()

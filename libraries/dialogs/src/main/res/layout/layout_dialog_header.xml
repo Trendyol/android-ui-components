@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/viewTitleBackground"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:paddingStart="@dimen/ui_components_dialogs_margin_outer"
-    android:paddingEnd="@dimen/ui_components_dialogs_margin_outer">
+    android:paddingStart="@dimen/ui_components_dialogs_margin_outer">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textTitle"
@@ -22,8 +20,9 @@
         android:id="@+id/imageClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:background="?selectableItemBackgroundBorderless"
-        android:padding="@dimen/ui_components_dialogs_margin_inner"
+        android:layout_gravity="center"
+        android:background="?actionBarItemBackground"
+        android:padding="@dimen/ui_components_dialogs_close_margin_outer"
         app:srcCompat="@drawable/ic_ui_components_dialogs_close" />
+
 </LinearLayout>

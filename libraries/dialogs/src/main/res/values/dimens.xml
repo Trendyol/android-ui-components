@@ -2,6 +2,7 @@
 <resources>
 
     <dimen name="ui_components_dialogs_margin_outer">16dp</dimen>
+    <dimen name="ui_components_dialogs_close_margin_outer">12dp</dimen>
     <dimen name="ui_components_dialogs_margin_inner">8dp</dimen>
 
     <dimen name="ui_components_dialogs_corner_radius">16dp</dimen>

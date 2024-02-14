@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.dialogs
 import android.text.SpannableString
 import android.webkit.DownloadListener
 import android.webkit.WebView
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 
 open class Builder internal constructor() {
@@ -12,6 +13,8 @@ open class Builder internal constructor() {
     var titleTextColor: Int? = null
     var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
+    @ColorInt var closeButtonColor: Int? = null
+    @DrawableRes var closeButtonDrawable: Int? = null
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
     var onDialogDismissListener: ((DialogFragment) -> Unit)? = null
@@ -38,6 +41,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                 arguments = DialogFragmentArguments(
                     title = it.title,
                     showCloseButton = it.showCloseButton,
+                    closeButtonColor = it.closeButtonColor,
+                    closeButtonDrawable = it.closeButtonDrawable,
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,
                     horizontalPadding = it.horizontalPadding,
@@ -73,6 +78,8 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                 arguments = DialogFragmentArguments(
                     title = it.title,
                     showCloseButton = it.showCloseButton,
+                    closeButtonColor = it.closeButtonColor,
+                    closeButtonDrawable = it.closeButtonDrawable,
                     content = SpannableString(it.content),
                     cornerRadius = it.cornerRadius,
                     horizontalPadding = it.horizontalPadding,
@@ -110,6 +117,8 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                 arguments = DialogFragmentArguments(
                     title = it.title,
                     showCloseButton = it.showCloseButton,
+                    closeButtonColor = it.closeButtonColor,
+                    closeButtonDrawable = it.closeButtonDrawable,
                     content = SpannableString(it.content),
                     showContentAsHtml = it.showContentAsHtml,
                     contentImage = it.contentImage,
@@ -148,6 +157,8 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                 arguments = DialogFragmentArguments(
                     title = it.title,
                     showCloseButton = it.showCloseButton,
+                    closeButtonColor = it.closeButtonColor,
+                    closeButtonDrawable = it.closeButtonDrawable,
                     content = SpannableString(it.content),
                     animateCornerRadiusWhenExpand = it.animateCornerRadiusWhenExpand,
                     cornerRadius = it.cornerRadius,

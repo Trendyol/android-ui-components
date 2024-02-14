@@ -77,6 +77,7 @@ class DialogsActivity : AppCompatActivity() {
         infoDialog {
             title = "Info Dialog Sample"
             showCloseButton = true
+            closeButtonColor = ContextCompat.getColor(this@DialogsActivity, R.color.civ_error_stroke)
             closeButtonListener = infoDialogClosed
             content = SpannableString.valueOf(getSpannableString())
             contentImage = R.mipmap.ic_launcher_round
