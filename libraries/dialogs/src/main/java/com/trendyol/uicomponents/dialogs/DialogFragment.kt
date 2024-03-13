@@ -196,6 +196,10 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                     dialogArguments.webViewBuilder?.invoke(webViewContent)
 
                     loadWebViewContent(viewState.webViewContent)
+                    if (dialogArguments.isFullHeightWebView) {
+                        binding.webViewContent.layoutParams.height =
+                            resources.displayMetrics.heightPixels
+                    }
                 }
             }
             with(editTextSearch) {

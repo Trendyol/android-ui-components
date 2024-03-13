@@ -40,6 +40,7 @@ class DialogFragmentArguments(
     val webViewBuilder: (WebView.() -> Unit)? = null,
     val infoListItems: List<Pair<CharSequence, CharSequence>>? = null,
     val itemDividers: List<ItemDivider> = emptyList(),
+    val isFullHeightWebView : Boolean = false
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)
