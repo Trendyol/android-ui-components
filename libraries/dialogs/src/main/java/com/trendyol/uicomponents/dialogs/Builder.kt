@@ -19,6 +19,7 @@ open class Builder internal constructor() {
     var animateCornerRadiusWhenExpand: Boolean = false
     var onDialogDismissListener: ((DialogFragment) -> Unit)? = null
     var cornerRadius: Float? = null
+    var isFullHeightWebView: Boolean = false
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -56,6 +57,7 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     contentTextPosition = it.contentTextPosition,
                     webViewContent = it.webViewContent,
                     webViewBuilder = it.webViewBuilder,
+                    isFullHeightWebView = it.isFullHeightWebView
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
                 this.onDismissListener = it.onDialogDismissListener ?: {}
