@@ -32,5 +32,9 @@ fun SampleComposeNavGraph(
         composable(Route.RatingBar.destination) {
             RatingBarScreen()
         }
+
+        composable(Route.Shimmer.destination) {
+            ShimmerScreen()
+        }
     }
 }

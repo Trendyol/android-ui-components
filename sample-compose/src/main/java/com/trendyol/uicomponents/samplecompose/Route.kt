@@ -7,4 +7,6 @@ sealed class Route(val destination: String) {
     object TimelineView : Route("timelineView")
 
     object RatingBar : Route("ratingbar")
+
+    object Shimmer : Route("shimmer")
 }

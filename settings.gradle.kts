@@ -13,6 +13,7 @@ include(":libraries:touch-delegator")
 include(":libraries:fit-option-message-view")
 include(":libraries:timeline-view-compose")
 include(":libraries:rating-bar-compose")
+include(":libraries:shimmer-compose")
 
 rootProject.name = "trendyol-android-ui-components"
 

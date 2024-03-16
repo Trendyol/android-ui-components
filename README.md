@@ -26,7 +26,7 @@ UI Components includes several custom views for Android platform to make develop
 * [TimelineView](libraries/timeline-view): **TimelineView** for creating a timeline and show actions on it.
 * [TimelineViewCompose](libraries/timeline-view-compose): **TimelineView** for creating a timeline for compose and show actions on it.
 * [FitOptionMessage](libraries/fit-option-message-view): **FitOptionMessageView** for displaying text views with clipped imageviews.
-
+* [Shimmer](libraries/shimmer-compose): **Shimmer** for displaying shimmer for loading state.
 License
 --------
     Copyright 2022 Trendyol.com
