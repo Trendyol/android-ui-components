@@ -1,6 +1,6 @@
-<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240"/>
+<img src="https://raw.githubusercontent.com/Trendyol/android-ui-components/master/images/toolbar-1.png" width="240" alt:"Toolbar preview" />
 
-$toolbarVersion = toolbar-2.1.2  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+$toolbarVersion = toolbar-2.2.0  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Toolbar
 Toolbar is alternative implementation of Toolbar component on Android.
@@ -26,28 +26,32 @@ dependencies {
 
 To customize **Toolbar** you can set [ToolbarViewState](src/main/java/com/trendyol/uicomponents/toolbar/ToolbarViewState.kt) via calling `Toolbar.setViewState` or use attributes listed below. All given text attributes will be formatted as [HTML](https://developer.android.com/reference/android/text/Html).
 
-| Attribute | Description | Default Value | Sample Usage |
-| ------------- | ------------- | ------------- | ------------- |
-| `app:leftImageDrawable` | Left image drawable resource. | ic_arrow_back | `app:leftImageDrawable="@drawable/ic_back"` |
-| `app:middleImageDrawable` | Middle image drawable resource. | 0 | `app:middleImageDrawable="@drawable/ic_logo"` |
-| `app:rightImageDrawable` | Right image drawable resource. | 0 | `app:rightImageDrawable="@drawable/ic_close"` |
-| `app:upperLeftText` | Upper left text resource. | null | `app:upperLeftText="@string/list_title"` |
-| `app:lowerLeftText` | Lower left text resource. If upper left text is set and this is not set, upper left text would be centered vertically. | null | `app:lowerLeftText="@string/list_item_description"` |
-| `app:middleText` | Middle text resource. | null | `app:middleText="@string/app_name"` |
-| `app:upperRightText` | Upper right text resource. | null | `app:upperRightText="@string/action_select_all"` |
-| `app:lowerRightText` | Lower right text resource. If upper left text is set and this is not set, upper left text would be centered vertically. | null | `app:lowerRightText="@string/action_clear"` |
-| `app:toolbarBackground` | Background color or drawable resource. | android.R.color.white | `app:toolbarBackground="@drawable/toolbar_background"` |
-| `app:upperLeftTextMarginStart` | Start margin for upper left text. | trendyol_uicomponents_toolbar_margin_left_side_text | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
-| `app:lowerLeftTextMarginStart` | Start margin for lower left text. | trendyol_uicomponents_toolbar_margin_left_side_text | `app:lowerLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
-| `app:upperRightTextMarginEnd` | End margin for upper right text. | trendyol_uicomponents_toolbar_margin_outer | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
-| `app:lowerRightTextMarginEnd` | End margin for upper right text. | trendyol_uicomponents_toolbar_margin_outer | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
-| `app:leftImageDrawableMarginStart` | Start margin for left drawable. | 0 | `app:upperLeftTextMarginStart="@dimen/trendyol_uicomponents_toolbar_margin_left_side_text"` |
-| `app:rightImageDrawableMarginEnd` | End margin for left drawable. | 0 | `app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_right_side_icon"` |
-| `app:hideLeftImage` | Hide flag for left image. | false | `app:hideLeftImage="true"` |
-| `app:leftImageContentDescription` | Text for Left Image of Talkback | "" | `app:hideLeftImage="Back"` |
-| `app:rightImageContentDescription` | Text for Right Image of Talkback | "" | `app:hideLeftImage="Add"` |
-| `app:rightImageDrawableVerticalMargin` | Vertical margin for right drawable | 0 | `app:rightImageDrawableVerticalMargin="12dp"`|
-| `app:enableDotPoint` | Right drawable's dots point enabled status | false | `app:enableDotPoint="true"` |
+:warning: Starting from the `toolbar-2.2.0` version, namings are updated from "left-right" to
+"start-end" on both ToolbarViewState and resource attributes. Component will still support older
+values but its highly recommended to update usages.
+
+| Attribute                                                                       | Description                                                                                                               | Default Value                                               | Sample Usage                                           |
+|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|--------------------------------------------------------|
+| `app:StartImageDrawable` ~~`app:leftImageDrawable`~~                            | Start image drawable resource.                                                                                            | ic_arrow_back                                               | `app:startImageDrawable="@drawable/ic_back"`           |
+| `app:middleImageDrawable`                                                       | Middle image drawable resource.                                                                                           | 0                                                           | `app:middleImageDrawable="@drawable/ic_logo"`          |
+| `app:endImageDrawable` ~~`app:rightImageDrawable`~~                             | End image drawable resource.                                                                                              | 0                                                           | `app:endImageDrawable="@drawable/ic_close"`            |
+| `app:upperStartText` ~~`app:upperLeftText`~~                                    | Upper start text resource.                                                                                                | null                                                        | `app:upperStartText="@string/list_title"`              |
+| `app:lowerStartText` ~~`app:lowerLeftText`~~                                    | Lower start text resource. If upper start text is set and this is not set, upper start text would be centered vertically. | null                                                        | `app:lowerStartText="@string/list_item_description"`   |
+| `app:middleText`                                                                | Middle text resource.                                                                                                     | null                                                        | `app:middleText="@string/app_name"`                    |
+| `app:upperEndText` ~~`app:upperRightText`~~                                     | Upper end text resource.                                                                                                  | null                                                        | `app:upperE dText="@string/action_select_all"`         |
+| `app:lowerEndText` ~~`app:lowerRightText`~~                                     | Lower end text resource. If upper start text is set and this is not set, upper start text would be centered vertically.   | null                                                        | `app:lowerE dText="@string/action_clear"`              |
+| `app:toolbarBackground`                                                         | Background color or drawable resource.                                                                                    | android.R.color.white - #FFFFFF                             | `app:toolbarBackground="@drawable/toolbar_background"` |
+| `app:upperStartTextMarginStart` ~~`app:upperLeftTextMarginStart`~~              | Start margin for upper start text.                                                                                        | trendyol_uicomponents_toolbar_margin_start_side_text - 24dp | `app:upperStartTextMarginStart="@dimen/margin_sample"` |
+| `app:lowerStartTextMarginStart` ~~`app:lowerLeftTextMarginStart`~~              | Start margin for lower start text.                                                                                        | trendyol_uicomponents_toolbar_margin_start_side_text - 24dp | `app:lowerStartTextMarginStart="24dp"`                 |
+| `app:upperEndTextMarginEnd` ~~`app:upperRightTextMarginEnd`~~                   | End margin for upper end text.                                                                                            | trendyol_uicomponents_toolbar_margin_outer - 8dp            | `app:upperEndTextMarginEnd="@dimen/my_margin"`         |
+| `app:lowerEndTextMarginEnd` ~~`app:lowerRightTextMarginEnd`~~                   | End margin for upper end text.                                                                                            | trendyol_uicomponents_toolbar_margin_outer - 8dp            | `app:lowerEndTextMarginEnd="16dp"`                     |
+| `app:startImageDrawableMarginStart` ~~`app:leftImageDrawableMarginStart`~~      | Start margin for start drawable.                                                                                          | 0                                                           | `app:startImageDrawableMarginStart="@dimen/my_margin"` |
+| `app:endImageDrawableMarginEnd` ~~`app:rightImageDrawableMarginEnd`~~           | End margin for start drawable.                                                                                            | 0                                                           | `app:endImageDrawableMarginEnd="32dp"`                 |
+| `app:hideStartImage` ~~`app:hideLeftImage`~~                                    | Hide flag for start image.                                                                                                | false                                                       | `app:hideStartImage="true"`                            |
+| `app:startImageContentDescription` ~~`app:leftImageContentDescription`~~        | Text for start Image of Talkback                                                                                          | ""                                                          | `app:startImageContentDescription="Back"`              |
+| `app:endImageContentDescription` ~~`app:rightImageContentDescription`~~         | Text for end Image of Talkback                                                                                            | ""                                                          | `app:endImageContentDescription="Add"`                 |
+| `app:endImageDrawableVerticalMargin` ~~`app:rightImageDrawableVerticalMargin`~~ | Vertical margin for end drawable                                                                                          | 0                                                           | `app:endImageDrawableVerticalMargin="12dp"`            |
+| `app:enableDotPoint`                                                            | End drawable's dots point enabled status                                                                                  | false                                                       | `app:enableDotPoint="true"`                            |
 
 Sample usage with attributes:
 
@@ -59,7 +63,7 @@ Sample usage with attributes:
         android:layout_height="?attr/actionBarSize"
         app:toolbarBackground="@color/background"
         app:middleText="@string/app_name"
-        app:upperRightText="@string/clear_all" />
+        app:upperEndText="@string/clear_all" />
 
 ```
 
@@ -73,7 +77,7 @@ To set click listener, you can use **Toolbar** instance fields like below.
 
     val toolbar: Toolbar = findViewById(R.id.toolbar)
     
-    toolbar.leftImageClickListener = { onBackPressed() }
+    toolbar.startImageClickListener = { onBackPressed() }
 
 ```
 
@@ -84,9 +88,9 @@ Sample usage with `ToolbarViewState`:
     val toolbar: Toolbar = findViewById(R.id.toolbar)
     
     toolbar.viewState = ToolbarViewState(
-        upperLeftText = "<b>List</b>",
-        leftImageDrawableResId = R.drawable.ic_arrow_back,
-        upperLeftTextAppearance = R.style.MyTextStyle_Body_2
+        upperStartText = "<b>List</b>",
+        startImageDrawableResId = R.drawable.ic_arrow_back,
+        upperStartTextAppearance = R.style.MyTextStyle_Body_2
     )
 
 ```

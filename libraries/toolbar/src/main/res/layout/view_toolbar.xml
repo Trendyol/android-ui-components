@@ -28,7 +28,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textLeftUp"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
         android:ellipsize="end"
@@ -40,12 +40,14 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/imageLeft"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Left Action"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:layout_marginStart="@dimen/trendyol_uicomponents_toolbar_margin_start_side_text"
+        tools:text="Start Action"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textLeftDown"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
         android:ellipsize="end"
@@ -57,7 +59,8 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/imageLeft"
         app:layout_constraintTop_toBottomOf="@id/textLeftUp"
-        tools:text="Left Action down" />
+        tools:layout_marginStart="@dimen/trendyol_uicomponents_toolbar_margin_start_side_text"
+        tools:text="Start Action down" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textMiddle"
@@ -96,7 +99,7 @@
         app:layout_constraintHeight_min="wrap"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Right Action" />
+        tools:text="End Action" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textRightDown"
@@ -108,7 +111,7 @@
         app:layout_constraintEnd_toStartOf="@id/imageRight"
         app:layout_constraintHeight_min="wrap"
         app:layout_constraintTop_toBottomOf="@id/textRightUp"
-        tools:text="Right Action down" />
+        tools:text="End Action down" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageRight"
@@ -126,8 +129,9 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:src="@drawable/orange_dot"
+        app:layout_constraintEnd_toEndOf="@id/imageRight"
         app:layout_constraintTop_toTopOf="@id/imageRight"
-        app:layout_constraintEnd_toEndOf="@id/imageRight"/>
+        tools:ignore="ImageContrastCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideStart"

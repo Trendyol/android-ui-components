@@ -3,24 +3,40 @@
 
     <declare-styleable name="Toolbar">
         <attr name="leftImageDrawable" format="reference" />
+        <attr name="startImageDrawable" format="reference" />
         <attr name="middleImageDrawable" format="reference" />
         <attr name="rightImageDrawable" format="reference" />
+        <attr name="endImageDrawable" format="reference" />
         <attr name="upperLeftText" format="string" />
+        <attr name="upperStartText" format="string" />
         <attr name="lowerLeftText" format="string" />
+        <attr name="lowerStartText" format="string" />
         <attr name="middleText" format="string" />
         <attr name="upperRightText" format="string" />
+        <attr name="upperEndText" format="string" />
         <attr name="lowerRightText" format="string" />
+        <attr name="lowerEndText" format="string" />
         <attr name="toolbarBackground" format="reference" />
         <attr name="upperLeftTextMarginStart" format="dimension" />
+        <attr name="upperStartTextMarginStart" format="dimension" />
         <attr name="lowerLeftTextMarginStart" format="dimension" />
+        <attr name="lowerStartTextMarginStart" format="dimension" />
         <attr name="upperRightTextMarginEnd" format="dimension" />
+        <attr name="upperEndTextMarginEnd" format="dimension" />
         <attr name="lowerRightTextMarginEnd" format="dimension" />
+        <attr name="lowerEndTextMarginEnd" format="dimension" />
         <attr name="rightImageDrawableMarginEnd" format="dimension" />
+        <attr name="endImageDrawableMarginEnd" format="dimension" />
         <attr name="rightImageDrawableVerticalMargin" format="dimension" />
+        <attr name="endImageDrawableVerticalMargin" format="dimension" />
         <attr name="enableDotPoint" format="boolean" />
         <attr name="leftImageDrawableMarginStart" format="dimension" />
+        <attr name="startImageDrawableMarginStart" format="dimension" />
         <attr name="hideLeftImage" format="boolean" />
+        <attr name="hideStartImage" format="boolean" />
         <attr name="leftImageContentDescription" format="string" />
+        <attr name="startImageContentDescription" format="string" />
         <attr name="rightImageContentDescription" format="string" />
+        <attr name="endImageContentDescription" format="string" />
     </declare-styleable>
 </resources>

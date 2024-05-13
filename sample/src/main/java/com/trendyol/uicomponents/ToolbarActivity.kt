@@ -19,7 +19,7 @@ class ToolbarActivity : AppCompatActivity() {
         setUpToolbar3()
         setUpToolbar4()
 
-        binding.toolbar.leftImageClickListener = { onBackPressed() }
+        binding.toolbar.startImageClickListener = { onBackPressed() }
     }
 
     private fun setUpToolbar3() {
@@ -40,18 +40,21 @@ class ToolbarActivity : AppCompatActivity() {
             upperRightTextClickListener = { showToast("toolbar3.upperRightTextClickListener") }
             middleTextClickListener = { showToast("toolbar3.middleTextClickListener") }
             leftImageClickListener = { showToast("toolbar3.leftImageClickListener") }
-            rightImageClickListener = { showToast("toolbar3.rightImageClickListener") }
+            rightImageClickListener = {
+                viewState = viewState.copy(enableDotPoint = viewState.enableDotPoint.not())
+                showToast("toolbar3.rightImageClickListener")
+            }
         }
     }
 
     private fun setUpToolbar4() {
         with(binding.toolbar4) {
-            lowerLeftTextClickListener = { showToast("toolbar4.lowerLeftTextClickListener") }
-            upperLeftTextClickListener = { showToast("toolbar4.upperLeftTextClickListener") }
-            lowerRightTextClickListener = { showToast("toolbar4.lowerRightTextClickListener") }
-            upperRightTextClickListener = { showToast("toolbar4.upperRightTextClickListener") }
-            leftImageClickListener = { showToast("toolbar4.leftImageClickListener") }
-            rightImageClickListener = { showToast("toolbar4.rightImageClickListener") }
+            lowerStartTextClickListener = { showToast("toolbar4.lowerStartTextClickListener") }
+            upperStartTextClickListener = { showToast("toolbar4.upperStartTextClickListener") }
+            lowerEndTextClickListener = { showToast("toolbar4.lowerEndTextClickListener") }
+            upperEndTextClickListener = { showToast("toolbar4.upperEndTextClickListener") }
+            startImageClickListener = { showToast("toolbar4.startImageClickListener") }
+            endImageClickListener = { showToast("toolbar4.endImageClickListener") }
         }
     }
 

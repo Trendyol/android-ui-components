@@ -34,7 +34,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Toolbar height: actionBarSize"
                 tools:ignore="HardcodedText" />
@@ -59,7 +59,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Toolbar height: 100dp, custom background with upper left text"
                 tools:ignore="HardcodedText" />
@@ -85,7 +85,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Toolbar height: wrap_content, programmatically set"
                 tools:ignore="HardcodedText" />
@@ -109,7 +109,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Toolbar height: actionBarSize, set with attributes"
                 tools:ignore="HardcodedText" />
@@ -119,14 +119,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="8dp"
-                app:lowerLeftText="lowerLeftText"
-                app:lowerRightText="lowerRightText"
-                app:rightImageContentDescription="Right Arrow"
-                app:rightImageDrawable="@drawable/trendyol_uicomponents_toolbar_arrow_back"
-                app:rightImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
+                app:lowerStartText="lowerStartText"
+                app:lowerEndText="lowerEndText"
+                app:endImageContentDescription="End Arrow"
+                app:endImageDrawable="@drawable/ic_info_black_24"
+                app:endImageDrawableMarginEnd="@dimen/trendyol_uicomponents_toolbar_margin_outer"
                 app:toolbarBackground="?attr/colorPrimary"
-                app:upperLeftText="upperLeftText"
-                app:upperRightText="upperRightText" />
+                app:upperStartText="upperStartText"
+                app:upperEndText="upperEndText" />
 
             <View
                 android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Toolbar height: actionBarSize, upperLeftTextMarginStart: 8dp"
                 tools:ignore="HardcodedText" />
@@ -173,9 +173,9 @@
                 android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Toolbar height: actionBarSize, hideLeftImage: true, upperLeftTextMarginStart: 8dp, upperRightTextMarginEnd: 8dp"
+                android:text="Toolbar height: actionBarSize, hideLeftImage: true, upperLeftTextMarginStart: 8dp, upperRightTextMarginEnd: 8dp, upperLeftTextMarginStart: 8dp"
                 tools:ignore="HardcodedText" />
 
             <com.trendyol.uicomponents.toolbar.Toolbar
