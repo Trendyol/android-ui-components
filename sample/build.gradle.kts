@@ -15,7 +15,7 @@ android {
         versionName = "1.0"
     }
     buildTypes {
-        getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
+        release {
             isMinifyEnabled = false
             setProguardFiles(
                 mutableListOf(
@@ -23,6 +23,9 @@ android {
                     "proguard-rules.pro"
                 )
             )
+        }
+        all {
+            isPseudoLocalesEnabled = true
         }
     }
 

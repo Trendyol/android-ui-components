@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
 import androidx.core.view.isVisible
+import com.trendyol.uicomponents.toolbar.databinding.ViewToolbarBinding
 
 class Toolbar : ConstraintLayout {
 
@@ -19,13 +19,38 @@ class Toolbar : ConstraintLayout {
             applyViewState()
         }
 
+    var startImageClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with startImageClickListener", replaceWith = ReplaceWith("startImageClickListener"))
     var leftImageClickListener: (() -> Unit)? = null
+
     var middleImageClickListener: (() -> Unit)? = null
+
+    var endImageClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with endImageClickListener", replaceWith = ReplaceWith("endImageClickListener"))
     var rightImageClickListener: (() -> Unit)? = null
+
+    var upperStartTextClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with upperStartTextClickListener", replaceWith = ReplaceWith("upperStartTextClickListener"))
     var upperLeftTextClickListener: (() -> Unit)? = null
+
+    var lowerStartTextClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with lowerStartTextClickListener", replaceWith = ReplaceWith("lowerStartTextClickListener"))
     var lowerLeftTextClickListener: (() -> Unit)? = null
+
     var middleTextClickListener: (() -> Unit)? = null
+
+    var upperEndTextClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with upperEndTextClickListener", replaceWith = ReplaceWith("upperEndTextClickListener"))
     var upperRightTextClickListener: (() -> Unit)? = null
+
+    var lowerEndTextClickListener: (() -> Unit)? = null
+
+    @Deprecated("Replaced with lowerEndTextClickListener", replaceWith = ReplaceWith("lowerEndTextClickListener"))
     var lowerRightTextClickListener: (() -> Unit)? = null
 
     constructor(context: Context) : super(context)
@@ -43,14 +68,32 @@ class Toolbar : ConstraintLayout {
     }
 
     init {
-        binding.imageLeft.setOnClickListener { leftImageClickListener?.invoke() }
+        binding.imageLeft.setOnClickListener {
+            startImageClickListener?.invoke()
+            leftImageClickListener?.invoke()
+        }
         binding.imageMiddle.setOnClickListener { middleImageClickListener?.invoke() }
-        binding.imageRight.setDebouncedOnClickListener { rightImageClickListener?.invoke() }
-        binding.textLeftUp.setOnClickListener { upperLeftTextClickListener?.invoke() }
-        binding.textLeftDown.setOnClickListener { lowerLeftTextClickListener?.invoke() }
+        binding.imageRight.setDebouncedOnClickListener {
+            endImageClickListener?.invoke()
+            rightImageClickListener?.invoke()
+        }
+        binding.textLeftUp.setOnClickListener {
+            upperStartTextClickListener?.invoke()
+            upperLeftTextClickListener?.invoke()
+        }
+        binding.textLeftDown.setOnClickListener {
+            lowerStartTextClickListener?.invoke()
+            lowerLeftTextClickListener?.invoke()
+        }
         binding.textMiddle.setOnClickListener { middleTextClickListener?.invoke() }
-        binding.textRightUp.setOnClickListener { upperRightTextClickListener?.invoke() }
-        binding.textRightDown.setOnClickListener { lowerRightTextClickListener?.invoke() }
+        binding.textRightUp.setOnClickListener {
+            upperEndTextClickListener?.invoke()
+            upperRightTextClickListener?.invoke()
+        }
+        binding.textRightDown.setOnClickListener {
+            lowerEndTextClickListener?.invoke()
+            lowerRightTextClickListener?.invoke()
+        }
     }
 
     private fun readFromAttributes(attrs: AttributeSet?, defStyleAttr: Int = 0) {
@@ -60,83 +103,102 @@ class Toolbar : ConstraintLayout {
             defStyleAttr,
             0
         )?.apply {
-            val toolbarBackground =
-                getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
-            val leftImageDrawableResId =
-                getResourceId(
-                    R.styleable.Toolbar_leftImageDrawable,
-                    R.drawable.trendyol_uicomponents_toolbar_arrow_back
-                )
+            val toolbarBackground = getResourceId(R.styleable.Toolbar_toolbarBackground, android.R.color.white)
+            val startImageDrawableResId = getResourceIdOrDefault(
+                R.styleable.Toolbar_startImageDrawable,
+                R.styleable.Toolbar_leftImageDrawable,
+                R.drawable.trendyol_uicomponents_toolbar_arrow_back
+            )
             val middleImageDrawableResId = getResourceId(R.styleable.Toolbar_middleImageDrawable, 0)
-            val rightImageDrawableResId = getResourceId(R.styleable.Toolbar_rightImageDrawable, 0)
+            val endImageDrawableResId = getResourceIdOrDefault(
+                R.styleable.Toolbar_endImageDrawable,
+                R.styleable.Toolbar_rightImageDrawable,
+                0
+            )
 
-            val upperLeftText = getString(R.styleable.Toolbar_upperLeftText)
-            val lowerLeftText = getString(R.styleable.Toolbar_lowerLeftText)
+            val upperStartText = getString(R.styleable.Toolbar_upperStartText)
+                ?: getString(R.styleable.Toolbar_upperLeftText)
+            val lowerStartText = getString(R.styleable.Toolbar_lowerStartText)
+                ?: getString(R.styleable.Toolbar_lowerLeftText)
             val middleText = getString(R.styleable.Toolbar_middleText)
-            val upperRightText = getString(R.styleable.Toolbar_upperRightText)
-            val lowerRightText = getString(R.styleable.Toolbar_lowerRightText)
+            val upperEndText = getString(R.styleable.Toolbar_upperEndText)
+                ?: getString(R.styleable.Toolbar_upperRightText)
+            val lowerEndText = getString(R.styleable.Toolbar_lowerEndText)
+                ?: getString(R.styleable.Toolbar_lowerRightText)
 
-            val leftTextDefaultMarginStart =
-                resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_left_side_text)
-            val rightTextDefaultMarginEnd =
+            val startTextDefaultMarginStart =
+                resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_start_side_text)
+            val endTextDefaultMarginEnd =
                 resources.getDimensionPixelOffset(R.dimen.trendyol_uicomponents_toolbar_margin_outer)
 
-            val upperLeftTextMarginStart =
-                getDimensionPixelOffset(
-                    R.styleable.Toolbar_upperLeftTextMarginStart,
-                    leftTextDefaultMarginStart
-                )
-            val lowerLeftTextMarginStart =
-                getDimensionPixelOffset(
-                    R.styleable.Toolbar_lowerLeftTextMarginStart,
-                    leftTextDefaultMarginStart
-                )
-
-            val upperRightTextMarginEnd =
-                getDimensionPixelOffset(
-                    R.styleable.Toolbar_upperRightTextMarginEnd,
-                    rightTextDefaultMarginEnd
-                )
-            val lowerRightTextMarginEnd =
-                getDimensionPixelOffset(
-                    R.styleable.Toolbar_lowerRightTextMarginEnd,
-                    rightTextDefaultMarginEnd
-                )
-            val rightImageDrawableMarginEnd =
-                getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableMarginEnd, 0)
-            val rightImageDrawableVerticalMargin =
-                getDimensionPixelOffset(R.styleable.Toolbar_rightImageDrawableVerticalMargin, 0)
-            val enableDotPoint =
-                getBoolean(R.styleable.Toolbar_enableDotPoint, false)
-            val leftImageDrawableMarginStart =
-                getDimensionPixelOffset(R.styleable.Toolbar_leftImageDrawableMarginStart, 0)
-            val hideLeftImage = getBoolean(R.styleable.Toolbar_hideLeftImage, false)
-            val leftImageContentDescription =
-                getString(R.styleable.Toolbar_leftImageContentDescription) ?: ""
-            val rightImageContentDescription =
-                getString(R.styleable.Toolbar_rightImageContentDescription) ?: ""
+            val upperStartTextMarginStart = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_upperStartTextMarginStart,
+                R.styleable.Toolbar_upperLeftTextMarginStart,
+                startTextDefaultMarginStart
+            )
+            val lowerStartTextMarginStart = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_lowerStartTextMarginStart,
+                R.styleable.Toolbar_lowerLeftTextMarginStart,
+                startTextDefaultMarginStart
+            )
+            val upperEndTextMarginEnd = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_upperEndTextMarginEnd,
+                R.styleable.Toolbar_upperRightTextMarginEnd,
+                endTextDefaultMarginEnd
+            )
+            val lowerEndTextMarginEnd = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_lowerEndTextMarginEnd,
+                R.styleable.Toolbar_lowerRightTextMarginEnd,
+                endTextDefaultMarginEnd
+            )
+            val endImageDrawableMarginEnd = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_endImageDrawableMarginEnd,
+                R.styleable.Toolbar_rightImageDrawableMarginEnd,
+                0
+            )
+            val endImageDrawableVerticalMargin = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_endImageDrawableVerticalMargin,
+                R.styleable.Toolbar_rightImageDrawableVerticalMargin,
+                0
+            )
+            val enableDotPoint = getBoolean(R.styleable.Toolbar_enableDotPoint, false)
+            val startImageDrawableMarginStart = getDimensionPixelOffsetOrDefault(
+                R.styleable.Toolbar_startImageDrawableMarginStart,
+                R.styleable.Toolbar_leftImageDrawableMarginStart,
+                0
+            )
+            val hideStartImage = (getBoolean(R.styleable.Toolbar_hideStartImage, false)
+                || getBoolean(R.styleable.Toolbar_hideLeftImage, false))
+            val startImageContentDescription = getStringOrEmpty(
+                R.styleable.Toolbar_startImageContentDescription,
+                R.styleable.Toolbar_leftImageContentDescription
+            )
+            val endImageContentDescription = getStringOrEmpty(
+                R.styleable.Toolbar_endImageContentDescription,
+                R.styleable.Toolbar_rightImageContentDescription
+            )
 
             viewState = ToolbarViewState(
-                upperLeftText = upperLeftText,
-                lowerLeftText = lowerLeftText,
+                upperStartText = upperStartText,
+                lowerStartText = lowerStartText,
                 middleText = middleText,
-                upperRightText = upperRightText,
-                lowerRightText = lowerRightText,
-                leftImageDrawableResId = leftImageDrawableResId,
+                upperEndText = upperEndText,
+                lowerEndText = lowerEndText,
+                startImageDrawableResId = startImageDrawableResId,
                 middleImageDrawableResId = middleImageDrawableResId,
-                rightImageDrawableResId = rightImageDrawableResId,
+                endImageDrawableResId = endImageDrawableResId,
                 toolbarBackground = toolbarBackground,
-                upperLeftTextMarginStartInPixel = upperLeftTextMarginStart,
-                lowerLeftTextMarginStartInPixel = lowerLeftTextMarginStart,
-                upperRightTextMarginEndInPixel = upperRightTextMarginEnd,
-                lowerRightTextMarginEndInPixel = lowerRightTextMarginEnd,
-                rightImageDrawableMarginEndInPixel = rightImageDrawableMarginEnd,
-                leftImageDrawableMarginStartInPixel = leftImageDrawableMarginStart,
-                rightImageDrawableVerticalMarginInPixel = rightImageDrawableVerticalMargin,
+                upperStartTextMarginStartInPixel = upperStartTextMarginStart,
+                lowerStartTextMarginStartInPixel = lowerStartTextMarginStart,
+                upperEndTextMarginEndInPixel = upperEndTextMarginEnd,
+                lowerEndTextMarginEndInPixel = lowerEndTextMarginEnd,
+                endImageDrawableMarginEndInPixel = endImageDrawableMarginEnd,
+                startImageDrawableMarginStartInPixel = startImageDrawableMarginStart,
+                endImageDrawableVerticalMarginInPixel = endImageDrawableVerticalMargin,
                 enableDotPoint = enableDotPoint,
-                hideLeftImage = hideLeftImage,
-                leftImageContentDescription = leftImageContentDescription,
-                rightImageContentDescription = rightImageContentDescription
+                hideStartImage = hideStartImage,
+                startImageContentDescription = startImageContentDescription,
+                endImageContentDescription = endImageContentDescription
             )
         }
     }
@@ -145,44 +207,44 @@ class Toolbar : ConstraintLayout {
         with(viewState) {
             binding.imageBackground.setDrawableResource(toolbarBackground)
 
-            binding.imageLeft.setDrawableResource(leftImageDrawableResId)
-            binding.imageLeft.setStartMargin(leftImageDrawableMarginStartInPixel)
-            binding.imageLeft.visibility = if (hideLeftImage) View.GONE else View.VISIBLE
-            binding.imageLeft.contentDescription = leftImageContentDescription
+            binding.imageLeft.setDrawableResource(startImageDrawableResId)
+            binding.imageLeft.setStartMargin(startImageDrawableMarginStartInPixel)
+            binding.imageLeft.visibility = if (hideStartImage) View.GONE else View.VISIBLE
+            binding.imageLeft.contentDescription = startImageContentDescription
 
             binding.imageMiddle.setDrawableResource(middleImageDrawableResId)
 
-            binding.imageRight.setDrawableResource(rightImageDrawableResId)
-            binding.imageRight.setEndMargin(rightImageDrawableMarginEndInPixel)
-            binding.imageRight.contentDescription = rightImageContentDescription
-            binding.imageRight.setVerticalPadding(rightImageDrawableVerticalMarginInPixel)
+            binding.imageRight.setDrawableResource(endImageDrawableResId)
+            binding.imageRight.setEndMargin(endImageDrawableMarginEndInPixel)
+            binding.imageRight.contentDescription = endImageContentDescription
+            binding.imageRight.setVerticalPadding(endImageDrawableVerticalMarginInPixel)
 
             binding.imageViewDot.isVisible = enableDotPoint
 
-            binding.textLeftUp.text = upperLeftTextValue
-            binding.textLeftUp.visibility = upperLeftTextVisibility
-            binding.textLeftUp.setStyle(upperLeftTextAppearance)
-            binding.textLeftUp.setStartMargin(upperLeftTextMarginStartInPixel)
+            binding.textLeftUp.text = upperStartTextValue
+            binding.textLeftUp.visibility = upperStartTextVisibility
+            binding.textLeftUp.setStyle(upperStartTextAppearance)
+            binding.textLeftUp.setStartMargin(upperStartTextMarginStartInPixel)
 
-            binding.textLeftDown.text = lowerLeftTextValue
-            binding.textLeftDown.visibility = lowerLeftTextVisibility
-            binding.textLeftDown.setStyle(lowerLeftTextAppearance)
-            binding.textLeftDown.setStartMargin(lowerLeftTextMarginStartInPixel)
+            binding.textLeftDown.text = lowerStartTextValue
+            binding.textLeftDown.visibility = lowerStartTextVisibility
+            binding.textLeftDown.setStyle(lowerStartTextAppearance)
+            binding.textLeftDown.setStartMargin(lowerStartTextMarginStartInPixel)
 
             binding.textMiddle.text = middleTextValue
             binding.textMiddle.visibility = middleTextVisibility
             binding.textMiddle.setStyle(middleTextAppearance)
 
-            binding.textRightUp.text = upperRightTextValue
-            binding.textRightUp.visibility = upperRightTextVisibility
-            binding.textRightUp.setStyle(upperRightTextAppearance)
-            binding.textRightUp.setEndMargin(upperRightTextMarginEndInPixel)
-            binding.textRightUp.isEnabled = isUpperRightTextEnabled
+            binding.textRightUp.text = upperEndTextValue
+            binding.textRightUp.visibility = upperEndTextVisibility
+            binding.textRightUp.setStyle(upperEndTextAppearance)
+            binding.textRightUp.setEndMargin(upperEndTextMarginEndInPixel)
+            binding.textRightUp.isEnabled = isUpperEndTextEnabled
 
-            binding.textRightDown.text = lowerRightTextValue
-            binding.textRightDown.visibility = lowerRightTextVisibility
+            binding.textRightDown.text = lowerEndTextValue
+            binding.textRightDown.visibility = lowerEndTextVisibility
             binding.textRightDown.setStyle(lowerRightTextAppearance)
-            binding.textRightDown.setEndMargin(lowerRightTextMarginEndInPixel)
+            binding.textRightDown.setEndMargin(lowerEndTextMarginEndInPixel)
         }
     }
 }

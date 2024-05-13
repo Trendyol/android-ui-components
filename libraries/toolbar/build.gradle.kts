@@ -23,6 +23,13 @@ android {
         }
     }
 
+    publishing {
+        this.singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+
     namespace = "com.trendyol.uicomponents.toolbar"
 }
 
