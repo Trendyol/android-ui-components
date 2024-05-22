@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">UI Components</string>
+    <string name="app_name" translatable="false">UI Components</string>
+    <string name="fit_option_message_view_test_message">Most users recommend buying the product in your own size.</string>
 </resources>

@@ -18,11 +18,6 @@ import androidx.core.view.doOnNextLayout
 
 class FitOptionMessageView : LinearLayout {
 
-    private val imageView by lazy { children.first { it is ImageView } as ImageView }
-    private val textView by lazy { children.first { it is TextView } as TextView }
-    private val initialXPositionOfTextView by lazy { textView.x }
-    private val initialLeftPaddingOfTextView by lazy { textView.paddingLeft }
-
     constructor(context: Context) : super(context) {
         initialize()
     }
@@ -39,18 +34,34 @@ class FitOptionMessageView : LinearLayout {
         initialize(attrs)
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initialize(attrs)
-    }
-
+    private val imageView by lazy { children.first { it is ImageView } as ImageView }
+    private val textView by lazy { children.first { it is TextView } as TextView }
+    private val initialXPositionOfTextView by lazy { textView.x }
+    private val initialLeftPaddingOfTextView by lazy { textView.paddingStart }
     private var cradleMargin: Float = 0f
     private var playRevealAnimation: Boolean = false
     private var revealAnimationDuration: Long = 0
+    private var revealAnimationProvider: (ImageView, TextView) -> Unit = { imageView, _ ->
+        val (centerX, centerY) = imageView.x + imageView.measuredWidth / 2.0 to imageView.y + imageView.measuredWidth / 2.0
+        val finalRadius = measuredWidth.toFloat()
+        ViewAnimationUtils
+            .createCircularReveal(
+                this@FitOptionMessageView,
+                centerX.toInt(),
+                centerY.toInt(),
+                /*startRadius: */0f,
+                finalRadius
+            )
+            .setDuration(revealAnimationDuration)
+            .start()
+    }
+    private val maskPath = Path()
+    private val clipPath = Path()
+    private val drawPath = Path()
+    private val maskPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, android.R.color.white)
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
+    }
 
     private fun initialize(attrs: AttributeSet? = null) {
         initializeLinearLayout()
@@ -80,76 +91,61 @@ class FitOptionMessageView : LinearLayout {
         }
     }
 
-    var revealAnimationProvider: (ImageView, TextView) -> Unit = { imageView, _ ->
-        val (centerX, centerY) = imageView.x + imageView.measuredWidth / 2.0 to imageView.y + imageView.measuredWidth / 2.0
-        val finalRadius = measuredWidth.toFloat()
-        ViewAnimationUtils
-            .createCircularReveal(
-                this@FitOptionMessageView,
-                centerX.toInt(),
-                centerY.toInt(),
-                /*startRadius: */0f,
-                finalRadius)
-            .setDuration(revealAnimationDuration)
-            .start()
-    }
-
     private fun startRevealAnimation() {
         revealAnimationProvider.invoke(imageView, textView)
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
-        val radius = imageView.measuredHeight / 2f
-        textView.x = initialXPositionOfTextView - radius
-        imageView.y = if (isHeightDeterminedByImage()) 0f else (textView.measuredHeight / 2f) - radius
+        textView.x = getTextViewInitialX()
+        imageView.y = getImageViewInitialY()
         imageView.elevation = textView.elevation + 0.01f
+        if (layoutDirection == LAYOUT_DIRECTION_RTL) {
+            imageView.x = measuredWidth - 2 * getRadius()
+        }
     }
 
+    private fun getTextViewInitialX(): Float {
+        return if (layoutDirection == LAYOUT_DIRECTION_LTR) {
+            initialXPositionOfTextView - getRadius()
+        } else {
+            initialXPositionOfTextView
+        }
+    }
+
+    private fun getImageViewInitialY(): Float {
+        return if (isHeightDeterminedByImage()) {
+            0f
+        } else {
+            (textView.measuredHeight / 2f) - getRadius()
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val radius = imageView.measuredHeight / 2f
         adjustMeasureSpec(heightMeasureSpec)
         textView.setPadding(
-            initialLeftPaddingOfTextView + cradleMargin.toInt() + radius.toInt(),
+            getTextViewLeftPadding(),
             textView.paddingTop,
-            textView.paddingRight,
+            getTextViewRightPadding(),
             textView.paddingBottom
         )
     }
 
-    private fun adjustMeasureSpec(heightMeasureSpec: Int) {
-        val lp = textView.layoutParams as LayoutParams
-        val radius = imageView.measuredHeight / 2
-
-        val childHeightMeasureSpec = getChildMeasureSpec(
-            heightMeasureSpec,
-            paddingTop + paddingBottom + lp.topMargin + lp.bottomMargin,
-            lp.height
-        )
-        val childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth-radius, MeasureSpec.EXACTLY)
-        textView.measure(childWidthMeasureSpec, childHeightMeasureSpec)
+    private fun getTextViewLeftPadding(): Int {
+        return if (layoutDirection == LAYOUT_DIRECTION_LTR) {
+            initialLeftPaddingOfTextView + cradleMargin.toInt() + getRadius().toInt()
+        } else {
+            textView.paddingLeft
+        }
     }
 
-    private val maskPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, android.R.color.white)
-        xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
-    }
-
-    private val maskPath = Path()
-    private val clipPath = Path()
-    private val drawPath = Path()
-
-    private fun calculateMaskPath() {
-        clipPath.reset()
-        drawPath.reset()
-        val (centerX, centerY) = textView.x to if (isHeightDeterminedByImage()) imageView.measuredHeight / 2f else textView.measuredHeight / 2f
-        val radius = imageView.measuredHeight / 2f
-        clipPath.addCircle(centerX, centerY, radius + cradleMargin, Path.Direction.CCW)
-        drawPath.addCircle(centerX, centerY, radius, Path.Direction.CCW)
-        clipPath.op(drawPath, Path.Op.DIFFERENCE)
-        maskPath.set(clipPath)
+    private fun getTextViewRightPadding(): Int {
+        return if (layoutDirection == LAYOUT_DIRECTION_LTR) {
+            textView.paddingRight
+        } else {
+            initialLeftPaddingOfTextView + cradleMargin.toInt() + getRadius().toInt()
+        }
     }
 
     override fun dispatchDraw(canvas: Canvas) {
@@ -160,7 +156,47 @@ class FitOptionMessageView : LinearLayout {
         canvas.restoreToCount(saveCount)
     }
 
+    private fun adjustMeasureSpec(heightMeasureSpec: Int) {
+        val lp = textView.layoutParams as LayoutParams
+
+        val childHeightMeasureSpec = getChildMeasureSpec(
+            heightMeasureSpec,
+            paddingTop + paddingBottom + lp.topMargin + lp.bottomMargin,
+            lp.height
+        )
+        val childWidthMeasureSpec =
+            MeasureSpec.makeMeasureSpec(measuredWidth - getRadius().toInt(), MeasureSpec.EXACTLY)
+        textView.measure(childWidthMeasureSpec, childHeightMeasureSpec)
+    }
+
+    private fun calculateMaskPath() {
+        clipPath.reset()
+        drawPath.reset()
+        val (centerX, centerY) = getCenterX() to getCenterY()
+        clipPath.addCircle(centerX, centerY, getRadius() + cradleMargin, Path.Direction.CCW)
+        drawPath.addCircle(centerX, centerY, getRadius(), Path.Direction.CCW)
+        clipPath.op(drawPath, Path.Op.DIFFERENCE)
+        maskPath.set(clipPath)
+    }
+
+    private fun getCenterX(): Float {
+        return if (layoutDirection == LAYOUT_DIRECTION_LTR) {
+            textView.x
+        } else {
+            textView.x + textView.measuredWidth
+        }
+    }
+
+    private fun getCenterY(): Float {
+        return if (isHeightDeterminedByImage()) {
+            getRadius()
+        } else {
+            textView.measuredHeight / 2f
+        }
+    }
+
     private fun isHeightDeterminedByImage(): Boolean =
         imageView.measuredHeight > textView.measuredHeight
 
+    private fun getRadius(): Float = imageView.measuredHeight / 2f
 }
