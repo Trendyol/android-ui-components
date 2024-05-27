@@ -11,6 +11,7 @@ include(":libraries:quantity-picker-view")
 include(":libraries:timeline-view")
 include(":libraries:touch-delegator")
 include(":libraries:fit-option-message-view")
+include(":libraries:fit-option-message-view-compose")
 include(":libraries:timeline-view-compose")
 include(":libraries:rating-bar-compose")
 

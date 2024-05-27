@@ -49,4 +49,5 @@ dependencies {
 
     implementation(projects.libraries.timelineViewCompose)
     implementation(projects.libraries.ratingBarCompose)
+    implementation(projects.libraries.fitOptionMessageViewCompose)
 }
