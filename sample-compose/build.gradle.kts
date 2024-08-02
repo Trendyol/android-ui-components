@@ -1,11 +1,15 @@
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
+    id(Plugins.compose) version "2.0.0"
 }
+
+kotlin.jvmToolchain(17)
 
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
+    namespace = "com.trendyol.uicomponents.sample.compose"
 
     defaultConfig {
         applicationId = Configs.applicationId
@@ -31,9 +35,6 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.kotlinCompilerExtensionVersion
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }
 

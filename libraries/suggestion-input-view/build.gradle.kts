@@ -5,13 +5,14 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
+kotlin.jvmToolchain(17)
+
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
         minSdk = Configs.minSdkVersion
-        targetSdk = Configs.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles("consumer-rules.pro")
@@ -30,10 +31,14 @@ android {
 
     namespace = "com.trendyol.suggestioninputview"
     buildFeatures.viewBinding = true
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
-    implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.recyclerView)

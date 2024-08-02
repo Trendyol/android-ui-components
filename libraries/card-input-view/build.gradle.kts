@@ -4,13 +4,14 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
+kotlin.jvmToolchain(17)
+
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
         minSdk = Configs.minSdkVersion
-        targetSdk = Configs.targetSdkVersion
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -32,14 +33,12 @@ android {
     buildFeatures.viewBinding = true
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-    implementation(Dependencies.kotlinJDK)
-
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.material)

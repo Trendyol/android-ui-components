@@ -1,7 +1,8 @@
 object Plugins {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.3.1"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+    private const val kotlinVersion = "2.0.0"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:8.5.0"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
@@ -9,4 +10,6 @@ object Plugins {
     const val kotlinKapt = "kotlin-kapt"
     const val kotlinParcelize = "kotlin-parcelize"
     const val mavenPublish = "publish"
+    const val compose = "org.jetbrains.kotlin.plugin.compose"
+
 }

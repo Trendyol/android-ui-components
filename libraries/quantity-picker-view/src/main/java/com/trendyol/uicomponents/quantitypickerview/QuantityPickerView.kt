@@ -207,7 +207,7 @@ class QuantityPickerView : ConstraintLayout {
             val text = it.getString(R.styleable.QuantityPickerView_qpv_text) ?: ""
             val textColor = it.getColor(
                 R.styleable.QuantityPickerView_qpv_textColor,
-                context.themeColor(R.attr.colorAccent)
+                context.themeColor(com.google.android.material.R.attr.colorAccent)
             )
             val textSize =
                 it.getDimensionPixelSize(
@@ -218,7 +218,7 @@ class QuantityPickerView : ConstraintLayout {
             val quantityTextColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_qpv_quantityTextColor,
-                    context.themeColor(R.attr.colorPrimary)
+                    context.themeColor(com.google.android.material.R.attr.colorPrimary)
                 )
             val quantityTextSize =
                 it.getDimensionPixelSize(
@@ -238,7 +238,7 @@ class QuantityPickerView : ConstraintLayout {
             val progressTintColor =
                 it.getColor(
                     R.styleable.QuantityPickerView_android_progressTint,
-                    context.themeColor(R.attr.colorPrimary)
+                    context.themeColor(com.google.android.material.R.attr.colorPrimary)
                 )
             val removeIcon = it.getDrawable(R.styleable.QuantityPickerView_qpv_removeIcon)
                 ?: AppCompatResources.getDrawable(context, R.drawable.qpv_ic_default_remove)!!

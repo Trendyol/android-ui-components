@@ -1,7 +1,5 @@
 object Dependencies {
 
-    const val kotlinJDK = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61"
-
     const val coreKtx = "androidx.core:core-ktx:1.3.2"
     const val appCompat = "androidx.appcompat:appcompat:1.2.0"
     const val material = "com.google.android.material:material:1.4.0"
