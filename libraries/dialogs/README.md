@@ -45,8 +45,6 @@ Simple dialog to show information, error or text.
 | `showContentAsHtml`             | Boolean                  | If you provided `content` as Html and set this flag as true, content will be parsed as HTML.                              | false         |
 | `contentImage`                  | Int                      | Drawable resource id of an visual, will be shown on top of `content`                                                      | 0             |
 | `webViewContent`                | WebViewContent           | If you provide a webview content such as Html data content or url , that will be shown in the webview.                    | null          |
-| `webViewBuilder`                | WebViewBuilder           | If you provide a webview content such as Html data content or url , necessary settings should we given via webViewBuilder | null          |
-| `webViewDownloadListener`       | DownloadListener         | If you need to handle download action in webview, you need to provide webViewDownloadListener to handle events            | null          |
   
 Sample usage:
  ```kotlin 
