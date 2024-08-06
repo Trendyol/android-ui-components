@@ -61,6 +61,35 @@ Sample usage:
 }.show(supportFragmentManager)
 ```
 
+** Configuring WebView:**
+To configure the WebView instance of the dialog, you can call the DialogFragment's function named show,
+which takes WebViewDownloadConfigurator and WebViewConfigurator objects as parameters. 
+These objects must extend Fragments.
+
+These passed objects will be used to configure the webview instance of the dialog.
+See the sample usage below:
+```kotlin
+infoDialog {
+  title = "Info Dialog with WebView Download Listener"
+  webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol")
+  showContentAsHtml = true
+  titleTextColor = CardInputViewR.color.civ_error_stroke
+  showCloseButton = true
+}.showDialog(
+  fragmentManager = supportFragmentManager,
+  webViewConfigurator = WebViewJavascriptEnabler(),
+  downloadConfigurator = null
+)
+
+class WebViewJavascriptEnabler : WebViewConfigurator, Fragment() {
+
+  override fun configureWebView(webView: WebView) {
+    webView.settings.javaScriptEnabled = true
+  }
+}
+```
+```kotlin
+
 * Agreement Dialog:
 
 Dialog with buttons on bottom. You can show 2 buttons at the bottom or just one button.
