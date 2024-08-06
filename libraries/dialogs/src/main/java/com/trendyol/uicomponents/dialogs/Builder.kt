@@ -31,10 +31,8 @@ open class InfoDialogBuilder internal constructor() : Builder() {
     var showContentAsHtml: Boolean = false
     var contentTextPosition: TextPosition? = null
     var webViewContent: WebViewContent? = null
-    var webViewBuilder: (WebView.() -> Unit)? = null
     var horizontalPadding: Float? = null
     var verticalPadding: Float? = null
-    var webViewDownloadListener: DownloadListener? = null
 
     internal fun buildInfoDialog(block: InfoDialogBuilder.() -> Unit): DialogFragment {
         return InfoDialogBuilder().apply(block).let {
@@ -56,12 +54,10 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     titleTextPosition = it.titleTextPosition,
                     contentTextPosition = it.contentTextPosition,
                     webViewContent = it.webViewContent,
-                    webViewBuilder = it.webViewBuilder,
                     isFullHeightWebView = it.isFullHeightWebView
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
                 this.onDismissListener = it.onDialogDismissListener ?: {}
-                this.webViewDownloadListener = it.webViewDownloadListener
             }
         }
     }

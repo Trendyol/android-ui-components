@@ -8,17 +8,21 @@ import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.webkit.DownloadListener
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.trendyol.dialog.R
 import com.trendyol.dialog.databinding.FragmentDialogBinding
+import com.trendyol.uicomponents.dialogs.configurator.WebViewConfigurator
+import com.trendyol.uicomponents.dialogs.configurator.WebViewDownloadConfigurator
 import com.trendyol.uicomponents.dialogs.list.DialogListAdapter
 import com.trendyol.uicomponents.dialogs.list.DialogListViewModel
 import com.trendyol.uicomponents.dialogs.list.ItemDecorator
@@ -193,8 +197,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 if (visibility == View.VISIBLE) {
                     webChromeClient = WebChromeClient()
                     webViewClient = WebViewClient()
-                    dialogArguments.webViewBuilder?.invoke(webViewContent)
-
+                    findWebViewConfigurator(requireFragmentManager())
+                        ?.configureWebView(webViewContent)
                     loadWebViewContent(viewState.webViewContent)
                     if (dialogArguments.isFullHeightWebView) {
                         binding.webViewContent.layoutParams.height =
@@ -219,8 +223,31 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
         }
     }
 
-    fun showDialog(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun showDialog(
+        fragmentManager: FragmentManager,
+    ) {
+        showDialog(fragmentManager, null, null)
+    }
+
+    fun <ViewConfigurator, DownloadConfigurator> showDialog(
+        fragmentManager: FragmentManager,
+        webViewConfigurator: ViewConfigurator?,
+        downloadConfigurator: DownloadConfigurator?,
+    ) where DownloadConfigurator : Fragment,
+            DownloadConfigurator : WebViewDownloadConfigurator,
+            ViewConfigurator : Fragment,
+            ViewConfigurator : WebViewConfigurator {
+
+        val transaction = fragmentManager.beginTransaction()
+        with(transaction) {
+            if (webViewConfigurator != null) {
+                transaction.add(webViewConfigurator, WebViewConfigurator.TAG)
+            }
+            if (downloadConfigurator != null) {
+                add(downloadConfigurator, WebViewDownloadConfigurator.TAG)
+            }
+        }
+        show(transaction, TAG)
     }
 
     private fun setUpViewModel(items: List<Pair<Boolean, CharSequence>>) {
@@ -252,12 +279,27 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
 
     override fun onResume() {
         super.onResume()
-        binding.webViewContent.setDownloadListener(webViewDownloadListener)
+        findWebViewDownloadConfigurator(requireFragmentManager())
+            ?.configureDownloadListener(binding.webViewContent)
     }
 
     override fun onPause() {
         super.onPause()
         binding.webViewContent.setDownloadListener(null)
+    }
+
+    private fun findWebViewDownloadConfigurator(
+        fragmentManager: FragmentManager
+    ): WebViewDownloadConfigurator? {
+        val fragment = fragmentManager.findFragmentByTag(WebViewDownloadConfigurator.TAG)
+        return fragment as? WebViewDownloadConfigurator
+    }
+
+    private fun findWebViewConfigurator(
+        fragmentManager: FragmentManager
+    ): WebViewConfigurator? {
+        val fragment = fragmentManager.findFragmentByTag(WebViewConfigurator.TAG)
+        return fragment as? WebViewConfigurator
     }
 
     companion object {
