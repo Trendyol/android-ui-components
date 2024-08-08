@@ -1,14 +1,9 @@
 package com.trendyol.uicomponents
 
-import android.app.DownloadManager
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.webkit.DownloadListener
-import android.webkit.URLUtil
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,9 +25,6 @@ class DialogsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDialogsBinding
 
-    private val downloadManager: DownloadManager? by lazy(LazyThreadSafetyMode.NONE) {
-        getSystemService(DOWNLOAD_SERVICE) as? DownloadManager
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,12 +144,11 @@ class DialogsActivity : AppCompatActivity() {
             closeButtonListener = infoDialogClosed
             webViewContent =
                 WebViewContent.UrlContent("https://github.com/Trendyol/android-ui-components")
-            webViewBuilder = {
-                settings.javaScriptEnabled = true
-                settings.domStorageEnabled = true
-                webViewClient = WebViewClient()
-            }
-        }.showDialog(supportFragmentManager)
+        }.showDialog(
+            fragmentManager = supportFragmentManager,
+            webViewConfigurator = WebViewDomAndJSEnabler(),
+            downloadConfigurator = null,
+        )
     }
 
     private fun showInfoListDialog() {
@@ -189,21 +180,13 @@ class DialogsActivity : AppCompatActivity() {
             showContentAsHtml = true
             titleTextColor = CardInputViewR.color.civ_error_stroke
             showCloseButton = true
-            webViewBuilder = {
-                settings.javaScriptEnabled = true
-            }
-            webViewDownloadListener = DownloadListener { url, _, contentDisposition, mimetype, _ ->
-                val downloadRequest = DownloadManager.Request(Uri.parse(url))
-                    .setTitle(title)
-                    .setMimeType(mimetype)
-                    .setDestinationInExternalPublicDir(
-                        Environment.DIRECTORY_DOWNLOADS,
-                        URLUtil.guessFileName(url, contentDisposition, mimetype)
-                    )
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                downloadManager?.enqueue(downloadRequest)
-            }
-        }.showDialog(supportFragmentManager)
+        }.showDialog(
+            fragmentManager = supportFragmentManager,
+            webViewConfigurator = WebViewJavascriptEnabler(),
+            downloadConfigurator = WebViewDownloadListenerConfigurator.newInstance(
+                "Info Dialog with WebView Download Listener"
+            )
+        )
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

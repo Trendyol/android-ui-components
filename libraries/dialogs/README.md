@@ -45,8 +45,6 @@ Simple dialog to show information, error or text.
 | `showContentAsHtml`             | Boolean                  | If you provided `content` as Html and set this flag as true, content will be parsed as HTML.                              | false         |
 | `contentImage`                  | Int                      | Drawable resource id of an visual, will be shown on top of `content`                                                      | 0             |
 | `webViewContent`                | WebViewContent           | If you provide a webview content such as Html data content or url , that will be shown in the webview.                    | null          |
-| `webViewBuilder`                | WebViewBuilder           | If you provide a webview content such as Html data content or url , necessary settings should we given via webViewBuilder | null          |
-| `webViewDownloadListener`       | DownloadListener         | If you need to handle download action in webview, you need to provide webViewDownloadListener to handle events            | null          |
   
 Sample usage:
  ```kotlin 
@@ -60,6 +58,35 @@ Sample usage:
     contentImage = android.R.drawable.btn_plus
 }.show(supportFragmentManager)
 ```
+
+** Configuring WebView:**
+To configure the WebView instance of the dialog, you can call the DialogFragment's function named show,
+which takes WebViewDownloadConfigurator and WebViewConfigurator objects as parameters. 
+These objects must extend Fragments.
+
+These passed objects will be used to configure the webview instance of the dialog.
+See the sample usage below:
+```kotlin
+infoDialog {
+  title = "Info Dialog with WebView Download Listener"
+  webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol")
+  showContentAsHtml = true
+  titleTextColor = CardInputViewR.color.civ_error_stroke
+  showCloseButton = true
+}.showDialog(
+  fragmentManager = supportFragmentManager,
+  webViewConfigurator = WebViewJavascriptEnabler(),
+  downloadConfigurator = null
+)
+
+class WebViewJavascriptEnabler : WebViewConfigurator, Fragment() {
+
+  override fun configureWebView(webView: WebView) {
+    webView.settings.javaScriptEnabled = true
+  }
+}
+```
+```kotlin
 
 * Agreement Dialog:
 
