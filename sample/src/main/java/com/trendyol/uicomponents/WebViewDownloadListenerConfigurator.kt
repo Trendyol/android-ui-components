@@ -9,6 +9,7 @@ import android.webkit.WebView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.trendyol.uicomponents.dialogs.DialogFragment
 import com.trendyol.uicomponents.dialogs.configurator.WebViewDownloadConfigurator
 
 class WebViewDownloadListenerConfigurator : WebViewDownloadConfigurator, Fragment() {
@@ -16,7 +17,7 @@ class WebViewDownloadListenerConfigurator : WebViewDownloadConfigurator, Fragmen
         ContextCompat.getSystemService(requireContext(), DownloadManager::class.java)
     }
 
-    override fun configureDownloadListener(webView: WebView) {
+    override fun configureDownloadListener(fragment: DialogFragment, webView: WebView) {
         webView.setDownloadListener(DownloadListener { url, _, contentDisposition, mimetype, _ ->
             val downloadRequest = DownloadManager.Request(Uri.parse(url))
                 .setTitle(requireArguments().getString("title"))

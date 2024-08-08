@@ -198,7 +198,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                     webChromeClient = WebChromeClient()
                     webViewClient = WebViewClient()
                     findWebViewConfigurator(requireFragmentManager())
-                        ?.configureWebView(webViewContent)
+                        ?.configureWebView(this@DialogFragment, webViewContent)
                     loadWebViewContent(viewState.webViewContent)
                     if (dialogArguments.isFullHeightWebView) {
                         binding.webViewContent.layoutParams.height =
@@ -280,7 +280,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
     override fun onResume() {
         super.onResume()
         findWebViewDownloadConfigurator(requireFragmentManager())
-            ?.configureDownloadListener(binding.webViewContent)
+            ?.configureDownloadListener(this, binding.webViewContent)
     }
 
     override fun onPause() {
