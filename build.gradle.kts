@@ -19,7 +19,3 @@ allprojects {
         maven("https://jitpack.io")
     }
 }
-
-tasks.create<Delete>("clean") {
-    delete(rootProject.buildDir)
-}

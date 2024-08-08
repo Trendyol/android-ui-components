@@ -3,9 +3,13 @@ plugins {
     id(Plugins.kotlinAndroid)
 }
 
+kotlin.jvmToolchain(17)
+
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
+
+    namespace = "com.trendyol.uicomponents"
 
     defaultConfig {
         applicationId = Configs.applicationId
@@ -44,7 +48,6 @@ dependencies {
     implementation(projects.libraries.timelineView)
     implementation(projects.libraries.fitOptionMessageView)
 
-    implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.material)

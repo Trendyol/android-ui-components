@@ -1,0 +1,1 @@
+rootProject.name = "trendyol-android-ui-components-buildSrc"

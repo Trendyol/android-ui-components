@@ -11,6 +11,7 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.core.os.bundleOf
+import com.google.android.material.R as MaterialR
 import com.google.android.material.textfield.TextInputEditText
 
 class PhoneNumberTextInputEditText : TextInputEditText {
@@ -22,7 +23,7 @@ class PhoneNumberTextInputEditText : TextInputEditText {
 
     constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, R.attr.editTextStyle)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, MaterialR.attr.editTextStyle)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,

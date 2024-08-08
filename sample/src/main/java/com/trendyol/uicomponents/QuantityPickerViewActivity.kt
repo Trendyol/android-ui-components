@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.trendyol.uicomponents.databinding.ActivityQuantityPickerViewBinding
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerView
 import com.trendyol.uicomponents.quantitypickerview.QuantityPickerViewState
+import com.trendyol.uicomponents.quantitypickerview.R as QuantityPickerViewR
+import com.google.android.material.R as MaterialR
 
 class QuantityPickerViewActivity : AppCompatActivity() {
 
@@ -19,14 +21,14 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             text = "Fresh Money",
             textSize = asSP(12),
             quantityTextSize = asSP(14),
-            backgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
-            removeIconDrawable = drawable(R.drawable.qpv_ic_default_remove),
-            subtractIconDrawable = drawable(R.drawable.qpv_ic_default_subtract),
-            addIconDrawable = drawable(R.drawable.qpv_ic_default_add),
-            quantityBackgroundDrawable = drawable(R.drawable.qpv_shape_default_background),
-            textColor = themeColor(R.attr.colorAccent),
-            progressTintColor = themeColor(R.attr.colorAccent),
-            quantityTextColor = themeColor(R.attr.colorPrimary),
+            backgroundDrawable = drawable(QuantityPickerViewR.drawable.qpv_shape_default_background),
+            removeIconDrawable = drawable(QuantityPickerViewR.drawable.qpv_ic_default_remove),
+            subtractIconDrawable = drawable(QuantityPickerViewR.drawable.qpv_ic_default_subtract),
+            addIconDrawable = drawable(QuantityPickerViewR.drawable.qpv_ic_default_add),
+            quantityBackgroundDrawable = drawable(QuantityPickerViewR.drawable.qpv_shape_default_background),
+            textColor = themeColor(MaterialR.attr.colorAccent),
+            progressTintColor = themeColor(MaterialR.attr.colorAccent),
+            quantityTextColor = themeColor(MaterialR.attr.colorPrimary),
             buttonHorizontalPadding = asDP(8),
             buttonVerticalPadding = asDP(8),
             progressVerticalPadding = asDP(6),

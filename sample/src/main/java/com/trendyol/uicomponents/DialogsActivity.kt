@@ -24,6 +24,7 @@ import com.trendyol.uicomponents.dialogs.agreementDialog
 import com.trendyol.uicomponents.dialogs.infoDialog
 import com.trendyol.uicomponents.dialogs.infoListDialog
 import com.trendyol.uicomponents.dialogs.selectionDialog
+import com.trendyol.cardinputview.R as CardInputViewR
 
 class DialogsActivity : AppCompatActivity() {
 
@@ -77,12 +78,16 @@ class DialogsActivity : AppCompatActivity() {
         infoDialog {
             title = "Info Dialog Sample"
             showCloseButton = true
-            closeButtonColor = ContextCompat.getColor(this@DialogsActivity, R.color.civ_error_stroke)
+            closeButtonColor =
+                ContextCompat.getColor(
+                    this@DialogsActivity,
+                    CardInputViewR.color.civ_error_stroke
+                )
             closeButtonListener = infoDialogClosed
             content = SpannableString.valueOf(getSpannableString())
             contentImage = R.mipmap.ic_launcher_round
-            titleTextColor = R.color.civ_error_stroke
-            titleBackgroundColor = R.color.civ_error_background
+            titleTextColor = CardInputViewR.color.civ_error_stroke
+            titleBackgroundColor = CardInputViewR.color.civ_error_background
             titleTextPosition = TextPosition.CENTER
             contentTextPosition = TextPosition.END
         }.showDialog(supportFragmentManager)
@@ -145,7 +150,8 @@ class DialogsActivity : AppCompatActivity() {
             title = "Info Dialog Sample"
             showCloseButton = true
             closeButtonListener = infoDialogClosed
-            webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol/android-ui-components")
+            webViewContent =
+                WebViewContent.UrlContent("https://github.com/Trendyol/android-ui-components")
             webViewBuilder = {
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
@@ -181,7 +187,7 @@ class DialogsActivity : AppCompatActivity() {
             title = "Info Dialog with WebView Download Listener"
             webViewContent = WebViewContent.UrlContent("https://github.com/Trendyol")
             showContentAsHtml = true
-            titleTextColor = R.color.civ_error_stroke
+            titleTextColor = CardInputViewR.color.civ_error_stroke
             showCloseButton = true
             webViewBuilder = {
                 settings.javaScriptEnabled = true
@@ -242,12 +248,12 @@ class DialogsActivity : AppCompatActivity() {
 
     private fun getHtmlString(): String =
         "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
-            "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
-            "<ul>\n" +
-            "<li>The first item in your list</li>\n" +
-            "<li>The second item; <i>italicize</i> key words</li>\n" +
-            "<a href=\"https://www.trendyol.com/\">Visit Trendyol!</a>" +
-            "</ul>"
+                "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
+                "<ul>\n" +
+                "<li>The first item in your list</li>\n" +
+                "<li>The second item; <i>italicize</i> key words</li>\n" +
+                "<a href=\"https://www.trendyol.com/\">Visit Trendyol!</a>" +
+                "</ul>"
 
     private fun getListItems(): List<Pair<Boolean, String>> =
         mutableListOf<Pair<Boolean, String>>().apply {

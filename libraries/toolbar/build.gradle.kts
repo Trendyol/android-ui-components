@@ -4,13 +4,14 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
+kotlin.jvmToolchain(17)
+
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
 
     defaultConfig {
         minSdk = Configs.minSdkVersion
-        targetSdk = Configs.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
 
         consumerProguardFiles("consumer-rules.pro")
@@ -34,7 +35,6 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.kotlinJDK)
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.constraintLayout)
