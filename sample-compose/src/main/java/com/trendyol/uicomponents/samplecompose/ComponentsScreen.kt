@@ -35,6 +35,10 @@ fun ComponentsScreen(
         ComponentItem(title = "RatingBar") {
             onItemClick(Route.RatingBar)
         }
+
+        ComponentItem(title = "Quantity Picker") {
+            onItemClick(Route.QuantityPicker)
+        }
     }
 }
 

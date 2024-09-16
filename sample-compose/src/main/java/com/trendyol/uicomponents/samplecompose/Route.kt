@@ -2,9 +2,11 @@ package com.trendyol.uicomponents.samplecompose
 
 sealed class Route(val destination: String) {
 
-    object Components : Route("components")
+    data object Components : Route("components")
 
-    object TimelineView : Route("timelineView")
+    data object TimelineView : Route("timelineView")
 
-    object RatingBar : Route("ratingbar")
+    data object RatingBar : Route("ratingbar")
+
+    data object QuantityPicker : Route("quantityPicker")
 }
