@@ -16,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.trendyol.uicomponents.quantitypicker.QuantityPickerDirection
+import com.trendyol.uicomponents.quantitypicker.QuantityPickerViewData
 import com.trendyol.uicomponents.samplecompose.ui.productcard.ProductCard
 import com.trendyol.uicomponents.samplecompose.ui.productcard.ProductCardData
 import com.trendyol.uicomponents.samplecompose.ui.theme.Typography
@@ -52,7 +53,12 @@ private fun SingleProductSection() {
 
             // should implement viewmodel for quantity, loading and button clicks in real world
             val product = remember {
-                mutableStateOf(ProductCardData(title = "Chocolate"))
+                mutableStateOf(
+                    ProductCardData(
+                        title = "Chocolate",
+                        quantityData = QuantityPickerViewData(maxQuantity = 2)
+                    )
+                )
             }
 
             val onProductClick: (Int) -> Unit = remember {

@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.sp
 
 object QuantityPickerDefaults {
     val defaultColor = Color(0xFF42AF2A)
+    val disabledColor = Color(0xFF999999)
     private val textBackGroundColor = Color(0xFFE1F6DD)
 
     val quantityPickerShape = QuantityShapeDefaults.circle(defaultColor)

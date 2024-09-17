@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalTextApi::class)
 @Composable
 internal fun QuantityText(
-    quantityData: QuantityData,
+    quantityData: QuantityPickerViewData,
     shape: QuantityShape,
     style: TextStyle,
     showLoading: Boolean,
@@ -75,7 +75,7 @@ internal fun QuantityText(
 private fun PreviewQuantityText() {
     QuantityText(
         shape = QuantityShapeDefaults.circle(borderColor = Color.Green),
-        quantityData = QuantityData(
+        quantityData = QuantityPickerViewData(
             currentQuantity = 2
         ),
         style = Typography().body1.copy(color = Color.Green),
@@ -89,7 +89,7 @@ private fun PreviewQuantityText() {
 private fun PreviewQuantityTextLoading() {
     QuantityText(
         shape = QuantityShapeDefaults.circle(borderColor = Color.Green),
-        quantityData = QuantityData(
+        quantityData = QuantityPickerViewData(
             currentQuantity = 2
         ),
         style = Typography().body1.copy(color = Color.Green),

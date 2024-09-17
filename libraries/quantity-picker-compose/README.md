@@ -28,22 +28,20 @@ dependencies {
 
 You can add **QuantityPicker** wherever you want with your modifier
 
-| Attribute           | Type                    | Description                                                                 |
-| ------------------- | ----------------------- | --------------------------------------------------------------------------- |
-| modifier            | Modifier                | Compose modifier for QuantityPicker                                         |
-| direction           | QuantityPickerDirection | Picker Direction Vertical or Horizontal                                     |
-| quantityTextShape   | QuantityPickerShape     | Compose shape for quantity text.                                            |
-| quantityPickerShape | QuantityPickerShape     | Background of all view also defines border if it is not null                |
-| textStyle           | TextStyle               | Text style for quantity text                                                |
-| addIconResId        | Int                     | Drawable for add button                                                     |
-| subtractIconResId   | Int                     | Drawable for subtract button                                                |
-| removeIconResId     | Int                     | Drawable for remove button. Visible if it is null and current quantity is 1 |
-| iconTintColor       | Color                   | Tint Color for Icons                                                        |
-| quantityData        | QuantityData            | Quantity values. It has min,max,current and postfix                         |
-| showLoading         | Boolean                 | Loading state                                                               |
-| progressColor       | Color                   | Color for loading progress indicator                                        |
-| onAddClick          | (() -> Unit)            | Listener for add button clicks                                              |
-| onSubtractClick     | (() -> Unit)            | Listener for subtract clicks                                                |
+
+| Attribute           | Type                    | Description                                                  |
+| ------------------- | ----------------------- | ------------------------------------------------------------ |
+| modifier            | Modifier                | Compose modifier for QuantityPicker                          |
+| direction           | QuantityPickerDirection | Picker Direction Vertical or Horizontal                      |
+| icons               | QuantityIcons           | Drawables for add subtract remove and colors                 |
+| quantityTextShape   | QuantityPickerShape     | Compose shape for quantity text.                             |
+| quantityPickerShape | QuantityPickerShape     | Background of all view also defines border if it is not null |
+| textStyle           | TextStyle               | Text style for quantity text                                 |
+| quantityData        | QuantityData            | Quantity values. It has min,max,current and postfix          |
+| showLoading         | Boolean                 | Loading state                                                |
+| progressColor       | Color                   | Color for loading progress indicator                         |
+| onAddClick          | (() -> Unit)            | Listener for add button clicks                               |
+| onSubtractClick     | (() -> Unit)            | Listener for subtract clicks                                 |
 
 ## Implementation
 
@@ -65,10 +63,13 @@ If you need background or custom modifier for quantity text and all view
 QuantityPicker(
     textStyle = Typography.body2,
     quantityData = quantityData,
-    addIconResId = R.drawable.ic_plus,
-    subtractIconResId = R.drawable.ic_minus,
-    removeIconResId = R.drawable.ic_remove,
-    iconTintColor = Color.White, // QuantityPickerDefaults.defaultColor
+    icons: QuantityIcons = QuantityIcons( // QuantityIcons.default
+        addIconResId = R.drawable.ic_plus,
+        subtractIconResId = R.drawable.ic_subtract,
+        removeIconResId = R.drawable.ic_trash,
+        iconColor = QuantityPickerDefaults.defaultColor,
+        disabledColor = QuantityPickerDefaults.disabledColor
+    ),
     quantityPickerShape = QuantityPickerShape( // QuantityPickerDefaults.quantityShape,
         shape = RoundedCornerShape(50),
         borderColor = MyQuantityPickerPrimaryColor,
@@ -97,4 +98,3 @@ Copyright 2023 Trendyol.com    Licensed under the Apache License, Version 2.0 (t
    http://www.apache.org/licenses/LICENSE-2.0  
 Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an "AS IS" BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License.
 ```
-

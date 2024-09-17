@@ -1,6 +1,5 @@
 package com.trendyol.uicomponents.quantitypicker
 
-import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,19 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import com.trendyol.quantitypickercompose.R
 
 @Composable
 fun QuantityPicker(
     modifier: Modifier = Modifier,
-    quantityData: QuantityData,
+    quantityData: QuantityPickerViewData,
     showLoading: Boolean = false,
     direction: QuantityPickerDirection = QuantityPickerDirection.VERTICAL,
     textStyle: TextStyle = QuantityPickerDefaults.quantityTextStyle,
-    @DrawableRes addIconResId: Int = R.drawable.ic_plus,
-    @DrawableRes subtractIconResId: Int = R.drawable.ic_subtract,
-    @DrawableRes removeIconResId: Int? = R.drawable.ic_trash,
-    iconTintColor: Color = QuantityPickerDefaults.defaultColor,
+    icons: QuantityIcons = QuantityIcons.default,
     quantityPickerShape: QuantityShape = QuantityPickerDefaults.quantityPickerShape,
     quantityTextShape: QuantityShape = QuantityPickerDefaults.quantityTextShape,
     progressColor: Color = QuantityPickerDefaults.defaultColor,
@@ -35,24 +30,20 @@ fun QuantityPicker(
         QuantityPickerDirection.VERTICAL -> VerticalQuantityPicker(
             modifier = modifier,
             textStyle = textStyle,
-            addIconResId = addIconResId,
-            subtractIconResId = subtractIconResId,
-            removeIconResId = removeIconResId,
+            icons = icons,
             quantityShape = quantityPickerShape,
             quantityTextShape = quantityTextShape,
             quantityData = quantityData,
             showLoading = showLoading,
             progressColor = progressColor,
             onAddClick = onAddClick,
-            onSubtractClick = onSubtractClick,
+            onSubtractClick = onSubtractClick
         )
 
         QuantityPickerDirection.HORIZONTAL -> HorizontalQuantityPicker(
             modifier = modifier,
+            icons = icons,
             textStyle = textStyle,
-            addIconResId = addIconResId,
-            subtractIconResId = subtractIconResId,
-            removeIconResId = removeIconResId,
             quantityShape = quantityPickerShape,
             quantityTextShape = quantityTextShape,
             quantityData = quantityData,
@@ -60,7 +51,6 @@ fun QuantityPicker(
             progressColor = progressColor,
             onAddClick = onAddClick,
             onSubtractClick = onSubtractClick,
-            iconTintColor = iconTintColor,
         )
     }
 }
@@ -69,13 +59,10 @@ fun QuantityPicker(
 internal fun VerticalQuantityPicker(
     modifier: Modifier,
     textStyle: TextStyle,
-    @DrawableRes addIconResId: Int,
-    @DrawableRes subtractIconResId: Int,
-    @DrawableRes removeIconResId: Int?,
-    iconTintColor: Color = QuantityPickerDefaults.defaultColor,
+    icons: QuantityIcons,
     quantityShape: QuantityShape,
     quantityTextShape: QuantityShape,
-    quantityData: QuantityData,
+    quantityData: QuantityPickerViewData,
     showLoading: Boolean,
     progressColor: Color,
     onAddClick: (() -> Unit)?,
@@ -97,9 +84,8 @@ internal fun VerticalQuantityPicker(
     ) {
 
         QuantityAddIcon(
-            addIconResId = addIconResId,
-            iconTintColor = iconTintColor,
-            showLoading = showLoading,
+            icons = icons,
+            quantityData = quantityData,
             onAddClick = onAddClick
         )
 
@@ -113,12 +99,10 @@ internal fun VerticalQuantityPicker(
                     progressColor = progressColor
                 )
                 QuantitySubtractIcon(
-                    subtractIconResId = subtractIconResId,
-                    showLoading = showLoading,
+                    quantityData = quantityData,
                     onSubtractClick = onSubtractClick,
-                    removeIconResId = removeIconResId,
                     currentQuantity = quantityData.currentQuantity,
-                    iconTintColor = iconTintColor
+                    icons = icons
                 )
             }
         }
@@ -129,13 +113,10 @@ internal fun VerticalQuantityPicker(
 internal fun HorizontalQuantityPicker(
     modifier: Modifier = Modifier,
     textStyle: TextStyle,
-    @DrawableRes addIconResId: Int,
-    @DrawableRes subtractIconResId: Int,
-    @DrawableRes removeIconResId: Int?,
-    iconTintColor: Color,
+    icons: QuantityIcons,
     quantityShape: QuantityShape,
     quantityTextShape: QuantityShape,
-    quantityData: QuantityData,
+    quantityData: QuantityPickerViewData,
     showLoading: Boolean,
     progressColor: Color,
     onAddClick: (() -> Unit)?,
@@ -159,12 +140,10 @@ internal fun HorizontalQuantityPicker(
         AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 QuantitySubtractIcon(
-                    subtractIconResId = subtractIconResId,
-                    showLoading = showLoading,
+                    icons = icons,
+                    quantityData = quantityData,
                     onSubtractClick = onSubtractClick,
-                    removeIconResId = removeIconResId,
-                    currentQuantity = quantityData.currentQuantity,
-                    iconTintColor = iconTintColor
+                    currentQuantity = quantityData.currentQuantity
                 )
                 QuantityText(
                     quantityData = quantityData,
@@ -176,10 +155,9 @@ internal fun HorizontalQuantityPicker(
             }
         }
         QuantityAddIcon(
-            addIconResId = addIconResId,
-            showLoading = showLoading,
+            icons = icons,
+            quantityData = quantityData,
             onAddClick = onAddClick,
-            iconTintColor = iconTintColor
         )
     }
 }
@@ -189,22 +167,38 @@ internal fun HorizontalQuantityPicker(
 private fun PreviewHorizontalQuantityPicker() {
     QuantityPicker(
         direction = QuantityPickerDirection.HORIZONTAL,
-        quantityData = QuantityData(currentQuantity = 2)
+        quantityData = QuantityPickerViewData(currentQuantity = 2)
     )
 }
 
 @Preview
 @Composable
 private fun PreviewVerticalQuantityPicker() {
-    QuantityPicker(quantityData = QuantityData(currentQuantity = 1))
+    QuantityPicker(quantityData = QuantityPickerViewData(currentQuantity = 1))
 }
 
 @Preview
 @Composable
 private fun PreviewLoadingQuantityPicker() {
     QuantityPicker(
-        quantityData = QuantityData(currentQuantity = 2),
+        quantityData = QuantityPickerViewData(currentQuantity = 2),
         showLoading = true
 
+    )
+}
+
+@Preview
+@Composable
+private fun PreviewAddButtonDisabledQuantityPicker() {
+    QuantityPicker(
+        quantityData = QuantityPickerViewData(currentQuantity = 2, maxQuantity = 2),
+    )
+}
+
+@Preview
+@Composable
+private fun PreviewSubtractButtonDisabledQuantityPicker() {
+    QuantityPicker(
+        quantityData = QuantityPickerViewData(currentQuantity = 2, minQuantity = 3),
     )
 }
