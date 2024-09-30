@@ -2,11 +2,9 @@ package com.trendyol.uicomponents.quantitypickerview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.graphics.fonts.FontFamily
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.FontRes
-import org.intellij.lang.annotations.JdkConstants.FontStyle
 
 data class QuantityPickerViewState(
     private val text: String,
