@@ -3,7 +3,9 @@ package com.trendyol.uicomponents.dialogs.list
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
+import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.HtmlCompat
 import com.trendyol.dialog.R
 
@@ -13,7 +15,8 @@ data class DialogListItemViewState(
     val selectedItemDrawable: Int?,
     val selectedTextColor: Int?,
     val isChecked: Boolean,
-    val showRadioButton: Boolean
+    val showRadioButton: Boolean,
+    @FontRes val contentFontFamily: Int?,
 ) {
 
     fun getText(): CharSequence =
@@ -39,5 +42,7 @@ data class DialogListItemViewState(
     fun getRadioButtonVisibility(): Int = if (showRadioButton) View.VISIBLE else View.GONE
 
     fun getRadioButtonChecked(): Boolean = isChecked
+
+    fun getFontFamily(context: Context) = contentFontFamily?.let { ResourcesCompat.getFont(context, it) }
 }
 

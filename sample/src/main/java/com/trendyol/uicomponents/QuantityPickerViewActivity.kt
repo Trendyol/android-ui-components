@@ -20,7 +20,7 @@ class QuantityPickerViewActivity : AppCompatActivity() {
         )
 
         val viewState = QuantityPickerViewState(
-            text = "غداً",
+            text = "Fresh Money",
             textSize = asSP(12),
             quantityTextSize = asSP(14),
             backgroundDrawable = drawable(QuantityPickerViewR.drawable.qpv_shape_default_background),

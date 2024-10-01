@@ -2,10 +2,10 @@ package com.trendyol.uicomponents.dialogs
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.webkit.WebView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 import androidx.core.os.bundleOf
 import kotlinx.parcelize.Parcelize
 
@@ -39,7 +39,9 @@ class DialogFragmentArguments(
     val webViewContent: WebViewContent? = null,
     val infoListItems: List<Pair<CharSequence, CharSequence>>? = null,
     val itemDividers: List<ItemDivider> = emptyList(),
-    val isFullHeightWebView : Boolean = false
+    val isFullHeightWebView: Boolean = false,
+    @FontRes val titleFontFamily: Int? = null,
+    @FontRes val contentFontFamily: Int? = null
 ) : Parcelable {
 
     fun toBundle() = bundleOf("ARGUMENTS" to this)

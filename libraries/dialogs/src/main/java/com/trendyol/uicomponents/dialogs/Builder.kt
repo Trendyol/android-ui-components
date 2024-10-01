@@ -1,10 +1,9 @@
 package com.trendyol.uicomponents.dialogs
 
 import android.text.SpannableString
-import android.webkit.DownloadListener
-import android.webkit.WebView
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 
 open class Builder internal constructor() {
 
@@ -13,13 +12,23 @@ open class Builder internal constructor() {
     var titleTextColor: Int? = null
     var titleTextPosition: TextPosition? = null
     var showCloseButton: Boolean = false
-    @ColorInt var closeButtonColor: Int? = null
-    @DrawableRes var closeButtonDrawable: Int? = null
+
+    @ColorInt
+    var closeButtonColor: Int? = null
+
+    @DrawableRes
+    var closeButtonDrawable: Int? = null
     var closeButtonListener: ((DialogFragment) -> Unit)? = null
     var animateCornerRadiusWhenExpand: Boolean = false
     var onDialogDismissListener: ((DialogFragment) -> Unit)? = null
     var cornerRadius: Float? = null
     var isFullHeightWebView: Boolean = false
+
+    @FontRes
+    var titleFontFamily: Int? = null
+
+    @FontRes
+    var contentFontFamily: Int? = null
 }
 
 open class InfoDialogBuilder internal constructor() : Builder() {
@@ -54,7 +63,9 @@ open class InfoDialogBuilder internal constructor() : Builder() {
                     titleTextPosition = it.titleTextPosition,
                     contentTextPosition = it.contentTextPosition,
                     webViewContent = it.webViewContent,
-                    isFullHeightWebView = it.isFullHeightWebView
+                    isFullHeightWebView = it.isFullHeightWebView,
+                    titleFontFamily = it.titleFontFamily,
+                    contentFontFamily = it.contentFontFamily
                 ).toBundle()
                 this.closeButtonListener = it.closeButtonListener ?: { }
                 this.onDismissListener = it.onDialogDismissListener ?: {}
@@ -86,7 +97,9 @@ open class AgreementDialogBuilder internal constructor() : InfoDialogBuilder() {
                     contentImage = it.contentImage,
                     rightButtonText = it.rightButtonText,
                     leftButtonText = it.leftButtonText,
-                    webViewContent = it.webViewContent
+                    webViewContent = it.webViewContent,
+                    titleFontFamily = it.titleFontFamily,
+                    contentFontFamily = it.contentFontFamily
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 rightButtonClickListener = it.rightButtonClickListener
@@ -133,7 +146,9 @@ class SelectionDialogBuilder internal constructor() : InfoDialogBuilder() {
                     selectedItemDrawable = it.selectedItemDrawable,
                     selectedTextColor = it.selectedTextColor,
                     showRadioButton = it.showRadioButton,
-                    webViewContent = it.webViewContent
+                    webViewContent = it.webViewContent,
+                    titleFontFamily = it.titleFontFamily,
+                    contentFontFamily = it.contentFontFamily
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 onItemSelectedListener = it.onItemSelectedListener
@@ -166,7 +181,9 @@ class InfoListDialogBuilder internal constructor() : InfoDialogBuilder() {
                     contentImage = it.contentImage,
                     webViewContent = it.webViewContent,
                     infoListItems = it.infoListItems,
-                    itemDividers = it.itemDividers
+                    itemDividers = it.itemDividers,
+                    titleFontFamily = it.titleFontFamily,
+                    contentFontFamily = it.contentFontFamily
                 ).toBundle()
                 closeButtonListener = it.closeButtonListener
                 this.onDismissListener = it.onDialogDismissListener ?: {}
