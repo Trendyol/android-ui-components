@@ -153,7 +153,7 @@ class QuantityPickerView : ConstraintLayout {
     fun setMinQuantity(minQuantity: Int) =
         setQuantityPickerViewState(viewState.getWithMinQuantity(minQuantity))
 
-    fun setBackgroundImageDrawable(background: Drawable){
+    fun setBackgroundImageDrawable(background: Drawable) {
         setQuantityPickerViewState(viewState.getWithBackgroundDrawable(background))
     }
 
@@ -286,6 +286,8 @@ class QuantityPickerView : ConstraintLayout {
             val removeContentDescription = it.getString(
                 R.styleable.QuantityPickerView_qpv_remove_contentDescription
             ) ?: ""
+            val textFontFamily =
+                it.getResourceId(R.styleable.QuantityPickerView_qpv_fontFamily, -1)
 
             return QuantityPickerViewState(
                 text = text,
@@ -314,7 +316,8 @@ class QuantityPickerView : ConstraintLayout {
                 maxQuantity = maxQuantity,
                 minQuantity = minQuantity,
                 addContentDescription = addContentDescription,
-                removeContentDescription = removeContentDescription
+                removeContentDescription = removeContentDescription,
+                textFontFamily = textFontFamily
             )
         }
     }
@@ -360,7 +363,12 @@ class QuantityPickerView : ConstraintLayout {
                 visibility = viewState.getProgressBarVisibility()
                 indeterminateTintList = ColorStateList.valueOf(viewState.progressTintColor)
                 val progressVerticalPadding = viewState.progressVerticalPadding
-                setPadding(paddingLeft, progressVerticalPadding, paddingRight, progressVerticalPadding)
+                setPadding(
+                    paddingLeft,
+                    progressVerticalPadding,
+                    paddingRight,
+                    progressVerticalPadding
+                )
             }
             with(imageAdd) {
                 contentDescription = viewState.addContentDescription

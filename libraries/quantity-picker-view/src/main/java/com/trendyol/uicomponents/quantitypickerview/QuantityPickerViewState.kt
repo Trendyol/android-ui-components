@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.FontRes
 
 data class QuantityPickerViewState(
     private val text: String,
@@ -32,7 +33,8 @@ data class QuantityPickerViewState(
     val disabledAddIconDrawable: Drawable? = addIconDrawable,
     val disabledSubtractIconDrawable: Drawable? = subtractIconDrawable,
     val addContentDescription: String,
-    val removeContentDescription: String
+    val removeContentDescription: String,
+    @FontRes val textFontFamily: Int
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0
@@ -58,10 +60,10 @@ data class QuantityPickerViewState(
     }
 
     fun getQuantityPickerTextAppearance(): QuantityPickerTextAppearance =
-        QuantityPickerTextAppearance(textColor, textSize, textStyle)
+        QuantityPickerTextAppearance(textColor, textSize, textStyle, textFontFamily)
 
     fun getQuantityTextAppearance() =
-        QuantityPickerTextAppearance(quantityTextColor, quantityTextSize, quantityTextStyle)
+        QuantityPickerTextAppearance(quantityTextColor, quantityTextSize, quantityTextStyle, textFontFamily)
 
     fun getQuantity() = currentQuantity.takeIf { it != 0 }?.toString()
 
@@ -208,7 +210,8 @@ data class QuantityPickerViewState(
             maxQuantity = 0,
             minQuantity = 0,
             addContentDescription = "",
-            removeContentDescription = ""
+            removeContentDescription = "",
+            textFontFamily = -1
         )
     }
 }

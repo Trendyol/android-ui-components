@@ -15,7 +15,9 @@ class QuantityPickerViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(ActivityQuantityPickerViewBinding.inflate(layoutInflater).also { binding = it }.root)
+        setContentView(
+            ActivityQuantityPickerViewBinding.inflate(layoutInflater).also { binding = it }.root
+        )
 
         val viewState = QuantityPickerViewState(
             text = "Fresh Money",
@@ -34,7 +36,8 @@ class QuantityPickerViewActivity : AppCompatActivity() {
             progressVerticalPadding = asDP(6),
             quantityBackgroundVerticalPadding = asDP(6),
             addContentDescription = "Add",
-            removeContentDescription = "Remove"
+            removeContentDescription = "Remove",
+            textFontFamily = -1
         )
 
         binding.quantityPickerView2.setQuantityPickerViewState(viewState)

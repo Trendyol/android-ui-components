@@ -54,6 +54,7 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | qpv_quantityBackgroundVerticalPadding | quantityBackgroundVerticalPadding | padding for quantity background vertically if `orientation` is `horizontal`, else horizontal padding.                         | `2dp`                                                                                      |
 | qpv_add_contentDescription            | text                              | Text for Add Image of Talkback                                                                                                | ""                                                                                         |
 | qpv_remove_contentDescription         | text                              | Text for Remove Image of Talkback                                                                                             | ""                                                                                         |
+| qpv_fontFamily                        | fontFamily                        | Font family for texts.                                                                                                        |                                                                                            |
 
 # Public methods
 
@@ -63,12 +64,13 @@ To set programmatically, you can call `QuantityPickerView.setQuantityPickerViewS
 | setQuantity                | quantity: Int                      | To set quantity immediately.                            |
 | setMaxQuantity             | maxQuantity: Int                   | To set maxQuantity immediately.                         |
 | setMinQuantity             | minQuantity: Int                   | To set minQuantity immediately.                         |
-| setBackgroundImageDrawable | background: Drawable | To set backgroundImageDrawable immediately. |
+| setBackgroundImageDrawable | background: Drawable               | To set backgroundImageDrawable immediately.             |
 | stopLoading                |                                    | To stop current loading.                                |
 | reset                      |                                    | To stop loading and set currentQuantity to 0.           |
 | incrementQuantityBy        | quantity                           | increments current total quantity by quantity parameter |
 
 ## Listeners
+
 To get updates on **QuantityPickerView** you need to set this listeners:
 
 | Listener              | Data                           | Return               | Information                                                                                                      |
@@ -83,17 +85,12 @@ To get updates on **QuantityPickerView** you need to set this listeners:
 From XML, you can use attributes like below:
 
 ```xml
+
 <com.trendyol.uicomponents.quantitypickerview.QuantityPickerView
-    android:id="@+id/quantity_picker_view"
-    android:layout_width="match_parent"
-    android:layout_height="36dp"
-    app:qpv_currentQuantity="1"
-    app:qpv_maxQuantity="10"
-    app:qpv_minQuantity="1"
-    app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
-    app:qpv_quantityTextSize="14sp"
-    app:qpv_text="Add to Cart"
-    app:qpv_textSize="12sp" />
+    android:id="@+id/quantity_picker_view" android:layout_width="match_parent"
+    android:layout_height="36dp" app:qpv_currentQuantity="1" app:qpv_maxQuantity="10"
+    app:qpv_minQuantity="1" app:qpv_quantityBackground="@drawable/qpv_shape_default_background"
+    app:qpv_quantityTextSize="14sp" app:qpv_text="Add to Cart" app:qpv_textSize="12sp" />
 ```
 
 To set *QuantityPickerViewState* programmatically:
@@ -112,16 +109,19 @@ val viewState = QuantityPickerViewState(
     progressTintColor = themeColor(R.attr.colorAccent),
     quantityTextColor = themeColor(R.attr.colorPrimary)
 )
-        
+
 findViewById<QuantityPickerView>(R.id.quantity_picker_view).setQuantityPickerViewState(viewState)
 ```
 
 ## Contributors
-This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
+
+This library is maintained mainly by Trendyol Android Team members but also other Android lovers
+contributes.
 
 We developed this component for our needs, there is lots of improvements need to be implemented.
 
 # License
+
     Copyright 2022 Trendyol.com
 
     Licensed under the Apache License, Version 2.0 (the "License");

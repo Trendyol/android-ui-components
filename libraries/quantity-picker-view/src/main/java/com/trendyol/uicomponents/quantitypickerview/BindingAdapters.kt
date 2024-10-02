@@ -3,6 +3,8 @@ package com.trendyol.uicomponents.quantitypickerview
 import android.graphics.Typeface
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+
 
 internal fun AppCompatTextView.setTextAppearance(
     quantityPickerTextAppearance: QuantityPickerTextAppearance
@@ -16,4 +18,10 @@ internal fun AppCompatTextView.setTextAppearance(
     setTypeface(typeface, style)
     setTextSize(TypedValue.COMPLEX_UNIT_PX, quantityPickerTextAppearance.textSize.toFloat())
     setTextColor(quantityPickerTextAppearance.textColor)
+
+    //or to support all versions use
+    if (quantityPickerTextAppearance.textFontFamily != -1) {
+        val typeface = ResourcesCompat.getFont(context, quantityPickerTextAppearance.textFontFamily)
+        setTypeface(typeface)
+    }
 }

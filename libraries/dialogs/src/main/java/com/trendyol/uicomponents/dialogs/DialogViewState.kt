@@ -6,7 +6,9 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.HtmlCompat
 import com.trendyol.dialog.R
 
@@ -29,6 +31,8 @@ data class DialogViewState(
     val titleTextPosition: TextPosition,
     val contentTextPosition: TextPosition,
     val webViewContent: WebViewContent?,
+    @FontRes val titleFontFamily: Int?,
+    @FontRes val contentFontFamily: Int?,
 ) {
 
     fun getTitleVisibility(): Int = if (title.isNullOrEmpty().not()) View.VISIBLE else View.GONE
@@ -40,9 +44,16 @@ data class DialogViewState(
     }
 
     @ColorInt
-    fun getTitleBackgroundColor(context: Context): Int = ContextCompat.getColor(context, titleBackgroundColor)
+    fun getTitleBackgroundColor(context: Context): Int =
+        ContextCompat.getColor(context, titleBackgroundColor)
 
     fun getTitleTextColor(context: Context) = ContextCompat.getColor(context, titleTextColor)
+
+    fun getTitleFontFamily(context: Context) =
+        titleFontFamily?.let { ResourcesCompat.getFont(context, it) }
+
+    fun getContentFontFamily(context: Context) =
+        contentFontFamily?.let { ResourcesCompat.getFont(context, it) }
 
     fun getTitleTextPosition(): Int {
         return when (titleTextPosition) {
@@ -71,7 +82,8 @@ data class DialogViewState(
         }
     }
 
-    fun getContentImageVisibility(): Int = if (contentImage?.takeIf { it != 0 } != null) View.VISIBLE else View.GONE
+    fun getContentImageVisibility(): Int =
+        if (contentImage?.takeIf { it != 0 } != null) View.VISIBLE else View.GONE
 
     fun getContentTextVisibility(): Int = if (content.isNotEmpty()) View.VISIBLE else View.GONE
 
@@ -86,7 +98,8 @@ data class DialogViewState(
 
     fun isSearchVisible(): Int = if (isSearchEnabled) View.VISIBLE else View.GONE
 
-    fun getClearButtonVisibility(): Int = if (isClearSearchButtonVisible) View.VISIBLE else View.GONE
+    fun getClearButtonVisibility(): Int =
+        if (isClearSearchButtonVisible) View.VISIBLE else View.GONE
 
     fun getListVisibility(): Int = if (isListVisible) View.VISIBLE else View.GONE
 

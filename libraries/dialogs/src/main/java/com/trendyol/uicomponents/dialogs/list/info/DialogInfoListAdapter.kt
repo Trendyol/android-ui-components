@@ -2,12 +2,18 @@ package com.trendyol.uicomponents.dialogs.list.info
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.FontRes
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.trendyol.dialog.databinding.ItemUiComponentsInfoListDialogBinding
 
 internal class DialogInfoListAdapter(
-) : ListAdapter<Pair<CharSequence, CharSequence>, DialogInfoListAdapter.ItemViewHolder>(InfoListItemDiffCallback()) {
+) : ListAdapter<Pair<CharSequence, CharSequence>, DialogInfoListAdapter.ItemViewHolder>(
+    InfoListItemDiffCallback()
+) {
+
+    @FontRes
+    var contentFontFamily: Int? = null
 
     fun setItems(list: List<Pair<CharSequence, CharSequence>>) {
         submitList(list.toMutableList())
@@ -34,6 +40,8 @@ internal class DialogInfoListAdapter(
             with(binding) {
                 textKey.text = viewState.key
                 textValue.text = viewState.value
+                textKey.typeface = viewState.getFontFamily(textKey.context, contentFontFamily)
+                textValue.typeface = viewState.getFontFamily(textValue.context, contentFontFamily)
             }
         }
     }

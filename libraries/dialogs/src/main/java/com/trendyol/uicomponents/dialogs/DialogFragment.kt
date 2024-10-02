@@ -8,7 +8,6 @@ import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.webkit.DownloadListener
@@ -47,7 +46,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             dialogArguments.showItemsAsHtml,
             dialogArguments.selectedItemDrawable,
             dialogArguments.selectedTextColor,
-            dialogArguments.showRadioButton
+            dialogArguments.showRadioButton,
+            dialogArguments.contentFontFamily
         )
     }
 
@@ -57,7 +57,11 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
         ViewModelProviders.of(this)[DialogListViewModel::class.java]
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -66,7 +70,8 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
         if (dialogArguments.animateCornerRadiusWhenExpand) {
             animateCornerRadiusWithStateChanged()
         } else {
-            val cornerRadius = dialogArguments.cornerRadius ?: requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius)
+            val cornerRadius = dialogArguments.cornerRadius
+                ?: requireContext().pixel(R.dimen.ui_components_dialogs_corner_radius)
             binding.cardView.outlineProvider = BottomSheetOutlineProvider(radius = cornerRadius)
         }
 
@@ -90,13 +95,21 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 initializeSelectionDialog(items)
             }
             dialogArguments.infoListItems?.let { items ->
-                initializeInfoListDialog(items, dialogArguments.itemDividers)
+                initializeInfoListDialog(
+                    items,
+                    dialogArguments.itemDividers,
+                    dialogArguments.contentFontFamily
+                )
             }
             if (dialogArguments.horizontalPadding != null || dialogArguments.verticalPadding != null) {
-                val topPadding = dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingTop
-                val bottomPadding = dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingBottom
-                val startPadding = dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingStart
-                val endPadding = dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingEnd
+                val topPadding =
+                    dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingTop
+                val bottomPadding =
+                    dialogArguments.verticalPadding?.toInt() ?: nestedScrollView.paddingBottom
+                val startPadding =
+                    dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingStart
+                val endPadding =
+                    dialogArguments.horizontalPadding?.toInt() ?: nestedScrollView.paddingEnd
                 nestedScrollView.setPadding(startPadding, topPadding, endPadding, bottomPadding)
             }
         }
@@ -135,10 +148,12 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
 
     private fun initializeInfoListDialog(
         items: List<Pair<CharSequence, CharSequence>>,
-        itemDividers: List<ItemDivider>
+        itemDividers: List<ItemDivider>,
+        fontFamily: Int?
     ) {
         with(binding.recyclerViewItems) {
             infoListAdapter.setItems(items)
+            infoListAdapter.contentFontFamily = fontFamily
             itemDividers.forEach {
                 addItemDecoration(ItemDecorator(it))
             }
@@ -162,11 +177,15 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             isSearchEnabled = dialogArguments.enableSearch,
             isClearSearchButtonVisible = dialogArguments.showClearSearchButton,
             searchHint = dialogArguments.searchHint,
-            titleBackgroundColor = dialogArguments.titleBackgroundColor ?: R.color.ui_components_dialogs_gray,
-            titleTextColor = dialogArguments.titleTextColor ?: R.color.ui_components_dialogs_primary_text_color,
+            titleBackgroundColor = dialogArguments.titleBackgroundColor
+                ?: R.color.ui_components_dialogs_gray,
+            titleTextColor = dialogArguments.titleTextColor
+                ?: R.color.ui_components_dialogs_primary_text_color,
             titleTextPosition = dialogArguments.titleTextPosition ?: TextPosition.START,
             contentTextPosition = dialogArguments.contentTextPosition ?: TextPosition.START,
             webViewContent = dialogArguments.webViewContent,
+            titleFontFamily = dialogArguments.titleFontFamily,
+            contentFontFamily = dialogArguments.contentFontFamily
         )
 
         with(binding) {
@@ -178,6 +197,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 text = viewState.title
                 textAlignment = viewState.getTitleTextPosition()
                 setTextColor(viewState.getTitleTextColor(context))
+                typeface = viewState.getTitleFontFamily(context)
             }
             with(viewDialogHeader.imageClose) {
                 visibility = viewState.getCloseButtonVisibility()
@@ -191,6 +211,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
                 text = viewState.getContent()
                 textAlignment = viewState.getContentTextPosition()
                 visibility = viewState.getContentTextVisibility()
+                typeface = viewState.getContentFontFamily(context)
             }
             with(webViewContent) {
                 visibility = viewState.getWebViewContentVisibility()
@@ -209,6 +230,7 @@ class DialogFragment internal constructor() : BaseBottomSheetDialog() {
             with(editTextSearch) {
                 hint = viewState.searchHint
                 visibility = viewState.isSearchVisible()
+                typeface = viewState.getContentFontFamily(context)
             }
             imageClearSearchQuery.visibility = viewState.getClearButtonVisibility()
             recyclerViewItems.visibility = viewState.getListVisibility()

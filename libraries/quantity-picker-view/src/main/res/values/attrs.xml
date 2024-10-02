@@ -10,6 +10,7 @@
             <enum name="bold" value="1" />
             <enum name="italic" value="2" />
         </attr>
+        <attr name="qpv_fontFamily" format="integer"/>
         <attr name="qpv_quantityTextColor" format="color" />
         <attr name="qpv_quantityTextSize" format="dimension" />
         <attr name="qpv_quantityTextStyle" format="enum">

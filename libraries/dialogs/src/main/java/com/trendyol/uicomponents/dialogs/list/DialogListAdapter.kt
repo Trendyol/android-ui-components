@@ -2,6 +2,7 @@ package com.trendyol.uicomponents.dialogs.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.FontRes
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.trendyol.dialog.databinding.ItemUiComponentsSelectionDialogBinding
@@ -10,7 +11,8 @@ internal class DialogListAdapter(
     private val showItemsAsHtml: Boolean,
     private val selectedItemDrawable: Int?,
     private val selectedTextColor: Int?,
-    private val showRadioButton: Boolean
+    private val showRadioButton: Boolean,
+    @FontRes private val contentFontFamily: Int?
 ) : ListAdapter<Pair<Boolean, CharSequence>, DialogListAdapter.ItemViewHolder>(ListItemDiffCallback()) {
 
     var onItemSelectedListener: ((Int) -> Unit)? = null
@@ -25,7 +27,13 @@ internal class DialogListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
-        ItemViewHolder(ItemUiComponentsSelectionDialogBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ItemViewHolder(
+            ItemUiComponentsSelectionDialogBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     inner class ItemViewHolder(
         private val binding: ItemUiComponentsSelectionDialogBinding
@@ -48,7 +56,8 @@ internal class DialogListAdapter(
                 selectedItemDrawable = selectedItemDrawable,
                 selectedTextColor = selectedTextColor,
                 isChecked = item.first,
-                showRadioButton = showRadioButton
+                showRadioButton = showRadioButton,
+                contentFontFamily = contentFontFamily
             )
 
             with(binding) {
@@ -59,6 +68,7 @@ internal class DialogListAdapter(
                 with(radioButtonItem) {
                     text = viewState.getText()
                     setTextColor(viewState.getSelectedTextColor(context))
+                    typeface = viewState.getFontFamily(context)
                 }
                 with(imageViewCheckedDrawable) {
                     setImageDrawable(viewState.getSelectedItemDrawable(context))
