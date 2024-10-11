@@ -20,7 +20,7 @@ internal fun AppCompatTextView.setTextAppearance(
     setTextColor(quantityPickerTextAppearance.textColor)
 
     //or to support all versions use
-    if (quantityPickerTextAppearance.textFontFamily != -1) {
+    if (quantityPickerTextAppearance.textFontFamily != -1 && quantityPickerTextAppearance.textFontFamily != null) {
         val typeface = ResourcesCompat.getFont(context, quantityPickerTextAppearance.textFontFamily)
         setTypeface(typeface)
     }
