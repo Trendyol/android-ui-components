@@ -34,7 +34,7 @@ data class QuantityPickerViewState(
     val disabledSubtractIconDrawable: Drawable? = subtractIconDrawable,
     val addContentDescription: String,
     val removeContentDescription: String,
-    @FontRes val textFontFamily: Int
+    @FontRes val textFontFamily: Int?
 ) {
 
     internal fun isInQuantityMode(): Boolean = currentQuantity > 0

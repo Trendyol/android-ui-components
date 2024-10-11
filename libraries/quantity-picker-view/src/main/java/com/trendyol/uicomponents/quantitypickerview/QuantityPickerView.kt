@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.quantitypickerview
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -286,8 +287,9 @@ class QuantityPickerView : ConstraintLayout {
             val removeContentDescription = it.getString(
                 R.styleable.QuantityPickerView_qpv_remove_contentDescription
             ) ?: ""
-            val textFontFamily =
+            val textFontFamily: Int? = runCatching {
                 it.getResourceId(R.styleable.QuantityPickerView_qpv_fontFamily, -1)
+            }.getOrNull()
 
             return QuantityPickerViewState(
                 text = text,
