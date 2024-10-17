@@ -1,6 +1,7 @@
 package com.trendyol.uicomponents.quantitypicker
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -133,11 +134,12 @@ internal fun HorizontalQuantityPicker(
             .background(
                 color = quantityShape.backgroundColor,
                 shape = quantityShape.shape
-            ),
+            )
+            .animateContentSize(),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
+        if (quantityData.currentQuantity > 0 || showLoading) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 QuantitySubtractIcon(
                     icons = icons,

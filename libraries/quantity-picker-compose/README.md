@@ -28,7 +28,6 @@ dependencies {
 
 You can add **QuantityPicker** wherever you want with your modifier
 
-
 | Attribute           | Type                    | Description                                                  |
 | ------------------- | ----------------------- | ------------------------------------------------------------ |
 | modifier            | Modifier                | Compose modifier for QuantityPicker                          |
@@ -87,6 +86,10 @@ QuantityPicker(
 )
 ```
 
+# Repository From
+
+[https://github.com/selimtoksal/QuantityPicker](https://github.com/selimtoksal/QuantityPicker)
+
 # Contributors
 
 This library is maintained mainly by Trendyol Android Team members but also other Android lovers contributes.
@@ -98,3 +101,4 @@ Copyright 2023 Trendyol.com    Licensed under the Apache License, Version 2.0 (t
    http://www.apache.org/licenses/LICENSE-2.0  
 Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an "AS IS" BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License.
 ```
+
