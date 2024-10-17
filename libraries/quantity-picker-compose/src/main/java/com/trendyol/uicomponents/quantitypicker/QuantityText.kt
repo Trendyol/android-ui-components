@@ -2,6 +2,7 @@ package com.trendyol.uicomponents.quantitypicker
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
@@ -59,6 +60,7 @@ internal fun QuantityText(
                 text = text,
                 style = textStyle,
                 modifier = Modifier
+                    .clickable(enabled = false) {}
                     .background(
                         shape.backgroundColor,
                         shape.shape
