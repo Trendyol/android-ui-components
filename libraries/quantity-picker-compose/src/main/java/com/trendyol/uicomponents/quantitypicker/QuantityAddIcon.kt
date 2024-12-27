@@ -70,8 +70,8 @@ internal fun QuantityAddIcon(
                 interactionSource = MutableInteractionSource(),
                 enabled = quantityData.isAddButtonEnabled(),
                 onClick = {
-                    setTargetBackgroundColor.invoke(Color.White)
-                    iconTintColor = icons.iconColor
+                    //setTargetBackgroundColor.invoke(Color.White)
+                    //iconTintColor = icons.iconColor
                     onAddClick?.invoke()
                 }
             )
