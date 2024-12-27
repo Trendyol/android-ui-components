@@ -202,3 +202,12 @@ private fun PreviewSubtractButtonDisabledQuantityPicker() {
         quantityData = QuantityPickerViewData(currentQuantity = 2, minQuantity = 3),
     )
 }
+
+@Preview
+@Composable
+private fun PreviewAddButtonVisibleQuantityPicker() {
+    QuantityPicker(
+        icons = QuantityIcons.default.copy(addIconBackgroundColor = QuantityPickerDefaults.defaultColor),
+        quantityData = QuantityPickerViewData(currentQuantity = 0),
+    )
+}

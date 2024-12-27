@@ -10,6 +10,7 @@ data class QuantityIcons(
     @DrawableRes val removeIconResId: Int? = R.drawable.ic_trash,
     val iconColor: Color,
     val disabledColor: Color,
+    val addIconBackgroundColor: Color? = null,
 ) {
     companion object {
         val default = QuantityIcons(
