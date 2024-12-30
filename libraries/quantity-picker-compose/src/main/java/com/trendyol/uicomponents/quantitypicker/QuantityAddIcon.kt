@@ -34,10 +34,8 @@ internal fun QuantityAddIcon(
     }
     var iconTintColor by remember { mutableStateOf(Color.White) }
     val animatedBackgroundColor = remember { Animatable(targetBackgroundColor) }
+    var lastQuantityCount by remember { mutableStateOf(-1) }
 
-    LaunchedEffect(key1 = quantityData.currentQuantity) {
-        iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
-    }
 
     val setTargetBackgroundColor: (color: Color) -> Unit = remember {
         { color ->
@@ -54,7 +52,11 @@ internal fun QuantityAddIcon(
     }
 
     LaunchedEffect(key1 = quantityData.currentQuantity) {
-        setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
+        if (lastQuantityCount != quantityData.currentQuantity) {
+            lastQuantityCount = quantityData.currentQuantity
+            iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
+            setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
+        }
     }
 
     Icon(
@@ -70,8 +72,8 @@ internal fun QuantityAddIcon(
                 interactionSource = MutableInteractionSource(),
                 enabled = quantityData.isAddButtonEnabled(),
                 onClick = {
-                    //setTargetBackgroundColor.invoke(Color.White)
-                    //iconTintColor = icons.iconColor
+                    setTargetBackgroundColor.invoke(Color.White)
+                    iconTintColor = icons.iconColor
                     onAddClick?.invoke()
                 }
             )
