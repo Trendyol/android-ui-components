@@ -26,7 +26,8 @@ import kotlinx.coroutines.launch
 internal fun QuantityAddIcon(
     icons: QuantityIcons,
     quantityData: QuantityPickerViewData,
-    onAddClick: (() -> Unit)?
+    onAddClick: (() -> Unit)?,
+    showLoading: Boolean
 ) {
     val coroutineScope = rememberCoroutineScope()
     var targetBackgroundColor by remember {
@@ -51,8 +52,8 @@ internal fun QuantityAddIcon(
         }
     }
 
-    LaunchedEffect(key1 = quantityData.currentQuantity) {
-        if (lastQuantityCount != quantityData.currentQuantity) {
+    LaunchedEffect(key1 = quantityData.currentQuantity, showLoading) {
+        if (lastQuantityCount != quantityData.currentQuantity && showLoading.not()) {
             lastQuantityCount = quantityData.currentQuantity
             iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
             setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
