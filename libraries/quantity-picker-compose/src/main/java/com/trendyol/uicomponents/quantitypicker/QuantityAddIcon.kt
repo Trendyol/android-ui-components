@@ -52,7 +52,7 @@ internal fun QuantityAddIcon(
         }
     }
 
-    LaunchedEffect(key1 = quantityData.currentQuantity, showLoading) {
+    LaunchedEffect(key1 = quantityData.currentQuantity) {
         if (lastQuantityCount != quantityData.currentQuantity && showLoading.not()) {
             lastQuantityCount = quantityData.currentQuantity
             iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
