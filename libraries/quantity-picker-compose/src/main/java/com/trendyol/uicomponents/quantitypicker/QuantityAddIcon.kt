@@ -1,5 +1,6 @@
 package com.trendyol.uicomponents.quantitypicker
 
+import android.util.Log
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -35,7 +36,7 @@ internal fun QuantityAddIcon(
     }
     var iconTintColor by remember { mutableStateOf(Color.White) }
     val animatedBackgroundColor = remember { Animatable(targetBackgroundColor) }
-    var lastQuantityCount by remember { mutableStateOf(-1) }
+    var lastQuantityCount = remember { mutableStateOf(-1) }
 
 
     val setTargetBackgroundColor: (color: Color) -> Unit = remember {
@@ -53,8 +54,12 @@ internal fun QuantityAddIcon(
     }
 
     LaunchedEffect(key1 = quantityData.currentQuantity) {
-        if (lastQuantityCount != quantityData.currentQuantity && showLoading.not()) {
-            lastQuantityCount = quantityData.currentQuantity
+        Log.e(
+            "XXX",
+            "quantity = ${quantityData.currentQuantity} lastQ:${lastQuantityCount.value} isLoading:$showLoading"
+        )
+        if (lastQuantityCount.value != quantityData.currentQuantity && showLoading.not()) {
+            lastQuantityCount.value = quantityData.currentQuantity
             iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
             setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
         }
