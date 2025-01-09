@@ -32,12 +32,18 @@ internal fun QuantityAddIcon(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var targetBackgroundColor by remember {
-        mutableStateOf(icons.addIconBackgroundColor ?: Color.White)
+        mutableStateOf(quantityData.getBackgroundColor(icons))
     }
-    var iconTintColor by remember { mutableStateOf(Color.White) }
+    var iconTintColor by remember {
+        mutableStateOf(
+            quantityData.getAddIconColor(
+                icons,
+                quantityData.currentQuantity
+            )
+        )
+    }
     val animatedBackgroundColor = remember { Animatable(targetBackgroundColor) }
-    var lastQuantityCount = remember { mutableStateOf(-1) }
-
+    val lastQuantityCount = remember { mutableStateOf(quantityData.currentQuantity) }
 
     val setTargetBackgroundColor: (color: Color) -> Unit = remember {
         { color ->
@@ -58,7 +64,7 @@ internal fun QuantityAddIcon(
             "XXX",
             "quantity = ${quantityData.currentQuantity} lastQ:${lastQuantityCount.value} isLoading:$showLoading"
         )
-        if (lastQuantityCount.value != quantityData.currentQuantity && showLoading.not()) {
+        if (lastQuantityCount.value != quantityData.currentQuantity) {
             lastQuantityCount.value = quantityData.currentQuantity
             iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
             setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
@@ -78,8 +84,10 @@ internal fun QuantityAddIcon(
                 interactionSource = MutableInteractionSource(),
                 enabled = quantityData.isAddButtonEnabled(),
                 onClick = {
-                    setTargetBackgroundColor.invoke(Color.White)
-                    iconTintColor = icons.iconColor
+                    if (quantityData.currentQuantity == 0) {
+                        setTargetBackgroundColor.invoke(Color.White)
+                        iconTintColor = icons.iconColor
+                    }
                     onAddClick?.invoke()
                 }
             )
