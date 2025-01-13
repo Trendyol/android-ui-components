@@ -5,12 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun QuantityPicker(
@@ -91,7 +93,10 @@ internal fun VerticalQuantityPicker(
         )
 
         AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.padding(top = 2.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 QuantityText(
                     quantityData = quantityData,
                     shape = quantityTextShape,
@@ -139,7 +144,10 @@ internal fun HorizontalQuantityPicker(
     ) {
 
         AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier.padding(top = 2.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 QuantitySubtractIcon(
                     icons = icons,
                     quantityData = quantityData,
