@@ -1,6 +1,5 @@
 package com.trendyol.uicomponents.quantitypicker
 
-import android.util.Log
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -27,8 +26,7 @@ import kotlinx.coroutines.launch
 internal fun QuantityAddIcon(
     icons: QuantityIcons,
     quantityData: QuantityPickerViewData,
-    onAddClick: (() -> Unit)?,
-    showLoading: Boolean
+    onAddClick: (() -> Unit)?
 ) {
     val coroutineScope = rememberCoroutineScope()
     var targetBackgroundColor by remember {
@@ -60,10 +58,6 @@ internal fun QuantityAddIcon(
     }
 
     LaunchedEffect(key1 = quantityData.currentQuantity) {
-        Log.e(
-            "XXX",
-            "quantity = ${quantityData.currentQuantity} lastQ:${lastQuantityCount.value} isLoading:$showLoading"
-        )
         if (lastQuantityCount.value != quantityData.currentQuantity) {
             lastQuantityCount.value = quantityData.currentQuantity
             iconTintColor = quantityData.getAddIconColor(icons, quantityData.currentQuantity)
