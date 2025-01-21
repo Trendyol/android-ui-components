@@ -15,9 +15,24 @@ data class QuantityPickerViewData(
         return maxQuantity != -1
     }
 
-    fun getAddIconColor(iconTintColor: Color, disableTintColor: Color): Color {
-        return if (isAddButtonEnabled()) iconTintColor else disableTintColor
+    fun getAddIconColor(
+        icons: QuantityIcons,
+        currentQuantity: Int
+    ): Color {
+        val iconColor = if (currentQuantity == 0 && icons.addIconBackgroundColor != null) {
+            Color.White
+        } else {
+            icons.iconColor
+        }
+        return if (isAddButtonEnabled()) iconColor else icons.disabledColor
     }
+
+    fun getBackgroundColor(
+        icons: QuantityIcons
+    ): Color = if (currentQuantity == 0) {
+        icons.addIconBackgroundColor ?: Color.White
+    } else Color.White
+
 
     fun isSubtractButtonEnabled(): Boolean {
         return (currentQuantity > minQuantity)

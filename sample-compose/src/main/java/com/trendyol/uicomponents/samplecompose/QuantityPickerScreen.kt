@@ -15,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.trendyol.uicomponents.quantitypicker.QuantityIcons
+import com.trendyol.uicomponents.quantitypicker.QuantityPickerDefaults
 import com.trendyol.uicomponents.quantitypicker.QuantityPickerDirection
 import com.trendyol.uicomponents.quantitypicker.QuantityPickerViewData
 import com.trendyol.uicomponents.samplecompose.ui.productcard.ProductCard
@@ -150,6 +152,9 @@ private fun ProductSliderSection() {
         ) {
             items(products) { product ->
                 ProductCard(
+                    quantityPickerIcons = QuantityIcons.default.copy(
+                        addIconBackgroundColor = QuantityPickerDefaults.defaultColor
+                    ),
                     productData = product,
                     modifier = Modifier.padding(
                         end = 14.dp,
