@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.trendyol.uicomponents.quantitypicker.QuantityIcons
 import com.trendyol.uicomponents.quantitypicker.QuantityPicker
+import com.trendyol.uicomponents.quantitypicker.QuantityPickerDefaults
 import com.trendyol.uicomponents.quantitypicker.QuantityPickerDirection
 import com.trendyol.uicomponents.sample.compose.R
 import com.trendyol.uicomponents.samplecompose.ui.theme.Typography
@@ -54,8 +55,10 @@ fun ProductCard(
             val pickerAlignment = if (direction == QuantityPickerDirection.VERTICAL)
                 Alignment.TopEnd else Alignment.TopStart
             QuantityPicker(
-                icons = quantityPickerIcons,
                 modifier = modifier.align(pickerAlignment),
+                icons = quantityPickerIcons.copy(
+                    addIconBackgroundColor = QuantityPickerDefaults.defaultColor
+                ),
                 direction = direction,
                 quantityData = productData.quantityData,
                 showLoading = productData.isLoading,
