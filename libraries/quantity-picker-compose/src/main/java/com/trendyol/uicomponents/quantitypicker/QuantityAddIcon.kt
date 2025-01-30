@@ -2,11 +2,10 @@ package com.trendyol.uicomponents.quantitypicker
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -64,15 +63,8 @@ internal fun QuantityAddIcon(
             setTargetBackgroundColor.invoke(quantityData.getBackgroundColor(icons))
         }
     }
-
-    Icon(
-        painter = painterResource(id = icons.addIconResId),
-        tint = iconTintColor,
-        contentDescription = null,
+    Box(
         modifier = Modifier
-            .clip(CircleShape)
-            .background(animatedBackgroundColor.value)
-            .padding(8.dp)
             .clickable(
                 indication = null,
                 interactionSource = MutableInteractionSource(),
@@ -84,6 +76,16 @@ internal fun QuantityAddIcon(
                     }
                     onAddClick?.invoke()
                 }
-            )
-    )
+            )) {
+        Icon(
+            painter = painterResource(id = icons.addIconResId),
+            tint = iconTintColor,
+            contentDescription = null,
+            modifier = Modifier
+                .drawBehind {
+                    drawCircle(color = animatedBackgroundColor.value)
+                }
+                .padding(8.dp)
+        )
+    }
 }

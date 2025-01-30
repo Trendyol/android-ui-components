@@ -3,6 +3,7 @@ package com.trendyol.uicomponents.quantitypicker
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -139,28 +140,27 @@ internal fun HorizontalQuantityPicker(
                 color = quantityShape.backgroundColor,
                 shape = quantityShape.shape
             ),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
 
         AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
-            Row(
-                modifier = Modifier.padding(top = 2.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                QuantitySubtractIcon(
-                    icons = icons,
-                    quantityData = quantityData,
-                    onSubtractClick = onSubtractClick,
-                    currentQuantity = quantityData.currentQuantity
-                )
-                QuantityText(
-                    quantityData = quantityData,
-                    shape = quantityTextShape,
-                    style = textStyle,
-                    showLoading = showLoading,
-                    progressColor = progressColor,
-                )
-            }
+            QuantitySubtractIcon(
+                icons = icons,
+                quantityData = quantityData,
+                onSubtractClick = onSubtractClick,
+                currentQuantity = quantityData.currentQuantity
+            )
+        }
+
+        AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
+            QuantityText(
+                quantityData = quantityData,
+                shape = quantityTextShape,
+                style = textStyle,
+                showLoading = showLoading,
+                progressColor = progressColor,
+            )
         }
         QuantityAddIcon(
             icons = icons,
