@@ -26,7 +26,6 @@ import kotlinx.coroutines.launch
 internal fun QuantityAddIcon(
     icons: QuantityIcons,
     quantityData: QuantityPickerViewData,
-    showLoading: Boolean,
     onAddClick: (() -> Unit)?
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -79,10 +78,6 @@ internal fun QuantityAddIcon(
                 interactionSource = MutableInteractionSource(),
                 enabled = quantityData.isAddButtonEnabled(),
                 onClick = {
-                    if (quantityData.currentQuantity == 0 && showLoading.not()) {
-                        setTargetBackgroundColor.invoke(Color.White)
-                        iconTintColor = icons.iconColor
-                    }
                     onAddClick?.invoke()
                 }
             )

@@ -89,7 +89,6 @@ internal fun VerticalQuantityPicker(
             icons = icons,
             quantityData = quantityData,
             onAddClick = onAddClick,
-            showLoading = showLoading
         )
 
         AnimatedVisibility(visible = quantityData.currentQuantity > 0 || showLoading) {
@@ -167,7 +166,6 @@ internal fun HorizontalQuantityPicker(
             icons = icons,
             quantityData = quantityData,
             onAddClick = onAddClick,
-            showLoading = showLoading
         )
     }
 }
