@@ -3,6 +3,7 @@
 UI Components for Android by Trendyol Android team.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![libs.tech recommends](https://libs.tech/project/220991853/badge.svg)](https://libs.tech/project/220991853/android-ui-components)
 
 UI Components includes several custom views for Android platform to make developers life easier!
 
