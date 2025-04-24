@@ -89,6 +89,9 @@ class CVFloatingZoomView(
             initialZoomPoint = Point(initialPoint!!.x, initialPoint!!.y)
             leftoverZoom = 0f
         } else if (isBusy && isInteractionStartEvent(event, motionEvent)) {
+            if (initialPoint == null) {
+                initialPoint = Point(currentCenter!!.x, currentCenter!!.y)
+            }
             onFingerCountChange(event, FingerSwapState.TWO_FINGER)
             leftoverZoom = floatingImage.scaleX - 1
             initialDifference =
