@@ -1,3 +1,5 @@
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Trendyol/android-ui-components/badge)](https://scorecard.dev/viewer/?uri=github.com/Trendyol/android-ui-components)
 <img src="images/logo.png" width="400"/>
 
 UI Components for Android by Trendyol Android team.
