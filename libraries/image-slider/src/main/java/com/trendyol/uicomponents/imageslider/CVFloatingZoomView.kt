@@ -261,10 +261,12 @@ class CVFloatingZoomView(
     }
 
     private fun onFingerCountChange(event: MotionEvent, newstate: FingerSwapState) {
-        initialPoint!!.set(
-            initialPoint!!.x - (lastCenter!!.x - currentCenter!!.x),
-            initialPoint!!.y - (lastCenter!!.y - currentCenter!!.y)
-        )
+        if (lastCenter != null && currentCenter != null && initialPoint != null) {
+            initialPoint!!.set(
+                initialPoint!!.x - (lastCenter!!.x - currentCenter!!.x),
+                initialPoint!!.y - (lastCenter!!.y - currentCenter!!.y)
+            )
+        }
         lastCenter = currentCenter
         remainingFingerIndex =
             1 - (event.action and ACTION_POINTER_INDEX_MASK shr ACTION_POINTER_INDEX_SHIFT)
