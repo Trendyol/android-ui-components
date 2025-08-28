@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation(Dependencies.appCompat)
     implementation(Dependencies.coreKtx)
-    implementation(Dependencies.material)
+    api(Dependencies.material)
     implementation(Dependencies.constraintLayout)
     implementation(Dependencies.lifecycleExtensions)
 }
