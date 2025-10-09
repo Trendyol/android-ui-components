@@ -30,6 +30,7 @@ internal object FakeTimelineItemProvider {
                 outSideColor = outsideColor,
                 size = pointSize,
             ),
+            textMaxLine = 2,
         )
     }
 

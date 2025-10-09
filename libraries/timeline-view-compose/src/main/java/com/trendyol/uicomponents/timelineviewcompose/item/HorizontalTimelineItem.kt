@@ -56,7 +56,7 @@ internal fun HorizontalTimelineItem(
             style = item.textStyle,
             overflow = TextOverflow.Ellipsis,
             textAlign = TextAlign.Center,
-            maxLines = 2,
+            maxLines = item.textMaxLine,
             modifier = Modifier
                 .width(itemWidth)
                 .layoutId(TextLayoutId)
