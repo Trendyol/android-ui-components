@@ -14,6 +14,7 @@ sealed class TimelineItem {
         val pointConfig: PointConfig,
         val textStyle: TextStyle = TimelineViewDefaults.TextStyle,
         val pointShadowConfig: PointShadowConfig? = null,
+        val textMaxLine: Int = 2,
     ) : TimelineItem()
 
     @Stable
