@@ -158,6 +158,17 @@ class QuantityPickerView : ConstraintLayout {
         setQuantityPickerViewState(viewState.getWithBackgroundDrawable(background))
     }
 
+    fun setButtonContentDescriptions(
+        addContentDescription: String, removeContentDescription: String
+    ) {
+        setQuantityPickerViewState(
+            viewState.getWithContentDescription(
+                addContentDescription = addContentDescription,
+                removeContentDescription = removeContentDescription
+            )
+        )
+    }
+
     fun stopLoading() = setQuantityPickerViewState(viewState.stopLoading())
 
     fun reset() = setQuantityPickerViewState(viewState.reset())
