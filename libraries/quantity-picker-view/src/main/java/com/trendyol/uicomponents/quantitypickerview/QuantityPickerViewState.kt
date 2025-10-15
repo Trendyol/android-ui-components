@@ -175,6 +175,15 @@ data class QuantityPickerViewState(
         return copy(backgroundDrawable = background)
     }
 
+    internal fun getWithContentDescription(
+        addContentDescription: String, removeContentDescription: String
+    ): QuantityPickerViewState {
+        return copy(
+            addContentDescription = addContentDescription,
+            removeContentDescription = removeContentDescription
+        )
+    }
+
     internal fun stopLoading(): QuantityPickerViewState =
         copy(showLoading = false, expansionState = expansionState.expand())
 
