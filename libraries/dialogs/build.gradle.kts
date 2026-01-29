@@ -7,6 +7,8 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
+kotlin.jvmToolchain(21)
+
 android {
     compileSdk = Configs.compileSdkVersion
     buildToolsVersion = Configs.buildToolsVersion
@@ -37,8 +39,8 @@ android {
     namespace = "com.trendyol.dialog"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 

@@ -4,7 +4,7 @@ plugins {
     id(Plugins.compose) version "2.1.21"
 }
 
-kotlin.jvmToolchain(17)
+kotlin.jvmToolchain(21)
 
 android {
     compileSdk = Configs.compileSdkVersion
@@ -18,6 +18,11 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
+    lint {
+        disable.add("NullSafeMutableLiveData")
+    }
+
     buildTypes {
         getByName<com.android.build.gradle.internal.dsl.BuildType>("release") {
             isMinifyEnabled = false

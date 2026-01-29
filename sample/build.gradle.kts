@@ -3,7 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
 }
 
-kotlin.jvmToolchain(17)
+kotlin.jvmToolchain(21)
 
 android {
     compileSdk = Configs.compileSdkVersion
@@ -18,6 +18,11 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
+    lint {
+        disable.add("NullSafeMutableLiveData")
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
