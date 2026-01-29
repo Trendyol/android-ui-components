@@ -4,7 +4,7 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-kotlin.jvmToolchain(17)
+kotlin.jvmToolchain(21)
 
 android {
     compileSdk = Configs.compileSdkVersion

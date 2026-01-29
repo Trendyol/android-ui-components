@@ -5,7 +5,7 @@ plugins {
     id(Plugins.compose) version "2.1.21"
 }
 
-kotlin.jvmToolchain(17)
+kotlin.jvmToolchain(21)
 
 android {
     namespace = "com.trendyol.timelineviewcompose"
@@ -14,6 +14,10 @@ android {
     defaultConfig {
         minSdk = Configs.minSdkVersion
         vectorDrawables.useSupportLibrary = true
+    }
+
+    lint {
+        disable.add("NullSafeMutableLiveData")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

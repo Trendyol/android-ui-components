@@ -4,7 +4,7 @@ plugins {
     id(Plugins.mavenPublish)
 }
 
-kotlin.jvmToolchain(17)
+kotlin.jvmToolchain(21)
 
 android {
     compileSdk = Configs.compileSdkVersion
@@ -31,8 +31,8 @@ android {
     namespace = "com.trendyol.fitoptionmessageview"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
