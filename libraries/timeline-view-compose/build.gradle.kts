@@ -2,14 +2,14 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.mavenPublish)
-    id(Plugins.compose) version "2.0.0"
+    id(Plugins.compose) version "2.1.21"
 }
 
 kotlin.jvmToolchain(17)
 
 android {
     namespace = "com.trendyol.timelineviewcompose"
-    compileSdk = 33
+    compileSdk = Configs.compileSdkVersion
 
     defaultConfig {
         minSdk = Configs.minSdkVersion
@@ -37,10 +37,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.kotlinCompilerExtensionVersion
     }
 }
 

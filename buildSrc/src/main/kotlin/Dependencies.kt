@@ -10,13 +10,13 @@ object Dependencies {
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:2.1.0"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:2.1.0"
 
-    const val composeBom = "androidx.compose:compose-bom:2023.05.01"
+    const val composeBom = "androidx.compose:compose-bom:2025.12.01"
     const val composeActivity = "androidx.activity:activity-compose:1.3.0-alpha07"
     const val composeMaterial = "androidx.compose.material:material"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeRuntime = "androidx.compose.runtime:runtime"
     const val composeCoil = "io.coil-kt:coil-compose:2.2.1"
-    const val composeConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
+    const val composeConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.1.1"
     const val composeNavigation = "androidx.navigation:navigation-compose:2.5.3"
     const val kotlinCompilerExtensionVersion = "1.4.4"
 }

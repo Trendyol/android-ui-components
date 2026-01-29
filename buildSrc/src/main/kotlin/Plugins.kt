@@ -1,7 +1,7 @@
 object Plugins {
 
-    private const val kotlinVersion = "2.0.0"
-    const val androidGradlePlugin = "com.android.tools.build:gradle:8.5.0"
+    private const val kotlinVersion = "2.1.21"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:8.7.3"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     const val androidApplication = "com.android.application"
