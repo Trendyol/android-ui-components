@@ -1,7 +1,7 @@
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
-    id(Plugins.compose) version "2.0.0"
+    id(Plugins.compose) version "2.1.21"
 }
 
 kotlin.jvmToolchain(17)
@@ -31,10 +31,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Dependencies.kotlinCompilerExtensionVersion
     }
 }
 
